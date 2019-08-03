@@ -1,0 +1,52 @@
+[user]
+  name     = Alexander Teslovskiy
+  username = ARtoriouS
+  email    = artoriousso@gmail.com
+[core]
+  editor       = vim
+  whitespace   = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  excludesfile = $HOME/dotfiles/.gitignore_global
+  quotepath    = true # show unusual symbols as bytes
+[push]
+  default = current
+[color "branch"]
+  current = yellow bold
+  local   = green bold
+  remote  = cyan bold
+[color "diff"]
+  meta       = yellow bold
+  frag       = magenta bold
+  old        = red bold
+  new        = green bold
+  whitespace = red reverse
+[color "status"]
+  added     = green bold
+  changed   = yellow bold
+  untracked = red bold
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
+[github]
+  user  = ARtoriouSs
+[alias]
+  cl  = clone
+  rem = remote
+  b   = branch
+  co  = checkout
+  a   = add
+  aa  = add --all
+  rh  = reset HEAD
+  c   = commit
+  ca  = commit --amend
+  can = commit --amend --no-edit
+  r   = rebase
+  ra  = rebase --abort
+  rc  = rebase --continue
+  p   = push
+  pl  = pull
+  upd = pull --rebase origin master
+  f   = fetch
+  st  = status
+  d   = diff
+  l   = log --pretty=format:\"%C(yellow bold)%h%Creset | %C(blue bold)%ad%Creset, %C(green bold)%an%Creset %s%C(red bold)%d%Creset\" --graph --date=relative

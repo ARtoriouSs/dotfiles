@@ -1,0 +1,15 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"DotENV",
+		"MarkdownLivePreview",
+		"Package Control",
+		"PowerCursors",
+		"Pretty Ruby",
+		"Ruby Slim"
+	]
+}

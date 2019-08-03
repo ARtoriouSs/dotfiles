@@ -1,0 +1,25 @@
+# this is global .gitignore file, it should be located in $HOME directory
+# your .gitconfig should contain the following line in [core] section:
+#
+# excludesfile = ~/.gitignore_global
+#
+# all local repositories will ignore the following pattens:
+
+# IDE files
+.idea
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Environment
+.env
+.env.development
+.env.production
