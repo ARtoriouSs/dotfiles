@@ -31,18 +31,6 @@ forsepush() {
     git push -f origin "${CURRENT}"
 }
 
-# push current branch to heroku master
-heroku_push() {
-    CURRENT=$(git branch | grep '\*' | awk '{print $2}')
-    git push heroku "${CURRENT}":master
-}
-
-# forse-push current branch to origin
-heroku_forsepush() {
-    CURRENT=$(git branch | grep '\*' | awk '{print $2}')
-    git push -f heroku "${CURRENT}":master
-}
-
 # pull current branch from origin
 pull() {
     CURRENT=$(git branch | grep '\*' | awk '{print $2}')
@@ -62,4 +50,9 @@ rebase() {
 clean_git_index() {
     git reset HEAD --hard
     rm -rf $(git status --porcelain)
+}
+
+# find PID by port
+find_port() {
+  fuser -n tcp $1
 }
