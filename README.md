@@ -9,6 +9,7 @@ You can find something useful here and add it to your system. See source files o
 *NOTE:* Implied all dotfiles stored in `$HOME/dotfiles` directory and have a symlinks in `$HOME`. So you can manage and commit them from one place.
 
 ```bash
+  cd $HOME
   git clone https://github.com/ARtoriouSs/dotfiles.git
   ./dotfiles/scripts/prepare_system.sh
 ```

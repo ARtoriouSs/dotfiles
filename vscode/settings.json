@@ -1,0 +1,78 @@
+{
+  "workbench.iconTheme": "Monokai Classic Icons",
+  "workbench.colorTheme": "Monokai Classic",
+  "workbench.startupEditor": "newUntitledFile",
+
+  "editor.dragAndDrop": false,
+  "editor.fastScrollSensitivity": 7,
+  "editor.folding": false,
+  "editor.glyphMargin": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.suggestSelection": "first",
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?_",
+  "editor.wordWrap": "off",
+  "editor.find.addExtraSpaceOnTop": false,
+
+  "window.restoreWindows": "all",
+  "window.newWindowDimensions": "inherit",
+  "window.zoomLevel": 1,
+
+  "files.autoSave": "onWindowChange",
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "files.insertFinalNewline": true,
+  "files.associations": {
+    ".vimrc": "shellscript",
+    "bashrc": "shellscript",
+    "profile": "shellscript",
+    "zprofile": "shellscript",
+    "zshrc": "shellscript",
+    "environment.sh": "dotenv"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/.idea": true,
+    "**/*.pyc": true
+  },
+
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+
+  "extensions.ignoreRecommendations": false,
+
+  "[ruby]": {
+    "editor.tabSize": 2
+  },
+  "ruby.intellisense": "rubyLocate",
+
+  "[elixir]": {
+    "editor.tabSize": 2
+  },
+
+  "[javascript]": {
+    "editor.tabSize": 2
+  },
+  "javascript.validate.enable": false,
+
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  "[javascriptreact]": {
+    "editor.tabSize": 2
+  },
+
+  "[shellscript]": {
+    "editor.tabSize": 4
+  },
+
+  "[dotenv]": {
+    "editor.tabSize": 4
+  },
+
+  "html.format.endWithNewline": true,
+}
