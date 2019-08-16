@@ -8,3 +8,4 @@ sudo apt-get install sublime-text
 
 # copy settings
 cp ../sublime/*.sublime-settings $HOME/.config/sublime-text-3/Packages/User
+# TODO: symlinks
