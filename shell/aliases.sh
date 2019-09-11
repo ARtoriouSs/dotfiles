@@ -1,4 +1,4 @@
-# git aliases
+# git
 alias g="git"
 alias gcl="git clone"
 alias grem="git remote"
@@ -25,7 +25,7 @@ alias gst="git status"
 alias gd="git diff"
 alias gl="git log --pretty=format:\"%C(yellow bold)%h%Creset | %C(blue bold)%ad%Creset, %C(green bold)%an%Creset %s%C(red bold)%d%Creset\" --graph --date=relative"
 
-# rails aliases
+# rails
 alias r="rails"
 alias rt="bundle exec rails test"
 alias b="bundle"
@@ -38,7 +38,7 @@ alias rr="bundle exec rake routes"
 alias rdm="bundle exec rake db:migrate"
 alias rdr="bundle exec rake db:drop db:create db:migrate"
 
-# docker aliases
+# docker
 alias d="docker"
 alias dr="docker run"
 alias dps="docker ps -a"
@@ -50,7 +50,7 @@ alias dclear="docker system prune"
 alias dcp="docker-compose"
 alias dcps="docker-compose ps -a"
 
-# system aliases
+# system
 alias cdp="cd $HOME/my_folder/projects"
 alias c="cd .."
 alias ll='ls -alF'
@@ -60,9 +60,9 @@ alias rb="ruby"
 alias n="nemo" # "nautilus"
 alias nh="nemo . &" # "nautilus . &"
 alias psqlc="sudo -u postgres psql"
-alias todo="subl $HOME/todo.yml"
+alias todo="$EDITOR $HOME/todo.yml"
+alias todol="$EDITOR todo.yml"
 alias s="code"
-alias ss="subl"
 alias v="vim"
 alias search="find . -name"
 alias ho="heroku open"
@@ -74,19 +74,21 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias k9="kill -9"
 alias susp="systemctl suspend"
 
-# dotfiles quick access aliases
-alias profile="subl $HOME/dotfiles/shell/.profile"
-alias bashrc="subl $HOME/dotfiles/shell/.bashrc"
-alias zprofile="subl $HOME/dotfiles/shell/.zprofile"
-alias zshrc="subl $HOME/dotfiles/shell/.zshrc"
-alias aliases="subl $HOME/dotfiles/shell/aliases.sh"
-alias temp_settings="subl $HOME/dotfiles/shell/.temp_settings"
-alias gitconfig="subl $HOME/dotfiles/.gitconfig"
-alias gitignore_global="subl $HOME/dotfiles/.gitignore_global"
-alias gitignore="subl $HOME/dotfiles/.gitignore_global"
-alias vimrc="subl $HOME/dotfiles/vim/.vimrc"
+# dotfiles quick access
+alias profile="$WORK_EDITOR $HOME/dotfiles/shell/.profile"
+alias bashrc="$WORK_EDITOR $HOME/dotfiles/shell/.bashrc"
+alias zprofile="$WORK_EDITOR $HOME/dotfiles/shell/.zprofile"
+alias zshrc="$WORK_EDITOR $HOME/dotfiles/shell/.zshrc"
+alias aliases="$WORK_EDITOR $HOME/dotfiles/shell/aliases.sh"
+alias functions="$WORK_EDITOR $HOME/dotfiles/shell/functions.sh"
+alias environment="$WORK_EDITOR $HOME/dotfiles/shell/environment.sh"
+alias temp_settings="$WORK_EDITOR $HOME/dotfiles/shell/temp_settings"
+alias gitconfig="$WORK_EDITOR $HOME/dotfiles/.gitconfig"
+alias gitignore_global="$WORK_EDITOR $HOME/dotfiles/.gitignore_global"
+alias gitignore="$WORK_EDITOR $HOME/dotfiles/.gitignore_global"
+alias vimrc="$WORK_EDITOR $HOME/dotfiles/vim/.vimrc"
 
-# russian equivalents for wrong keyboard layout
+# some russian equivalents for wrong keyboard layout
 alias "с"="cd .."
 alias "св"="cd"
 alias "свз"="cd $HOME/my_folder/projects"

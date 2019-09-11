@@ -29,7 +29,9 @@
     "profile": "shellscript",
     "zprofile": "shellscript",
     "zshrc": "shellscript",
-    "environment.sh": "dotenv"
+    "environment.sh": "dotenv",
+    ".env.sample": "dotenv",
+    ".env.example": "dotenv",
   },
   "files.exclude": {
     "**/.git": true,
