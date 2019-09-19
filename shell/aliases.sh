@@ -51,28 +51,35 @@ alias dcp="docker-compose"
 alias dcps="docker-compose ps -a"
 
 # system
-alias cdp="cd $HOME/my_folder/projects"
+alias cdp="cd $PROJECTS"
 alias c="cd .."
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias rb="ruby"
-alias n="nemo" # "nautilus"
-alias nh="nemo . &" # "nautilus . &"
+alias n="$FILE_MANAGER"
+alias nh="$FILE_MANAGER . &"
 alias psqlc="sudo -u postgres psql"
-alias todo="$EDITOR $HOME/todo.yml"
-alias todol="$EDITOR todo.yml"
-alias s="code"
+alias todo="$WORK_EDITOR $HOME/todo.yml"
+alias todol="$WORK_EDITOR todo.yml"
+alias s="$WORK_EDITOR"
 alias v="vim"
 alias search="find . -name"
 alias ho="heroku open"
-alias upd="sudo apt-get --yes update"
-alias upg="sudo apt-get --yes upgrade"
-alias i="sudo apt-get --yes install"
-alias install="sudo apt-get --yes update && sudo apt-get --yes install"
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias k9="kill -9"
-alias susp="systemctl suspend"
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    alias susp="systemctl suspend"
+    alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+    alias upd="sudo apt-get --yes update"
+    alias upg="sudo apt-get --yes upgrade"
+    alias i="sudo apt-get --yes install"
+    alias install="sudo apt-get --yes update && sudo apt-get --yes install"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    alias i="brew install"
+    alias install="brew install"
+    alias susp="pmset sleepnow"
+    alias shutdown="sudo halt"
+fi
 
 # dotfiles quick access
 alias profile="$WORK_EDITOR $HOME/dotfiles/shell/.profile"
@@ -93,7 +100,7 @@ alias "с"="cd .."
 alias "св"="cd"
 alias "свз"="cd $HOME/my_folder/projects"
 alias "пые"="git status"
-alias "ы"="code"
+alias "ы"="$WORK_EDITOR"
 alias "ещвщ"="todo"
 
 # enable color support of ls and also add handy aliases from default .bashrc

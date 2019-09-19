@@ -1,9 +1,0 @@
-{
-	"extensions":
-	[
-		".zshrc",
-		".zprofile",
-		"Dockerfile",
-		"zsh-theme"
-	]
-}

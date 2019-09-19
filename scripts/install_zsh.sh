@@ -1,8 +1,14 @@
 #!/bin/bash
 
 # zsh and Oh My Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-chsh -s /usr/bin/zsh
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    chsh -s /usr/bin/zsh
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    brew install zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+upgrade_oh_my_zsh
 
 # theme for Zsh
 wget -P $ZSH/themes https://raw.githubusercontent.com/ARtoriouSs/chaotic-beef-zsh-theme/master/chaotic-beef.zsh-theme
