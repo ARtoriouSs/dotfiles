@@ -15,7 +15,6 @@
 
 # OS generated files
 .DS_Store*
-.DS_Store
 ehthumbs.db
 Icon?
 Thumbs.db
@@ -24,3 +23,6 @@ Thumbs.db
 .env
 .env.development
 .env.production
+
+# local todo files
+.todo.yml

@@ -1,8 +1,15 @@
 # create symlinks for settings
-ln -sf $HOME/dotfiles/vscode/settings.json $HOME/.config/Code/User/settings.json
-ln -sf $HOME/dotfiles/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    ln -sf $HOME/dotfiles/vscode/settings.json $HOME/.config/Code/User/settings.json
+    ln -sf $HOME/dotfiles/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    ln -sf $HOME/dotfiles/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+    ln -sf $HOME/dotfiles/vscode/keybindings.json $HOME/Library/Application\ Support/Code/User/settings.json
+fi
 
 # install extensions
+# use the folLowing command to output all installed extensions prepended with install comand and make list like below:
+# code --list-extensions | xargs -L 1 echo code --install-extension
 code --install-extension bung87.rails
 code --install-extension bung87.vscode-gemfile
 code --install-extension castwide.solargraph
@@ -19,6 +26,3 @@ code --install-extension shardulm94.trailing-spaces
 code --install-extension sianglim.slim
 code --install-extension waderyan.gitblame
 code --install-extension yzhang.markdown-all-in-one
-
-# output all installed extensions with install comand to copy-paste:
-# code --list-extensions | xargs -L 1 echo code --install-extension

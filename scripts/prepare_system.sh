@@ -31,17 +31,26 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then # TODO:verify
     cd ~/.rbenv && src/configure && make -C src # Can fail, it's ok
     ~/.rbenv/bin/rbenv init
     # ruby-build for rbenv
-    mkdir -p "$(rbenv root)"/plugins 
+    mkdir -p "$(rbenv root)"/plugins
     git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+    # postgres
+    apt-get install wget ca-certificates
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+    sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+    apt-get update
+    apt-get install postgresql postgresql-contrib
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # docker
     echo "You need to install Docker manualy on MacOS: https://runnable.com/docker/install-docker-on-macos"
     # rbenv
     brew install rbenv
     rbenv init
+    # postgres
+    brew install postgres
 fi
 
 curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash # verify rbenv
+pg_ctl -D /usr/local/var/postgres start # start postgres server
 
 ./create_symlinks.sh
 ./create_dir_tree.sh
