@@ -68,17 +68,20 @@ alias search="find . -name"
 alias ho="heroku open"
 alias k9="kill -9"
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    alias susp="systemctl suspend"
     alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
     alias upd="sudo apt-get --yes update"
     alias upg="sudo apt-get --yes upgrade"
     alias i="sudo apt-get --yes install"
     alias install="sudo apt-get --yes update && sudo apt-get --yes install"
+    alias susp="systemctl suspend"
+    alias shutdown="init 0"
+    alias shut="init 0"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias i="brew install"
     alias install="brew install"
     alias susp="pmset sleepnow"
     alias shutdown="sudo halt"
+    alias shut="sudo halt"
 fi
 
 # dotfiles quick access
