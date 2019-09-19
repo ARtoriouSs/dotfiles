@@ -8,6 +8,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     sudo apt install code
     ./configure_vscode.sh
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "You need to install VS Code manualy on MacOS: https://appdividend.com/2018/03/17/how-to-install-visual-studio-code-on-mac/"
-    echo "Then run ./configure_vscode.sh"
+    brew cask install visual-studio-code
+    ./configure_vscode.sh
 fi
