@@ -41,7 +41,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then # TODO:verify
     apt-get install postgresql postgresql-contrib
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # docker
-    echo "You need to install Docker manualy on MacOS: https://runnable.com/docker/install-docker-on-macos"
+    brew cask install docker
     # rbenv
     brew install rbenv
     rbenv init
