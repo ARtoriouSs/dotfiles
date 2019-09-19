@@ -5,7 +5,7 @@
 [core]
   editor       = vim
   whitespace   = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-  excludesfile = $HOME/dotfiles/.gitignore_global
+  excludesfile = ~/dotfiles/.gitignore_global
   quotepath    = true # show unusual symbols as bytes
 [push]
   default = current

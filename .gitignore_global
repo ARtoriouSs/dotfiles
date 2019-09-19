@@ -25,4 +25,5 @@ Thumbs.db
 .env.production
 
 # local todo files
+todo.yml
 .todo.yml
