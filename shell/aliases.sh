@@ -87,6 +87,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # dotfiles quick access
+alias cdd="cd ~/dotfiles"
 alias profile="$WORK_EDITOR $HOME/dotfiles/shell/.profile"
 alias bashrc="$WORK_EDITOR $HOME/dotfiles/shell/.bashrc"
 alias zprofile="$WORK_EDITOR $HOME/dotfiles/shell/.zprofile"
