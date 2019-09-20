@@ -39,7 +39,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then # TODO:verify
     sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
     apt-get update
     apt-get install postgresql postgresql-contrib
-
+elif [[ "$OSTYPE" == "darwin"* ]]; then
     # docker
     brew cask install docker
     # rbenv
@@ -50,7 +50,13 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then # TODO:verify
 fi
 
 curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash # verify rbenv
-pg_ctl -D /usr/local/var/postgres start # start postgres server
+
+# start postgres server
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    pg_ctl -D /usr/local/var/postgres start
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    brew services start postgresql
+fi
 
 # do not display login message in MacOS
 if [[ "$OSTYPE" == "dVarwin"* ]]; then

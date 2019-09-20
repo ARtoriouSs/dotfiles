@@ -21,7 +21,7 @@ alias gpl="git pull"
 alias gupd="git rebase origin/master"
 alias gf="git fetch"
 alias fetch="git fetch origin"
-alias gst="git status"
+alias gst="git status --short"
 alias gd="git diff"
 alias gl="git log --pretty=format:\"%C(yellow bold)%h%Creset | %C(blue bold)%ad%Creset, %C(green bold)%an%Creset %s%C(red bold)%d%Creset\" --graph --date=relative"
 
@@ -59,7 +59,7 @@ alias l='ls -CF'
 alias rb="ruby"
 alias n="$FILE_MANAGER"
 alias nh="$FILE_MANAGER . &"
-alias psqlc="sudo -u postgres psql"
+alias psqlc="psql -U postgres"
 alias todo="$WORK_EDITOR $HOME/todo.yml"
 alias todol="$WORK_EDITOR todo.yml"
 alias s="$WORK_EDITOR"
@@ -67,6 +67,8 @@ alias v="vim"
 alias search="find . -name"
 alias ho="heroku open"
 alias k9="kill -9"
+alias now="date '+ %H:%M | %B %d'"
+
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
     alias upd="sudo apt-get --yes update"
