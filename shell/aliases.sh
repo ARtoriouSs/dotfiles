@@ -108,6 +108,15 @@ alias "свз"="cd $HOME/my_folder/projects"
 alias "пые"="git status"
 alias "ы"="$WORK_EDITOR"
 alias "ещвщ"="todo"
+alias "ещвщд"="todo"
+# some caps equivalents
+alias "C"="cd .."
+alias "CD"="cd"
+alias "CDP"="cd $HOME/my_folder/projects"
+alias "GST"="git status"
+alias "S"="$WORK_EDITOR"
+alias "TODO"="todo"
+alias "TODOL"="todo"
 
 # enable color support of ls and also add handy aliases from default .bashrc
 if [ -x /usr/bin/dircolors ]; then
