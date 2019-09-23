@@ -15,19 +15,46 @@ rollback() {
     rake db:rollback STEP=$STEP
 }
 
-# git status without excess info
+# colored git status without excess info
 gst() {
     git status --porcelain | awk '{
-        if ($1 == "M")
-            print "  ", "\033[93m"$2"\033[0m"
-        else if ($1 == "D")
-            print "  ", "\033[91m"$2"\033[0m"
-        else if ($1 == "A")
-            print "  ", "\033[92m"$2"\033[0m"
-        else if ($1 == "??")
-            print "  ", "\033[95m"$2"\033[0m"
-        else
-            print $1, $2
+        split($0, chars, "")
+        index_bit = chars[1]
+        tree_bit = chars[2]
+        green = "\033[92m"
+        yellow = "\033[93m"
+        red = "\033[91m"
+        violet = "\033[95m"
+        default = "\033[0m"
+
+        if ($1 == "??")
+            output = "  " violet index_bit tree_bit "  " $2 default
+        else if ($1 == "!!")
+            output = "  " index_bit tree_bit "  " $2
+        else {
+            output = "  " green index_bit
+
+            if (tree_bit == "D")
+                output = output red tree_bit default "  "
+            else
+                output = output yellow tree_bit default "  "
+
+            if (index_bit != " ") {
+                if (index_bit == "R")
+                    output = output green $2 default " " $3 " " green $4 default
+                else
+                    output = output green $2 default
+            } else {
+                if (tree_bit == "R")
+                    output = output yellow $2 default " " $3 " " yellow $4 default
+                else if (tree_bit == "D")
+                    output = output red $2 default
+                else
+                    output = output yellow $2 default
+            }
+        }
+
+        print output
     }'
 }
 
