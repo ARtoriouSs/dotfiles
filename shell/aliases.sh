@@ -21,7 +21,6 @@ alias gpl="git pull"
 alias gupd="git rebase origin/master"
 alias gf="git fetch"
 alias fetch="git fetch origin"
-alias gst="git status --short"
 alias gd="git diff"
 alias gl="git log --pretty=format:\"%C(yellow bold)%h%Creset | %C(blue bold)%ad%Creset, %C(green bold)%an%Creset %s%C(red bold)%d%Creset\" --graph --date=relative"
 
@@ -56,14 +55,13 @@ alias c="cd .."
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias rb="ruby"
 alias n="$FILE_MANAGER"
 alias nh="$FILE_MANAGER . &"
 alias psqlc="psql -U postgres"
 alias todo="$WORK_EDITOR $HOME/todo.yml"
 alias todol="$WORK_EDITOR todo.yml"
 alias s="$WORK_EDITOR"
-alias v="vim"
+alias v=$EDITOR
 alias search="find . -name"
 alias ho="heroku open"
 alias k9="kill -9"
@@ -104,19 +102,19 @@ alias vimrc="$WORK_EDITOR $HOME/dotfiles/vim/.vimrc"
 # some russian equivalents for wrong keyboard layout
 alias "с"="cd .."
 alias "св"="cd"
-alias "свз"="cd $HOME/my_folder/projects"
-alias "пые"="git status"
-alias "ы"="$WORK_EDITOR"
+alias "свз"="cdp"
+alias "пые"="gst"
+alias "ы"="s"
 alias "ещвщ"="todo"
-alias "ещвщд"="todo"
+alias "ещвщд"="todol"
 # some caps equivalents
-alias "C"="cd .."
+alias "C"="c"
 alias "CD"="cd"
-alias "CDP"="cd $HOME/my_folder/projects"
-alias "GST"="git status"
-alias "S"="$WORK_EDITOR"
+alias "CDP"="cdp"
+alias "GST"="gst"
+alias "S"="s"
 alias "TODO"="todo"
-alias "TODOL"="todo"
+alias "TODOL"="todol"
 
 # enable color support of ls and also add handy aliases from default .bashrc
 if [ -x /usr/bin/dircolors ]; then

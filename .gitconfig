@@ -27,6 +27,8 @@
   tool = vimdiff
 [difftool]
   prompt = false
+[status]
+  short = true
 [github]
   user  = ARtoriouSs
 [alias]
