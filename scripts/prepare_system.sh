@@ -58,9 +58,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     brew services start postgresql
 fi
 
-# do not display login message in MacOS
 if [[ "$OSTYPE" == "dVarwin"* ]]; then
-    touch ~/.hushlogin
+    touch ~/.hushlogin # do not display login message
+    defaults write NSGlobalDomain KeyRepeat -int 0 # increase cursor repeat speed
 fi
 
 ./create_symlinks.sh
