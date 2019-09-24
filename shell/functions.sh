@@ -4,6 +4,7 @@ clean_test() {
     mkdir $PROJECTS/test
 }
 
+# copy ssh key from id_rsa
 copy_ssh() {
     pbcopy < ~/.ssh/id_rsa.pub
 }
