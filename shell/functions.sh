@@ -1,3 +1,9 @@
+# clean &PROJECTS/test directory
+clean_test() {
+    rm -rf $PROJECTS/test
+    mkdir $PROJECTS/test
+}
+
 # run redis in docker in a background
 redis_up() {
     docker run -d -p 6379:6379 redis
