@@ -6,7 +6,18 @@ clean_test() {
 
 # run redis in docker in a background
 redis_up() {
-    docker run -d -p 6379:6379 redis
+    if [ "$1" = "--docker" ] || [ "$1" = "-d" ]
+    then
+        docker run -d -p 6379:6379 redis
+    else
+        redis-server --daemonize yes
+    fi
+}
+
+# kill redis whether in system process or in docker
+kill_redis() {
+    ps aux | grep redis-server | awk '{ print $2; exit }' | xargs kill -9
+    docker ps | grep redis | awk '{ print $1 }' | xargs docker rm -f
 }
 
 # kill server on specified port (3000 by default)
