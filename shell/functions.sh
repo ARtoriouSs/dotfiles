@@ -4,6 +4,10 @@ clean_test() {
     mkdir $PROJECTS/test
 }
 
+copy_ssh() {
+    pbcopy < ~/.ssh/id_rsa.pub
+}
+
 # run redis in docker in a background
 redis_up() {
     if [ "$1" = "--docker" ] || [ "$1" = "-d" ]

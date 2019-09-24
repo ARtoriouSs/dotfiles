@@ -52,6 +52,7 @@ alias dcps="docker-compose ps -a"
 
 # system
 alias cdp="cd $PROJECTS"
+alias cdt="cd $PROJECTS/test"
 alias c="cd .."
 alias ll='ls -alF'
 alias la='ls -A'

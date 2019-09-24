@@ -7,7 +7,7 @@ fi
 export EDITOR=vim
 export WORK_EDITOR=code
 export SSH_KEY_PATH=~/.ssh/id_rsa
-
+export EMAIL="artoriousso@gmail.com"
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export FILE_MANAGER=nemo # nautilus
 elif [[ "$OSTYPE" == "darwin"* ]]; then

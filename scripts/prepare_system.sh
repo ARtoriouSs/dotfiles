@@ -12,3 +12,6 @@
 ./install_zsh.sh
 ./install_vim.sh
 ./install_vscode.sh
+
+# relogin
+exec zsh

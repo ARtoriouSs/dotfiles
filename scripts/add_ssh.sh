@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ -z "$1" ] || [ -z "$EMAIL" ] then
+    echo "provide your email as first argument:"
+    echo "    ./add_ssh.sh my_email@example.com"
+    echo "otherwise it should be in \$EMAIL"
+    exit 1;
+fi
+
+ssh-keygen -t rsa -b 4096 -C $1
+eval "$(ssh-agent -s)"
+ssh-add -K ~/.ssh/id_rsa
+
+# copy
+pbcopy < ~/.ssh/id_rsa.pub
+echo "ssh key has been copied to clipboard."
