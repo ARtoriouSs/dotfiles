@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # base software
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     apt-get update
@@ -70,9 +72,4 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     brew cask install skype
     # slack
     brew cask install slack
-fi
-
-if [[ "$OSTYPE" == "dVarwin"* ]]; then
-    touch ~/.hushlogin # do not display login message
-    defaults write NSGlobalDomain KeyRepeat -int 0 # increase cursor repeat speed
 fi
