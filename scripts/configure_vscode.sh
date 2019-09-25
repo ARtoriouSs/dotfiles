@@ -8,13 +8,15 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # install extensions
-# use the folLowing command to output all installed extensions prepended with install comand and make list like below:
+# use the following command to output all installed extensions prepended with install comand and make list like below:
 # code --list-extensions | xargs -L 1 echo code --install-extension
 code --install-extension bung87.rails
 code --install-extension bung87.vscode-gemfile
 code --install-extension castwide.solargraph
+code --install-extension CraigMaslowski.erb
 code --install-extension DavidAnson.vscode-markdownlint
 code --install-extension deniskoronchik.ostis
+code --install-extension karunamurti.haml
 code --install-extension mikestead.dotenv
 code --install-extension mjmcloug.vscode-elixir
 code --install-extension monokai.theme-monokai-pro-vscode

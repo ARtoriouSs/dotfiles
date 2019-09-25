@@ -19,7 +19,7 @@
   "window.newWindowDimensions": "inherit",
   "window.zoomLevel": 1,
 
-  "files.autoSave": "onWindowChange",
+  "files.autoSave": "afterDelay",
   "files.trimTrailingWhitespace": true,
   "files.trimFinalNewlines": true,
   "files.insertFinalNewline": true,
@@ -32,7 +32,7 @@
     "environment.sh": "dotenv",
     ".env.sample": "dotenv",
     ".env.example": "dotenv",
-    ".inky": "erb"
+    "*.inky": "erb"
   },
   "files.exclude": {
     "**/.git": true,
