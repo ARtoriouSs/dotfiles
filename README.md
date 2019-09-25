@@ -12,13 +12,13 @@ I tried to make everything easy to understand, so there are a lot of comments.
 
 Here is:
 
-- script for installing everything from here on empty Linux system
-- configured .bashrc and .profile files
-- script for installing zsh with configured .zshrc, .zprofile files and extensions
-- aliases and some convenient shell functions
-- script for installing vim with configured .vimrc and color scheme
-- script for installing VS Code with extensions
-- gitconfig and global .gitignore
+- Script for installing everything from here on empty Linux system
+- Configured .bashrc and .profile files
+- Script for installing zsh with configured .zshrc, .zprofile files and extensions
+- Aliases and some convenient shell functions
+- Script for installing vim with configured .vimrc and color scheme
+- Script for installing VS Code with extensions
+- Gitconfig and global .gitignore
 
 Also:
 
@@ -28,10 +28,13 @@ Also:
 
 Will be installed:
 
-- basic software (curl, wget, homebrew (for MacOS))
-- docker
-- rbenv
-- postgreSQL
+- Basic software (curl, wget, homebrew (for MacOS), git, etc.)
+- NodeJS
+- Docker
+- Rbenv
+- PostgreSQL, Redis
+- Slack, Skype, Telegram
+- Google Chrome
 
 To install **everything** run:
 

@@ -4,15 +4,21 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     apt-get update
     apt-get upgrade
-    apt-get install software-properties-common apt-transport-https wget curl snapd
+    apt-get install software-properties-common apt-transport-https wget curl snapd git-core
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" # homebrew
+    brew doctor # make sure brew has permissions
+    brew update
     brew tap caskroom/cask # cask
-    brew install curl wget
+    brew install curl wget git
 fi
 
 # more
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    # node
+    curl -sL https://deb.nodesource.com/setup_12.x | -E bash -
+    apt-get install nodejs
+    npm update npm -g # updates npm
     # docker
     apt-get install apt-transport-https ca-certificates
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
@@ -52,6 +58,9 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # iterm
     brew cask install iterm2
+    # node
+    brew install node
+    npm update npm -g # updates npm
     # docker with docker-compose
     brew cask install docker
     # rbenv

@@ -31,7 +31,8 @@
     "zshrc": "shellscript",
     "environment.sh": "dotenv",
     ".env.sample": "dotenv",
-    ".env.example": "dotenv"
+    ".env.example": "dotenv",
+    ".inky": "erb"
   },
   "files.exclude": {
     "**/.git": true,
