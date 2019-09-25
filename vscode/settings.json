@@ -30,6 +30,9 @@
     "zprofile": "shellscript",
     "zshrc": "shellscript",
     "environment.sh": "dotenv",
+    ".env.development": "dotenv",
+    ".env.test": "dotenv",
+    ".env.production": "dotenv",
     ".env.sample": "dotenv",
     ".env.example": "dotenv",
     "*.inky": "erb"
