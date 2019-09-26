@@ -15,6 +15,8 @@ fi
 
 # more
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    # silver searcher
+    apt-get install silversearcher-ag
     # node
     curl -sL https://deb.nodesource.com/setup_12.x | -E bash -
     apt-get install nodejs
@@ -56,6 +58,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     # slack
     snap install slack --classic
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # silver searcher
+    brew install the_silver_searcher
     # iterm
     brew cask install iterm2
     # node
