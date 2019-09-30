@@ -26,7 +26,7 @@ kill_redis() {
 }
 
 # kill server on specified port (3000 by default)
-kill_rs() {
+kill_s() {
     [ -z "$1" ] && PORT=3000 || PORT=$1
     lsof -i tcp:$PORT | grep -v 'chrome' | awk 'FNR > 1 {print $2}' | xargs kill -9
 }

@@ -38,6 +38,12 @@ alias rr="bundle exec rake routes"
 alias rdm="bundle exec rake db:migrate"
 alias rdr="bundle exec rake db:drop db:create db:migrate"
 
+# npm
+alias n="npm"
+alias ni="npm install"
+alias ns="npm run start"
+alias nt="npm run test"
+
 # docker
 alias d="docker"
 alias dr="docker run"
