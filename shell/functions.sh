@@ -1,4 +1,4 @@
-# clean &PROJECTS/test directory
+# clean $PROJECTS/test directory
 clean_test() {
     rm -rf $PROJECTS/test
     mkdir $PROJECTS/test
@@ -7,6 +7,11 @@ clean_test() {
 # copy ssh key from id_rsa
 copy_ssh() {
     pbcopy < ~/.ssh/id_rsa.pub
+}
+
+# remove all docker images
+drmall() {
+    docker rm -f $(docker ps -aq)
 }
 
 # run redis in docker in a background

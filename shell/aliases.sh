@@ -51,12 +51,12 @@ alias dps="docker ps -a"
 alias di="docker images -a"
 alias drm="docker rm -f"
 alias drmi="docker rmi -f"
-alias drmall="docker rm -f $(docker ps -aq)"
 alias dclear="docker system prune"
 alias dcp="docker-compose"
 alias dcps="docker-compose ps -a"
 
 # system
+alias cls="clear"
 alias cdp="cd $PROJECTS"
 alias cdt="cd $PROJECTS/test"
 alias c="cd .."
