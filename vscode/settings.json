@@ -9,11 +9,10 @@
   "editor.glyphMargin": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.suggestSelection": "first",
-  "editor.detectIndentation": false,
   "editor.tabSize": 2,
-  "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?_",
-  "editor.wordWrap": "off",
   "editor.find.addExtraSpaceOnTop": false,
+  "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?_ABCDEFGHIGKLMNOPQRSTUVWXYZ",
+  "editor.wordWrap": "off",
 
   "window.restoreWindows": "all",
   "window.newWindowDimensions": "inherit",
@@ -80,5 +79,18 @@
     "editor.tabSize": 4
   },
 
+  "[cpp]": {
+    "editor.tabSize": 4
+  },
+
+  "[c]": {
+    "editor.tabSize": 4
+  },
+
+  "[java]": {
+    "editor.tabSize": 4
+  },
+
   "html.format.endWithNewline": true,
+  "editor.detectIndentation": false,
 }
