@@ -1,5 +1,5 @@
 # clean $PROJECTS/test directory
-clean_test() {
+clear_test() {
     rm -rf $PROJECTS/test
     mkdir $PROJECTS/test
 }
