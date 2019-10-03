@@ -40,6 +40,7 @@ alias rdr="bundle exec rake db:drop db:create db:migrate"
 
 # npm
 alias n="npm"
+alias nr="npm run"
 alias ni="npm install"
 alias ns="npm run start"
 alias nt="npm run test"
