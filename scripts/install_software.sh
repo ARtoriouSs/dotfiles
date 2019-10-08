@@ -57,6 +57,11 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     snap install skype --classic
     # slack
     snap install slack --classic
+    # yarn
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -~
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+    apt update
+    apt install yarn
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # silver searcher
     brew install the_silver_searcher
@@ -85,4 +90,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     brew cask install skype
     # slack
     brew cask install slack
+    # yarn
+    brew install yarn
 fi
