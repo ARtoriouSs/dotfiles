@@ -92,6 +92,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias susp="pmset sleepnow"
     alias shutdown="sudo halt"
     alias shut="sudo halt"
+    alias init="sudo halt"
 fi
 
 # dotfiles quick access
@@ -113,6 +114,7 @@ alias vimrc="$WORK_EDITOR $HOME/dotfiles/vim/.vimrc"
 alias "с"="cd .."
 alias "св"="cd"
 alias "свз"="cdp"
+alias "свс"="cd $PROJECTS/$CURRENT_PROJECT"
 alias "пые"="gst"
 alias "ы"="s"
 alias "ещвщ"="todo"
