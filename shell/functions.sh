@@ -52,32 +52,32 @@ gst() {
         yellow = "\033[93m"
         red = "\033[91m"
         violet = "\033[95m"
-        default = "\033[0m"
+        white = "\033[0m"
 
         if ($1 == "??")
-            output = "  " violet index_bit tree_bit "  " $2 default
+            output = "  " violet index_bit tree_bit "  " $2 white
         else if ($1 == "!!")
             output = "  " index_bit tree_bit "  " $2
         else {
             output = "  " green index_bit
 
             if (tree_bit == "D")
-                output = output red tree_bit default "  "
+                output = output red tree_bit white "  "
             else
-                output = output yellow tree_bit default "  "
+                output = output yellow tree_bit white "  "
 
             if (index_bit != " ") {
                 if (index_bit == "R")
-                    output = output green $2 default " " $3 " " green $4 default
+                    output = output green $2 white " " $3 " " green $4 white
                 else
-                    output = output green $2 default
+                    output = output green $2 white
             } else {
                 if (tree_bit == "R")
-                    output = output yellow $2 default " " $3 " " yellow $4 default
+                    output = output yellow $2 white " " $3 " " yellow $4 white
                 else if (tree_bit == "D")
-                    output = output red $2 default
+                    output = output red $2 white
                 else
-                    output = output yellow $2 default
+                    output = output yellow $2 white
             }
         }
 
