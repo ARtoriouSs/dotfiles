@@ -14,7 +14,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     export FILE_MANAGER="open"
 fi
 
-# directories access
+# directories and files access
 export MY_FOLDER=$HOME/my_folder
 export PROJECTS=$HOME/my_folder/projects
 export DESKTOP=$HOME/Desktop
+export TODO=~/.todo.yml
