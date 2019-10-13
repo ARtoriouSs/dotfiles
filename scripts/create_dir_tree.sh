@@ -6,6 +6,16 @@ mkdir ~/my_folder/projects
 mkdir ~/my_folder/projects/test
 mkdir ~/my_folder/other
 
-# create todo file
+# create global todo directory and file
 mkdir ~/todo
-touch ~todo/todo.yml
+# if use todo sync
+if [ -z "$TODO_REMOTE_URL" ]
+then
+    git clone $TODO_REMOTE_URL ~/todo
+    if ! test -f ~/todo/todo.yml;
+    then
+        touch ~/todo/todo.yml
+    fi
+else
+    touch ~/todo/todo.yml
+fi

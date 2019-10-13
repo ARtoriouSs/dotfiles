@@ -1,14 +1,19 @@
-# create repo and gitignore
 if [ -z "$TODO" ]
 then
     export TODO=~/todo/todo.yml
 fi
 
-cd $(basename $TODO)
+# create repo
+if ! test -f $TODO;
+then
+    echo "\$TODO must refer to existing file"
+    exit 1
+fi
+
+cd $(dirname $TODO)
 git init
 git commit --allow-empty -m "sync"
 
-# add remote
 if [ -z "$TODO_REMOTE_URL" ]
 then
     echo "\$TODO_REMOTE_URL must be set. It should use ssh protocol."
