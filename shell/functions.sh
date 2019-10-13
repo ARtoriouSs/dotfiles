@@ -43,7 +43,9 @@ rollback() {
 }
 
 # colored git status without excess info
-gst() {
+alias gsto="git status --short" # for debuuging colors; remove it
+alias gst="status"
+status() {
     git status --porcelain | awk '{
         split($0, chars, "")
         index_bit = chars[1]
@@ -85,8 +87,68 @@ gst() {
     }'
 }
 
+# git stash file or all files if no args specified
+stash() {
+    if [ -z "$1" ]; then
+        git stash
+    else
+        git stash push "$@"
+    fi
+    status
+}
+
+# git stash pop given stash or last one if no args specified
+pop() {
+    git stash pop --quiet $@
+    status
+}
+
+# git add files or all files if no args specified
+add() {
+    if [ -z "$1" ]; then
+        git add --all
+    else
+        git add "$@"
+    fi
+    status
+}
+
+# git reset file or all files if no args specified
+reset() {
+    if [ -z "$1" ]; then
+        echo "Type 'yes' to reset working tree to $(git rev-parse --short HEAD)"
+        read KEY
+        if [ "$KEY" = "yes" ]; then
+            git reset HEAD --hard
+            rm -rf $(git status --porcelain)
+        else
+            echo "aborted"
+        fi
+    else
+        git checkout -- $@ &> /dev/null
+
+        # check if there is untracked files in args and remove them
+        UNTRACKED="$(git ls-files . --exclude-standard --others)"
+        for RECORD in $(echo $UNTRACKED); do
+            for ARG in "$@"; do
+                if [ "$ARG" = "$RECORD" ]; then
+                    rm -rf $RECORD
+                fi
+            done
+        done
+    fi
+    status
+}
+
+# remove file from index or all files if no args specified
+index() {
+    git reset -q HEAD $@
+    status
+}
+
 # commit and quote all args as message
-gcm() {
+alias gcm="commit"
+commit() {
     git commit -v -m "$*"
 }
 
@@ -106,10 +168,4 @@ forsepush() {
 pull() {
     CURRENT=$(git branch | grep '\*' | awk '{print $2}')
     git pull origin "${CURRENT}"
-}
-
-# reset git index and remove all created files
-clean_git_index() {
-    git reset HEAD --hard
-    rm -rf $(git status --porcelain)
 }

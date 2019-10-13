@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source ~/dotfiles/shell/environment.sh
 
 if [ -z "$TODO" ]

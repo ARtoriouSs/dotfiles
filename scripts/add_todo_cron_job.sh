@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ -z "$TODO" ]
 then
     export TODO=~/todo/todo.yml
