@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # create symlinks to dotfiles
-ln -sf $HOME/dotfiles/shell/.zshrc $HOME/.zshrc
-ln -sf $HOME/dotfiles/shell/.zprofile $HOME/.zprofile
-ln -sf $HOME/dotfiles/shell/.bashrc $HOME/.bashrc
-ln -sf $HOME/dotfiles/shell/.profile $HOME/.profile
-ln -sf $HOME/dotfiles/.gemrc $HOME/.gemrc
-ln -sf $HOME/dotfiles/.pryrc $HOME/.pryrc
-ln -sf $HOME/dotfiles/.gitconfig $HOME/.gitconfig
+ln -sf ~/dotfiles/shell/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/shell/.zprofile ~/.zprofile
+ln -sf ~/dotfiles/shell/.bashrc ~/.bashrc
+ln -sf ~/dotfiles/shell/.profile ~/.profile
+ln -sf ~/dotfiles/.gemrc ~/.gemrc
+ln -sf ~/dotfiles/.pryrc ~/.pryrc
+ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 
 if [ ! -d "$HOME/.bundle" ]; then
-  mkdir $HOME/.bundle
+  mkdir ~/.bundle
 fi
-ln -sf $HOME/dotfiles/bundler_config $HOME/.bundle/bundler_config
+ln -sf ~/dotfiles/bundler_config ~/.bundle/bundler_config

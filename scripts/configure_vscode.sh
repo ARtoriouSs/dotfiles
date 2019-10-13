@@ -1,10 +1,10 @@
 # create symlinks for settings
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    ln -sf $HOME/dotfiles/vscode/settings.json $HOME/.config/Code/User/settings.json
-    ln -sf $HOME/dotfiles/vscode/keybindings.json $HOME/.config/Code/User/keybindings.json
+    ln -sf ~/dotfiles/vscode/settings.json ~/.config/Code/User/settings.json
+    ln -sf ~/dotfiles/vscode/keybindings.json ~/.config/Code/User/keybindings.json
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    ln -sf $HOME/dotfiles/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
-    ln -sf $HOME/dotfiles/vscode/keybindings.json $HOME/Library/Application\ Support/Code/User/settings.json
+    ln -sf ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+    ln -sf ~/dotfiles/vscode/keybindings.json ~/Library/Application\ Support/Code/User/settings.json
 fi
 
 # install extensions

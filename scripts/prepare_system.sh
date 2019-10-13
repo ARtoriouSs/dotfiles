@@ -5,13 +5,19 @@
 # do not run it if system isn't empty, in that case run needed scripts separately
 # must be running with sudo
 
-./install_software.sh
-./configure_system.sh
-./create_symlinks.sh
+relogin() {
+    exec bash
+}
+
+./install_software.sh && relogin
+
+./create_symlinks.sh && relogin
+
+./configure_system.sh && relogin
+
 ./create_dir_tree.sh
-./install_zsh.sh
 ./install_vim.sh
 ./install_vscode.sh
+./install_zsh.sh
 
-# relogin
 exec zsh
