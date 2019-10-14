@@ -6,7 +6,11 @@ clear_test() {
 
 # copy ssh key from id_rsa
 copy_ssh() {
-    pbcopy < ~/.ssh/id_rsa.pub
+    if [[ "$OSTYPE" == "linux-gnu" ]]; then
+        xclip -sel clip < ~/.ssh/id_rsa.pub
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        pbcopy < ~/.ssh/id_rsa.pub
+    fi
 }
 
 # remove all docker images
