@@ -60,6 +60,8 @@ status() {
             output = "  " violet index_bit tree_bit "  " $2 white
         else if ($1 == "!!")
             output = "  " index_bit tree_bit "  " $2
+        else if ((index_bit == "U" || tree_bit == "U") || (index_bit == "A" && tree_bit == "A") || (index_bit == "D" && tree_bit == "D"))
+            output = "  " red index_bit tree_bit "  " $2 white
         else {
             output = "  " green index_bit
 
