@@ -8,7 +8,7 @@ export EDITOR=vim
 export WORK_EDITOR=code
 export SSH_KEY_PATH=~/.ssh/id_rsa
 export EMAIL="artoriousso@gmail.com"
-export TODO_REMOTE_URL="git@github.com:ARtoriouSs/todo.git"
+export TODO_REMOTE_URL="git@github.com:ARtoriouSs/todo-sync.git"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     export FILE_MANAGER="nemo" # "nautilus"
