@@ -43,7 +43,6 @@ rollback() {
 }
 
 # colored git status without excess info
-alias gsto="git status --short" # for debuuging colors; remove it
 alias gst="status"
 status() {
     git status --porcelain | awk '{
@@ -143,6 +142,7 @@ reset() {
 }
 
 # remove file from index or all files if no args specified
+alias grh="index"
 index() {
     git reset -q HEAD $@
     status
@@ -155,15 +155,11 @@ commit() {
 }
 
 # push current branch to origin
+alias forsepush="push -f"
+alias fpush="push -f"
 push() {
     CURRENT=$(git branch | grep '\*' | awk '{print $2}')
-    git push origin "${CURRENT}"
-}
-
-# forse-push current branch to origin
-forsepush() {
-    CURRENT=$(git branch | grep '\*' | awk '{print $2}')
-    git push -f origin "${CURRENT}"
+    git push $@ origin "${CURRENT}"
 }
 
 # pull current branch from origin
