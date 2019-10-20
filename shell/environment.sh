@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.rbenv/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.rbenv/bin:/usr/bin/python3:$PATH
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     export "PATH=/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"

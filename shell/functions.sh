@@ -13,7 +13,7 @@ copy_ssh() {
     fi
 }
 
-# remove all docker images
+# remove all docker containers
 drmall() {
     docker rm -f $(docker ps -aq)
 }
@@ -109,6 +109,7 @@ pop() {
 }
 
 # git add files or all files if no args specified
+alias ga="add"
 add() {
     if [ -z "$1" ]; then
         git add --all
