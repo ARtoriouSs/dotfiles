@@ -4,13 +4,16 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     apt-get update
     apt-get upgrade
-    apt-get install software-properties-common apt-transport-https wget curl snapd git-core
+    apt-get install software-properties-common apt-transport-https wget curl snapd git-core python3-pip
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" # homebrew
     brew doctor # make sure brew has permissions
     brew update
     brew tap caskroom/cask # cask
     brew install curl wget git
+    # pip
+    easy_install pip
+    pip install --upgrade pip
 fi
 
 # more
@@ -62,8 +65,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
     apt-get update
     apt-get install yarn
-    # fswatch
-    apt-get install fswatch
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # silver searcher
     brew install the_silver_searcher
@@ -94,6 +95,4 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     brew cask install slack
     # yarn
     brew install yarn
-    # fswatch
-    brew install fswatch
 fi
