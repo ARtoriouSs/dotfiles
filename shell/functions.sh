@@ -1,3 +1,10 @@
+# cd to $PROJECTS and farther
+alias cdc="cdp $CURRENT_PROJECT"
+alias cdt="cdp test"
+cdp() {
+    cd $PROJECTS/$1
+}
+
 # clean $PROJECTS/test directory
 clear_test() {
     rm -rf $PROJECTS/test
