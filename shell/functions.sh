@@ -167,8 +167,8 @@ commit() {
 }
 
 # push current branch to origin
-alias forsepush="push -f"
-alias fpush="push -f"
+alias forsepush="push --force-with-lease"
+alias fpush="push --force-with-lease"
 push() {
     CURRENT=$(git branch | grep '\*' | awk '{print $2}')
     git push $@ origin "${CURRENT}"
