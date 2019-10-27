@@ -73,7 +73,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias halt="init 0"
 
     alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-    alias o="xdg-open"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias install="brew install"
     alias i="brew install"
@@ -82,8 +81,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias shut="sudo halt"
     alias halt="sudo halt"
     alias init="sudo halt"
-
-    alias o="open"
 fi
 
 # dotfiles quick access

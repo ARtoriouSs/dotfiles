@@ -1,3 +1,12 @@
+# open with default application
+o() {
+    if [[ "$OSTYPE" == "linux-gnu" ]]; then
+        [ -z "$1" ] && xdg-open . || xdg-open $@
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        [ -z "$1" ] && open . || open $@
+    fi
+}
+
 # cd to $PROJECTS and farther
 alias cdc="cdp $CURRENT_PROJECT"
 alias cdt="cdp test"
