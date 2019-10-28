@@ -34,7 +34,8 @@
     ".env.production": "dotenv",
     ".env.sample": "dotenv",
     ".env.example": "dotenv",
-    "*.inky": "erb"
+    "*.inky": "erb",
+    "Dockerfile.*": "dockerfile"
   },
   "files.exclude": {
     "**/.git": true,

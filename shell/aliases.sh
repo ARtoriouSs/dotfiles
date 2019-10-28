@@ -52,12 +52,10 @@ alias cls="clear"
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias n="$FILE_MANAGER"
-alias nh="$FILE_MANAGER . &"
 alias psqlc="psql -U postgres"
 alias todo="$WORK_EDITOR $TODO"
 alias todol="$WORK_EDITOR todo.yml"
-alias s="$WORK_EDITOR"
+alias s=$WORK_EDITOR
 alias v=$EDITOR
 alias search="find . -name"
 alias ho="heroku open"
@@ -65,20 +63,23 @@ alias k9="kill -9"
 alias now="date '+ %H:%M | %B %d'"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
     alias upd="sudo apt-get --yes update"
     alias upg="sudo apt-get --yes upgrade"
-    alias i="sudo apt-get --yes install"
     alias install="sudo apt-get --yes update && sudo apt-get --yes install"
+    alias i="sudo apt-get --yes install"
+
     alias susp="systemctl suspend"
-    alias shutdown="init 0"
     alias shut="init 0"
+    alias halt="init 0"
+
+    alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    alias i="brew install"
     alias install="brew install"
+    alias i="brew install"
+
     alias susp="pmset sleepnow"
-    alias shutdown="sudo halt"
     alias shut="sudo halt"
+    alias halt="sudo halt"
     alias init="sudo halt"
 fi
 

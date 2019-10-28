@@ -1,3 +1,12 @@
+# open with default application
+o() {
+    if [[ "$OSTYPE" == "linux-gnu" ]]; then
+        [ -z "$1" ] && xdg-open . || xdg-open $@
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        [ -z "$1" ] && open . || open $@
+    fi
+}
+
 # cd to $PROJECTS and farther
 alias cdc="cdp $CURRENT_PROJECT"
 alias cdt="cdp test"
@@ -167,8 +176,8 @@ commit() {
 }
 
 # push current branch to origin
-alias forsepush="push -f"
-alias fpush="push -f"
+alias forsepush="push --force-with-lease"
+alias fpush="push --force-with-lease"
 push() {
     CURRENT=$(git branch | grep '\*' | awk '{print $2}')
     git push $@ origin "${CURRENT}"
