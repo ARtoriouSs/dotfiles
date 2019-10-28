@@ -142,7 +142,7 @@ reset() {
         read KEY
         if [ "$KEY" = "yes" ]; then
             git reset HEAD --hard
-            rm -rf $(git status --porcelain)
+            rm -rf $(git status --short)
         else
             echo "aborted"
         fi
