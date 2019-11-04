@@ -35,7 +35,7 @@ drmall() {
 }
 
 # run redis in docker in a background
-redis_up() {
+redis-up() {
     if [ "$1" = "--docker" ] || [ "$1" = "-d" ]
     then
         docker run -d -p 6379:6379 redis
@@ -45,15 +45,22 @@ redis_up() {
 }
 
 # kill redis whether in system process or in docker
-kill_redis() {
+kill-redis() {
     ps aux | grep redis-server | awk '{ print $2; exit }' | xargs kill -9
     docker ps | grep redis | awk '{ print $1 }' | xargs docker rm -f
 }
 
 # kill server on specified port (3000 by default)
-kill_s() {
+kill-s() {
     [ -z "$1" ] && PORT=3000 || PORT=$1
     lsof -i tcp:$PORT | grep -v 'chrome' | awk 'FNR > 1 {print $2}' | xargs kill -9
+}
+
+# generate rails migration and quote all args as name
+alias migr="gen-migration"
+gen-migration() {
+    local IFS='_'
+    rails generate migration "$*"
 }
 
 # rollback rails migrations
@@ -138,9 +145,9 @@ add() {
 # git reset file or all files if no args specified
 reset() {
     if [ -z "$1" ]; then
-        echo "Type 'yes' to reset working tree to $(git rev-parse --short HEAD)"
+        echo "Type 'y' to reset working tree to $(git rev-parse --short HEAD)"
         read KEY
-        if [ "$KEY" = "yes" ]; then
+        if [ "$KEY" = "y" ]; then
             git reset HEAD --hard
             rm -rf $(git status --short)
         else
