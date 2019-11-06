@@ -180,6 +180,13 @@ index() {
 alias gcm="commit"
 commit() {
     git commit -v -m "$*"
+    status
+}
+
+alias gcan="amend-no-edit"
+amend-no-edit() {
+    git commit --amend --no-edit
+    status
 }
 
 # push current branch to origin
