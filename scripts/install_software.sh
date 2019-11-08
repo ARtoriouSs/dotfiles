@@ -65,6 +65,9 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
     apt-get update
     apt-get install yarn
+    # diff-so-fancy
+    wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+    chmod +x /usr/local/bin/diff-so-fancy
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # silver searcher
     brew install the_silver_searcher
@@ -95,4 +98,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     brew cask install slack
     # yarn
     brew install yarn
+    # diff-so-fancy
+    wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+    chmod +x /usr/local/bin/diff-so-fancy
 fi
