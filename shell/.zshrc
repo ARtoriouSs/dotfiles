@@ -1,9 +1,13 @@
 # zsh-specific variables
-ZSH_THEME="chaotic-beef"
-CASE_SENSITIVE="true"
-COMPLETION_WAITING_DOTS="true"
+export ZSH_THEME="chaotic-beef"
+export CASE_SENSITIVE="true"
+export COMPLETION_WAITING_DOTS="true"
 export LANG=en_US.UTF-8
 export ZSH=$HOME/.oh-my-zsh
+
+# autosuggestion configuration
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=94'
+export ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 # initialization
 ## oh-my-zsh
@@ -18,6 +22,7 @@ test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 # plugins
 plugins=(
   git
+  zsh-autosuggestions
   zsh-syntax-highlighting # must be the last in this list
 )
 
