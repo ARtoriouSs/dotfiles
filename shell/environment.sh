@@ -1,7 +1,8 @@
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.rbenv/bin:/usr/bin/python3:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.rbenv/bin:$PATH
+export PATH=.git/safe/../../bin:$PATH
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    export "PATH=/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+    export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
 fi
 
 export EDITOR=vim

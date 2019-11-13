@@ -34,8 +34,6 @@
   current = "yellow bold"
   local   = "green bold"
   remote  = "cyan bold"
-[diff-so-fancy]
-  markEmptyLines = false
 [status]
   short = true
 [alias]
