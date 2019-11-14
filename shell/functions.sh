@@ -60,18 +60,42 @@ kill-s() {
 alias migr="gen-migration"
 gen-migration() {
     local IFS='_'
-    rails generate migration "$*"
+    bundle exec rails generate migration "$*"
 }
 
 # rollback rails migrations
 rollback() {
     [ -z "$1" ] && STEP=1 || STEP=$1
-    rake db:rollback STEP=$STEP
+    bundle exec rails db:rollback STEP=$STEP
 }
 
-# colored git status without excess info
+# git status function with interactive option for running in separate tmux tab
 alias gst="status"
 status() {
+    LOCKFILE=~/git_status_interactive.lock
+    if [ "$1" = "--interactive" ] || [ "$1" = "-i" ]; then
+        trap "rm -f $LOCKFILE" SIGINT
+        touch $LOCKFILE
+        while sleep 0.3s; do
+            clear
+            echo "Current git status:"
+            colored_status
+        done
+    else
+        colored_status
+    fi
+}
+
+# colored_status that will not display status if interactive status lockfile exists
+# for using in funcitons
+locked_status() {
+    if [ ! -f $LOCKFILE ]; then
+        colored_status
+    fi
+}
+
+# colored `git status --short`
+colored_status() {
     git status --porcelain | awk '{
         split($0, chars, "")
         index_bit = chars[1]
@@ -122,13 +146,13 @@ stash() {
     else
         git stash push "$@"
     fi
-    status
+    locked_status
 }
 
 # git stash pop given stash or last one if no args specified
 pop() {
     git stash pop --quiet $@
-    status
+    locked_status
 }
 
 # git add files or all files if no args specified
@@ -139,7 +163,7 @@ add() {
     else
         git add "$@"
     fi
-    status
+    locked_status
 }
 
 # git reset file or all files if no args specified
@@ -166,27 +190,27 @@ reset() {
             done
         done
     fi
-    status
+    locked_status
 }
 
 # remove file from index or all files if no args specified
 alias grh="index"
 index() {
     git reset -q HEAD $@
-    status
+    locked_status
 }
 
 # commit and quote all args as message
 alias gcm="commit"
 commit() {
     git commit -v -m "$*"
-    status
+    locked_status
 }
 
 alias gcan="amend-no-edit"
 amend-no-edit() {
     git commit --amend --no-edit
-    status
+    locked_status
 }
 
 # push current branch to origin
@@ -201,4 +225,5 @@ push() {
 pull() {
     CURRENT=$(git branch | grep '\*' | awk '{print $2}')
     git pull origin "${CURRENT}"
+    locked_status
 }
