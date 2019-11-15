@@ -242,3 +242,8 @@ pull() {
     git pull origin "${CURRENT}"
     locked_status
 }
+
+alias get="clone-my"
+clone-my() {
+    git clone git://github.com/ARtoriouSs/$1.git
+}
