@@ -20,6 +20,8 @@ fi
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     # silver searcher
     apt-get install silversearcher-ag
+    # tmux
+    apt-get install tmux
     # node
     curl -sL https://deb.nodesource.com/setup_12.x | -E bash -
     apt-get install nodejs
@@ -73,6 +75,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     brew install the_silver_searcher
     # iterm
     brew cask install iterm2
+    # tmux
+    brew install tmux
     # node
     brew install node
     npm update npm -g # updates npm
