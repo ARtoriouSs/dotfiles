@@ -7,6 +7,16 @@ o() {
     fi
 }
 
+# display linux 256 colors
+color-list() {
+    for i in {0..255}; do
+        printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m" $i
+        if ! (( ($i + 1 ) % 8 )); then
+            echo
+        fi
+    done
+}
+
 # cd to $PROJECTS and farther
 alias cdc="cdp $CURRENT_PROJECT"
 alias cdt="cdp test"
@@ -76,7 +86,7 @@ status() {
     if [ "$1" = "--interactive" ] || [ "$1" = "-i" ]; then
         trap "rm -f $LOCKFILE" SIGINT
         touch $LOCKFILE
-        while sleep 0.3s; do
+        while sleep 0.5s; do
             clear
             echo "Current git status:"
             colored_status
