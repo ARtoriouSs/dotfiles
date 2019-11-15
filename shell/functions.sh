@@ -102,10 +102,9 @@ status() {
     fi
 }
 
-# colored_status that will not display status if interactive status lockfile exists
-# for using in funcitons
+# colored_status that will not display status if interactive status lockfile exists for current pwd (for funcitons)
 locked_status() {
-    if [ ! -f $LOCKFILE ]; then
+    if [ ! -f ~/git_status_interactive_for_$(basename $PWD).lock ]; then
         colored_status
     fi
 }
