@@ -87,9 +87,14 @@ status() {
         trap "rm -f $LOCKFILE" SIGINT
         touch $LOCKFILE
         while sleep 0.5s; do
-            clear
-            echo "Current git status:"
-            colored_status
+            DIFF=$(diff $LOCKFILE <(colored_status))
+            if [ "$DIFF" != "" ]
+            then
+                clear
+                printf "git status for $(tput setaf 208)$(basename $PWD)$(tput sgr0):\n"
+                colored_status
+                echo "$(colored_status)" > $LOCKFILE
+            fi
         done
     else
         colored_status
