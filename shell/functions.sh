@@ -82,7 +82,8 @@ rollback() {
 # git status function with interactive option for running in separate tmux tab
 alias gst="status"
 status() {
-    LOCKFILE=~/git_status_interactive.lock
+    local PROJECT=$(basename $PWD)
+    local LOCKFILE=~/git_status_interactive_for_$PROJECT.lock
     if [ "$1" = "--interactive" ] || [ "$1" = "-i" ]; then
         trap "rm -f $LOCKFILE" SIGINT
         touch $LOCKFILE
@@ -91,7 +92,7 @@ status() {
             if [ "$DIFF" != "" ]
             then
                 clear
-                printf "git status for $(tput setaf 208)$(basename $PWD)$(tput sgr0):\n"
+                printf "git status for $(tput setaf 208)$PROJECT$(tput sgr0):\n"
                 colored_status
                 echo "$(colored_status)" > $LOCKFILE
             fi
