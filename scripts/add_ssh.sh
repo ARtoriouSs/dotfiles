@@ -12,5 +12,5 @@ eval "$(ssh-agent -s)"
 ssh-add -K ~/.ssh/id_rsa
 
 # copy
-pbcopy < ~/.ssh/id_rsa.pub
+copy-ssh
 echo "ssh key has been copied to clipboard."

@@ -25,13 +25,13 @@ cdp() {
 }
 
 # clean $PROJECTS/test directory
-clear_test() {
+clear-test() {
     rm -rf $PROJECTS/test
     mkdir $PROJECTS/test
 }
 
 # copy ssh key from id_rsa
-copy_ssh() {
+copy-ssh() {
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
         xclip -sel clip < ~/.ssh/id_rsa.pub
     elif [[ "$OSTYPE" == "darwin"* ]]; then
@@ -245,5 +245,5 @@ pull() {
 
 alias get="clone-my"
 clone-my() {
-    git clone git://github.com/ARtoriouSs/$1.git
+    git clone git://github.com/$GITHUB_USERNAME/$1.git
 }
