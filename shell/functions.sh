@@ -89,8 +89,7 @@ status() {
         touch $LOCKFILE
         while sleep 0.5s; do
             DIFF=$(diff $LOCKFILE <(colored_status))
-            if [ "$DIFF" != "" ]
-            then
+            if [[ "$DIFF" != "" || $DIFF != "1do/n<" ]]; then
                 clear
                 printf "git status for $(tput setaf 208)$PROJECT$(tput sgr0):\n"
                 colored_status
