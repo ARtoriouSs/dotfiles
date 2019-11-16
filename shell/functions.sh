@@ -242,7 +242,8 @@ pull() {
     locked_status
 }
 
+# clone repo from github
 alias get="clone-my"
 clone-my() {
-    git clone git://github.com/$GITHUB_USERNAME/$1.git
+    git clone git://github.com/$GITHUB_USERNAME/$1.git $2
 }
