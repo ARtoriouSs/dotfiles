@@ -18,6 +18,7 @@ tm() {
         tmux new-window -n "editor" -c $PROJECTS/$CURRENT_PROJECT #"$EDITOR ."
     fi
     tmux -2 attach-session -t "project"
+    tmux previous-window -t "project"
 }
 
 # display linux 256 colors
