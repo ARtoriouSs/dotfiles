@@ -7,11 +7,24 @@ o() {
     fi
 }
 
+tm() {
+    tmux has-session -t "project"
+    if [ $? != 0 ]; then
+        tmux new-session -d -s "project" -n "project" -c $PROJECTS/$CURRENT_PROJECT
+        tmux split-window -h -c $PROJECTS/$CURRENT_PROJECT
+        tmux resize-pane -R 20
+        tmux split-window -v -c $PROJECTS/$CURRENT_PROJECT
+        tmux resize-pane -U 10
+        tmux new-window -n "editor" -c $PROJECTS/$CURRENT_PROJECT #"$EDITOR ."
+    fi
+    tmux -2 attach-session -t "project"
+}
+
 # display linux 256 colors
 color-list() {
     for i in {0..255}; do
         printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m" $i
-        if ! (( ($i + 1 ) % 8 )); then
+        if ! (( ($i + 1) % 8 )); then
             echo
         fi
     done
