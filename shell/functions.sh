@@ -7,6 +7,7 @@ o() {
     fi
 }
 
+# open tmux project session
 tm() {
     tmux has-session -t "project"
     if [ $? != 0 ]; then
@@ -15,10 +16,11 @@ tm() {
         tmux resize-pane -R 20
         tmux split-window -v -c $PROJECTS/$CURRENT_PROJECT
         tmux resize-pane -U 10
-        tmux new-window -n "editor" -c $PROJECTS/$CURRENT_PROJECT #"$EDITOR ."
+        tmux new-window -n "editor" -c $PROJECTS/$CURRENT_PROJECT "$EDITOR ."
+        tmux previous-window -t "project"
+        tmux select-pane -t 0
     fi
     tmux -2 attach-session -t "project"
-    tmux previous-window -t "project"
 }
 
 # display linux 256 colors
@@ -100,10 +102,10 @@ status() {
     local LOCKFILE=~/git_status_interactive_for_$PROJECT.lock
     if [ "$1" = "--interactive" ] || [ "$1" = "-i" ]; then
         trap "rm -f $LOCKFILE" SIGINT
-        touch $LOCKFILE
-        while sleep 0.5s; do
+        while sleep 0.2s; do
+            touch $LOCKFILE
             DIFF=$(diff $LOCKFILE <(colored_status))
-            if [[ "$DIFF" != "" || $DIFF != "1do/n<" ]]; then
+            if [[ "$DIFF" != "" && $DIFF != "1do/n<" ]]; then
                 clear
                 printf "git status for $(tput setaf 208)$PROJECT$(tput sgr0):\n"
                 colored_status
@@ -260,4 +262,13 @@ pull() {
 alias get="clone-my"
 clone-my() {
     git clone git://github.com/$GITHUB_USERNAME/$1.git $2
+}
+
+# ignore without .gitignore
+ignore() {
+    git update-index --assume-unchanged $@
+}
+
+stop-ignore() {
+    git update-index --no-assume-unchanged $@
 }
