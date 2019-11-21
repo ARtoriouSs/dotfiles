@@ -1,7 +1,8 @@
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.rbenv/bin:$PATH
-export PATH=.git/safe/../../bin:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH # for mac ports
+export PATH=.git/safe/../../bin:$PATH # git-safe
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+    export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH" # VS Code on MacOS
 fi
 
 export EDITOR=vim
