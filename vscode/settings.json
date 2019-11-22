@@ -23,7 +23,6 @@
   "files.trimFinalNewlines": true,
   "files.insertFinalNewline": true,
   "files.associations": {
-    ".vimrc": "shellscript",
     "bashrc": "shellscript",
     "profile": "shellscript",
     "zprofile": "shellscript",

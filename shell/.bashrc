@@ -98,3 +98,5 @@ fi
 if [ -f "$HOME/dotfiles/shell/temp_settings.sh" ]; then
     . "$HOME/dotfiles/shell/temp_settings.sh"
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

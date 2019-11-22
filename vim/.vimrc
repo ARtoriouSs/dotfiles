@@ -1,20 +1,53 @@
-set nocompatible                                                " be iMproved, required by Vundle too
-filetype off                                                    " required by Vundle
-set rtp+=~/.vim/bundle/Vundle.vim                               " set the runtime path to include Vundle
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'                                      " plugin manager
-Plugin 'tpope/vim-fugitive'                                     " git integration
-Plugin 'airblade/vim-gitgutter'                                 " shows git diff changes to the left
-Plugin 'bling/vim-airline'                                      " nice status line
-Plugin 'rking/ag.vim'                                           " nice search
-call vundle#end()                                               " required by Vundle
-filetype plugin indent on                                       " required by Vundle
-runtime macros/matchit.vim                                      " smart way to show matching closing element pressing % on { shows } and so on
+" for plug
+set nocompatible
+filetype off
 
-" VIM Settings
+" auto install Plug https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" plugins
+call plug#begin('~/.vim/plugged')
+" main plugins
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocompletion
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy search (will be install system-wide)
+Plug 'junegunn/fzf.vim'
+Plug 'jremmen/vim-ripgrep' " search by files content
+Plug 'scrooloose/nerdtree' " file explorer
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' } " prettier
+Plug 'tpope/vim-fugitive' " git integration
+Plug 'scrooloose/nerdcommenter' " simpler comments
+Plug 'tpope/vim-repeat' " repeat plugin commands with '.'
+Plug 'tpope/vim-surround' " simple quoting and parenthesizing
+Plug 'jiangmiao/auto-pairs' " auto closing brackets
+
+" language syntax support
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'jparise/vim-graphql'
+Plug 'elixir-editors/vim-elixir'
+Plug 'vim-ruby/vim-ruby'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " CSS in JS files
+
+" styling
+
+call plug#end()
+
+" runtime macros/matchit.vim                                      " smart way to show matching closing element pressing % on { shows } and so on
+
+" keys mappings
+nnoremap <C-g> :Rg<Cr>
+nnoremap <C-p> :FZF<Cr>
+map <C-n> :NERDTreeToggle<CR>
+
+" settings
 syntax on
 colorscheme monokai
 highlight default link SignColumn LineNr
+set exrc " allows project specific .vimr
 set encoding=utf-8
 set timeoutlen=250                                              " used for mapping delays
 set cursorline                                                  " shows cursorline
@@ -50,12 +83,18 @@ set foldmethod=syntax                                           " fold based on 
 set foldnestmax=3                                               " deepest fold is 3 levels
 set clipboard=unnamed                                           " copying from/to clipboard
 
-" autoformating
-au BufWritePre * %s/\s\+$//e                                    " removes trailing spaces
-au BufNewFile * set noeol                                       " removes eol
-au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>120v.\+',-1) " highlights more than 120 symbols
+"run NERDTree on vim start
+autocmd vimenter * NERDTree
+"run NERDTree when vim started with no specified files
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+"close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" netrw settings
-let g:netrw_banner = 0                                          " removes banner
-let g:netrw_browse_split = 2                                    " opens file in vsplit
-let g:netrw_winsize = 40                                        " netrw winsize
+"run prettier on save
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+autocmd BufWritePre * %s/\s\+$//e "removes trailing whitespaces
+autocmd BufNewFile * set noeol "removes eol
+autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>120v.\+',-1) "highlights more than 120 symbols

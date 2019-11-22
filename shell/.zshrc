@@ -9,6 +9,9 @@ export ZSH=$HOME/.oh-my-zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=94'
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 
+# fuzzy search configuration
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+
 # initialization
 ## oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -43,3 +46,5 @@ fi
 if [ -f "$HOME/dotfiles/shell/temp_settings.sh" ]; then
     . "$HOME/dotfiles/shell/temp_settings.sh"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
