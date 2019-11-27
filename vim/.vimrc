@@ -22,6 +22,8 @@ Plug 'scrooloose/nerdcommenter' " simpler comments
 Plug 'tpope/vim-repeat' " repeat plugin commands with '.'
 Plug 'tpope/vim-surround' " simple quoting and parenthesizing
 Plug 'jiangmiao/auto-pairs' " auto closing brackets
+Plug 'tpope/vim-endwise' " auto end keyword
+Plug 'drzel/vim-scrolloff-fraction' " auto scroll when getting closer to window border
 
 " language syntax support
 Plug 'pangloss/vim-javascript'
@@ -35,10 +37,10 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " CSS in JS
 
 call plug#end()
 
-" runtime macros/matchit.vim                                      " smart way to show matching closing element pressing % on { shows } and so on
-
 " keys mappings
-nnoremap <C-g> :Rg<Cr>
+nnoremap ; :
+vnoremap ; :
+nnoremap <C-g> :Ag<Cr>
 nnoremap <C-p> :FZF<Cr>
 map <C-n> :NERDTreeToggle<CR>
 
@@ -77,7 +79,7 @@ set noswapfile                                                  " to not use swa
 set nobackup                                                    " to not write backup during overwriting file
 set showcmd                                                     " shows command
 set list                                                        " enables showing of hidden chars
-set listchars=tab:▸\ ,eol:¬,trail:∙                             " shows hidden end of line. tabs and  trailing spaces
+set listchars=tab:▸\ ,eol:¬,trail:∙                             " shows hidden end of line. tabs and trailing spaces
 set foldmethod=syntax                                           " fold based on syntax
 set foldnestmax=3                                               " deepest fold is 3 levels
 set clipboard=unnamed                                           " copying from/to clipboard
@@ -92,4 +94,39 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 autocmd BufWritePre * %s/\s\+$//e "removes trailing whitespaces
 autocmd BufNewFile * set noeol "removes eol
-autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>120v.\+',-1) "highlights more than 120 symbols
+
+" auto scroll on 20% of window width
+let g:scrolloff_fraction = 0.2
+
+""" styling
+
+set colorcolumn=121 " vertical line on 121'st column
+
+" status line colors
+highlight StatusLine ctermbg=208 ctermfg=232 cterm=NONE
+highlight StatusLineNC ctermbg=8 cterm=NONE
+
+" Dim inactive windows https://groups.google.com/d/msg/vim_use/IJU-Vk-QLJE/xz4hjPjCRBUJ
+" this will only work with lines containing text
+if exists('+colorcolumn')
+  function! s:DimInactiveWindows()
+    for i in range(1, tabpagewinnr(tabpagenr(), '$'))
+      let l:range = ""
+      if i != winnr()
+        if &wrap
+         let l:width=256
+        else
+         let l:width=winwidth(i)
+        endif
+        let l:range = join(range(1, l:width), ',')
+      endif
+      call setwinvar(i, '&colorcolumn', l:range)
+    endfor
+  endfunction
+  augroup DimInactiveWindows
+    au!
+    au WinEnter * call s:DimInactiveWindows()
+    au WinEnter * set cursorline
+    au WinLeave * set nocursorline
+  augroup END
+endif
