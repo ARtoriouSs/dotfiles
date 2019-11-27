@@ -17,7 +17,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy search
 Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep' " search by files content
 Plug 'scrooloose/nerdtree' " file explorer
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' } " prettier
 Plug 'tpope/vim-fugitive' " git integration
 Plug 'scrooloose/nerdcommenter' " simpler comments
 Plug 'tpope/vim-repeat' " repeat plugin commands with '.'
@@ -90,10 +89,6 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 "close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-"run prettier on save
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 autocmd BufWritePre * %s/\s\+$//e "removes trailing whitespaces
 autocmd BufNewFile * set noeol "removes eol
