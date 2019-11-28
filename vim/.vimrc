@@ -105,28 +105,3 @@ set colorcolumn=121 " vertical line on 121'st column
 " status line colors
 highlight StatusLine ctermbg=208 ctermfg=232 cterm=NONE
 highlight StatusLineNC ctermbg=8 cterm=NONE
-
-" Dim inactive windows https://groups.google.com/d/msg/vim_use/IJU-Vk-QLJE/xz4hjPjCRBUJ
-" this will only work with lines containing text
-if exists('+colorcolumn')
-  function! s:DimInactiveWindows()
-    for i in range(1, tabpagewinnr(tabpagenr(), '$'))
-      let l:range = ""
-      if i != winnr()
-        if &wrap
-         let l:width=256
-        else
-         let l:width=winwidth(i)
-        endif
-        let l:range = join(range(1, l:width), ',')
-      endif
-      call setwinvar(i, '&colorcolumn', l:range)
-    endfor
-  endfunction
-  augroup DimInactiveWindows
-    au!
-    au WinEnter * call s:DimInactiveWindows()
-    au WinEnter * set cursorline
-    au WinLeave * set nocursorline
-  augroup END
-endif

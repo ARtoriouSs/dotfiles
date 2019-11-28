@@ -53,12 +53,10 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias psqlc="psql -U postgres"
-alias todo="$WORK_EDITOR $TODO"
-alias todol="$WORK_EDITOR todo.yml"
-alias s=$WORK_EDITOR
+alias todo="$EDITOR $TODO"
+alias todol="$EDITOR todo.yml"
 alias v=$EDITOR
 alias search="find . -name"
-alias ho="heroku open"
 alias k9="kill -9"
 alias now="date '+ %H:%M | %B %d'"
 
@@ -79,26 +77,23 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     alias susp="pmset sleepnow"
     alias shut="sudo halt"
-    alias halt="sudo halt"
     alias init="sudo halt"
 fi
 
 # dotfiles quick access
 alias cdd="cd ~/dotfiles"
-alias profile="$WORK_EDITOR $HOME/dotfiles/shell/.profile"
-alias bashrc="$WORK_EDITOR $HOME/dotfiles/shell/.bashrc"
-alias zprofile="$WORK_EDITOR $HOME/dotfiles/shell/.zprofile"
-alias zshrc="$WORK_EDITOR $HOME/dotfiles/shell/.zshrc"
-alias aliases="$WORK_EDITOR $HOME/dotfiles/shell/aliases.sh"
-alias functions="$WORK_EDITOR $HOME/dotfiles/shell/functions.sh"
-alias environment="$WORK_EDITOR $HOME/dotfiles/shell/environment.sh"
-alias temp-settings="$WORK_EDITOR $HOME/dotfiles/shell/temp_settings.sh"
-alias gitconfig="$WORK_EDITOR $HOME/dotfiles/.gitconfig"
-alias gitignore_global="$WORK_EDITOR $HOME/dotfiles/.gitignore_global"
-alias gitignore-global="$WORK_EDITOR $HOME/dotfiles/.gitignore_global"
-alias gitignore="$WORK_EDITOR $HOME/dotfiles/.gitignore_global"
-alias vimrc="$WORK_EDITOR $HOME/dotfiles/vim/.vimrc"
-alias tmux-conf="$WORK_EDITOR $HOME/dotfiles/.tmux.conf"
+alias profile="$EDITOR $HOME/dotfiles/shell/.profile"
+alias bashrc="$EDITOR $HOME/dotfiles/shell/.bashrc"
+alias zprofile="$EDITOR $HOME/dotfiles/shell/.zprofile"
+alias zshrc="$EDITOR $HOME/dotfiles/shell/.zshrc"
+alias aliases="$EDITOR $HOME/dotfiles/shell/aliases.sh"
+alias functions="$EDITOR $HOME/dotfiles/shell/functions.sh"
+alias environment="$EDITOR $HOME/dotfiles/shell/environment.sh"
+alias temp-settings="$EDITOR $HOME/dotfiles/shell/temp_settings.sh"
+alias gitconfig="$EDITOR $HOME/dotfiles/.gitconfig"
+alias gitignore-global="$EDITOR $HOME/dotfiles/.gitignore_global"
+alias vimrc="$EDITOR $HOME/dotfiles/vim/.vimrc"
+alias tmux-conf="$EDITOR $HOME/dotfiles/.tmux.conf"
 
 # some russian equivalents for wrong keyboard layout
 alias "с"="cd .."

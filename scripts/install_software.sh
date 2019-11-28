@@ -18,8 +18,7 @@ fi
 
 # more
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    # silver searcher and ripgrep
-    apt-get install silversearcher-ag
+    # ripgrep
     snap install ripgrep --classic
     # tmux
     apt-get install tmux
@@ -72,8 +71,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
     chmod +x /usr/local/bin/diff-so-fancy
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    # silver searcher and ripgrep
-    brew install the_silver_searcher
+    # ripgrep
     brew install ripgrep
     # iterm
     brew cask install iterm2

@@ -6,7 +6,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 export EDITOR=vim
-export WORK_EDITOR=code
+export GREP_TOOL=rg
 export SSH_KEY_PATH=~/.ssh/id_rsa
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
