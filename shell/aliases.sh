@@ -23,7 +23,6 @@ alias rs="bundle exec rails server"
 alias rc="bundle exec rails console"
 alias bi="bundle install"
 alias bu="bundle update"
-alias rr="bundle exec rails routes"
 alias rdm="bundle exec rails db:migrate"
 alias rdr="bundle exec rails db:drop db:create db:migrate"
 

@@ -95,6 +95,15 @@ rollback() {
     bundle exec rails db:rollback STEP=$STEP
 }
 
+alias rr="search-routes"
+search-routes() {
+    if [ -z "$1" ]; then
+        bundle exec rails routes
+    else
+        bundle exec rails routes | $GREP_TOOL $@
+    fi
+}
+
 # git status function with interactive option for running in separate tmux tab
 alias gst="status"
 status() {
@@ -269,6 +278,6 @@ ignore() {
     git update-index --assume-unchanged $@
 }
 
-stop-ignore() {
+no-ignore() {
     git update-index --no-assume-unchanged $@
 }
