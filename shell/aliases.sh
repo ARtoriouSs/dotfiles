@@ -58,6 +58,7 @@ alias v=$EDITOR
 alias search="find . -name"
 alias k9="kill -9"
 alias now="date '+ %H:%M | %B %d'"
+alias tk="tmux kill-server"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias upd="sudo apt-get --yes update"

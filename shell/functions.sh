@@ -8,7 +8,7 @@ o() {
 }
 
 # open tmux project session
-tm() {
+tp() {
     tmux has-session -t "project"
     if [ $? != 0 ]; then
         tmux new-session -d -s "project" -n "project" -c $PROJECTS/$CURRENT_PROJECT
@@ -16,9 +16,20 @@ tm() {
         tmux resize-pane -R 20
         tmux split-window -v -c $PROJECTS/$CURRENT_PROJECT
         tmux resize-pane -U 10
-        tmux new-window -n "editor" -c $PROJECTS/$CURRENT_PROJECT "$EDITOR ."
-        tmux previous-window -t "project"
         tmux select-pane -t 0
+        tmux split-window -v -c $PROJECTS/$CURRENT_PROJECT
+        tmux resize-pane -U 10
+
+        tmux new-window -n "editor" -c $PROJECTS/$CURRENT_PROJECT "$EDITOR ."
+        tmux new-window -n "git" -c $PROJECTS/$CURRENT_PROJECT "$EDITOR ."
+
+        tmux next-window -t "project"
+        tmux select-pane -t 1
+
+        tmux send-keys -t "project:0.0" "rs" Enter
+        tmux send-keys -t "project:0.1" "cowsay Hello!" Enter
+        tmux send-keys -t "project:0.2" "gst -i" Enter
+        tmux send-keys -t "project:0.3" "rc" Enter
     fi
     tmux -2 attach-session -t "project"
 }

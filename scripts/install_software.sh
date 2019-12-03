@@ -18,6 +18,8 @@ fi
 
 # more
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    # cowsay :)
+    apt-get install cowsay
     # ripgrep
     snap install ripgrep --classic
     # tmux
@@ -71,6 +73,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
     chmod +x /usr/local/bin/diff-so-fancy
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # cowsay :)
+    brew install cowsay
     # ripgrep
     brew install ripgrep
     # iterm
