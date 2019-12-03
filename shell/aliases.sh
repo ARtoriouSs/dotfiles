@@ -1,7 +1,6 @@
 # git
 alias g="git"
 alias gcl="git clone"
-alias grem="git remote"
 alias gb="git branch"
 alias gco="git checkout"
 alias gca="git commit --amend"

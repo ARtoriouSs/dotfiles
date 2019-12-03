@@ -83,6 +83,7 @@ set listchars=tab:▸\ ,eol:¬,trail:∙                             " shows hid
 set foldmethod=syntax                                           " fold based on syntax
 set foldnestmax=3                                               " deepest fold is 3 levels
 set clipboard=unnamed                                           " copying from/to clipboard
+set diffopt+=vertical " forse to use vertical split for diff
 
 " run NERDTree when vim started with no specified files
 autocmd StdinReadPre * let s:std_in=1

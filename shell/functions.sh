@@ -21,7 +21,7 @@ tp() {
         tmux resize-pane -U 10
 
         tmux new-window -n "editor" -c $PROJECTS/$CURRENT_PROJECT "$EDITOR ."
-        tmux new-window -n "git" -c $PROJECTS/$CURRENT_PROJECT "$EDITOR ."
+        tmux new-window -n "git" -c $PROJECTS/$CURRENT_PROJECT "$EDITOR"
 
         tmux next-window -t "project"
         tmux select-pane -t 1
@@ -225,7 +225,7 @@ reset() {
             git reset HEAD --hard
             rm -rf $(git status --short)
         else
-            echo "aborted"
+            echo "Aborted"
         fi
     else
         git checkout -- $@ &> /dev/null
@@ -291,4 +291,13 @@ ignore() {
 
 no-ignore() {
     git update-index --no-assume-unchanged $@
+}
+
+grem() {
+    if [ -z "$1" ]; then
+        git remote -v
+    else
+        git remote "$@"
+    fi
+    git remote -v
 }
