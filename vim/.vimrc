@@ -55,9 +55,11 @@ nnoremap ç 3gt
 nnoremap √ 4gt
 nnoremap ∫ 5gt
 
-" commands
+""" commands
 " rename tab
 command Rt :call g:tabulous#renameTab()
+" redraw
+command R redraw!
 
 """ settings
 syntax on
