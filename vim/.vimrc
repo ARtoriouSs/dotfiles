@@ -24,6 +24,7 @@ Plug 'tpope/vim-surround' " simple quoting and parenthesizing
 Plug 'jiangmiao/auto-pairs' " auto closing brackets
 Plug 'tpope/vim-endwise' " auto end keyword
 Plug 'drzel/vim-scrolloff-fraction' " auto scroll when getting closer to window border
+Plug 'webdevel/tabulous' " better tab naming
 
 " language syntax support
 Plug 'pangloss/vim-javascript'
@@ -44,11 +45,25 @@ nnoremap <C-g> :Ag<Cr>
 nnoremap <C-p> :FZF<Cr>
 map <C-n> :NERDTreeToggle<CR>
 
-" settings
+nnoremap <C-h> :tabprevious<CR>
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-t> :tabnew<CR>
+nnoremap <C-d> :tabclose<CR>
+nnoremap Ω 1gt
+nnoremap ≈ 2gt
+nnoremap ç 3gt
+nnoremap √ 4gt
+nnoremap ∫ 5gt
+
+" commands
+" rename tab
+command Rt :call g:tabulous#renameTab()
+
+""" settings
 syntax on
 colorscheme monokai
 highlight default link SignColumn LineNr
-set exrc " allows project specific .vimr
+set exrc " allows project specific .vimrc
 set encoding=utf-8
 set timeoutlen=250                                              " used for mapping delays
 set cursorline                                                  " shows cursorline
@@ -93,8 +108,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let NERDTreeMinimalUI = 1 " remove helper from ui
 let NERDTreeAutoDeleteBuffer = 1 "delete buffer of deleted file
 let NERDTreeQuitOnOpen = 2 " close NERDTree on file open
-let NERDTreeShowHidden=1 " show hidden files by default
-let NERDTreeShowBookmarks=1 " show bookmarks by default
+let NERDTreeShowHidden = 1 " show hidden files by default
+let NERDTreeShowBookmarks = 1 " show bookmarks by default
 
 autocmd BufWritePre * %s/\s\+$//e "removes trailing whitespaces
 autocmd BufNewFile * set noeol "removes eol
@@ -103,6 +118,12 @@ autocmd BufNewFile * set noeol "removes eol
 let g:scrolloff_fraction = 0.2
 
 """ styling
+
+let tabulousLabelNameDefault = 'untitled' " default tab name
+let tabulousLabelModifiedStr = '* ' " modified tab marker
+let tabulousLabelNumberStr = ') ' " string after label number
+let tabulousLabelNameOptions = ':t' " tab label format: show only file name with extension
+let tabulousCloseStr = '' " remove close symbol to the right of tabline
 
 set colorcolumn=121 " vertical line on 121'st column
 
