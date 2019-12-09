@@ -9,7 +9,10 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" plugins
+"*****************************
+"********** plugins **********
+"*****************************
+
 call plug#begin('~/.config/nvim/plugged')
 " main plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocompletion
@@ -39,33 +42,48 @@ Plug 'tpope/vim-rails'
 
 call plug#end()
 
-" keys mappings
+"*****************************
+"********* mappings **********
+"*****************************
+
+" command without pressing shift
 nnoremap ; :
 vnoremap ; :
+" ctrl + g to RipGrep files
 nnoremap <C-g> :Ag<Cr>
+" ctrl + p to fuzzy search files
 nnoremap <C-p> :FZF<Cr>
+" ctrl + n to toggle file explorer
 map <C-n> :NERDTreeToggle<CR>
-
+" // in visual mode to search selected text
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+" tabs
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-d> :tabclose<CR>
+" alt + z/x/c/v/b for tabs navigation
 nnoremap Ω 1gt
 nnoremap ≈ 2gt
 nnoremap ç 3gt
 nnoremap √ 4gt
 nnoremap ∫ 5gt
 
-
-""" commands
-
+"*****************************
+"********* commands **********
+"*****************************
 
 " rename tab
-command Rt :call g:tabulous#renameTab()
-" redraw
-command R redraw!
+command Rent :call g:tabulous#renameTab()
+" redraw and reload configuration
+command Refresh source $MYVIMRC | redraw!
+" Q to exit
+command Q q
 
-""" settings
+"*****************************
+"********* settings **********
+"*****************************
+
 syntax on
 colorscheme monokai
 highlight default link SignColumn LineNr
@@ -123,9 +141,9 @@ autocmd BufNewFile * set noeol "removes eol
 " auto scroll on 20% of window width
 let g:scrolloff_fraction = 0.2
 
-
-""" styling
-
+"*****************************
+"********** styling **********
+"*****************************
 
 let tabulousLabelNameDefault = 'untitled' " default tab name
 let tabulousLabelModifiedStr = '* ' " modified tab marker
