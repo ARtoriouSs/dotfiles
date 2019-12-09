@@ -37,6 +37,7 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'vim-ruby/vim-ruby'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " CSS in JS files
 Plug 'tpope/vim-rails'
+Plug 'ap/vim-css-color' " colors preview
 
 " styling
 
@@ -79,6 +80,8 @@ command Rent :call g:tabulous#renameTab()
 command Refresh source $MYVIMRC | redraw!
 " Q to exit
 command Q q
+" edit vimrc
+command Vimrc :edit $MYVIMRC
 
 "*****************************
 "********* settings **********

@@ -7,6 +7,7 @@
 
 # IDE files
 .idea
+.vscode
 
 # Temporary files
 *.swp
