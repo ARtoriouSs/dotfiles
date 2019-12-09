@@ -5,7 +5,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH" # VS Code on MacOS
 fi
 
-export EDITOR=vim
+export EDITOR=nvim
 export GREP_TOOL=rg
 export SSH_KEY_PATH=~/.ssh/id_rsa
 

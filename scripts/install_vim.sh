@@ -2,20 +2,20 @@
 
 # install vim
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    add-apt-repository ppa:jonathonf/vim
-    apt-get update
-    apt-get install vim
+    sudo add-apt-repository ppa:neovim-ppa/stable
+    sudo apt-get update
+    sudo apt-get install neovim
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    brew install vim
+    brew install neovim
 fi
 
 # symlink for config
-ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
+ln -sf ~/dotfiles/vim/.vimrc ~/.config/nvim/init.vim
 
 # setup color scheme
-mkdir $HOME/.vim/colors
-cp ../vim/monokai.vim $HOME/.vim/colors
+mkdir $HOME/.config/nvim/colors
+cp ../vim/monokai.vim $HOME/.config/nvim/colors/
 
 # install Plug and plugins
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim +PluginInstall +qall
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim +PlugInstall +qall
