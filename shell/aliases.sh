@@ -1,5 +1,6 @@
 # git
 alias g="git"
+alias ginit="git init"
 alias gcl="git clone"
 alias gb="git branch"
 alias gco="git checkout"

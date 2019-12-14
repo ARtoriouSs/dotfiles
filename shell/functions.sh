@@ -298,6 +298,6 @@ grem() {
         git remote -v
     else
         git remote "$@"
+        git remote -v
     fi
-    git remote -v
 }
