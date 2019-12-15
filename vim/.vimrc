@@ -142,17 +142,23 @@ set listchars=tab:▸\ ,eol:¬,trail:∙ " shows hidden end of line. tabs and tr
 set clipboard=unnamedplus " use system clipboard by default if no register specified
 set diffopt+=vertical " forse to use vertical split for diff
 
-
+" status line default colors
+highlight User1 ctermbg=202 ctermfg=16 cterm=bold
+highlight StatusLine ctermbg=208 ctermfg=232 cterm=bold
+highlight StatusLineNC ctermbg=8 cterm=bold
 
 set laststatus=2 " shows status line for all splits
-set ruler " shows the cursor position in the right part of status line
-"set statusline=
-"set statusline+=%<\ %n\ \|\ %-.100f\ %m\ [%H%R%W]\ %y
+set statusline=%1*\ %3n\ %*%<\ %-.100f\ [%M][%H%R%W][%Y]\ %=%l:%-4c%-4P " statusline format
+
+autocmd InsertEnter * highlight StatusLine ctermbg=5 ctermfg=15 cterm=bold
+autocmd InsertEnter * highlight User1 ctermbg=129 ctermfg=15 cterm=bold
+autocmd InsertLeave * highlight StatusLine term=reverse ctermbg=208 ctermfg=232 cterm=bold
+autocmd InsertLeave * highlight User1 ctermbg=202 cterm=bold
 
 
 " allows vimrc if repo is trusted by creating .git/safe directory
 if filereadable(".git/safe/../../vimrc.local")
-  source .git/safe/../../vimrc.local
+  source .git/safe/../../.vimrc.local
 endif
 
 " run NERDTree when vim started with no specified files
@@ -191,6 +197,3 @@ let tabulousCloseStr = '' " remove close symbol to the right of tabline
 
 set colorcolumn=121 " vertical line on 121'st column
 
-" status line colors
-highlight StatusLine ctermbg=208 ctermfg=232 cterm=NONE
-highlight StatusLineNC ctermbg=8 cterm=NONE
