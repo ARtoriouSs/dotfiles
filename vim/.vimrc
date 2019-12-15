@@ -47,7 +47,7 @@ call plug#end()
 "********* mappings **********
 "*****************************
 
-" command without pressing shift
+" command without shift
 nnoremap ; :
 vnoremap ; :
 " ctrl + g to RipGrep files
@@ -59,73 +59,101 @@ map <C-n> :NERDTreeToggle<CR>
 " // in visual mode to search selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " tabs
-nnoremap <C-h> :tabprevious<CR>
-nnoremap <C-l> :tabnext<CR>
+nnoremap <C-a> :tabprevious<CR>
+nnoremap <C-s> :tabnext<CR>
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-d> :tabclose<CR>
-" alt + z/x/c/v/b for tabs navigation
-nnoremap Ω 1gt
-nnoremap ≈ 2gt
-nnoremap ç 3gt
-nnoremap √ 4gt
-nnoremap ∫ 5gt
+" easier split navigation ctrl + h/j/k/l
+nnoremap <C-j> <C-W><C-j>
+nnoremap <C-k> <C-W><C-k>
+nnoremap <C-l> <C-W><C-l>
+nnoremap <C-h> <C-W><C-h>
+" do not allow arrows in normal and visual modes
+nnoremap <Left> :echoe " Nope, use h"<CR>
+nnoremap <Right> :echoe " Nope, use l"<CR>
+nnoremap <Up> :echoe " Nope, use k"<CR>
+nnoremap <Down> :echoe " Nope, use j"<CR>
+vnoremap <Left> :echoe " Nope, use h"<CR>
+vnoremap <Right> :echoe " Nope, use l"<CR>
+vnoremap <Up> :echoe " Nope, use k"<CR>
+vnoremap <Down> :echoe " Nope, use j"<CR>
+
+" toggle paste mode by pressing f2 and print current mode
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
 
 "*****************************
 "********* commands **********
 "*****************************
 
 " rename tab
-command Rent :call g:tabulous#renameTab()
+command! Rent :call g:tabulous#renameTab()
 " redraw and reload configuration
-command Refresh source $MYVIMRC | redraw!
+command! Reload source $MYVIMRC | redraw!
 " Q to exit
-command Q q
+command! Q q
 " edit vimrc
-command Vimrc :edit $MYVIMRC
+command! Vimrc :edit $MYVIMRC
+" git and fugitive aliases
+command! Gst :Gstatus
+command! Gd :Gdiff
+command! Gcm :Gcommit
+command! Gca :Gcommit --amend
+command! Gcan :Gcommit --amend --no-edit
+" Take changes by fugitive's Gread and close splits
+command! Take :Gread | wq | q
 
 "*****************************
 "********* settings **********
 "*****************************
 
-syntax on
-colorscheme monokai
-highlight default link SignColumn LineNr
-set exrc " allows project specific .vimrc
-set encoding=utf-8
-set timeoutlen=250                                              " used for mapping delays
-set cursorline                                                  " shows cursorline
-set relativenumber                                              " shows relative numbers
-set number                                                      " shows current line with relative numbers
-set path+=**                                                    " allows find to look deep into folders during search
-set wildmenu                                                    " lets you see what your other options for <TAB>
-set hidden                                                      " allows to manage multiple buffers effectively
-set hlsearch                                                    " highlights search items
-set incsearch                                                   " highligths search items dynamically as they are typed
-set ignorecase                                                  " the case of normal letters is ignored
-set smartcase                                                   " overrides ignorecase if search contains uppercase chars
-set nowrap                                                      " don't wrap lines
-set tabstop=2                                                   " tab to two spaces
-set shiftwidth=2                                                " identation in normal mode pressing < or >
-set softtabstop=2                                               " set 'tab' as 2 spaces and removes 2 spaces on backspace
-set expandtab                                                   " replaces tabs with spaces
-set smarttab                                                    " needed for tabbing
-set nofoldenable                                                " don't fold by default
-set ruler                                                       " shows the cursor position
-set laststatus=2                                                " shows status line
-set synmaxcol=200                                               " maximum column in which to search for syntax items.  In long lines the
-set autoindent                                                  " copy indent from current line when starting a new line
-set smartindent                                                 " does smart autoindenting
-set nowritebackup                                               " to not write backup before save
-set autoread                                                    " to autoread if file was changed outside from vim
-set noswapfile                                                  " to not use swap files
-set nobackup                                                    " to not write backup during overwriting file
-set showcmd                                                     " shows command
-set list                                                        " enables showing of hidden chars
-set listchars=tab:▸\ ,eol:¬,trail:∙                             " shows hidden end of line. tabs and trailing spaces
-set foldmethod=syntax                                           " fold based on syntax
-set foldnestmax=3                                               " deepest fold is 3 levels
-set clipboard=unnamed                                           " copying from/to clipboard
+syntax on " enable syntax highlighting
+colorscheme monokai " set colorscheme
+set encoding=utf-8 " viewport default encodyng
+set timeoutlen=250 " mapping delay
+set cursorline " shows cursorline
+set relativenumber " shows relative numbers
+set number " shows current line number
+set path+=** " allows find to look deep into folders during search
+set wildmenu " autocompletion using TAB
+set hidden " do not close buffer when window closed
+set hlsearch " highlights search items
+set incsearch " highligths search items dynamically as they are typed
+set ignorecase " the case of normal letters is ignored
+set smartcase " overrides ignorecase if search contains uppercase chars
+set nowrap " don't wrap lines
+set tabstop=2 " tab to two spaces
+set shiftwidth=2 " identation in normal mode pressing < or >
+set softtabstop=2 " set 'tab' as 2 spaces and removes 2 spaces on backspace
+set expandtab " replaces tabs with spaces
+set smarttab " use shiftwidth instead of tabstop at start of lines
+set nofoldenable " don't fold by default
+set foldmethod=syntax " fold based on syntax
+set foldnestmax=3 " deepest fold is 3 levels
+set autoindent " copy indent from current line when starting a new line
+set smartindent " does smart autoindenting in C-like code
+set nowritebackup " do not write backup before save
+set autoread " to autoread if file was changed outside from vim
+set noswapfile " do not use swap files
+set nobackup " to not write backup during overwriting file
+set showcmd " shows commands in last line
+set list " enables showing of hidden chars
+set listchars=tab:▸\ ,eol:¬,trail:∙ " shows hidden end of line. tabs and trailing spaces
+set clipboard=unnamedplus " use system clipboard by default if no register specified
 set diffopt+=vertical " forse to use vertical split for diff
+
+
+
+set laststatus=2 " shows status line for all splits
+set ruler " shows the cursor position in the right part of status line
+"set statusline=
+"set statusline+=%<\ %n\ \|\ %-.100f\ %m\ [%H%R%W]\ %y
+
+
+" allows vimrc if repo is trusted by creating .git/safe directory
+if filereadable(".git/safe/../../vimrc.local")
+  source .git/safe/../../vimrc.local
+endif
 
 " run NERDTree when vim started with no specified files
 autocmd StdinReadPre * let s:std_in=1
@@ -138,11 +166,18 @@ let NERDTreeQuitOnOpen = 2 " close NERDTree on file open
 let NERDTreeShowHidden = 1 " show hidden files by default
 let NERDTreeShowBookmarks = 1 " show bookmarks by default
 
-autocmd BufWritePre * %s/\s\+$//e "removes trailing whitespaces
-autocmd BufNewFile * set noeol "removes eol
+"autocmd BufWritePre * %s/\s\+$//e "removes trailing whitespaces
+"autocmd BufNewFile * set noeol "removes eol
 
 " auto scroll on 20% of window width
 let g:scrolloff_fraction = 0.2
+
+" set syntax highlighting for specific file types
+autocmd BufReadPost .{jscs,jshint,eslint}rc set filetype=json
+autocmd BufReadPost .profile set filetype=zsh
+autocmd BufReadPost .gemrc set filetype=yaml
+autocmd BufReadPost Dockerfile.* set filetype=dockerfile
+autocmd BufReadPost .vimrc.* set filetype=vim
 
 "*****************************
 "********** styling **********
