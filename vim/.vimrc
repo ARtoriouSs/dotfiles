@@ -28,6 +28,7 @@ Plug 'jiangmiao/auto-pairs' " auto closing brackets
 Plug 'tpope/vim-endwise' " auto end keyword
 Plug 'drzel/vim-scrolloff-fraction' " auto scroll when getting closer to window border
 Plug 'webdevel/tabulous' " better tab naming
+Plug 'thoughtbot/vim-rspec' " RSpec integration
 
 " language and tools syntax support
 Plug 'pangloss/vim-javascript'
@@ -77,10 +78,11 @@ vnoremap <Left> :echoe " Nope, use h "<CR>
 vnoremap <Right> :echoe " Nope, use l "<CR>
 vnoremap <Up> :echoe " Nope, use k "<CR>
 vnoremap <Down> :echoe " Nope, use j "<CR>
-
-" toggle paste mode by pressing f2 and print current mode
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
+" RSpec mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 "*****************************
 "********* commands **********
