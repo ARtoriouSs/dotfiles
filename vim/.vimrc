@@ -69,14 +69,14 @@ nnoremap <C-k> <C-W><C-k>
 nnoremap <C-l> <C-W><C-l>
 nnoremap <C-h> <C-W><C-h>
 " do not allow arrows in normal and visual modes
-nnoremap <Left> :echoe " Nope, use h"<CR>
-nnoremap <Right> :echoe " Nope, use l"<CR>
-nnoremap <Up> :echoe " Nope, use k"<CR>
-nnoremap <Down> :echoe " Nope, use j"<CR>
-vnoremap <Left> :echoe " Nope, use h"<CR>
-vnoremap <Right> :echoe " Nope, use l"<CR>
-vnoremap <Up> :echoe " Nope, use k"<CR>
-vnoremap <Down> :echoe " Nope, use j"<CR>
+nnoremap <Left> :echoe " Nope, use h "<CR>
+nnoremap <Right> :echoe " Nope, use l "<CR>
+nnoremap <Up> :echoe " Nope, use k "<CR>
+nnoremap <Down> :echoe " Nope, use j "<CR>
+vnoremap <Left> :echoe " Nope, use h "<CR>
+vnoremap <Right> :echoe " Nope, use l "<CR>
+vnoremap <Up> :echoe " Nope, use k "<CR>
+vnoremap <Down> :echoe " Nope, use j "<CR>
 
 " toggle paste mode by pressing f2 and print current mode
 nnoremap <F2> :set invpaste paste?<CR>
@@ -141,6 +141,11 @@ set list " enables showing of hidden chars
 set listchars=tab:▸\ ,eol:¬,trail:∙ " shows hidden end of line. tabs and trailing spaces
 set clipboard=unnamedplus " use system clipboard by default if no register specified
 set diffopt+=vertical " forse to use vertical split for diff
+set tags=./.git/tags " for ctags
+
+" more intuitive split opening
+set splitbelow
+set splitright
 
 " status line default colors
 highlight User1 ctermbg=202 ctermfg=16 cterm=bold
@@ -153,7 +158,7 @@ set statusline=%1*\ %3n\ %*%<\ %-.100f\ [%M][%H%R%W][%Y]\ %=%l:%-4c%-4P " status
 autocmd InsertEnter * highlight StatusLine ctermbg=5 ctermfg=15 cterm=bold
 autocmd InsertEnter * highlight User1 ctermbg=129 ctermfg=15 cterm=bold
 autocmd InsertLeave * highlight StatusLine term=reverse ctermbg=208 ctermfg=232 cterm=bold
-autocmd InsertLeave * highlight User1 ctermbg=202 cterm=bold
+autocmd InsertLeave * highlight User1 ctermbg=202 ctermfg=16 cterm=bold
 
 
 " allows vimrc if repo is trusted by creating .git/safe directory
@@ -172,8 +177,8 @@ let NERDTreeQuitOnOpen = 2 " close NERDTree on file open
 let NERDTreeShowHidden = 1 " show hidden files by default
 let NERDTreeShowBookmarks = 1 " show bookmarks by default
 
-"autocmd BufWritePre * %s/\s\+$//e "removes trailing whitespaces
-"autocmd BufNewFile * set noeol "removes eol
+autocmd BufWritePre * %s/\s\+$//e "removes trailing whitespaces
+autocmd BufNewFile * set noeol "removes eol
 
 " auto scroll on 20% of window width
 let g:scrolloff_fraction = 0.2
