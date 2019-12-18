@@ -45,6 +45,7 @@ alias dcp="docker-compose"
 alias dcps="docker-compose ps -a"
 
 # system
+alias ccat="pygmentize -g -O style='colorful'"
 alias e="echo"
 alias c="cd .."
 alias cls="clear"
@@ -53,7 +54,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias psqlc="psql -U postgres"
 alias todo="$EDITOR $TODO"
-alias todol="$EDITOR todo.yml"
+alias todol="$EDITOR todo.yml" # local todo
 alias v=$EDITOR
 alias search="find . -name"
 alias k9="kill -9"
