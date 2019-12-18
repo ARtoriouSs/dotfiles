@@ -144,6 +144,9 @@ set listchars=tab:▸\ ,eol:¬,trail:∙ " shows hidden end of line. tabs and tr
 set clipboard=unnamedplus " use system clipboard by default if no register specified
 set diffopt+=vertical " forse to use vertical split for diff
 set tags=./.git/tags " for ctags
+set updatetime=300 " faster updating for coc.nvim
+set shortmess+=c " do not show ins=completion-menu messages
+set shortmess+=s " do not show 'search hit BOTTOM' messages
 
 " more intuitive split opening
 set splitbelow
