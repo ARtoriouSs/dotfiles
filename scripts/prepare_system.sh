@@ -16,7 +16,6 @@ cp temp_settings.sample.sh temp_settings.sh
 ./configure_system.sh && relogin
 ./create_dir_tree.sh
 ./install_vim.sh
-./install_vscode.sh
 ./install_zsh.sh
 
 exec zsh

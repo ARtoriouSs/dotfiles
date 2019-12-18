@@ -13,10 +13,9 @@ fi
 code --install-extension bung87.rails
 code --install-extension bung87.vscode-gemfile
 code --install-extension castwide.solargraph
-code --install-extension CraigMaslowski.erb
 code --install-extension DavidAnson.vscode-markdownlint
 code --install-extension deniskoronchik.ostis
-code --install-extension karunamurti.haml
+code --install-extension jakeboone02.cypher-query-language
 code --install-extension mikestead.dotenv
 code --install-extension mjmcloug.vscode-elixir
 code --install-extension monokai.theme-monokai-pro-vscode
@@ -27,4 +26,6 @@ code --install-extension redhat.vscode-yaml
 code --install-extension shardulm94.trailing-spaces
 code --install-extension sianglim.slim
 code --install-extension waderyan.gitblame
+code --install-extension wingrunr21.vscode-ruby
+code --install-extension XadillaX.viml
 code --install-extension yzhang.markdown-all-in-one
