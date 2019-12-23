@@ -42,8 +42,9 @@ Plug 'ap/vim-css-color' " colors preview
 Plug 'jacoborus/tender.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons' " icons for vim, should be last in this list
-
 call plug#end()
+" TODO plugins to outer source
+" TODO change autopairs plugin
 
 " Colors
 if (has("termguicolors"))
@@ -60,7 +61,6 @@ autocmd BufReadPost .profile set filetype=zsh
 autocmd BufReadPost .gemrc set filetype=yaml
 autocmd BufReadPost Dockerfile.* set filetype=dockerfile
 autocmd BufReadPost .vimrc.* set filetype=vim
-" TODO selection color
 
 " statusline settings
 set laststatus=2 " shows status line for all splits
@@ -83,10 +83,10 @@ let g:lightline = {
     \     'fileformat': 'FileFormatWithIcon',
     \     'filename': 'FileNameWithModifiedSign'
     \   },
-    \   'colorscheme': 'tender'
+    \   'colorscheme': 'tender',
+    \   'subseparator': { 'left': '', 'right': '' },
+    \   'separator': { 'left': '', 'right': '' }
     \ }
-let g:lightline.subseparator = { 'left': '', 'right': '' }
-let g:lightline.separator = { 'left': '', 'right': '' }
 " add icon to file format
 function! FileTypeWithIcon()
   return winwidth(0) > 70 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : 'plain') : ''
@@ -102,26 +102,21 @@ function! FileNameWithModifiedSign()
   return filename . modified
 endfunction
 
-""" if without lightline """
-
-" status line default colors
-"highlight User1 ctermbg=202 ctermfg=16 cterm=bold
-"highlight StatusLine ctermbg=208 ctermfg=232 cterm=bold
-"highlight StatusLineNC ctermbg=8 cterm=bold
-
-"set statusline=%1*\ %3n\ %*%<\ %-.100f\ [%M][%H%R%W][%Y]\ %=%l:%-4c%-4P " statusline format
-
-"autocmd InsertEnter * highlight StatusLine ctermbg=5 ctermfg=15 cterm=bold
-"autocmd InsertEnter * highlight User1 ctermbg=129 ctermfg=15 cterm=bold
-"autocmd InsertLeave * highlight StatusLine term=reverse ctermbg=208 ctermfg=232 cterm=bold
-"autocmd InsertLeave * highlight User1 ctermbg=202 ctermfg=16 cterm=bold
-
-""" endif """
-
-" cursor settings
+" cursor
 set cursorline " shows cursorline
 set number " shows current line number
 set relativenumber " shows relative numbers
+" visual selection color
+highlight Visual guibg=#124A2C
+" default colors for cursorline
+highlight CursorLine guibg=#323D3E
+highlight Cursor guibg=#00AAFF
+" change color when entering insert mode
+autocmd InsertEnter * highlight CursorLine guibg=#3E3D32
+autocmd InsertEnter * highlight Cursor guibg=#A6E22E
+" revert color to default when leaving insert mode
+autocmd InsertLeave * highlight CursorLine guibg=#323D3E
+autocmd InsertLeave * highlight Cursor guibg=#00AAFF
 
 "search
 set hlsearch " highlights search items
@@ -132,11 +127,13 @@ set path+=** " allows gf to look deep into folders during search
 set tags=./.git/tags " for ctags
 " // in visual mode to search selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+" do not search in file names, only contents
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 " ctrl + g to RipGrep files
 nnoremap <C-g> :Ag<Cr>
 " ctrl + p to fuzzy search files
 nnoremap <C-p> :FZF<Cr>
-" TODO ag without filename
+" TODO match color
 
 " tabbing and indenting
 set nowrap " don't wrap lines
@@ -253,7 +250,6 @@ let NERDTreeShowHidden = 1 " show hidden files by default
 let NERDTreeShowBookmarks = 1 " show bookmarks by default
 " ctrl + n to toggle file explorer
 map <C-n> :NERDTreeToggle<CR>
-" TODO git integration
 
 " RSpec
 map <Leader>t :call RunCurrentSpecFile()<CR>
