@@ -17,6 +17,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy search
 Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep' " search by files content
 Plug 'scrooloose/nerdtree' " file explorer
+Plug 'Xuyuanp/nerdtree-git-plugin' " git extension for NERDTree
 Plug 'tpope/vim-fugitive' " git integration
 Plug 'scrooloose/nerdcommenter' " simpler comments
 Plug 'tpope/vim-repeat' " repeat plugin commands with '.'
@@ -40,6 +41,7 @@ Plug 'ap/vim-css-color' " colors preview
 " styling
 Plug 'jacoborus/tender.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'ryanoasis/vim-devicons' " icons for vim, should be last in this list
 
 call plug#end()
 
@@ -62,8 +64,43 @@ autocmd BufReadPost .vimrc.* set filetype=vim
 
 " statusline settings
 set laststatus=2 " shows status line for all splits
-let g:lightline = { 'colorscheme': 'tender' } " tender colorscheme for status line
-" TODO style
+let g:lightline = {
+    \   'active': {
+    \     'left': [
+    \       [ 'mode', 'paste' ],
+    \       [ 'bufnum', 'readonly' ],
+    \       [ 'filename' ]
+    \     ],
+    \   },
+    \   'inactive': {
+    \     'left': [
+    \       [ 'bufnum' ],
+    \       [ 'filename' ]
+    \     ]
+    \   },
+    \   'component_function': {
+    \     'filetype': 'FileTypeWithIcon',
+    \     'fileformat': 'FileFormatWithIcon',
+    \     'filename': 'FileNameWithModifiedSign'
+    \   },
+    \   'colorscheme': 'tender'
+    \ }
+let g:lightline.subseparator = { 'left': '', 'right': '' }
+let g:lightline.separator = { 'left': '', 'right': '' }
+" add icon to file format
+function! FileTypeWithIcon()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : 'plain') : ''
+endfunction
+" add icon to file format
+function! FileFormatWithIcon()
+  return winwidth(0) > 70 ? (WebDevIconsGetFileFormatSymbol() . ' ' . &fileformat) : ''
+endfunction
+" filename with modified sign and without separator
+function! FileNameWithModifiedSign()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[no name]'
+  let modified = &modified ? ' [+]' : ''
+  return filename . modified
+endfunction
 
 """ if without lightline """
 
@@ -197,6 +234,7 @@ command! Gca :Gcommit --amend
 command! Gcan :Gcommit --amend --no-edit
 " Take changes by fugitive's Gread and close splits
 command! Take :Gread | wq | q
+let g:NERDTreeShowIgnoredStatus = 1 " show ignored status in nerdtree, a heavy feature may cost much more time
 
 " autocompletion
 set updatetime=300 " faster updating for coc.nvim
