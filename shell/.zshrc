@@ -4,6 +4,7 @@ export CASE_SENSITIVE="true"
 export COMPLETION_WAITING_DOTS="true"
 export LANG=en_US.UTF-8
 export ZSH=$HOME/.oh-my-zsh
+export TERM=xterm-256color
 
 # autosuggestion configuration
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=94'
