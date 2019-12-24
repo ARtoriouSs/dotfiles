@@ -249,8 +249,8 @@ let NERDTreeAutoDeleteBuffer = 1 "delete buffer of deleted file
 let NERDTreeQuitOnOpen = 2 " close NERDTree on file open
 let NERDTreeShowHidden = 1 " show hidden files by default
 let NERDTreeShowBookmarks = 1 " show bookmarks by default
-" ctrl + n to toggle file explorer
-map <C-n> :NERDTreeToggle<CR>
+" ctrl + n to toggle file explorer and update it
+map <C-n> :NERDTreeToggle <bar> :NERDTreeRefreshRoot<CR>
 
 " RSpec
 map <Leader>t :call RunCurrentSpecFile()<CR>
