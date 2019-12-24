@@ -47,13 +47,14 @@ call plug#end()
 " TODO change autopairs plugin
 
 " Colors
+set background=dark " for correct colors in tmux
+set t_Co=256 " use 265 colors
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " for tender
 if (has("termguicolors"))
   set termguicolors " turns on bg and fg highlighting
 endif
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " for tender
 syntax on " enable syntax highlighting
 colorscheme tender " set colorscheme
-set t_Co=256 " set 256 colors
 set colorcolumn=121 " vertical line on 121'st column
 " syntax highlighting for specific file types
 autocmd BufReadPost .{jscs,jshint,eslint}rc set filetype=json
@@ -127,7 +128,7 @@ set path+=** " allows gf to look deep into folders during search
 set tags=./.git/tags " for ctags
 " // in visual mode to search selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
-" do not search in file names, only contents
+" do not search in file names and line numbers, only contents
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 " ctrl + g to RipGrep files
 nnoremap <C-g> :Ag<Cr>
