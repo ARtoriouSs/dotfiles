@@ -13,7 +13,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 " main plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocompletion
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy search (will be install system-wide)
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy search (will be installed system-wide)
 Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep' " search by files content
 Plug 'scrooloose/nerdtree' " file explorer
@@ -22,19 +22,22 @@ Plug 'tpope/vim-fugitive' " git integration
 Plug 'scrooloose/nerdcommenter' " simpler comments
 Plug 'tpope/vim-repeat' " repeat plugin commands with '.'
 Plug 'tpope/vim-surround' " simple quoting and parenthesizing
-Plug 'jiangmiao/auto-pairs' " auto closing brackets
-Plug 'tpope/vim-endwise' " auto end keyword
+Plug 'vim-scripts/auto-pairs-gentle' " auto closing brackets
+Plug 'tpope/vim-endwise' " auto 'end' keyword
 Plug 'drzel/vim-scrolloff-fraction' " auto scroll when getting closer to window border
 Plug 'thoughtbot/vim-rspec' " RSpec integration
+Plug 'airblade/vim-gitgutter' " git status near line numbers
+Plug 'simeji/winresizer' " easier split resizing
 
 " language and tools syntax support
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'jparise/vim-graphql'
-Plug 'elixir-editors/vim-elixir'
-Plug 'vim-ruby/vim-ruby'
+Plug 'pangloss/vim-javascript' " JavaScript
+Plug 'mxw/vim-jsx' " react
+Plug 'posva/vim-vue' " vue
+Plug 'jparise/vim-graphql' " graphQL
+Plug 'elixir-editors/vim-elixir' " elixir
+Plug 'vim-ruby/vim-ruby' " ruby
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " CSS in JS files
-Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rails' " rails
 Plug 'ap/vim-css-color' " colors preview
 
 " styling
@@ -43,7 +46,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons' " icons for vim, should be last in this list
 call plug#end()
 " TODO plugins to outer source
-" TODO change autopairs plugin
+" TODO snippets
 
 " Colors
 set background=dark " for correct colors in tmux
@@ -118,7 +121,7 @@ autocmd InsertEnter * highlight Cursor guibg=#A6E22E
 autocmd InsertLeave * highlight CursorLine guibg=#323D3E
 autocmd InsertLeave * highlight Cursor guibg=#00AAFF
 
-"search
+" search
 set hlsearch " highlights search items
 set incsearch " highligths search items dynamically as they are typed
 set ignorecase " the case of normal letters is ignored
@@ -127,13 +130,12 @@ set path+=** " allows gf to look deep into folders during search
 set tags=./.git/tags " for ctags
 " // in visual mode to search selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
-" do not search in file names and line numbers, only contents
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+" do not search in file names and line numbers, only contents; change match color to red
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4.. --color hl:#ff8787,hl+:#ff0000'}, <bang>0)
 " ctrl + g to RipGrep files
 nnoremap <C-g> :Ag<Cr>
 " ctrl + p to fuzzy search files
 nnoremap <C-p> :FZF<Cr>
-" TODO match color
 
 " tabbing and indenting
 set nowrap " don't wrap lines
@@ -173,7 +175,7 @@ let g:scrolloff_fraction = 0.2
 " buffers
 set hidden " do not close buffer when window closed
 
-" controls
+" controls and navigation
 set timeoutlen=250 " mapping delay
 set clipboard=unnamedplus " use system clipboard by default if no register specified
 set wildmenu " autocompletion using TAB
@@ -200,6 +202,28 @@ command! Reload source $MYVIMRC | redraw!
 command! Q q
 " edit vimrc
 command! Vimrc :edit $MYVIMRC
+" plug aliases
+command! Pi :PlugInstall
+command! Pu :PlugUpdate
+" TODO ctags
+
+inoremap <silent><expr> <C-space> coc#refresh()
+
+" text
+" enable auto-pairs
+let g:AutoPairsUseInsertedCount = 1
+set updatetime=100 " update faser
+" use tab for trigger completion with characters ahead and navigate
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 
 " splits
 set splitbelow " open new horizontal split below
@@ -230,10 +254,7 @@ command! Gcan :Gcommit --amend --no-edit
 " Take changes by fugitive's Gread and close splits
 command! Take :Gread | wq | q
 let g:NERDTreeShowIgnoredStatus = 1 " show ignored status in nerdtree, a heavy feature may cost much more time
-
-" autocompletion
-set updatetime=300 " faster updating for coc.nvim
-" TODO usability
+let g:gitgutter_max_signs = 1000 " increase max displayed signs for gitgutter
 
 " file explorer
 " run NERDTree when vim started with no specified files

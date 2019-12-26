@@ -27,7 +27,7 @@ tp() {
 
         tmux send-keys -t "project:0.0" "rs" Enter
         tmux send-keys -t "project:0.1" "cowsay Hello!" Enter
-        tmux send-keys -t "project:0.2" "sleep 5 && gst -i" Enter
+        tmux send-keys -t "project:0.2" "gst -i" Enter
         tmux send-keys -t "project:0.3" "rc" Enter
     fi
     tmux -2 attach-session -t "project"
