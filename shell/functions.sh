@@ -20,8 +20,7 @@ tp() {
         tmux split-window -v -c $PROJECTS/$CURRENT_PROJECT
         tmux resize-pane -U 10
 
-        tmux new-window -n "editor" -c $PROJECTS/$CURRENT_PROJECT "$EDITOR ."
-        tmux new-window -n "git" -c $PROJECTS/$CURRENT_PROJECT "$EDITOR"
+        tmux new-window -n "editor" -c $PROJECTS/$CURRENT_PROJECT "$EDITOR"
 
         tmux next-window -t "project"
         tmux select-pane -t 1
