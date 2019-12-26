@@ -231,7 +231,27 @@ reset() {
         git checkout -- $@ &> /dev/null
 
         # check if there is untracked files in args and remove them
-        UNTRACKED="$(git ls-files . --exclude-standard --others)"
+        local UNTRACKED="$(git ls-files . --exclude-standard --others)"
+        for RECORD in $(echo $UNTRACKED); do
+            for ARG in "$@"; do
+                if [ "$ARG" = "$RECORD" ]; then
+                    rm -rf $RECORD
+                fi
+            done
+        done
+    fi
+    locked_status
+}
+# reset without confirmation
+freset() {
+    if [ -z "$1" ]; then
+        git reset HEAD --hard
+        rm -rf $(git status --short)
+    else
+        git checkout -- $@ &> /dev/null
+
+        # check if there is untracked files in args and remove them
+        local UNTRACKED="$(git ls-files . --exclude-standard --others)"
         for RECORD in $(echo $UNTRACKED); do
             for ARG in "$@"; do
                 if [ "$ARG" = "$RECORD" ]; then

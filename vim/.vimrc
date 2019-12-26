@@ -25,7 +25,6 @@ Plug 'tpope/vim-surround' " simple quoting and parenthesizing
 Plug 'jiangmiao/auto-pairs' " auto closing brackets
 Plug 'tpope/vim-endwise' " auto end keyword
 Plug 'drzel/vim-scrolloff-fraction' " auto scroll when getting closer to window border
-Plug 'webdevel/tabulous' " better tab naming
 Plug 'thoughtbot/vim-rspec' " RSpec integration
 
 " language and tools syntax support
@@ -98,7 +97,7 @@ function! FileFormatWithIcon()
 endfunction
 " filename with modified sign and without separator
 function! FileNameWithModifiedSign()
-  let filename = expand('%:t') !=# '' ? expand('%:t') : '[no name]'
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
   let modified = &modified ? ' [+]' : ''
   return filename . modified
 endfunction
@@ -168,6 +167,8 @@ set list " enables showing of hidden chars
 set shortmess+=c " do not show ins=completion-menu messages
 set shortmess+=s " do not show 'search hit BOTTOM' messages
 set showcmd " shows commands in last line
+" auto scroll on 20% of window width
+let g:scrolloff_fraction = 0.2
 
 " buffers
 set hidden " do not close buffer when window closed
@@ -176,10 +177,9 @@ set hidden " do not close buffer when window closed
 set timeoutlen=250 " mapping delay
 set clipboard=unnamedplus " use system clipboard by default if no register specified
 set wildmenu " autocompletion using TAB
+set mouse=a " enable mouse support
 autocmd BufWritePre * %s/\s\+$//e "removes trailing whitespaces
 autocmd BufNewFile * set noeol "removes eol
-" auto scroll on 20% of window width
-let g:scrolloff_fraction = 0.2
 " command without shift
 nnoremap ; :
 vnoremap ; :
@@ -192,6 +192,8 @@ vnoremap <Left> :echoe " Nope, use h "<CR>
 vnoremap <Right> :echoe " Nope, use l "<CR>
 vnoremap <Up> :echoe " Nope, use k "<CR>
 vnoremap <Down> :echoe " Nope, use j "<CR>
+" clear search buffer
+nnoremap <C-x> :let @/ = ""<CR>
 " redraw and reload configuration
 command! Reload source $MYVIMRC | redraw!
 " Q to exit
@@ -209,19 +211,14 @@ nnoremap <C-l> <C-W><C-l>
 nnoremap <C-h> <C-W><C-h>
 
 " tabs
-let tabulousLabelNameDefault = 'untitled' " default tab name
-let tabulousLabelModifiedStr = '* ' " modified tab marker
-let tabulousLabelNumberStr = ') ' " string after label number
-let tabulousLabelNameOptions = ':t' " tab label format: show only file name with extension
-let tabulousCloseStr = '' " remove close symbol to the right of tabline
 nnoremap <C-a> :tabprevious<CR>
 nnoremap <C-s> :tabnext<CR>
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-d> :tabclose<CR>
-" rename tab
-command! Rent :call g:tabulous#renameTab()
-" TODO style
-
+" change selected tab color
+let s:palette = g:lightline#colorscheme#tender#palette
+let s:palette.tabline.tabsel = [ [ '#13376b', '#5da8d4', 252, 66, 'bold' ] ]
+unlet s:palette
 " git
 set diffopt+=vertical " forse to use vertical split for diff
 " git and fugitive aliases
