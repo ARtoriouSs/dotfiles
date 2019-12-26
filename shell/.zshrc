@@ -4,7 +4,7 @@ export CASE_SENSITIVE="true"
 export COMPLETION_WAITING_DOTS="true"
 export LANG=en_US.UTF-8
 export ZSH=$HOME/.oh-my-zsh
-export TERM=screen-256color # use 256 colors
+export TERM=screen-256color # use 256 colors (need for tmux)
 
 # autosuggestion configuration
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=94'
