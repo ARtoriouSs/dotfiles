@@ -9,7 +9,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" plugins
+""" plugins
 call plug#begin('~/.config/nvim/plugged')
 " main plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocompletion
@@ -41,31 +41,32 @@ Plug 'tpope/vim-rails' " rails
 Plug 'ap/vim-css-color' " colors preview
 
 " styling
-Plug 'jacoborus/tender.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'ryanoasis/vim-devicons' " icons for vim, should be last in this list
+Plug 'morhetz/gruvbox' " colorscheme
+"Plug 'jacoborus/tender.vim' " also nice colorscheme, but use features that tmux doesn't support
+Plug 'itchyny/lightline.vim' " statusline
+Plug 'ryanoasis/vim-devicons' " icons, should be last in this list
 call plug#end()
 " TODO plugins to outer source
 " TODO snippets
 
-" Colors
+""" colors and highlighting
 set background=dark " for correct colors in tmux
 set t_Co=256 " use 265 colors
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " for tender
 if (has("termguicolors"))
-  set termguicolors " turns on bg and fg highlighting
+  set termguicolors " turns on 24bit colors
 endif
 syntax on " enable syntax highlighting
-colorscheme tender " set colorscheme
-set colorcolumn=121 " vertical line on 121'st column
+colorscheme gruvbox " set colorscheme
 " syntax highlighting for specific file types
 autocmd BufReadPost .{jscs,jshint,eslint}rc set filetype=json
-autocmd BufReadPost .profile set filetype=zsh
-autocmd BufReadPost .gemrc set filetype=yaml
-autocmd BufReadPost Dockerfile.* set filetype=dockerfile
-autocmd BufReadPost .vimrc.* set filetype=vim
+autocmd BufReadPost .profile                set filetype=zsh
+autocmd BufReadPost .gemrc                  set filetype=yaml
+autocmd BufReadPost Dockerfile.*            set filetype=dockerfile
+autocmd BufReadPost .vimrc.*                set filetype=vim
+" TODO js.haml js.erb
+" TODO sign column color
 
-" statusline settings
+""" statusline settings
 set laststatus=2 " shows status line for all splits
 let g:lightline = {
     \   'active': {
@@ -86,7 +87,7 @@ let g:lightline = {
     \     'fileformat': 'FileFormatWithIcon',
     \     'filename': 'FileNameWithModifiedSign'
     \   },
-    \   'colorscheme': 'tender',
+    \   'colorscheme': 'gruvbox',
     \   'subseparator': { 'left': '', 'right': '' },
     \   'separator': { 'left': '', 'right': '' }
     \ }
@@ -105,7 +106,7 @@ function! FileNameWithModifiedSign()
   return filename . modified
 endfunction
 
-" cursor
+""" cursor
 set cursorline " shows cursorline
 set number " shows current line number
 set relativenumber " shows relative numbers
@@ -120,8 +121,9 @@ autocmd InsertEnter * highlight Cursor guibg=#A6E22E
 " revert color to default when leaving insert mode
 autocmd InsertLeave * highlight CursorLine guibg=#323D3E
 autocmd InsertLeave * highlight Cursor guibg=#00AAFF
+" TODO colors with gruvbox
 
-" search
+""" search
 set hlsearch " highlights search items
 set incsearch " highligths search items dynamically as they are typed
 set ignorecase " the case of normal letters is ignored
@@ -137,7 +139,7 @@ nnoremap <C-g> :Ag<Cr>
 " ctrl + p to fuzzy search files
 nnoremap <C-p> :FZF<Cr>
 
-" tabbing and indenting
+""" tabbing and indenting
 set nowrap " don't wrap lines
 set tabstop=2 " tab to two spaces
 set shiftwidth=2 " identation in normal mode pressing < or >
@@ -147,12 +149,12 @@ set smarttab " use shiftwidth instead of tabstop at start of lines
 set autoindent " copy indent from current line when starting a new line
 set smartindent " does smart autoindenting in C-like code
 
-" folding
+""" folding
 set nofoldenable " don't fold by default
 set foldmethod=syntax " fold based on syntax
 set foldnestmax=3 " deepest fold is 3 levels
 
-" external files
+""" external files
 set nowritebackup " do not write backup before save
 set autoread " to autoread if file was changed outside from vim
 set noswapfile " do not use swap files
@@ -162,20 +164,21 @@ if filereadable(".git/safe/../../vimrc.local")
   source .git/safe/../../.vimrc.local
 endif
 
-" viewport and messages
+""" viewport and messages
 set encoding=utf-8 " viewport default encodyng
 set listchars=tab:▸\ ,eol:¬,trail:∙ " shows hidden end of line. tabs and trailing spaces
 set list " enables showing of hidden chars
 set shortmess+=c " do not show ins=completion-menu messages
 set shortmess+=s " do not show 'search hit BOTTOM' messages
 set showcmd " shows commands in last line
+set colorcolumn=121 " vertical line on 121'st column
 " auto scroll on 20% of window width
 let g:scrolloff_fraction = 0.2
 
-" buffers
+""" buffers
 set hidden " do not close buffer when window closed
 
-" controls and navigation
+""" controls and navigation
 set timeoutlen=250 " mapping delay
 set clipboard=unnamedplus " use system clipboard by default if no register specified
 set wildmenu " autocompletion using TAB
@@ -207,9 +210,7 @@ command! Pi :PlugInstall
 command! Pu :PlugUpdate
 " TODO ctags
 
-inoremap <silent><expr> <C-space> coc#refresh()
-
-" text
+""" text
 " enable auto-pairs
 let g:AutoPairsUseInsertedCount = 1
 set updatetime=100 " update faser
@@ -224,8 +225,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-
-" splits
+""" splits
 set splitbelow " open new horizontal split below
 set splitright " open new vertical split to the right
 " easier split navigation ctrl + h/j/k/l
@@ -234,16 +234,13 @@ nnoremap <C-k> <C-W><C-k>
 nnoremap <C-l> <C-W><C-l>
 nnoremap <C-h> <C-W><C-h>
 
-" tabs
+""" tabs
 nnoremap <C-a> :tabprevious<CR>
 nnoremap <C-s> :tabnext<CR>
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-d> :tabclose<CR>
-" change selected tab color
-let s:palette = g:lightline#colorscheme#tender#palette
-let s:palette.tabline.tabsel = [ [ '#13376b', '#5da8d4', 252, 66, 'bold' ] ]
-unlet s:palette
-" git
+
+""" git
 set diffopt+=vertical " forse to use vertical split for diff
 " git and fugitive aliases
 command! Gst :Gstatus
@@ -256,7 +253,7 @@ command! Take :Gread | wq | q
 let g:NERDTreeShowIgnoredStatus = 1 " show ignored status in nerdtree, a heavy feature may cost much more time
 let g:gitgutter_max_signs = 1000 " increase max displayed signs for gitgutter
 
-" file explorer
+""" file explorer
 " run NERDTree when vim started with no specified files
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
@@ -270,7 +267,7 @@ let NERDTreeShowBookmarks = 1 " show bookmarks by default
 " ctrl + n to toggle file explorer and update it
 map <C-n> :NERDTreeToggle <bar> :NERDTreeRefreshRoot<CR>
 
-" RSpec
+""" RSpec
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
