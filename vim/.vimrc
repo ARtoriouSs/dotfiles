@@ -2,7 +2,7 @@
 set nocompatible
 filetype off
 
-" auto install Plug https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+" auto install Plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -60,12 +60,14 @@ endif
 syntax on " enable syntax highlighting
 colorscheme tender " set colorscheme
 " syntax highlighting for specific file types
-autocmd BufReadPost .{jscs,jshint,eslint}rc set filetype=json
-autocmd BufReadPost .profile                set filetype=zsh
-autocmd BufReadPost .gemrc                  set filetype=yaml
-autocmd BufReadPost Dockerfile.*            set filetype=dockerfile
-autocmd BufReadPost .vimrc.*                set filetype=vim
-" TODO js.haml js.erb
+autocmd BufReadPost .{jscs,jshint,eslint}rc      set filetype=json
+autocmd BufReadPost .profile                     set filetype=zsh
+autocmd BufReadPost .gemrc                       set filetype=yaml
+autocmd BufReadPost Dockerfile.*                 set filetype=dockerfile
+autocmd BufReadPost .vimrc.*                     set filetype=vim
+autocmd BufReadPost *.js.erb,*.js.haml,*.js.slim set filetype=javascript
+autocmd BufReadPost .env.*                       set filetype=sh
+autocmd BufReadPost *.inky                       set filetype=eruby
 
 """ statusline settings
 set laststatus=2 " shows status line for all splits
@@ -239,7 +241,10 @@ nnoremap <C-a> :tabprevious<CR>
 nnoremap <C-s> :tabnext<CR>
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-d> :tabclose<CR>
-" TODO return tab colors
+" change selected tab color
+let s:palette = g:lightline#colorscheme#tender#palette
+let s:palette.tabline.tabsel = [ [ '#000000', '#73cef4', 16, 81, 'bold' ] ]
+unlet s:palette
 
 """ git
 set diffopt+=vertical " forse to use vertical split for diff
