@@ -5,16 +5,19 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH" # VS Code on MacOS
 fi
 
+# variables
+export DOTFILES_PATH=~/dotfiles
+export DOTFILES_VIMRC=$DOTFILES_PATH/vim/.vimrc # dotfiles copy of vimrc
 export EDITOR=nvim
 export GREP_TOOL=rg
 export SSH_KEY_PATH=~/.ssh/id_rsa
+export TERM=xterm-256color # use 256 colors
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    export FILE_MANAGER="nemo" # "nautilus"
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    export FILE_MANAGER="open"
-fi
+# fuzzy search
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# logins
 export GITHUB_USERNAME=ARtoriouSs
 export GITLAB_USERNAME=ARtoriouS
 export BITBACKET_USERNAME=ARtoriouS

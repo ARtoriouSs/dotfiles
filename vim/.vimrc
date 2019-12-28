@@ -203,8 +203,8 @@ nnoremap <C-x> :let @/ = ""<CR>
 command! Reload source $MYVIMRC | redraw!
 " Q to exit
 command! Q q
-" edit vimrc
-command! Vimrc :edit $MYVIMRC
+" edit vimrc in dotfiles dir (not $MYVIMRC) to have access to git inside vim
+command! Vimrc :edit $DOTFILES_VIMRC
 " plug aliases
 command! Pi :PlugInstall
 command! Pu :PlugUpdate

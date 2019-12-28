@@ -3,16 +3,11 @@ export ZSH_THEME="chaotic-beef" # theme
 export CASE_SENSITIVE="true"
 export LANG=en_US.UTF-8
 export ZSH=$HOME/.oh-my-zsh
-export TERM=xterm-256color # 256 colors for tmux
 
 # autosuggestion and completion
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=94'
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export COMPLETION_WAITING_DOTS="true" # display dots when completion is loading
-
-# fuzzy search
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # initializations
 # oh-my-zsh
