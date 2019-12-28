@@ -11,8 +11,8 @@ relogin() {
 
 cp temp_settings.sample.sh temp_settings.sh
 
-./install_software.sh && relogin
 ./create_symlinks.sh && relogin
+./install_software.sh && relogin
 ./configure_system.sh && relogin
 ./create_dir_tree.sh
 ./install_vim.sh

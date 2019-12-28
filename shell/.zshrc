@@ -36,3 +36,5 @@ fi
 if [ -f "$HOME/dotfiles/shell/temp_settings.sh" ]; then
   . "$HOME/dotfiles/shell/temp_settings.sh"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
