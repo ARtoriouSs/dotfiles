@@ -35,28 +35,28 @@ tp() {
 
 # open default tmux session in current directory
 th() {
-  local DIR_NAME=$(basename $PWD)
-  tmux has-session -t "$DIR_NAME"
+  local directory=$(basename $PWD)
+  tmux has-session -t "$directory"
   if [ $? != 0 ]; then
-    tmux new-session -d -s "$DIR_NAME" -n "$DIR_NAME"
+    tmux new-session -d -s "$directory" -n "$directory"
     tmux split-window -h
 
     tmux new-window -n "editor" "$EDITOR"
 
-    tmux next-window -t "$DIR_NAME"
+    tmux next-window -t "$directory"
     tmux select-pane -t 0
 
-    tmux send-keys -t "${DIR_NAME}:0.0" "cowsay Hello!" Enter
-    tmux send-keys -t "${DIR_NAME}:0.1" "gst" Enter
+    tmux send-keys -t "${directory}:0.0" "cowsay Hello!" Enter
+    tmux send-keys -t "${directory}:0.1" "gst" Enter
   fi
-  tmux -2 attach-session -t "$DIR_NAME"
+  tmux -2 attach-session -t "$directory"
 }
 
 # kill current directory session
 tk() {
-  local SESSION=$([ -z "$1" ] && echo $(basename $PWD) || echo $1)
-  tmux has-session -t "$SESSION"
-  [ $? = 0 ] && tmux kill-session -t "$SESSION"
+  local session=$([ -z "$1" ] && echo $(basename $PWD) || echo $1)
+  tmux has-session -t "$session"
+  [ $? = 0 ] && tmux kill-session -t "$session"
 }
 alias tka="tmux kill-server" # kill all tmux sessions along with a server
 
@@ -144,18 +144,18 @@ search-routes() {
 # git status function with interactive option for running in separate tmux tab
 alias gst="status"
 status() {
-  local PROJECT=$(basename $PWD)
-  local LOCKFILE=~/git_status_interactive_for_$PROJECT.lock
+  local project=$(basename $PWD)
+  local lockfile=~/git_status_interactive_for_$project.lock
   if [ "$1" = "--interactive" ] || [ "$1" = "-i" ]; then
-    trap "rm -f $LOCKFILE" SIGINT
+    trap "rm -f $lockfile" SIGINT
     while sleep 0.2s; do
-      touch $LOCKFILE
-      DIFF=$(diff $LOCKFILE <(colored_status))
+      touch $lockfile
+      DIFF=$(diff $lockfile <(colored_status))
       if [[ "$DIFF" != "" && $DIFF != "1do/n<" ]]; then
         clear
-        printf "git status for $(tput setaf 208)$PROJECT$(tput sgr0):\n"
+        printf "git status for $(tput setaf 208)$project$(tput sgr0):\n"
         colored_status
-        echo "$(colored_status)" > $LOCKFILE
+        echo "$(colored_status)" > $lockfile
       fi
     done
   else
@@ -246,8 +246,8 @@ add() {
 reset() {
   if [ -z "$1" ]; then
     echo "Type 'y' to reset working tree to $(git rev-parse --short HEAD)"
-    read KEY
-    if [ "$KEY" = "y" ]; then
+    read key
+    if [ "$key" = "y" ]; then
       git reset HEAD --hard
       rm -rf $(git status --short)
     else
@@ -257,11 +257,11 @@ reset() {
     git checkout -- $@ &> /dev/null
 
     # check if there is untracked files in args and remove them
-    local UNTRACKED="$(git ls-files . --exclude-standard --others)"
-    for RECORD in $(echo $UNTRACKED); do
-      for ARG in "$@"; do
-        if [ "$ARG" = "$RECORD" ]; then
-          rm -rf $RECORD
+    local untracked="$(git ls-files . --exclude-standard --others)"
+    for record in $(echo $untracked); do
+      for arg in "$@"; do
+        if [ "$arg" = "$record" ]; then
+          rm -rf $record
         fi
       done
     done
@@ -277,11 +277,11 @@ freset() {
     git checkout -- $@ &> /dev/null
 
     # check if there is untracked files in args and remove them
-    local UNTRACKED="$(git ls-files . --exclude-standard --others)"
-    for RECORD in $(echo $UNTRACKED); do
-      for ARG in "$@"; do
-        if [ "$ARG" = "$RECORD" ]; then
-          rm -rf $RECORD
+    local untracked="$(git ls-files . --exclude-standard --others)"
+    for record in $(echo $untracked); do
+      for arg in "$@"; do
+        if [ "$arg" = "$record" ]; then
+          rm -rf $record
         fi
       done
     done
@@ -313,14 +313,14 @@ amend-no-edit() {
 alias forsepush="push --force-with-lease"
 alias fpush="push --force-with-lease"
 push() {
-  CURRENT=$(git branch | grep '\*' | awk '{print $2}')
-  git push $@ origin "${CURRENT}"
+  current=$(git branch | grep '\*' | awk '{print $2}')
+  git push $@ origin "${current}"
 }
 
 # pull current branch from origin
 pull() {
-  CURRENT=$(git branch | grep '\*' | awk '{print $2}')
-  git pull origin "${CURRENT}"
+  current=$(git branch | grep '\*' | awk '{print $2}')
+  git pull origin "${current}"
   locked_status
 }
 
