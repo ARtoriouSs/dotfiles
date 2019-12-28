@@ -181,13 +181,14 @@ colored_status() {
     red = "\033[91m"
     violet = "\033[95m"
     white = "\033[0m"
+    $1=""
 
-    if ($1 == "??")
-        output = "  " violet index_bit tree_bit "  " $2 white
-    else if ($1 == "!!")
-        output = "  " index_bit tree_bit "  " $2
+    if (index_bit == "?" && tree_bit == "?")
+        output = "  " violet index_bit tree_bit "  " $0 white
+    else if (index_bit == "!" && tree_bit == "!")
+        output = "  " index_bit tree_bit "  " $0
     else if ((index_bit == "U" || tree_bit == "U") || (index_bit == "A" && tree_bit == "A") || (index_bit == "D" && tree_bit == "D"))
-        output = "  " red index_bit tree_bit "  " $2 white
+        output = "  " red index_bit tree_bit "  " $0 white
     else {
         output = "  " green index_bit
 
@@ -197,17 +198,12 @@ colored_status() {
             output = output yellow tree_bit white "  "
 
         if (index_bit != " ") {
-            if (index_bit == "R")
-                output = output green $2 white " " $3 " " green $4 white
-            else
-                output = output green $2 white
+            output = output green $0 white
         } else {
-            if (tree_bit == "R")
-                output = output yellow $2 white " " $3 " " yellow $4 white
-            else if (tree_bit == "D")
-                output = output red $2 white
+            if (tree_bit == "D")
+                output = output red $0 white
             else
-                output = output yellow $2 white
+                output = output yellow $0 white
         }
     }
 
