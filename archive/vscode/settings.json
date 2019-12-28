@@ -72,11 +72,11 @@
   },
 
   "[shellscript]": {
-    "editor.tabSize": 4
+    "editor.tabSize": 2
   },
 
   "[dotenv]": {
-    "editor.tabSize": 4
+    "editor.tabSize": 2
   },
 
   "[cpp]": {
@@ -92,5 +92,5 @@
   },
 
   "html.format.endWithNewline": true,
-  "editor.detectIndentation": false,
+  "editor.detectIndentation": false
 }

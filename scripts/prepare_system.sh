@@ -6,7 +6,7 @@
 # must be running with sudo
 
 relogin() {
-    exec bash
+  exec bash
 }
 
 cp temp_settings.sample.sh temp_settings.sh

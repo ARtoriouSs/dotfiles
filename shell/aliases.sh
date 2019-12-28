@@ -61,23 +61,23 @@ alias k9="kill -9"
 alias now="date '+ %H:%M | %B %d'"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    alias upd="sudo apt-get --yes update"
-    alias upg="sudo apt-get --yes upgrade"
-    alias install="sudo apt-get --yes update && sudo apt-get --yes install"
-    alias i="sudo apt-get --yes install"
+  alias upd="sudo apt-get --yes update"
+  alias upg="sudo apt-get --yes upgrade"
+  alias install="sudo apt-get --yes update && sudo apt-get --yes install"
+  alias i="sudo apt-get --yes install"
 
-    alias susp="systemctl suspend"
-    alias shut="init 0"
-    alias halt="init 0"
+  alias susp="systemctl suspend"
+  alias shut="init 0"
+  alias halt="init 0"
 
-    alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+  alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    alias install="brew install"
-    alias i="brew install"
+  alias install="brew install"
+  alias i="brew install"
 
-    alias susp="pmset sleepnow"
-    alias shut="sudo halt"
-    alias init="sudo halt"
+  alias susp="pmset sleepnow"
+  alias shut="sudo halt"
+  alias init="sudo halt"
 fi
 
 # dotfiles quick access
@@ -116,11 +116,11 @@ alias "TODOL"="todol"
 
 # enable color support of ls and also add handy aliases from default .bashrc
 if [ -x /usr/bin/dircolors ]; then
-    test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-    alias grep="`which grep` --color=auto"
-    alias fgrep="`which fgrep` --color=auto"
-    alias egrep="`which egrep` --color=auto"
+  test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  alias dir='dir --color=auto'
+  alias vdir='vdir --color=auto'
+  alias grep="`which grep` --color=auto"
+  alias fgrep="`which fgrep` --color=auto"
+  alias egrep="`which egrep` --color=auto"
 fi

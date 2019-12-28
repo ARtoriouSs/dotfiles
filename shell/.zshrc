@@ -9,15 +9,8 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=94'
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export COMPLETION_WAITING_DOTS="true" # display dots when completion is loading
 
-# initializations
-# oh-my-zsh
+# initialize oh-my-zsh
 source $ZSH/oh-my-zsh.sh
-
-# rbenv
-eval "$(rbenv init -)"
-
-# kiex
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
 # plugins
 plugins=(
@@ -31,15 +24,15 @@ unalias -m '*'
 
 # import helper functions
 if [ -f "$HOME/dotfiles/shell/functions.sh" ]; then
-    . "$HOME/dotfiles/shell/functions.sh"
+  . "$HOME/dotfiles/shell/functions.sh"
 fi
 
 # import aliases
 if [ -f "$HOME/dotfiles/shell/aliases.sh" ]; then
-    . "$HOME/dotfiles/shell/aliases.sh"
+  . "$HOME/dotfiles/shell/aliases.sh"
 fi
 
 # import temp settings (e.g. for current project)
 if [ -f "$HOME/dotfiles/shell/temp_settings.sh" ]; then
-    . "$HOME/dotfiles/shell/temp_settings.sh"
+  . "$HOME/dotfiles/shell/temp_settings.sh"
 fi
