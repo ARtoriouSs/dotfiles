@@ -41,8 +41,8 @@ Plug 'tpope/vim-rails' " rails
 Plug 'ap/vim-css-color' " colors preview
 
 " styling
-Plug 'morhetz/gruvbox' " colorscheme
-"Plug 'jacoborus/tender.vim' " also nice colorscheme, but use features that tmux doesn't support
+Plug 'jacoborus/tender.vim' " colorscheme
+"Plug 'morhetz/gruvbox' " colorscheme without true color support
 Plug 'itchyny/lightline.vim' " statusline
 Plug 'ryanoasis/vim-devicons' " icons, should be last in this list
 call plug#end()
@@ -52,11 +52,13 @@ call plug#end()
 """ colors and highlighting
 set background=dark " for correct colors in tmux
 set t_Co=256 " use 265 colors
-if (has("termguicolors"))
-  set termguicolors " turns on 24bit colors
+if exists('+termguicolors') " enable true color
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
 endif
 syntax on " enable syntax highlighting
-colorscheme gruvbox " set colorscheme
+colorscheme tender " set colorscheme
 " syntax highlighting for specific file types
 autocmd BufReadPost .{jscs,jshint,eslint}rc set filetype=json
 autocmd BufReadPost .profile                set filetype=zsh
@@ -64,7 +66,6 @@ autocmd BufReadPost .gemrc                  set filetype=yaml
 autocmd BufReadPost Dockerfile.*            set filetype=dockerfile
 autocmd BufReadPost .vimrc.*                set filetype=vim
 " TODO js.haml js.erb
-" TODO sign column color
 
 """ statusline settings
 set laststatus=2 " shows status line for all splits
@@ -87,7 +88,7 @@ let g:lightline = {
     \     'fileformat': 'FileFormatWithIcon',
     \     'filename': 'FileNameWithModifiedSign'
     \   },
-    \   'colorscheme': 'gruvbox',
+    \   'colorscheme': 'tender',
     \   'subseparator': { 'left': '', 'right': '' },
     \   'separator': { 'left': '', 'right': '' }
     \ }
@@ -121,7 +122,6 @@ autocmd InsertEnter * highlight Cursor guibg=#A6E22E
 " revert color to default when leaving insert mode
 autocmd InsertLeave * highlight CursorLine guibg=#323D3E
 autocmd InsertLeave * highlight Cursor guibg=#00AAFF
-" TODO colors with gruvbox
 
 """ search
 set hlsearch " highlights search items
@@ -239,6 +239,7 @@ nnoremap <C-a> :tabprevious<CR>
 nnoremap <C-s> :tabnext<CR>
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-d> :tabclose<CR>
+" TODO return tab colors
 
 """ git
 set diffopt+=vertical " forse to use vertical split for diff

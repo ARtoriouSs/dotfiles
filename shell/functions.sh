@@ -7,7 +7,7 @@ o() {
     fi
 }
 
-# open tmux project session
+# open tmux session for current project
 tp() {
     tmux has-session -t "project"
     if [ $? != 0 ]; then
@@ -32,6 +32,33 @@ tp() {
     fi
     tmux -2 attach-session -t "project"
 }
+
+# open default tmux session in current directory
+th() {
+    local DIR_NAME=$(basename $PWD)
+    tmux has-session -t "$DIR_NAME"
+    if [ $? != 0 ]; then
+        tmux new-session -d -s "$DIR_NAME" -n "$DIR_NAME"
+        tmux split-window -h
+
+        tmux new-window -n "editor" "$EDITOR"
+
+        tmux next-window -t "$DIR_NAME"
+        tmux select-pane -t 0
+
+        tmux send-keys -t "${DIR_NAME}:0.0" "cowsay Hello!" Enter
+        tmux send-keys -t "${DIR_NAME}:0.1" "gst" Enter
+    fi
+    tmux -2 attach-session -t "$DIR_NAME"
+}
+
+# kill current directory session
+tk() {
+    local SESSION=$([ -z "$1" ] && echo $(basename $PWD) || echo $1)
+    tmux has-session -t "$SESSION"
+    [ $? = 0 ] && tmux kill-session -t "$SESSION"
+}
+alias tka="tmux kill-server" # kill all tmux sessions along with a server
 
 # display linux 256 colors
 color-list() {
