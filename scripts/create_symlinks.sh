@@ -7,7 +7,7 @@ ln -sf ~/dotfiles/shell/.bashrc ~/.bashrc
 ln -sf ~/dotfiles/shell/.profile ~/.profile
 ln -sf ~/dotfiles/.gemrc ~/.gemrc
 ln -sf ~/dotfiles/.pryrc ~/.pryrc
-ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
+ln -sf ~/dotfiles/git/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 
 if [ ! -d "$HOME/.bundle" ]; then
