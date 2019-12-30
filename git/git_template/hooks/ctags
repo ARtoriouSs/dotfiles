@@ -1,4 +1,4 @@
 #!/bin/bash
 
-source $DOTFILES_PATH/shell/functions.sh # source functions
-rails-tags # set ctags
+source $DOTFILES_PATH/shell/functions.sh # source functions to use tags
+tags --rails

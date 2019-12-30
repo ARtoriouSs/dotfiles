@@ -60,18 +60,17 @@ tk() {
 }
 alias tka="tmux kill-server" # kill all tmux sessions along with a server
 
-# generate ctags for rails project including gems
-rails-tags() {
-  local git_dir="`git rev-parse --git-dir`" # .git/ by default
-  trap 'rm -f "$git_dir/$$.tags"' EXIT
-  ctags -R --tag-relative=yes --languages=ruby,javascript --exclude=.git --exclude=log -f $git_dir/$$.tags . $(bundle list --paths)
-  mv "$git_dir/$$.tags" "$git_dir/tags"
-}
-
+# generate ctags
 tags() {
-  local git_dir="`git rev-parse --git-dir`" # .git/ by default
+  local git_dir="`git rev-parse --git-dir`"
   trap 'rm -f "$git_dir/$$.tags"' EXIT
-  git ls-files | ctags -L - --tag-relative=yes --languages=ruby,javascript -f $git_dir/$$.tags
+
+  if [ "$1" = "--rails" ]; then # when rails add gem paths
+    # use regex to remove warnings from bundle output
+    ctags -R --tag-relative=yes --languages=ruby,javascript --exclude=.git --exclude=log -f $git_dir/$$.tags . $(bundle list --paths | awk '/^\/home/ { print $0 }')
+  else
+    ctags -R --tag-relative=yes --languages=ruby,javascript --exclude=.git -f $git_dir/$$.tags
+  fi
   mv "$git_dir/$$.tags" "$git_dir/tags"
 }
 
