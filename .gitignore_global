@@ -9,7 +9,7 @@
 .idea
 .vscode
 
-# Temporary files
+# temporary files
 *.swp
 *.swo
 *~
@@ -20,7 +20,7 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
-# Environment
+# environment
 .env
 .env.development
 .env.production
@@ -28,3 +28,7 @@ Thumbs.db
 # local todo files
 todo.yml
 .todo.yml
+
+# ctags
+tags
+*.tags

@@ -72,6 +72,10 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # diff-so-fancy
   wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
   chmod +x /usr/local/bin/diff-so-fancy
+  # ctags
+  apt-get install ctags
+  # markdown
+  apt-get install markdown
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # cowsay :)
   brew install cowsay
@@ -109,4 +113,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   # diff-so-fancy
   wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
   chmod +x /usr/local/bin/diff-so-fancy
+  # ctags
+  brew install ctags
+  # markdown
+  brew install markdown # TODO verify
 fi

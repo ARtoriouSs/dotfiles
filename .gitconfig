@@ -52,3 +52,5 @@
   st  = status
   d   = diff
   l   = log --pretty=format:\"%C(yellow bold)%h%Creset | %C(blue bold)%ad%Creset, %C(green bold)%an%Creset %s%C(red bold)%d%Creset\" --graph --date=relative
+[init]
+	templatedir = "~/dotfiles/git/git_template" # template dir with hooks for new git repos

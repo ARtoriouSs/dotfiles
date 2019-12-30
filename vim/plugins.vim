@@ -29,6 +29,7 @@ Plug 'drzel/vim-scrolloff-fraction' " auto scroll when getting closer to window 
 Plug 'thoughtbot/vim-rspec' " RSpec integration
 Plug 'airblade/vim-gitgutter' " git status near line numbers
 Plug 'simeji/winresizer' " easier split resizing
+Plug 'JamshedVesuna/vim-markdown-preview' " markdown preview in a browser
 
 " language and tools syntax support
 Plug 'pangloss/vim-javascript' " JavaScript

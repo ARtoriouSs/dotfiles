@@ -2,7 +2,6 @@ set nocompatible " disables vi compatibility (default in neovim, for vim only), 
 
 " plugins moved to another file to be able to sourse them without the rest of configuration
 source $DOTFILES_PATH/vim/plugins.vim
-" TODO snippets
 
 """ colors and highlighting
 set background=dark " for correct colors in tmux
@@ -55,7 +54,7 @@ function! FileTypeWithIcon()
 endfunction
 " add icon to file format
 function! FileFormatWithIcon()
-  return winwidth(0) > 70 ? (WebDevIconsGetFileFormatSymbol() . ' ' . &fileformat) : ''
+  return winwidth(0) > 70 ? WebDevIconsGetFileFormatSymbol() : ''
 endfunction
 " filename with modified sign and without separator
 function! FileNameWithModifiedSign()
@@ -86,7 +85,7 @@ set incsearch " highligths search items dynamically as they are typed
 set ignorecase " the case of normal letters is ignored
 set smartcase " overrides ignorecase if search contains uppercase chars
 set path+=** " allows gf to look deep into folders during search
-set tags=./.git/tags " for ctags
+set tags^=.git/tags;~ " path to ctags file
 " // in visual mode to search selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " do not search in file names and line numbers, only contents; change match color to red
@@ -165,7 +164,10 @@ command! Vimrc :edit $DOTFILES_VIMRC
 " plug aliases
 command! Pi :PlugInstall
 command! Pu :PlugUpdate
-" TODO ctags
+
+" markdown preview
+let vim_markdown_preview_hotkey='<C-m>' " remap toggle keys
+let vim_markdown_preview_browser='Google Chrome' " use google chrome for preview
 
 """ text
 " enable auto-pairs

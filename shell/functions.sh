@@ -52,13 +52,18 @@ th() {
   tmux -2 attach-session -t "$directory"
 }
 
-# kill current directory session
+# kill current directory tmux session
 tk() {
   local session=$([ -z "$1" ] && echo $(basename $PWD) || echo $1)
   tmux has-session -t "$session"
   [ $? = 0 ] && tmux kill-session -t "$session"
 }
 alias tka="tmux kill-server" # kill all tmux sessions along with a server
+
+# generate ctags for rails project including gems
+rails-tags() {
+  ctags --recurse --tag-relative=yes --languages=ruby --exclude=.git --exclude=log -f .git/tags . $(bundle list --paths)
+}
 
 # display linux 256 colors
 color-list() {
