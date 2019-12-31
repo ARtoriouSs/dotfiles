@@ -21,4 +21,4 @@ ln -sf ~/dotfiles/vim/.vimrc ~/.config/nvim/init.vim
 
 # install Plug and plugins
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim -u $DOTFILES_PATH/vim/plugins.vim +PlugInstall +qall
+nvim -u ~/dotfiles/vim/plugins.vim +PlugInstall +qall

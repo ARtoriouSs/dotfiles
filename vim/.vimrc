@@ -208,6 +208,7 @@ set diffopt+=vertical " forse to use vertical split for diff
 " git and fugitive aliases
 command! Gst :Gstatus
 command! Gd :Gdiff
+command! Gb :Gblame
 command! Gcm :Gcommit
 command! Gca :Gcommit --amend
 command! Gcan :Gcommit --amend --no-edit
@@ -217,14 +218,11 @@ let g:NERDTreeShowIgnoredStatus = 1 " show ignored status in nerdtree, a heavy f
 let g:gitgutter_max_signs = 1000 " increase max displayed signs for gitgutter
 
 """ file explorer
-" run NERDTree when vim started with no specified files
+" run NERDTree when vim started with specified directory
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeMinimalUI = 1 " remove helper from ui
 let NERDTreeAutoDeleteBuffer = 1 "delete buffer of deleted file
-let NERDTreeQuitOnOpen = 2 " close NERDTree on file open
 let NERDTreeShowHidden = 1 " show hidden files by default
 let NERDTreeShowBookmarks = 1 " show bookmarks by default
 " ctrl + n to toggle file explorer and update it

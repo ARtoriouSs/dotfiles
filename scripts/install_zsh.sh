@@ -10,6 +10,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 upgrade_oh_my_zsh
 
+exec zsh
+
 # theme for Zsh
 wget -P $ZSH/themes https://raw.githubusercontent.com/ARtoriouSs/chaotic-beef-zsh-theme/master/chaotic-beef.zsh-theme
 
