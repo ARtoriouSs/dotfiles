@@ -16,21 +16,21 @@ Here is:
 - Configured .bashrc and .profile files
 - Script for installing zsh with configured .zshrc, .zprofile files and extensions
 - Aliases and some convenient shell functions
-- Script for installing vim with configured .vimrc and color scheme
-- Script for installing VS Code with extensions
-- Gitconfig and global .gitignore
+- Script for installing nvim with configured .vimrc
+- Git settings: gitconfig, global .gitignore, template directory with hooks for ctags
+- .pryrc configured for convenient ruby debugging
 
 Also:
 
 - bundler config
-- .pryrc
 - .gemrc
 
 Will be installed:
 
 - Basic software (curl, wget, homebrew (for MacOS), git, etc.)
+- Tmux, Neovim, Ctags
 - NodeJS
-- Docker
+- Docker and docker-compose
 - Rbenv
 - PostgreSQL, Redis
 - Slack, Skype, Telegram
