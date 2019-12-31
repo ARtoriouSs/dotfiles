@@ -9,9 +9,9 @@ o() {
 
 # open tmux session for current project
 tp() {
-  tmux has-session -t "project"
+  tmux has-session -t "$CURRENT_PROJECT"
   if [ $? != 0 ]; then
-    tmux new-session -d -s "project" -n "project" -c $PROJECTS/$CURRENT_PROJECT
+    tmux new-session -d -s "$CURRENT_PROJECT" -n "$CURRENT_PROJECT" -c $PROJECTS/$CURRENT_PROJECT
     tmux split-window -h -c $PROJECTS/$CURRENT_PROJECT
     tmux resize-pane -R 20
     tmux split-window -v -c $PROJECTS/$CURRENT_PROJECT
@@ -22,15 +22,15 @@ tp() {
 
     tmux new-window -n "editor" -c $PROJECTS/$CURRENT_PROJECT "$EDITOR"
 
-    tmux next-window -t "project"
+    tmux next-window -t "$CURRENT_PROJECT"
     tmux select-pane -t 1
 
-    tmux send-keys -t "project:0.0" "rs" Enter
-    tmux send-keys -t "project:0.1" "cowsay Hello!" Enter
-    tmux send-keys -t "project:0.2" "gst -i" Enter
-    tmux send-keys -t "project:0.3" "rc" Enter
+    tmux send-keys -t "$CURRENT_PROJECT:0.0" "rs" Enter
+    tmux send-keys -t "$CURRENT_PROJECT:0.1" "cowsay Hello!" Enter
+    tmux send-keys -t "$CURRENT_PROJECT:0.2" "gst -i" Enter
+    tmux send-keys -t "$CURRENT_PROJECT:0.3" "rc" Enter
   fi
-  tmux -2 attach-session -t "project"
+  tmux -2 attach-session -t "$CURRENT_PROJECT"
 }
 
 # open default tmux session in current directory
