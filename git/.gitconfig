@@ -5,7 +5,7 @@
 [github]
   user  = ARtoriouSs
 [core]
-  editor       = vim
+  editor       = nvim
   whitespace   = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   excludesfile = ~/dotfiles/git/.gitignore.global
   quotepath    = true # show unusual symbols as bytes
