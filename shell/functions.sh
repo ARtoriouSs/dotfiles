@@ -65,12 +65,24 @@ tags() {
   local git_dir="`git rev-parse --git-dir`"
   trap 'rm -f "$git_dir/$$.tags"' EXIT
 
-  if [ "$1" = "--rails" ]; then # when rails add gem paths
-    # use regex to remove warnings from bundle output
-    ctags -R --tag-relative=yes --languages=ruby,javascript --exclude=.git --exclude=log -f $git_dir/$$.tags . $(bundle list --paths | awk '/^\/home/ { print $0 }')
-  else
-    ctags -R --tag-relative=yes --languages=ruby,javascript --exclude=.git -f $git_dir/$$.tags
-  fi
+  case "$1" in
+    --rails) # add gems paths and cut off bundler warnings with awk
+      ctags --languages=ruby,rspec,javascript,json,html,css,scss,sh,sql,markdown -f $git_dir/$$.tags . $(bundle list --paths | awk '/^\/home/ { print $0 }')
+    ;;
+    --elixir)
+      ctags --languages=elixir,erlang,javascript,json,html,css,scss,sh,sql,markdown --exclude=_build -f $git_dir/$$.tags .
+    ;;
+    --js)
+      ctags --languages=javascript,json,html,css,scss,sh,sql,markdown --exclude=tmp -f $git_dir/$$.tags .
+    ;;
+    --shell)
+      ctags --languages=sh,powerShell,vim,awk,json,xml,ruby,markdown -f $git_dir/$$.tags .
+    ;;
+    *)
+      ctags -f $git_dir/$$.tags
+    ;;
+  esac
+
   mv "$git_dir/$$.tags" "$git_dir/tags"
 }
 

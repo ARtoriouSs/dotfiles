@@ -45,10 +45,9 @@ alias dcp="docker-compose"
 alias dcps="docker-compose ps -a"
 
 # system
-alias ccat="pygmentize -g -O style='colorful'"
+alias ccat="pygmentize -g -O style='colorful'" # colored cat
 alias e="echo"
 alias c="cd .."
-alias cls="clear"
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -56,9 +55,9 @@ alias psqlc="psql -U postgres"
 alias todo="$EDITOR $TODO"
 alias todol="$EDITOR todo.yml" # local todo
 alias v=$EDITOR
-alias search="find . -name"
+alias search="find . -name" # search file by name
 alias k9="kill -9"
-alias now="date '+ %H:%M | %B %d'"
+alias now="date '+ %H:%M | %B %d'" # show current date and time
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   alias upd="sudo apt-get --yes update"
@@ -95,6 +94,7 @@ alias gitignore-global="$EDITOR $DOTFILES_PATH/.gitignore_global"
 alias vimrc="$EDITOR $DOTFILES_PATH/vim/.vimrc"
 alias tmux-conf="$EDITOR $DOTFILES_PATH/.tmux.conf"
 alias pryrc="$EDITOR $DOTFILES_PATH/.pryrc"
+alias ctags="$EDITOR $DOTFILES_PATH/default.ctags"
 
 # some russian equivalents for wrong keyboard layout
 alias "с"="cd .."
