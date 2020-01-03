@@ -105,6 +105,7 @@ alias "пые"="gst"
 alias "ы"="s"
 alias "ещвщ"="todo"
 alias "ещвщд"="todol"
+alias "м"="v"
 # some caps equivalents
 alias "C"="c"
 alias "CD"="cd"
@@ -114,6 +115,7 @@ alias "GST"="gst"
 alias "S"="s"
 alias "TODO"="todo"
 alias "TODOL"="todol"
+alias "V"="v"
 
 # enable color support of ls and also add handy aliases from default .bashrc
 if [ -x /usr/bin/dircolors ]; then

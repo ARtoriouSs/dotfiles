@@ -72,8 +72,15 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # diff-so-fancy
   wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
   chmod +x /usr/local/bin/diff-so-fancy
-  # ctags
-  apt-get install ctags
+  # ctags TODO: install via apt when available
+  git clone https://github.com/universal-ctags/ctags.git ctags_source
+  cd ctags_source
+  ./autogen.sh
+  ./configure
+  make
+  sudo make install
+  cd ..
+  rm -rf ctags_source
   # markdown
   apt-get install markdown
 elif [[ "$OSTYPE" == "darwin"* ]]; then
@@ -113,8 +120,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   # diff-so-fancy
   wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
   chmod +x /usr/local/bin/diff-so-fancy
-  # ctags
-  brew install ctags
+  # ctags TODO: standatd install via brew when available
+  brew uninstall ctags # remove default ctags
+  brew install --HEAD universal-ctags/universal-ctags/universal-ctags
   # markdown
-  brew install markdown # TODO verify
+  brew install markdown
 fi
