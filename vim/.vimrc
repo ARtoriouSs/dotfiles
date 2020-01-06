@@ -96,6 +96,8 @@ nnoremap <C-g> :Ag<Cr>
 nnoremap <C-p> :FZF<Cr>
 let g:gutentags_ctags_tagfile=".git/tags" " tags file for gutentags
 let g:gutentags_resolve_symlinks=1 " generate tags for original file's project if editing symlink
+" show all tags for token under cursor
+noremap <C-[> :call ttags#List(0, "*", tlib#rx#Escape(expand("<cword>")))<cr>
 
 """ tabbing and indenting
 set nowrap " don't wrap lines
@@ -132,6 +134,8 @@ set showcmd " shows commands in last line
 set colorcolumn=121 " vertical line on 121'st column
 " auto scroll on 20% of window width
 let g:scrolloff_fraction = 0.2
+let vim_markdown_preview_hotkey='<Leader>m' " toggle markdown preview
+let vim_markdown_preview_browser='Google Chrome' " use google chrome for markdown preview
 
 """ buffers
 set hidden " do not close buffer when window closed
@@ -166,10 +170,6 @@ command! Vimrc :edit $DOTFILES_VIMRC
 " plug aliases
 command! Pi :PlugInstall
 command! Pu :PlugUpdate
-
-" markdown preview
-let vim_markdown_preview_hotkey='<C-m>' " remap toggle keys
-let vim_markdown_preview_browser='Google Chrome' " use google chrome for preview
 
 """ text
 " enable auto-pairs

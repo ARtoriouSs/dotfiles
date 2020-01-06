@@ -15,7 +15,7 @@ call plug#begin('~/.config/nvim/plugged')
 " main plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocompletion
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy search (will be installed system-wide)
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim' " vim plugin for fzf
 Plug 'jremmen/vim-ripgrep' " search by files content
 Plug 'scrooloose/nerdtree' " file explorer
 Plug 'Xuyuanp/nerdtree-git-plugin' " git extension for NERDTree
@@ -31,6 +31,7 @@ Plug 'airblade/vim-gitgutter' " git status near line numbers
 Plug 'simeji/winresizer' " easier split resizing
 Plug 'JamshedVesuna/vim-markdown-preview' " markdown preview in a browser
 Plug 'ludovicchabant/vim-gutentags' " autoupdate ctags on file save
+Plug 'tpope/vim-eunuch' " shell file commands
 
 " languages and tools syntax support
 Plug 'pangloss/vim-javascript' " JavaScript
@@ -44,8 +45,8 @@ Plug 'tpope/vim-rails' " rails
 Plug 'ap/vim-css-color' " colors preview
 
 " styling
-Plug 'jacoborus/tender.vim' " colorscheme
 "Plug 'morhetz/gruvbox' " colorscheme without true color support
+Plug 'jacoborus/tender.vim' " colorscheme
 Plug 'itchyny/lightline.vim' " statusline
 Plug 'ryanoasis/vim-devicons' " icons, should be last in this list
 call plug#end()
