@@ -30,8 +30,9 @@ Plug 'thoughtbot/vim-rspec' " RSpec integration
 Plug 'airblade/vim-gitgutter' " git status near line numbers
 Plug 'simeji/winresizer' " easier split resizing
 Plug 'JamshedVesuna/vim-markdown-preview' " markdown preview in a browser
+Plug 'ludovicchabant/vim-gutentags' " autoupdate ctags on file save
 
-" language and tools syntax support
+" languages and tools syntax support
 Plug 'pangloss/vim-javascript' " JavaScript
 Plug 'mxw/vim-jsx' " react
 Plug 'posva/vim-vue' " vue

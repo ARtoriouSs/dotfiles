@@ -94,7 +94,7 @@ alias gitignore-global="$EDITOR $DOTFILES_PATH/.gitignore_global"
 alias vimrc="$EDITOR $DOTFILES_PATH/vim/.vimrc"
 alias tmux-conf="$EDITOR $DOTFILES_PATH/.tmux.conf"
 alias pryrc="$EDITOR $DOTFILES_PATH/.pryrc"
-alias ctags="$EDITOR $DOTFILES_PATH/default.ctags"
+alias default-ctags="$EDITOR $DOTFILES_PATH/default.ctags"
 
 # some russian equivalents for wrong keyboard layout
 alias "с"="cd .."

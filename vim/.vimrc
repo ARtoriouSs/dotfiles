@@ -85,7 +85,7 @@ set incsearch " highligths search items dynamically as they are typed
 set ignorecase " the case of normal letters is ignored
 set smartcase " overrides ignorecase if search contains uppercase chars
 set path+=** " allows gf to look deep into folders during search
-set tags^=.git/tags;~ " path to ctags file
+set tags^=.git/tags;$PROJECTS " path to ctags file, stop seatching on $PROJECTS directory
 " // in visual mode to search selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " do not search in file names and line numbers, only contents; change match color to red
@@ -94,6 +94,8 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : 
 nnoremap <C-g> :Ag<Cr>
 " ctrl + p to fuzzy search files
 nnoremap <C-p> :FZF<Cr>
+let g:gutentags_ctags_tagfile=".git/tags" " tags file for gutentags
+let g:gutentags_resolve_symlinks=1 " generate tags for original file's project if editing symlink
 
 """ tabbing and indenting
 set nowrap " don't wrap lines

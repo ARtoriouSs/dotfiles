@@ -67,7 +67,7 @@ tags() {
 
   case "$1" in
     --rails) # add gems paths and cut off bundler warnings with awk
-      ctags --languages=ruby,rspec,javascript,json,html,css,scss,sh,sql,markdown -f $git_dir/$$.tags . $(bundle list --paths | awk '/^\/home/ { print $0 }')
+      ctags --languages=ruby,rspec,javascript,json,html,css,scss,sh,sql,markdown -f $git_dir/$$.tags . $(bundle list --paths | awk '/^\// { print $0 }')
     ;;
     --elixir)
       ctags --languages=elixir,erlang,javascript,json,html,css,scss,sh,sql,markdown --exclude=_build -f $git_dir/$$.tags .
