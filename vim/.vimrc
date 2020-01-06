@@ -132,6 +132,8 @@ set showcmd " shows commands in last line
 set colorcolumn=121 " vertical line on 121'st column
 " auto scroll on 20% of window width
 let g:scrolloff_fraction = 0.2
+let vim_markdown_preview_hotkey='<Leader>m' " toggle markdown preview
+let vim_markdown_preview_browser='Google Chrome' " use google chrome for markdown preview
 
 """ buffers
 set hidden " do not close buffer when window closed
@@ -166,10 +168,6 @@ command! Vimrc :edit $DOTFILES_VIMRC
 " plug aliases
 command! Pi :PlugInstall
 command! Pu :PlugUpdate
-
-" markdown preview
-let vim_markdown_preview_hotkey='<C-m>' " remap toggle keys
-let vim_markdown_preview_browser='Google Chrome' " use google chrome for preview
 
 """ text
 " enable auto-pairs
