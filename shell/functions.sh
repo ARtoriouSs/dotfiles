@@ -168,6 +168,7 @@ search-routes() {
 }
 
 # git status function with interactive option for running in separate tmux tab
+alias gs="status" # block ghost script invocation when making typo, remove this if you need ghost script
 alias gst="status"
 status() {
   local project=$(basename $PWD)
