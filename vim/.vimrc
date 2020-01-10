@@ -206,7 +206,9 @@ let s:palette.tabline.tabsel = [ [ '#000000', '#73cef4', 16, 81, 'bold' ] ]
 unlet s:palette
 
 """ git
-set diffopt+=vertical " forse to use vertical split for diff
+if has('nvim')
+  set diffopt+=vertical " forse to use vertical split for diff
+endif
 " git and fugitive aliases
 command! Gst :Gstatus
 command! Gd :Gdiff

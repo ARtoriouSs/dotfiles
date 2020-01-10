@@ -7,58 +7,151 @@ o() {
   fi
 }
 
-# open tmux session for current project
-tp() {
-  tmux has-session -t "$CURRENT_PROJECT"
+# open tmux session for rails project, takes path as an argument, $PWD by default
+alias tp="t-project"
+alias tc="t-project $PROJECTS/$CURRENT_PROJECT" # project session for current project
+t-project() {
+  if [ -z "$1" ]; then
+    local session_name=$(basename $PWD)
+    local project_path=$PWD
+  else
+    local session_name=$(basename $1)
+    local project_path=$1
+  fi
+
+  if [ ! -d $project_path ]; then
+    printf "$(tput setaf 208)$project_path$(tput sgr0) doesn't exist\n"
+    return 1
+  fi
+
+  tmux has-session -t "$session_name"
   if [ $? != 0 ]; then
-    tmux new-session -d -s "$CURRENT_PROJECT" -n "$CURRENT_PROJECT" -c $PROJECTS/$CURRENT_PROJECT
-    tmux split-window -h -c $PROJECTS/$CURRENT_PROJECT
+    tmux new-session -d -s "$session_name" -n "$session_name" -c $project_path
+    tmux split-window -h -c $project_path
     tmux resize-pane -R 20
-    tmux split-window -v -c $PROJECTS/$CURRENT_PROJECT
+    tmux split-window -v -c $project_path
     tmux resize-pane -U 10
     tmux select-pane -t 0
-    tmux split-window -v -c $PROJECTS/$CURRENT_PROJECT
+    tmux split-window -v -c $project_path
     tmux resize-pane -U 10
 
-    tmux new-window -n "editor" -c $PROJECTS/$CURRENT_PROJECT "$EDITOR"
+    tmux new-window -n "editor" -c $project_path "$EDITOR"
 
-    tmux next-window -t "$CURRENT_PROJECT"
+    tmux next-window -t "$session_name"
     tmux select-pane -t 1
 
-    tmux send-keys -t "$CURRENT_PROJECT:0.0" "rs" Enter
-    tmux send-keys -t "$CURRENT_PROJECT:0.1" "cowsay Hello!" Enter
-    tmux send-keys -t "$CURRENT_PROJECT:0.2" "gst -i" Enter
-    tmux send-keys -t "$CURRENT_PROJECT:0.3" "rc" Enter
+    tmux send-keys -t "$session_name:0.0" "rs" Enter
+    tmux send-keys -t "$session_name:0.1" "cowsay Hello!" Enter
+    tmux send-keys -t "$session_name:0.2" "gst -i" Enter
+    tmux send-keys -t "$session_name:0.3" "rc" Enter
   fi
-  tmux -2 attach-session -t "$CURRENT_PROJECT"
+  tmux -2 attach-session -t "$session_name"
 }
 
-# open default tmux session in current directory
-th() {
-  local directory=$(basename $PWD)
-  tmux has-session -t "$directory"
+# open tmux default session, takes path as an argument, $PWD by default
+alias td="t-default"
+t-default() {
+  if [ -z "$1" ]; then
+    local session_name=$(basename $PWD)
+    local project_path=$PWD
+  else
+    local session_name=$(basename $1)
+    local project_path=$1
+  fi
+
+  if [ ! -d $project_path ]; then
+    printf "$(tput setaf 208)$project_path$(tput sgr0) doesn't exist\n"
+    return 1
+  fi
+
+  echo $session_name
+  echo $project_path
+
+  tmux has-session -t "$session_name"
   if [ $? != 0 ]; then
-    tmux new-session -d -s "$directory" -n "$directory"
+    tmux new-session -d -s "$session_name" -n "$session_name" -c "$project_path"
     tmux split-window -h
 
-    tmux new-window -n "editor" "$EDITOR"
+    tmux new-window -n "editor" -c "$project_path" "$EDITOR"
 
-    tmux next-window -t "$directory"
+    tmux next-window -t "$session_name"
     tmux select-pane -t 0
 
-    tmux send-keys -t "${directory}:0.0" "cowsay Hello!" Enter
-    tmux send-keys -t "${directory}:0.1" "gst" Enter
+    tmux send-keys -t "${session_name}:0.0" "cowsay Hello!" Enter
+    tmux send-keys -t "${session_name}:0.1" "gst" Enter
   fi
-  tmux -2 attach-session -t "$directory"
+  tmux -2 attach-session -t "$session_name"
 }
 
 # kill current directory tmux session
-tk() {
-  local session=$([ -z "$1" ] && echo $(basename $PWD) || echo $1)
-  tmux has-session -t "$session"
-  [ $? = 0 ] && tmux kill-session -t "$session"
+alias tk="t-kill"
+alias tka="t-kill --all" # kill all tmux sessions along with a server
+t-kill() {
+  if [ "$1" = "--all" ]; then
+    tmux kill-server
+  else
+    local session_name=$([ -z "$1" ] && echo $(basename $PWD) || echo $1)
+    tmux has-session -t "$session_name"
+    [ $? = 0 ] && tmux kill-session -t "$session_name"
+  fi
 }
-alias tka="tmux kill-server" # kill all tmux sessions along with a server
+
+# switches session to debug mod (open panes under editor and move server and console processes to them)
+# assumes to be used in default or project sessions defined above
+alias tdm="t-debug-mode"
+t-debug-mode() {
+  if [ ! -z "$1" ]; then
+    local port=$1
+  else
+    local port=3000
+  fi
+
+  local session_name=$(basename $PWD)
+  local project_path=$PWD
+
+  tmux has-session -t "$session_name"
+  if [ $? = 0 ]; then
+    tmux select-window -t "editor"
+    tmux select-pane -t 0
+    tmux split-window -v -c $project_path
+    tmux split-window -h -c $project_path
+
+    tmux send-keys -t "$session_name:$session_name.0" "C-c"
+    kill-s $port
+    tmux send-keys -t "$session_name:\editor.1" "sleep 3s && rs" Enter
+    tmux send-keys -t "$session_name:\editor.2" "rc" Enter
+
+    tmux resize-pane -D 20
+    tmux select-pane -t 1
+    tmux resize-pane -R 50
+    tmux select-pane -t 0
+  fi
+}
+
+# switches back from debug mode
+alias tnm="t-normal-mode"
+t-normal-mode() {
+  if [ ! -z "$1" ]; then
+    local port=$1
+  else
+    local port=3000
+  fi
+
+  local session_name=$(basename $PWD)
+  local project_path=$PWD
+
+  tmux has-session -t "$session_name"
+  if [ $? = 0 ]; then
+    tmux select-window -t "editor"
+
+    tmux send-keys -t "$session_name:\editor.1" "C-c"
+    kill-s $port
+    tmux send-keys -t "$session_name:$session_name.0" "sleep 3s && rs" Enter
+
+    tmux kill-pane -t "$session_name:\editor.1"
+    tmux kill-pane -t "$session_name:\editor.1"
+  fi
+}
 
 # generate ctags
 tags() {
@@ -67,16 +160,16 @@ tags() {
 
   case "$1" in
     --rails) # add gems paths and cut off bundler warnings with awk
-      ctags --languages=ruby,rspec,javascript,json,html,css,scss,sh,sql,markdown -f $git_dir/$$.tags . $(bundle list --paths | awk '/^\// { print $0 }')
+      ctags -f $git_dir/$$.tags . $(bundle list --paths | awk '/^\// { print $0 }')
     ;;
     --elixir)
-      ctags --languages=elixir,erlang,javascript,json,html,css,scss,sh,sql,markdown --exclude=_build -f $git_dir/$$.tags .
+      ctags --exclude=_build -f $git_dir/$$.tags .
     ;;
     --js)
-      ctags --languages=javascript,json,html,css,scss,sh,sql,markdown --exclude=tmp -f $git_dir/$$.tags .
+      ctags --exclude=tmp -f $git_dir/$$.tags .
     ;;
     --shell)
-      ctags --languages=sh,powerShell,vim,awk,json,xml,ruby,markdown -f $git_dir/$$.tags .
+      ctags -f $git_dir/$$.tags .
     ;;
     *)
       ctags -f $git_dir/$$.tags
@@ -140,9 +233,10 @@ kill-redis() {
 }
 
 # kill server on specified port (3000 by default)
-kill-s() {
-  [ -z "$1" ] && PORT=3000 || PORT=$1
-  lsof -i tcp:$PORT | grep -v 'chrome' | awk 'FNR > 1 {print $2}' | xargs kill -9
+alias ks="kill-server"
+kill-server() {
+  [ -z "$1" ] && local port=3000 || local port=$1
+  lsof -i tcp:$port | grep -v 'chrome' | awk 'FNR > 1 {print $2}' | xargs kill -9
 }
 
 # generate rails migration and quote all args as name
@@ -154,8 +248,8 @@ gen-migration() {
 
 # rollback rails migrations
 rollback() {
-  [ -z "$1" ] && STEP=1 || STEP=$1
-  bundle exec rails db:rollback STEP=$STEP
+  [ -z "$1" ] && local step=1 || local step=$1
+  bundle exec rails db:rollback STEP=$step
 }
 
 alias rr="search-routes"
@@ -168,6 +262,7 @@ search-routes() {
 }
 
 # git status function with interactive option for running in separate tmux tab
+alias gs="status" # block ghost script invocation when making typo, remove this if you need ghost script
 alias gst="status"
 status() {
   local project=$(basename $PWD)
@@ -346,6 +441,15 @@ pull() {
   locked_status
 }
 
+grem() {
+  if [ -z "$1" ]; then
+    git remote -v
+  else
+    git remote "$@"
+    git remote -v
+  fi
+}
+
 # clone repo from github
 alias get="clone-my"
 clone-my() {
@@ -359,13 +463,4 @@ ignore() {
 
 no-ignore() {
   git update-index --no-assume-unchanged $@
-}
-
-grem() {
-  if [ -z "$1" ]; then
-    git remote -v
-  else
-    git remote "$@"
-    git remote -v
-  fi
 }
