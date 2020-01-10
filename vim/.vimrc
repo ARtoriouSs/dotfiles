@@ -96,8 +96,6 @@ nnoremap <C-g> :Ag<Cr>
 nnoremap <C-p> :FZF<Cr>
 let g:gutentags_ctags_tagfile=".git/tags" " tags file for gutentags
 let g:gutentags_resolve_symlinks=1 " generate tags for original file's project if editing symlink
-" show all tags for token under cursor
-noremap <C-[> :call ttags#List(0, "*", tlib#rx#Escape(expand("<cword>")))<cr>
 
 """ tabbing and indenting
 set nowrap " don't wrap lines
