@@ -231,7 +231,8 @@ let NERDTreeShowBookmarks = 1 " show bookmarks by default
 map <C-n> :NERDTreeToggle <bar> :NERDTreeRefreshRoot<CR>
 
 """ RSpec
+let g:rspec_command = "!bundle exec rspec {spec}"
+let g:rspec_runner = "os_x_iterm2" " runner for macVim
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>

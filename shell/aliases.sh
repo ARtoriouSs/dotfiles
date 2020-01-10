@@ -25,6 +25,7 @@ alias bi="bundle install"
 alias bu="bundle update"
 alias rdm="bundle exec rails db:migrate"
 alias rdr="bundle exec rails db:drop db:create db:migrate"
+alias spec="bundle exec rspec"
 
 # npm
 alias n="npm"
