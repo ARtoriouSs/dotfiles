@@ -9,14 +9,14 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # fonts
-local URL=https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
+local url=https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  cd /usr/local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" $URL
+  cd /usr/local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" $url
   fc-cache -f -v # update fonts cache
   echo "Fonts were installed, enable it in terminal preferences:"
   echo "Edit -> Preferences -> Text -> Custom font"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  cd ~/Library/Fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" $URL
+  cd ~/Library/Fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" $url
   echo "Fonts were installed, restart terminal (not just relogin) and enable it in preferences:"
   echo "Prefeneces -> Profiles -> Text -> Font"
 fi
