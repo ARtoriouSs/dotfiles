@@ -2,9 +2,9 @@
 
 # base software
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  apt-get update
-  apt-get upgrade
-  apt-get install software-properties-common apt-transport-https wget curl snapd git-core python3-pip
+  apt-get update --yes
+  apt-get upgrade --yes
+  apt-get install --yes software-properties-common apt-transport-https wget curl snapd git-core python3-pip
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" # homebrew
   brew doctor # make sure brew has permissions
@@ -19,21 +19,21 @@ fi
 # more
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # cowsay :)
-  apt-get install cowsay
+  apt-get install --yes cowsay
   # ripgrep
   snap install ripgrep --classic
   # tmux
-  apt-get install tmux
+  apt-get install --yes tmux
   # node
   curl -sL https://deb.nodesource.com/setup_12.x | -E bash -
-  apt-get install nodejs
+  apt-get install --yes nodejs
   npm update npm -g # updates npm
   # docker
-  apt-get install apt-transport-https ca-certificates
+  apt-get install --yes apt-transport-https ca-certificates
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
   add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
   apt-get update
-  apt-get install docker-ce docker-ce-cli containerd.io
+  apt-get install --yes docker-ce docker-ce-cli containerd.io
   # docker-compose
   curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
   chmod +x /usr/local/bin/docker-compose
@@ -46,14 +46,14 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   mkdir -p "$(rbenv root)"/plugins
   git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
   # postgres
-  apt-get install wget ca-certificates
+  apt-get install --yes ca-certificates
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
   sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
   apt-get update
-  apt-get install postgresql postgresql-contrib
+  apt-get install --yes postgresql postgresql-contrib
   pg_ctl -D /usr/local/var/postgres start # start server
   # redis
-  apt-get install redis-server
+  apt-get install --yes redis-server
   systemctl enable redis-server.service # run redis on boot
   # chrome
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -68,7 +68,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -~
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
   apt-get update
-  apt-get install yarn
+  apt-get install --yes yarn
   # diff-so-fancy
   wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
   chmod +x /usr/local/bin/diff-so-fancy
@@ -82,7 +82,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   cd ..
   rm -rf ctags_source
   # markdown
-  apt-get install markdown
+  apt-get install --yes markdown
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # cowsay :)
   brew install cowsay

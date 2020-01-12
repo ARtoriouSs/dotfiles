@@ -3,8 +3,8 @@
 # install vim
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   sudo add-apt-repository ppa:neovim-ppa/stable
-  sudo apt-get update
-  sudo apt-get install neovim
+  sudo apt-get update --yes
+  sudo apt-get install --yes neovim
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew install neovim
 fi
