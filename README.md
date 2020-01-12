@@ -39,9 +39,12 @@ Will be installed:
 To install **everything** run:
 
 ```bash
-  cd $HOME
+  sudo apt-get update
+  sudo apt-get install git
+  cd ~
   git clone https://github.com/ARtoriouSs/dotfiles.git
-  sudo ./dotfiles/scripts/prepare_system.sh
+  cd dotfiles/scripts # this step is important for now
+  sudo ./prepare_system.sh
 ```
 
 It's not built to be installed by parts or without using symlinks, but every script will work correctly when run separately. So if you have non-empty system or want to install some part of this, you can still run scripts separately or just look through source files to find something useful here. Also check READMEs in other directories for help.
