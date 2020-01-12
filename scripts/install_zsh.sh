@@ -2,6 +2,8 @@
 
 # zsh and Oh My Zsh
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  sudo apt-get update --yes
+  sudo apt-get install --yes zsh
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   chsh -s /usr/bin/zsh
 elif [[ "$OSTYPE" == "darwin"* ]]; then
