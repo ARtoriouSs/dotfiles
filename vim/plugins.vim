@@ -36,6 +36,8 @@ Plug 'tpope/vim-eunuch' " shell file commands
 " languages and tools syntax support
 Plug 'pangloss/vim-javascript' " JavaScript
 Plug 'mxw/vim-jsx' " react
+Plug 'leafgarland/typescript-vim' " typescript
+Plug 'peitalin/vim-jsx-typescript' " react with typescrypt
 Plug 'posva/vim-vue' " vue
 Plug 'jparise/vim-graphql' " graphQL
 Plug 'elixir-editors/vim-elixir' " elixir
