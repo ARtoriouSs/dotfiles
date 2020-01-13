@@ -148,6 +148,8 @@ autocmd BufNewFile * set noeol "removes eol
 " command without shift
 nnoremap ; :
 vnoremap ; :
+" remove Ex mode mapping
+nnoremap Q <nop>
 " do not allow arrows in normal and visual modes
 nnoremap <Left> :echoe " Nope, use h "<CR>
 nnoremap <Right> :echoe " Nope, use l "<CR>
