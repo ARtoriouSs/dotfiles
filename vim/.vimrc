@@ -1,7 +1,7 @@
 set nocompatible " disables vi compatibility (default in neovim, for vim only), should be in the top
 
 " plugins moved to another file to be able to sourse them without the rest of configuration
-source $DOTFILES_PATH/vim/plugins.vim
+source ~/dotfiles/vim/plugins.vim
 
 """ colors and highlighting
 set background=dark " for correct colors in tmux

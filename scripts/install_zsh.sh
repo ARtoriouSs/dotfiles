@@ -16,7 +16,7 @@ ln -sf ~/dotfiles/shell/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/shell/.zprofile ~/.zprofile
 
 # load zsh variables
-source ~/.zshrc
+source ~/.zprofile
 
 # theme for Zsh
 wget -P ${ZSH:-~/.oh-my-zsh}/themes https://raw.githubusercontent.com/ARtoriouSs/chaotic-beef-zsh-theme/master/chaotic-beef.zsh-theme

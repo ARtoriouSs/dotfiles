@@ -1,23 +1,22 @@
 #!/bin/bash
 
-# base software
+# prerequirements
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   apt-get update --yes
   apt-get upgrade --yes
-  apt-get install --yes software-properties-common apt-transport-https wget curl snapd git-core python3-pip
+  apt-get install --yes software-properties-common apt-transport-https wget curl snapd xclip
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" # homebrew
   brew doctor # make sure brew has permissions
   brew update
   brew tap caskroom/cask # cask
-  brew install curl wget git
-  # pip
-  easy_install pip
-  pip install --upgrade pip
+  brew install curl wget
 fi
 
 # more
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  # python and pip
+  apt-get install --yes python2.7 python3 python-pip python3-pip
   # ruby
   apt-get install --yes ruby-full
   # cowsay :)
@@ -65,17 +64,21 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
   chmod +x /usr/local/bin/diff-so-fancy
   # ctags TODO: install via apt when available
+  apt-get --yes install pkg-config autoconf # prerequirements
   git clone https://github.com/universal-ctags/ctags.git ctags_source
   cd ctags_source
   ./autogen.sh
   ./configure
   make
-  sudo make install
-  cd ..
+  make install
+  cd -
   rm -rf ctags_source
   # markdown
   apt-get install --yes markdown
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+  # pip
+  easy_install pip
+  pip install --upgrade pip
   # ruby
   brew install ruby
   # cowsay :)
@@ -97,7 +100,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash # verify rbenv
   # postgres
   brew install postgres
-  brew services start postgresql # start server
   # redis
   brew install redis
   ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents # run redis on boot
