@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    # none
+  : # none
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   touch ~/.hushlogin # do not display login message
   defaults write -g KeyRepeat -int 0 # increase cursor repeat speed when holding arrow key (minimum in settings 2)

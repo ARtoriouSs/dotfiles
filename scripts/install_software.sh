@@ -4,7 +4,7 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   apt-get update --yes
   apt-get upgrade --yes
-  apt-get install --yes software-properties-common apt-transport-https wget curl snapd git-core python3-pip
+  apt-get install --yes software-properties-common apt-transport-https wget curl snapd git-core python3-pip sudo
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" # homebrew
   brew doctor # make sure brew has permissions
@@ -18,6 +18,8 @@ fi
 
 # more
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  # ruby
+  apt-get install --yes ruby-full
   # cowsay :)
   apt-get install --yes cowsay
   # ripgrep
@@ -55,15 +57,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # redis
   apt-get install --yes redis-server
   systemctl enable redis-server.service # run redis on boot
-  # chrome
-  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  dpkg -i google-chrome-stable_current_amd64.deb
-  # telegram
-  snap install telegram-desktop
-  # skype
-  snap install skype --classic
-  # slack
-  snap install slack --classic
   # yarn
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -~
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
@@ -84,6 +77,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # markdown
   apt-get install --yes markdown
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+  # ruby
+  brew install ruby
   # cowsay :)
   brew install cowsay
   # ripgrep
@@ -107,14 +102,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   # redis
   brew install redis
   ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents # run redis on boot
-  # chrome
-  brew cask install google-chrome
-  # telegram
-  brew cask install telegram
-  # skype
-  brew cask install skype
-  # slack
-  brew cask install slack
   # yarn
   brew install yarn
   # diff-so-fancy
