@@ -5,7 +5,7 @@
 # do not run it if system isn't empty, in that case run needed scripts separately
 # must be running with sudo
 
-cp ~dotfiles/shell/temp_settings.sample.sh ~dotfiles/shell/temp_settings.sh
+cp ~/dotfiles/shell/temp_settings.sample.sh ~/dotfiles/shell/temp_settings.sh
 
 ./create_symlinks.sh
 ./install_software.sh
