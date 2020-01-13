@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# install vim
+# install nvim
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  sudo add-apt-repository ppa:neovim-ppa/stable
   sudo apt-get update --yes
   sudo apt-get install --yes neovim
+  sudo apt-get install python-neovim
+  sudo apt-get install python3-neovim
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew install neovim
 fi
@@ -17,6 +18,7 @@ python -m pip install --user --upgrade pynvim
 python3 -m pip install --user --upgrade pynvim
 
 # symlink for config
+mkdir -p ~/.config/nvim
 ln -sf ~/dotfiles/vim/.vimrc ~/.config/nvim/init.vim
 
 # install Plug and plugins

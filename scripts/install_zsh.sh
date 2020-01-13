@@ -12,6 +12,10 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 upgrade_oh_my_zsh
 
+rm .zshrc.pre-oh-my-zsh
+ln -sf ~/dotfiles/shell/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/shell/.zprofile ~/.zprofile
+
 exec zsh
 
 # theme for Zsh

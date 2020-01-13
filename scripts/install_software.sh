@@ -18,14 +18,16 @@ fi
 
 # more
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  # ruby
+  apt-get install --yes ruby-full
   # cowsay :)
   apt-get install --yes cowsay
   # ripgrep
   snap install ripgrep --classic
   # tmux
   apt-get install --yes tmux
-  # node
-  curl -sL https://deb.nodesource.com/setup_12.x | -E bash -
+  # node (may need to update version below)
+  curl -sL https://deb.nodesource.com/setup_13.x | bash -
   apt-get install --yes nodejs
   npm update npm -g # updates npm
   # docker
@@ -39,7 +41,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   chmod +x /usr/local/bin/docker-compose
   # rbenv
   git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-  cd ~/.rbenv && src/configure && make -C src # Can fail, it's ok
+  cd ~/.rbenv && src/configure && make -C src # can fail, it's ok
   ~/.rbenv/bin/rbenv init
   curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash # verify rbenv
   # ruby-build for rbenv
@@ -50,20 +52,10 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
   sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
   apt-get update
-  apt-get install --yes postgresql postgresql-contrib
-  pg_ctl -D /usr/local/var/postgres start # start server
+  apt-get install --yes postgresql postgresql-contrib postgresql-common
   # redis
   apt-get install --yes redis-server
   systemctl enable redis-server.service # run redis on boot
-  # chrome
-  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  dpkg -i google-chrome-stable_current_amd64.deb
-  # telegram
-  snap install telegram-desktop
-  # skype
-  snap install skype --classic
-  # slack
-  snap install slack --classic
   # yarn
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -~
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
@@ -84,6 +76,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # markdown
   apt-get install --yes markdown
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+  # ruby
+  brew install ruby
   # cowsay :)
   brew install cowsay
   # ripgrep
@@ -107,14 +101,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   # redis
   brew install redis
   ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents # run redis on boot
-  # chrome
-  brew cask install google-chrome
-  # telegram
-  brew cask install telegram
-  # skype
-  brew cask install skype
-  # slack
-  brew cask install slack
   # yarn
   brew install yarn
   # diff-so-fancy
