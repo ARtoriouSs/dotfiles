@@ -4,47 +4,54 @@ This is repo with my system configuration.
 
 ## How does it work?
 
-Implied that all dotfiles stored in `$HOME/dotfiles` directory and have a symlinks in `$HOME`. So you can manage and commit them from one place. Also all the configuration and scripts here are compatible with MacOS and Ubuntu-based Linux systems.
+Implied that all dotfiles stored in `$HOME/dotfiles` directory and have symlinks to their original locations.
+So it's possible manage and commit them from one place. All the configuration and scripts here are compatible with both
+MacOS and Debian-like Linux systems.
 
-Everything here is configured for my convenience and Ruby/JavaScript development.
+Everything here is configured for my convenience, especially for Ruby/JavaScript development.
 
-I tried to make everything easy to understand, so there are a lot of comments.
+I tried to make everything easy to understand, so there are a lot of comments if someone wants to use or adopt it.
 
-Here is:
+#### Here is:
 
-- Script for installing everything from here on empty Linux system
-- Configured .bashrc and .profile files
-- Script for installing zsh with configured .zshrc, .zprofile files and extensions
-- Aliases and some convenient shell functions
-- Script for installing nvim with configured .vimrc
-- Git settings: gitconfig, global .gitignore, template directory with hooks for ctags
-- .pryrc configured for convenient ruby debugging
+- [Script for installing everything](scripts/prepare_system.sh) from here on empty Linux system
+- Configured [.bashrc](shell/.bashrc) and [.profile](shell/.profile)
+- [Script for installing zsh](scripts/install_zsh.sh) with configured [.zshrc](shell/.zshrc), [.zprofile](shell/.zprofile) and extensions
+- [Aliases](shell/aliases.sh) and some convenient shell [functions](shell/functions.sh)
+- [Script for installing nvim](scripts/install_vim.sh) with configured [.vimrc](vim/.vimrc)
+- Git settings: [gitconfig](git/.gitconfig), [global .gitignore](git/.gitignore.global), [template directory with hooks for ctags](git/git_template)
+- [.pryrc](.pryrc) configured for convenient ruby debugging
+- [bundler config](bundler_config)
+- [.gemrc](.gemrc) to not to download documentation
 
-Also:
-
-- bundler config
-- .gemrc
-
-Will be installed:
+#### Will be installed with installation scripts:
 
 - Basic software (curl, wget, homebrew (for MacOS), git, etc.)
 - Tmux, Neovim, Ctags
-- NodeJS
+- Zsh with Oh-My-Zsh
 - Docker and docker-compose
-- Rbenv
+- Ruby, Rbenv
+- NodeJS and npm
 - PostgreSQL, Redis
-- Slack, Skype, Telegram
-- Google Chrome
+- Slack, Skype, Telegram, Google Chrome
 
 To install **everything** run:
 
 ```bash
-  sudo apt-get update
-  sudo apt-get install git
-  cd ~
-  git clone https://github.com/ARtoriouSs/dotfiles.git
-  cd dotfiles/scripts # this step is important for now
-  sudo ./prepare_system.sh
+cd ~
+git clone https://github.com/ARtoriouSs/dotfiles.git
+sudo dotfiles/scripts/prepare_system.sh
 ```
 
-It's not built to be installed by parts or without using symlinks, but every script will work correctly when run separately. So if you have non-empty system or want to install some part of this, you can still run scripts separately or just look through source files to find something useful here. Also check READMEs in other directories for help.
+Every script will work correctly when run separately, but keep in mind that you should use symlinking to use it as is,
+othervise you should copy dotfiles to their original location. Also check READMEs in other directories for more info.
+
+## Testing
+
+If you unsure running something you can load test environment with Docker:
+
+```bash
+./test/test.sh
+```
+
+Check out [README in tests](test/README.md) for details.
