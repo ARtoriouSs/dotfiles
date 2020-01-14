@@ -5,7 +5,9 @@
 # do not run it if system isn't empty, in that case run needed scripts separately
 # must be running with sudo
 
-cp ~dotfiles/shell/temp_settings.sample.sh ~dotfiles/shell/temp_settings.sh
+cd ~/dotfiles/scripts # if runned from outside
+
+cp ../shell/temp_settings.sample.sh ../shell/temp_settings.sh
 
 ./create_symlinks.sh
 ./install_software.sh
@@ -13,8 +15,10 @@ if [ ! -f /.dockerenv ]; then # if not in docker
   ./install_gui.sh
 fi
 ./configure_system.sh
-./create_dir_tree.sh
+./install_zsh.sh && source ~/.zprofile
 ./install_vim.sh
-./install_zsh.sh
+./create_dir_tree.sh
 
-exec zsh
+cd -
+
+exec zsh -l # relogin in the end

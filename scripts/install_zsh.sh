@@ -4,18 +4,22 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   sudo apt-get update --yes
   sudo apt-get install --yes zsh
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  chsh -s /usr/bin/zsh
+  RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew install zsh
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
-upgrade_oh_my_zsh
+chsh -s /usr/bin/zsh
 
-exec zsh
+# symlinks for config files
+ln -sf ~/dotfiles/shell/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/shell/.zprofile ~/.zprofile
+
+# load zsh variables
+source ~/.zprofile
 
 # theme for Zsh
-wget -P $ZSH/themes https://raw.githubusercontent.com/ARtoriouSs/chaotic-beef-zsh-theme/master/chaotic-beef.zsh-theme
+wget -P ${ZSH:-~/.oh-my-zsh}/themes https://raw.githubusercontent.com/ARtoriouSs/chaotic-beef-zsh-theme/master/chaotic-beef.zsh-theme
 
 # zsh-autosuggestions plugin
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions

@@ -1,23 +1,22 @@
 #!/bin/bash
 
-# base software
+# prerequirements
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   apt-get update --yes
   apt-get upgrade --yes
-  apt-get install --yes software-properties-common apt-transport-https wget curl snapd git-core python3-pip sudo
+  apt-get install --yes software-properties-common apt-transport-https wget curl snapd xclip
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" # homebrew
   brew doctor # make sure brew has permissions
   brew update
   brew tap caskroom/cask # cask
-  brew install curl wget git
-  # pip
-  easy_install pip
-  pip install --upgrade pip
+  brew install curl wget
 fi
 
 # more
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  # python and pip
+  apt-get install --yes python2.7 python3 python-pip python3-pip
   # ruby
   apt-get install --yes ruby-full
   # cowsay :)
@@ -26,9 +25,10 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   snap install ripgrep --classic
   # tmux
   apt-get install --yes tmux
-  # node
-  curl -sL https://deb.nodesource.com/setup_12.x | -E bash -
+  # node and npm (may need to update version below)
+  curl -sL https://deb.nodesource.com/setup_13.x | bash -
   apt-get install --yes nodejs
+  apt-get install --yes npm
   npm update npm -g # updates npm
   # docker
   apt-get install --yes apt-transport-https ca-certificates
@@ -41,7 +41,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   chmod +x /usr/local/bin/docker-compose
   # rbenv
   git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-  cd ~/.rbenv && src/configure && make -C src # Can fail, it's ok
+  cd ~/.rbenv && src/configure && make -C src # can fail, it's ok
   ~/.rbenv/bin/rbenv init
   curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash # verify rbenv
   # ruby-build for rbenv
@@ -52,8 +52,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
   sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
   apt-get update
-  apt-get install --yes postgresql postgresql-contrib
-  pg_ctl -D /usr/local/var/postgres start # start server
+  apt-get install --yes postgresql postgresql-contrib postgresql-common
   # redis
   apt-get install --yes redis-server
   systemctl enable redis-server.service # run redis on boot
@@ -66,17 +65,21 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
   chmod +x /usr/local/bin/diff-so-fancy
   # ctags TODO: install via apt when available
+  apt-get --yes install pkg-config autoconf # prerequirements
   git clone https://github.com/universal-ctags/ctags.git ctags_source
   cd ctags_source
   ./autogen.sh
   ./configure
   make
-  sudo make install
-  cd ..
+  make install
+  cd -
   rm -rf ctags_source
   # markdown
   apt-get install --yes markdown
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+  # pip
+  easy_install pip
+  pip install --upgrade pip
   # ruby
   brew install ruby
   # cowsay :)
@@ -98,7 +101,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash # verify rbenv
   # postgres
   brew install postgres
-  brew services start postgresql # start server
   # redis
   brew install redis
   ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents # run redis on boot

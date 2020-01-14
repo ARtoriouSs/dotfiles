@@ -1,8 +1,6 @@
 #!/bin/bash
 
 # create symlinks to dotfiles
-ln -sf ~/dotfiles/shell/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/shell/.zprofile ~/.zprofile
 ln -sf ~/dotfiles/shell/.bashrc ~/.bashrc
 ln -sf ~/dotfiles/shell/.profile ~/.profile
 ln -sf ~/dotfiles/.gemrc ~/.gemrc
