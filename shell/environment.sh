@@ -33,3 +33,5 @@ export TODO=~/todo.yml
 eval "$(rbenv init -)" # rbenv
 
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" # kiex
+
+source $(dirname $(gem which colorls))/tab_complete.sh # flag completion for colorls gem

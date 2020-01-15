@@ -49,9 +49,6 @@ alias dcps="docker-compose ps -a"
 alias ccat="pygmentize -g -O style='colorful'" # colored cat
 alias e="echo"
 alias c="cd .."
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 alias psqlc="psql -U postgres"
 alias todo="$EDITOR $TODO"
 alias todol="$EDITOR todo.yml" # local todo
@@ -59,7 +56,6 @@ alias v=$EDITOR
 alias search="find . -name" # search file by name
 alias k9="kill -9"
 alias now="date '+ %H:%M | %B %d'" # show current date and time
-
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   alias upd="sudo apt-get --yes update"
   alias upg="sudo apt-get --yes upgrade"
@@ -123,13 +119,24 @@ alias "TODO"="todo"
 alias "TODOL"="todol"
 alias "V"="v"
 
-# enable color support of ls and also add handy aliases from default .bashrc
+# enable color support for ls and grep, add handy aliases from default .bashrc
 if [ -x /usr/bin/dircolors ]; then
   test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
-  alias ls='ls --color=auto'
-  alias dir='dir --color=auto'
-  alias vdir='vdir --color=auto'
   alias grep="`which grep` --color=auto"
   alias fgrep="`which fgrep` --color=auto"
   alias egrep="`which egrep` --color=auto"
 fi
+
+# ls and colorls
+if [ -x "$(command -v colorls)" ]; then
+  alias ls='colorls --sd'
+  alias la='colorls -A --sd'
+  alias ll='colorls -lA --sd --gs'
+  alias l1='colorls -1 --sd --gs'
+else
+  alias ls='ls --color=auto'
+  alias la='ls -A --color=auto'
+  alias ll='ls -alF --color=auto'
+  alias l1='ls -1 --color=auto'
+fi
+alias l="la"

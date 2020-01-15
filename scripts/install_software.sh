@@ -115,3 +115,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   # markdown
   brew install markdown
 fi
+
+# gem to beautify ls command
+gem install colorls
+rbenv rehash
+rehash
