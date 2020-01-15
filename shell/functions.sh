@@ -117,7 +117,7 @@ t-debug-mode() {
     tmux split-window -h -c $project_path
 
     tmux send-keys -t "$session_name:$session_name.0" "C-c"
-    kill-s $port
+    kill-server $port
     tmux send-keys -t "$session_name:\editor.1" "sleep 3s && rs" Enter
     tmux send-keys -t "$session_name:\editor.2" "rc" Enter
 
@@ -145,7 +145,7 @@ t-normal-mode() {
     tmux select-window -t "editor"
 
     tmux send-keys -t "$session_name:\editor.1" "C-c"
-    kill-s $port
+    kill-server $port
     tmux send-keys -t "$session_name:$session_name.0" "sleep 3s && rs" Enter
 
     tmux kill-pane -t "$session_name:\editor.1"
