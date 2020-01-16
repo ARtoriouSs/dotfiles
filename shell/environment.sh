@@ -30,10 +30,12 @@ export DESKTOP=~/Desktop
 export TODO=~/todo.yml
 
 # initializations
+
+# dircolors
+if [ -x /usr/bin/dircolors ]; then
+  test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
+fi
+
 eval "$(rbenv init -)" # rbenv
 
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" # kiex
-
-if [ -x "$(command -v colorls)" ]; then
-  source $(dirname $(gem which colorls))/tab_complete.sh # flag completion for colorls gem
-fi
