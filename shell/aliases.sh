@@ -119,7 +119,7 @@ alias "TODO"="todo"
 alias "TODOL"="todol"
 alias "V"="v"
 
-# enable color support for ls and grep, add handy aliases from default .bashrc
+# enable color support add some handy aliases from default .bashrc
 if [ -x /usr/bin/dircolors ]; then
   test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
   alias grep="`which grep` --color=auto"
@@ -134,9 +134,15 @@ if [ -x "$(command -v colorls)" ]; then
   alias ll='colorls -lA --sd --gs'
   alias l1='colorls -1 --sd --gs'
 else
-  alias ls='ls --color=auto'
-  alias la='ls -A --color=auto'
-  alias ll='ls -alF --color=auto'
-  alias l1='ls -1 --color=auto'
+  if [ -x /usr/bin/dircolors ]; then
+    alias ls='ls --color=auto'
+    alias la='ls -A --color=auto'
+    alias ll='ls -alF --color=auto'
+    alias l1='ls -1 --color=auto'
+  else
+    alias la='ls -A'
+    alias ll='ls -alF'
+    alias l1='ls -1'
+  fi
 fi
 alias l="la"
