@@ -7,6 +7,7 @@ Pry::Commands.command(/^$/, 'repeat last command') do
 end
 
 # aliases
+Pry.commands.alias_command 'exot', 'exit' # for typos
 Pry.commands.alias_command 'w', 'whereami'
 Pry.commands.alias_command 'q', 'exit-program'
 Pry.commands.alias_command 'e', 'exit'
