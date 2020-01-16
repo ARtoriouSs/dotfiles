@@ -119,21 +119,15 @@ alias "TODO"="todo"
 alias "TODOL"="todol"
 alias "V"="v"
 
-# enable color support add some handy aliases from default .bashrc
+# some handy grep aliases from default .bashrc
 if [ -x /usr/bin/dircolors ]; then
-  test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
   alias grep="`which grep` --color=auto"
   alias fgrep="`which fgrep` --color=auto"
   alias egrep="`which egrep` --color=auto"
 fi
 
-# ls and colorls
-if [ -x "$(command -v colorls)" ]; then
-  alias ls='colorls --sd'
-  alias la='colorls -A --sd'
-  alias ll='colorls -lA --sd --gs'
-  alias l1='colorls -1 --sd --gs'
-else
+# ls TODO: refactor for linux
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
   if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     alias la='ls -A --color=auto'
@@ -144,5 +138,10 @@ else
     alias ll='ls -alF'
     alias l1='ls -1'
   fi
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  alias ls="gls --color -h --group-directories-first"
+  alias la="ls -A"
+  alias l1="la -1"
+  alias ll="gls -alh --color --group-directories-first"
 fi
 alias l="la"
