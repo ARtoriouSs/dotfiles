@@ -430,15 +430,23 @@ amend-no-edit() {
 alias forsepush="push --force-with-lease"
 alias fpush="push --force-with-lease"
 push() {
-  current=$(git branch | grep '\*' | awk '{print $2}')
-  git push $@ origin "${current}"
+  git push $@ origin "$(current-branch)"
+  locked_status
+}
+push-my() { # same as above but to 'my' remote
+  git push $@ my "$(current-branch)"
+  locked_status
 }
 
 # pull current branch from origin
 pull() {
-  current=$(git branch | grep '\*' | awk '{print $2}')
-  git pull origin "${current}"
+  git pull origin "$(current-branch)"
   locked_status
+}
+
+# current branch helper function
+current-branch() {
+  git branch | grep '\*' | awk '{print $2}'
 }
 
 grem() {
