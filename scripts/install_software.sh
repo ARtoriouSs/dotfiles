@@ -19,6 +19,10 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   apt-get install --yes python2.7 python3 python-pip python3-pip
   # ruby
   apt-get install --yes ruby-full
+  # erlang
+  wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | apt-key add -
+  echo "deb https://packages.erlang-solutions.com/ubuntu bionic contrib" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
+  sudo apt-get install --yes erlang
   # cowsay :)
   apt-get install --yes cowsay
   # ripgrep
@@ -79,6 +83,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   pip install --upgrade pip
   # ruby
   brew install ruby
+  # erlang
+  brew install erlang
   # cowsay :)
   brew install cowsay
   # ripgrep
