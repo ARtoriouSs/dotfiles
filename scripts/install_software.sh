@@ -61,9 +61,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
   apt-get update
   apt-get install --yes yarn
-  # diff-so-fancy
-  wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
-  chmod +x /usr/local/bin/diff-so-fancy
   # ctags TODO: install via apt when available
   apt-get --yes install pkg-config autoconf # prerequirements
   git clone https://github.com/universal-ctags/ctags.git ctags_source
@@ -106,12 +103,15 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents # run redis on boot
   # yarn
   brew install yarn
-  # diff-so-fancy
-  wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
-  chmod +x /usr/local/bin/diff-so-fancy
   # ctags TODO: standatd install via brew when available
   brew uninstall ctags # remove default ctags
   brew install --HEAD universal-ctags/universal-ctags/universal-ctags
   # markdown
   brew install markdown
 fi
+
+# kiex
+curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
+# diff-so-fancy
+wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+chmod +x /usr/local/bin/diff-so-fancy
