@@ -202,7 +202,7 @@ nnoremap <C-t> :tabnew<CR>
 nnoremap <C-d> :tabclose<CR>
 " change selected tab color
 let s:palette = g:lightline#colorscheme#tender#palette
-let s:palette.tabline.tabsel = [ [ '#000000', '#73cef4', 16, 81, 'bold' ] ]
+let s:palette.tabline.tabsel = [ [ '#000000', '#73cef4', 16, 81 ] ]
 unlet s:palette
 
 """ git

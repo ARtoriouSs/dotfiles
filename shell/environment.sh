@@ -6,8 +6,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # variables
-export DOTFILES_PATH=~/dotfiles
-export DOTFILES_VIMRC=$DOTFILES_PATH/vim/.vimrc # dotfiles copy of vimrc
+export DOTFILES_VIMRC=~/dotfiles/vim/.vimrc # dotfiles copy of vimrc
 export EDITOR=nvim
 export GREP_TOOL=rg
 export SSH_KEY_PATH=~/.ssh/id_rsa
