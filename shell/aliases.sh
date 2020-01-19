@@ -101,7 +101,11 @@ alias default-ctags="$EDITOR ~/dotfiles/default.ctags"
 
 # system files access
 alias hosts="$EDITOR /etc/hosts"
-alias pg_hba="" # TODO with version and system
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  alias pg-hba="sudo $EDITOR -p /etc/postgresql/*/main/pg_hba.conf"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  alias pg-hba="sudo $EDITOR -p /usr/local/var/postgres/pg_hba.conf"
+fi
 
 # some russian equivalents for wrong keyboard layout
 alias "с"="cd .."
