@@ -88,10 +88,12 @@ set path+=** " allows gf to look deep into folders during search
 set tags^=.git/tags;$PROJECTS " path to ctags file, stop seatching on $PROJECTS directory
 " // in visual mode to search selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
-" do not search in file names and line numbers, only contents; change match color to red
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4.. --color hl:#ff8787,hl+:#ff0000'}, <bang>0)
+" do not search in file names and line numbers, only contents
+command! -bang -nargs=* Agc call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4.. --color hl:#ff8787,hl+:#ff0000'}, <bang>0)
+" search in both content and file names
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--color hl:#ff8787,hl+:#ff0000'}, <bang>0)
 " ctrl + g to RipGrep files
-nnoremap <C-g> :Ag<Cr>
+nnoremap <C-g> :Agc<Cr>
 " ctrl + p to fuzzy search files
 nnoremap <C-p> :FZF<Cr>
 let g:gutentags_ctags_tagfile=".git/tags" " tags file for gutentags
