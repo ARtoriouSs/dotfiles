@@ -344,7 +344,7 @@ stash() {
 
 # git stash pop given stash or last one if no args specified
 pop() {
-  git stash pop --quiet $@
+  git stash pop $@
   locked_status
 }
 
