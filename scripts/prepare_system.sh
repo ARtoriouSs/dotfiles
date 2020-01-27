@@ -15,6 +15,7 @@ if [ ! -f /.dockerenv ]; then # if not in docker
   ./install_gui.sh
 fi
 ./configure_system.sh
+./install_rbenv.sh
 ./install_zsh.sh && source ~/.zprofile
 ./install_vim.sh
 ./create_dir_tree.sh

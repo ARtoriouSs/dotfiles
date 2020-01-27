@@ -43,14 +43,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # docker-compose
   curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
   chmod +x /usr/local/bin/docker-compose
-  # rbenv
-  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-  cd ~/.rbenv && src/configure && make -C src # can fail, it's ok
-  ~/.rbenv/bin/rbenv init
-  curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash # verify rbenv
-  # ruby-build for rbenv
-  mkdir -p "$(rbenv root)"/plugins
-  git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
   # postgres
   apt-get install --yes ca-certificates
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
@@ -98,10 +90,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   npm update npm -g # updates npm
   # docker with docker-compose
   brew cask install docker
-  # rbenv
-  brew install rbenv
-  rbenv init
-  curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash # verify rbenv
   # postgres
   brew install postgres
   # redis
