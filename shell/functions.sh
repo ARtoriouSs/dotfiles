@@ -179,6 +179,16 @@ tags() {
   mv "$git_dir/$$.tags" "$git_dir/tags"
 }
 
+alias psqlr="restart-postgres"
+restart-postgres() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    rm /usr/local/var/postgres/postmaster.pid
+    brew services restart postgres
+  elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+    sudo service postgresql restart
+  fi
+}
+
 # display linux 256 colors
 color-list() {
   for i in {0..255}; do
