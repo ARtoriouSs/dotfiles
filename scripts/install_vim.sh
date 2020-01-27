@@ -12,7 +12,6 @@ fi
 
 # support tools
 gem install neovim
-rbenv rehash
 npm install -g neovim
 python -m pip install --user --upgrade pynvim
 python3 -m pip install --user --upgrade pynvim

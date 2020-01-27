@@ -109,7 +109,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents # run redis on boot
   # yarn
   brew install yarn
-  # ctags TODO: standatd install via brew when available
+  # ctags TODO: standard install via brew when available
   brew uninstall ctags # remove default ctags
   brew install --HEAD universal-ctags/universal-ctags/universal-ctags
   # markdown

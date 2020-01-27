@@ -21,4 +21,17 @@ fi
 
 cd -
 
+# reminder about manual/GUI configurations
+echo "Now you need to perform some manual configuration:"
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  echo "1) Enable fonts in terminal:"
+  echo "Edit -> Preferences -> Text -> Custom font, search for Droid Sans Mono"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  echo "1) Enable fonts in terminal:"
+  echo "Restart terminal (not just relogin), Prefeneces -> Profiles -> Text -> Font, search for Droid Sans Mono"
+
+  echo "2) Use option/alt key as metakey in terminal to use in mappings:"
+  echo "iTerm2 -> Preferences -> Profiles -> Keys, check Left ⌥ Key as Esc+"
+fi
+
 exec zsh -l # relogin in the end

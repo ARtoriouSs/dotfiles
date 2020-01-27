@@ -160,7 +160,7 @@ tags() {
 
   case "$1" in
     --rails) # add gems paths and cut off bundler warnings with awk
-      ctags -f $git_dir/$$.tags . $(bundle list --paths | awk '/^\// { print $0 }')
+      ctags -f $git_dir/$$.tags . $(bundle list --paths | awk '/^\// { print $0 }') # TODO: gems
     ;;
     --elixir)
       ctags --exclude=_build -f $git_dir/$$.tags .
