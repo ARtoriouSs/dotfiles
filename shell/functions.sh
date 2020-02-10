@@ -271,6 +271,22 @@ search-routes() {
   fi
 }
 
+# grep Gemfile in current project directory
+alias gems="search-gems"
+search-gems() {
+  local location_backup=$PWD
+  while [ $PWD != $HOME ] && [ $PWD != "/" ]; do
+    if test -f "Gemfile"; then
+      cat Gemfile | $GREP_TOOL $@
+      return
+    else
+      cd ..
+    fi
+  done
+  echo "No Gemfile found. Are you inside rails project?"
+  cd $location_backup
+}
+
 # git status function with interactive option for running in separate tmux tab
 alias gs="status" # block ghost script invocation when making typo, remove this if you need ghost script
 alias gst="status"
