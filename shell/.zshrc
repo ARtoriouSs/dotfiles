@@ -32,6 +32,9 @@ if [ -f "$HOME/dotfiles/shell/aliases.sh" ]; then
   . "$HOME/dotfiles/shell/aliases.sh"
 fi
 
+bindkey -M emacs "^[[3;5~" kill-word # ctrl + delete
+bindkey -M emacs "^H" backward-kill-word # ctrl + backspace
+
 # import temp settings (e.g. for current project)
 if [ -f "$HOME/dotfiles/shell/temp_settings.sh" ]; then
   . "$HOME/dotfiles/shell/temp_settings.sh"
