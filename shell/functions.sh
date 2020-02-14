@@ -237,7 +237,7 @@ redis-up() {
 }
 
 # kill redis whether in system process or in docker
-kill-redis() {
+redis-down() {
   ps aux | grep redis-server | awk '{ print $2; exit }' | xargs kill -9
   docker ps | grep redis | awk '{ print $1 }' | xargs docker rm -f
 }
