@@ -220,38 +220,10 @@ search-gems() {
   cd $location_backup
 }
 
-# git status function with interactive option for running in separate tmux tab
+# colored `git status --short`
 alias gs="status" # block ghost script invocation when making typo, remove this if you need ghost script
 alias gst="status"
 status() {
-  local project=$(basename $PWD)
-  local lockfile=~/git_status_interactive_for_$project.lock
-  if [ "$1" = "--interactive" ] || [ "$1" = "-i" ]; then
-    trap "rm -f $lockfile" SIGINT
-    while sleep 0.2s; do
-      touch $lockfile
-      DIFF=$(diff $lockfile <(colored_status))
-      if [[ "$DIFF" != "" && $DIFF != "1do/n<" ]]; then
-        clear
-        printf "git status for $(tput setaf 208)$project$(tput sgr0):\n"
-        colored_status
-        echo "$(colored_status)" > $lockfile
-      fi
-    done
-  else
-    colored_status
-  fi
-}
-
-# colored_status that will not display status if interactive status lockfile exists for current pwd (for funcitons)
-locked_status() {
-  if [ ! -f ~/git_status_interactive_for_$(basename $PWD).lock ]; then
-    colored_status
-  fi
-}
-
-# colored `git status --short`
-colored_status() {
   git status --porcelain | awk '{
     split($0, chars, "")
     index_bit = chars[1]
@@ -298,13 +270,13 @@ stash() {
   else
     git stash push "$@"
   fi
-  locked_status
+  status
 }
 
 # git stash pop given stash or last one if no args specified
 pop() {
   git stash pop $@
-  locked_status
+  status
 }
 
 # git add files or all files if no args specified
@@ -315,7 +287,7 @@ add() {
   else
     git add "$@"
   fi
-  locked_status
+  status
 }
 
 # git reset file or all files if no args specified
@@ -342,7 +314,7 @@ reset() {
       done
     done
   fi
-  locked_status
+  status
 }
 # reset without confirmation
 freset() {
@@ -362,27 +334,27 @@ freset() {
       done
     done
   fi
-  locked_status
+  status
 }
 
 # remove file from index or all files if no args specified
 alias grh="index"
 index() {
   git reset -q HEAD $@
-  locked_status
+  status
 }
 
 # commit and quote all args as message
 alias gcm="commit"
 commit() {
   git commit -v -m "$*"
-  locked_status
+  status
 }
 
 alias gcan="amend-no-edit"
 amend-no-edit() {
   git commit --amend --no-edit
-  locked_status
+  status
 }
 
 # push current branch to origin
@@ -390,17 +362,17 @@ alias forsepush="push --force-with-lease"
 alias fpush="push --force-with-lease"
 push() {
   git push $@ origin "$(current-branch)"
-  locked_status
+  status
 }
 push-my() { # same as above but to 'my' remote
   git push $@ my "$(current-branch)"
-  locked_status
+  status
 }
 
 # pull current branch from origin
 pull() {
   git pull origin "$(current-branch)"
-  locked_status
+  status
 }
 
 # current branch helper function
