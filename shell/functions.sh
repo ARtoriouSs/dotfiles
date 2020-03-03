@@ -9,7 +9,7 @@ o() {
 
 # open tmux session for rails project, takes path as an argument, $PWD by default
 alias tp="t-project"
-alias tc="t-project $PROJECTS/$CURRENT_PROJECT" # project session for current project
+alias tc="t-project $PROJECTS/$CURRENT_PROJECT" # project session for the current project
 t-project() {
   if [ -z "$1" ]; then
     local session_name=$(basename $PWD)
@@ -28,22 +28,17 @@ t-project() {
   if [ $? != 0 ]; then
     tmux new-session -d -s "$session_name" -n "$session_name" -c $project_path
     tmux split-window -h -c $project_path
-    tmux resize-pane -R 20
-    tmux split-window -v -c $project_path
-    tmux resize-pane -U 10
-    tmux select-pane -t 0
-    tmux split-window -v -c $project_path
-    tmux resize-pane -U 10
 
     tmux new-window -n "editor" -c $project_path "$EDITOR"
+    tmux split-window -v -c $project_path
+    tmux resize-pane -D 20
 
     tmux next-window -t "$session_name"
     tmux select-pane -t 1
 
     tmux send-keys -t "$session_name:0.0" "rs" Enter
-    tmux send-keys -t "$session_name:0.1" "cowsay Hello!" Enter
-    tmux send-keys -t "$session_name:0.2" "gst -i" Enter
-    tmux send-keys -t "$session_name:0.3" "rc" Enter
+    tmux send-keys -t "$session_name:0.1" "cowsay \$(status)" Enter
+    tmux send-keys -t "$session_name:1.1" "rc" Enter
   fi
   tmux -2 attach-session -t "$session_name"
 }
@@ -64,26 +59,21 @@ t-default() {
     return 1
   fi
 
-  echo $session_name
-  echo $project_path
-
   tmux has-session -t "$session_name"
   if [ $? != 0 ]; then
     tmux new-session -d -s "$session_name" -n "$session_name" -c "$project_path"
     tmux split-window -h
 
-    tmux new-window -n "editor" -c "$project_path" "$EDITOR"
-
     tmux next-window -t "$session_name"
     tmux select-pane -t 0
 
     tmux send-keys -t "${session_name}:0.0" "cowsay Hello!" Enter
-    tmux send-keys -t "${session_name}:0.1" "gst" Enter
+    tmux send-keys -t "${session_name}:0.1" "status" Enter
   fi
   tmux -2 attach-session -t "$session_name"
 }
 
-# kill current directory tmux session
+# kill tmux session for current directory
 alias tk="t-kill"
 alias tka="t-kill --all" # kill all tmux sessions along with a server
 t-kill() {
@@ -93,63 +83,6 @@ t-kill() {
     local session_name=$([ -z "$1" ] && echo $(basename $PWD) || echo $1)
     tmux has-session -t "$session_name"
     [ $? = 0 ] && tmux kill-session -t "$session_name"
-  fi
-}
-
-# switches session to debug mod (open panes under editor and move server and console processes to them)
-# assumes to be used in default or project sessions defined above
-alias tdm="t-debug-mode"
-t-debug-mode() {
-  if [ ! -z "$1" ]; then
-    local port=$1
-  else
-    local port=3000
-  fi
-
-  local session_name=$(basename $PWD)
-  local project_path=$PWD
-
-  tmux has-session -t "$session_name"
-  if [ $? = 0 ]; then
-    tmux select-window -t "editor"
-    tmux select-pane -t 0
-    tmux split-window -v -c $project_path
-    tmux split-window -h -c $project_path
-
-    tmux send-keys -t "$session_name:$session_name.0" "C-c"
-    kill-server $port
-    tmux send-keys -t "$session_name:\editor.1" "sleep 3s && rs" Enter
-    tmux send-keys -t "$session_name:\editor.2" "rc" Enter
-
-    tmux resize-pane -D 20
-    tmux select-pane -t 1
-    tmux resize-pane -R 50
-    tmux select-pane -t 0
-  fi
-}
-
-# switches back from debug mode
-alias tnm="t-normal-mode"
-t-normal-mode() {
-  if [ ! -z "$1" ]; then
-    local port=$1
-  else
-    local port=3000
-  fi
-
-  local session_name=$(basename $PWD)
-  local project_path=$PWD
-
-  tmux has-session -t "$session_name"
-  if [ $? = 0 ]; then
-    tmux select-window -t "editor"
-
-    tmux send-keys -t "$session_name:\editor.1" "C-c"
-    kill-server $port
-    tmux send-keys -t "$session_name:$session_name.0" "sleep 3s && rs" Enter
-
-    tmux kill-pane -t "$session_name:\editor.1"
-    tmux kill-pane -t "$session_name:\editor.1"
   fi
 }
 
