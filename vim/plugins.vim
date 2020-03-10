@@ -45,6 +45,7 @@ Plug 'vim-ruby/vim-ruby' " ruby
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " CSS in JS files
 Plug 'tpope/vim-rails' " rails
 Plug 'ap/vim-css-color' " colors preview
+Plug 'chr4/nginx.vim' " nginx
 
 " styling
 "Plug 'morhetz/gruvbox' " colorscheme without true color support
