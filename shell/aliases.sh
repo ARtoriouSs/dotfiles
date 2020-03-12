@@ -44,7 +44,6 @@ alias dps="docker ps -a"
 alias di="docker images -a"
 alias drm="docker rm -f"
 alias drmi="docker rmi -f"
-alias dclear="docker system prune"
 alias dcp="docker-compose"
 alias dcps="docker-compose ps -a"
 

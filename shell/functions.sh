@@ -154,9 +154,11 @@ clip() {
   fi
 }
 
-# remove all docker containers
-drmall() {
+# remove all docker containers and images
+dclear() {
+  docker system prune -f
   docker rm -f $(docker ps -aq)
+  docker rmi -f $(docker images -aq)
 }
 
 # run redis in docker in a background
