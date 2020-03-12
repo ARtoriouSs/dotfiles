@@ -20,11 +20,6 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
-# environment
-.env
-.env.development
-.env.production
-
 # local todo files
 todo.yml
 .todo.yml
