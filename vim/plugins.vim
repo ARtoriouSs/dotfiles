@@ -46,10 +46,11 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " CSS in JS
 Plug 'tpope/vim-rails' " rails
 Plug 'ap/vim-css-color' " colors preview
 Plug 'chr4/nginx.vim' " nginx
+Plug 'gisphm/vim-gitignore' " gitignore
 
 " styling
-"Plug 'morhetz/gruvbox' " colorscheme without true color support
 Plug 'jacoborus/tender.vim' " colorscheme
+"Plug 'morhetz/gruvbox' " colorscheme without true color
 Plug 'itchyny/lightline.vim' " statusline
 Plug 'ryanoasis/vim-devicons' " icons, should be last in this list
 call plug#end()
