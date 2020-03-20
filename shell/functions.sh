@@ -133,6 +133,7 @@ color-list() {
 }
 
 # cd to $PROJECTS and farther
+alias cdcc="cdp $CURRENT_PROJECT/.." # if project is in subdirectory
 alias cdc="cdp $CURRENT_PROJECT"
 alias cdt="cdp test"
 cdp() {

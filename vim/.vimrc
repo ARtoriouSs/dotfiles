@@ -201,7 +201,7 @@ nnoremap <C-h> <C-W><C-h>
 nnoremap <C-a> :tabprevious<CR>
 nnoremap <C-s> :tabnext<CR>
 nnoremap <C-t> :tabnew<CR>
-nnoremap <C-d> :tabclose<CR>
+nnoremap <C-q> :tabclose<CR>
 " change selected tab color
 let s:palette = g:lightline#colorscheme#tender#palette
 let s:palette.tabline.tabsel = [ [ '#000000', '#73cef4', 16, 81 ] ]
