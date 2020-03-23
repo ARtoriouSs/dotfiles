@@ -22,6 +22,9 @@ autocmd BufReadPost .vimrc.*                     set filetype=vim
 autocmd BufReadPost *.js.erb,*.js.haml,*.js.slim set filetype=javascript
 autocmd BufReadPost .env.*                       set filetype=sh
 autocmd BufReadPost *.inky                       set filetype=eruby
+" highlight trailing spaces to clearly see indentation
+highlight TrailingSpace guifg=red
+match TrailingSpace / \+$/
 
 """ statusline settings
 set laststatus=2 " shows status line for all splits
