@@ -47,6 +47,8 @@ Plug 'tpope/vim-rails' " rails
 Plug 'ap/vim-css-color' " colors preview
 Plug 'chr4/nginx.vim' " nginx
 Plug 'gisphm/vim-gitignore' " gitignore
+Plug 'othree/html5.vim' " html
+Plug 'vim-scripts/HTML-AutoCloseTag' " auto-closing html tags
 
 " styling
 Plug 'jacoborus/tender.vim' " colorscheme
