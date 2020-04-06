@@ -14,14 +14,15 @@ endif
 syntax on " enable syntax highlighting
 colorscheme tender " set colorscheme
 " syntax highlighting for specific file types
-autocmd BufReadPost .{jscs,jshint,eslint}rc      set filetype=json
-autocmd BufReadPost .profile                     set filetype=zsh
-autocmd BufReadPost .gemrc                       set filetype=yaml
-autocmd BufReadPost Dockerfile.*                 set filetype=dockerfile
-autocmd BufReadPost .vimrc.*                     set filetype=vim
-autocmd BufReadPost *.js.erb,*.js.haml,*.js.slim set filetype=javascript
-autocmd BufReadPost .env.*                       set filetype=sh
-autocmd BufReadPost *.inky                       set filetype=eruby
+autocmd BufNewFile,BufReadPost .{jscs,jshint,eslint}rc      set filetype=json
+autocmd BufNewFile,BufReadPost .profile                     set filetype=zsh
+autocmd BufNewFile,BufReadPost .gemrc                       set filetype=yaml
+autocmd BufNewFile,BufReadPost Dockerfile.*                 set filetype=dockerfile
+autocmd BufNewFile,BufReadPost .vimrc.*                     set filetype=vim
+autocmd BufNewFile,BufReadPost *.js.{erb,haml,slim}         set filetype=javascript
+autocmd BufNewFile,BufReadPost .env.*                       set filetype=sh
+autocmd BufNewFile,BufReadPost *.inky                       set filetype=eruby
+autocmd BufNewFile,BufReadPost Procfile                     set filetype=elixir " looks nice with elixir highlighting
 " highlight trailing spaces to clearly see indentation
 highlight TrailingSpace guifg=red
 match TrailingSpace / \+$/
