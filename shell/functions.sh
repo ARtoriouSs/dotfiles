@@ -182,7 +182,7 @@ redis-down() {
 alias ks="kill-server"
 kill-server() {
   [ -z "$1" ] && local port=3000 || local port=$1
-  lsof -i tcp:$port | grep -v 'chrome' | awk 'FNR > 1 {print $2}' | xargs kill -9
+  lsof -i tcp:$port | grep -v 'chrome\|insomnia' | awk 'FNR > 1 {print $2}' | xargs kill -9
 }
 
 # generate rails migration and quote all args as name
