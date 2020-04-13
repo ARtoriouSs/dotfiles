@@ -20,6 +20,7 @@ autocmd BufNewFile,BufReadPost .gemrc                       set filetype=yaml
 autocmd BufNewFile,BufReadPost Dockerfile.*                 set filetype=dockerfile
 autocmd BufNewFile,BufReadPost .vimrc.*                     set filetype=vim
 autocmd BufNewFile,BufReadPost *.js.{erb,haml,slim}         set filetype=javascript
+autocmd BufNewFile,BufReadPost *.jsx                        set filetype=javascript.jsx
 autocmd BufNewFile,BufReadPost .env.*                       set filetype=sh
 autocmd BufNewFile,BufReadPost *.inky                       set filetype=eruby
 autocmd BufNewFile,BufReadPost Procfile                     set filetype=elixir " looks nice with elixir highlighting
