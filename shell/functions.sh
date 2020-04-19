@@ -37,7 +37,7 @@ t-project() {
     tmux select-pane -t 1
 
     tmux send-keys -t "$session_name:0.0" "rs" Enter
-    tmux send-keys -t "$session_name:0.1" "cowsay \$(status)" Enter
+    tmux send-keys -t "$session_name:0.1" "status" Enter
     tmux send-keys -t "$session_name:1.1" "rc" Enter
   fi
   tmux -2 attach-session -t "$session_name"
