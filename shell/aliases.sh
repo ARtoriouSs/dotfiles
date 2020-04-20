@@ -19,7 +19,6 @@ alias gtrust="mkdir .git/safe"
 
 # rails
 alias r="rails"
-alias rt="bundle exec rails test"
 alias b="bundle"
 alias be="bundle exec"
 alias rs="bundle exec rails server"
@@ -30,12 +29,27 @@ alias rdm="bundle exec rails db:migrate"
 alias rdr="bundle exec rails db:drop db:create db:migrate"
 alias spec="bundle exec rspec"
 
+# phoenix
+alias mixer="iex --erl \"-kernel shell_history enabled\" -S mix phx.server"
+alias m="mix"
+alias mi="mix deps.get"
+alias mem="mix ecto.migrate"
+alias mer="mix do ecto.drop, ecto.create, ecto.migrate"
+alias mt="mix test"
+alias espec="mix espec"
+
 # npm
 alias n="npm"
 alias nr="npm run"
 alias ni="npm install"
 alias ns="npm run start"
 alias nt="npm run test"
+alias nd="npm run debug"
+
+# yarn
+alias y="yarn"
+alias yi="yarn install"
+alias yt="yarn test"
 
 # docker
 alias d="docker"
