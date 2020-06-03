@@ -113,6 +113,9 @@ set expandtab " replaces tabs with spaces
 set smarttab " use shiftwidth instead of tabstop at start of lines
 set autoindent " copy indent from current line when starting a new line
 set smartindent " does smart autoindenting in C-like code
+" make < > shifts keep selection
+vnoremap < <gv
+vnoremap > >gv
 
 """ folding
 set nofoldenable " don't fold by default
