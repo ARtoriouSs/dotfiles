@@ -40,7 +40,7 @@ To install **everything** run:
 ```bash
 cd ~
 git clone https://github.com/ARtoriouSs/dotfiles.git
-sudo dotfiles/scripts/prepare_system.sh
+./dotfiles/scripts/prepare_system.sh
 ```
 
 Every script will work correctly when run separately, but keep in mind that you should use symlinking to use it as is,

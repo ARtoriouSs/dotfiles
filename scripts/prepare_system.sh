@@ -3,7 +3,8 @@
 # this script should install programs on a recently installed system
 # and run all other scripts in this directory to prepare system to use
 # do not run it if system isn't empty, in that case run needed scripts separately
-# must be running with sudo
+
+bash -l # enable login shell
 
 cd ~/dotfiles/scripts # if runned from outside
 
@@ -24,15 +25,20 @@ cd -
 
 # reminder about manual/GUI configurations
 echo "Now you need to perform some manual configuration:"
+echo "1) Make terminal run login shell by default:"
+echo "- Check 'run command as a login shell' option in terminal preferences"
+echo "- Add 'zsh -l' as a login command in terminal preferences"
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  echo "1) Enable fonts in terminal:"
+  echo "2) Enable fonts in terminal:"
   echo "Edit -> Preferences -> Text -> Custom font, search for Droid Sans Mono"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  echo "1) Enable fonts in terminal:"
+  echo "2) Enable fonts in terminal:"
   echo "Restart terminal (not just relogin), Prefeneces -> Profiles -> Text -> Font, search for Droid Sans Mono"
 
-  echo "2) Use option/alt key as metakey in terminal to use in mappings:"
+  echo "3) Use option/alt key as metakey in terminal to use in mappings:"
   echo "iTerm2 -> Preferences -> Profiles -> Keys, check Left ⌥ Key as Esc+"
 fi
+
+echo "Also you can manually run ass_ssh.sh to create ssh key when needed."
 
 exec zsh -l # relogin in the end

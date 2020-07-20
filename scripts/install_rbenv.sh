@@ -2,7 +2,7 @@
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-  cd ~/.rbenv && src/configure && make -C src # can fail, it's ok
+  cd ~/.rbenv && src/configure && make -C src && cd - # can fail, it's ok
   ~/.rbenv/bin/rbenv init
   curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash # verify rbenv
   # ruby-build for rbenv

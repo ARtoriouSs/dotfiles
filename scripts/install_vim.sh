@@ -11,7 +11,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # support tools
-gem install neovim
+sudo gem install neovim
 npm install -g neovim
 python -m pip install --user --upgrade pynvim
 python3 -m pip install --user --upgrade pynvim

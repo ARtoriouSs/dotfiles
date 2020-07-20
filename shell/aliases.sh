@@ -39,7 +39,6 @@ alias mt="mix test"
 alias espec="mix espec"
 
 # npm
-alias n="npm"
 alias nr="npm run"
 alias ni="npm install"
 alias ns="npm run start"
