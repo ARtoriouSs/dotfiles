@@ -1,5 +1,4 @@
-FROM ubuntu:18.04
-
+FROM linuxmintd/mint20-amd64
 # prerequirements
 RUN apt-get update && apt-get install -y sudo git
 

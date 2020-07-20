@@ -4,8 +4,8 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   sudo apt-get update --yes
   sudo apt-get install --yes neovim
-  sudo apt-get install python-neovim
-  sudo apt-get install python3-neovim
+  sudo apt-get install --yes python-neovim
+  sudo apt-get install --yes python3-neovim
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew install neovim
 fi

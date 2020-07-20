@@ -4,7 +4,17 @@
 # and run all other scripts in this directory to prepare system to use
 # do not run it if system isn't empty, in that case run needed scripts separately
 
-bash -l # enable login shell
+
+if [ -z "$1" ]; then
+  echo "Type 'y' to reset working tree to $(git rev-parse --short HEAD)"
+  echo "Ensure that you running login shell before running this script"
+  echo "Press 'y' to proceed, or type 'bash -l' and try again."
+  read key
+  if [ "$key" != "y" ]; then
+    echo "Aborted"
+    exit
+  fi
+fi
 
 cd ~/dotfiles/scripts # if runned from outside
 

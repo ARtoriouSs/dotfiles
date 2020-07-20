@@ -4,7 +4,7 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   sudo apt-get update --yes
   sudo apt-get upgrade --yes
-  sudo apt-get install --yes software-properties-common apt-transport-https wget curl snapd xclip libcurl4-openssl-dev
+  sudo apt-get install --yes software-properties-common apt-transport-https wget curl snapd xclip libcurl4-openssl-dev apt-utils
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" # homebrew
   brew doctor # make sure brew has permissions
@@ -33,7 +33,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # tmux
   sudo apt-get install --yes tmux
   # node and npm (may need to update version below)
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.1/install.sh | bash
   apt-get install --yes npm
   npm update npm -g # updates npm
   npm install -g n
