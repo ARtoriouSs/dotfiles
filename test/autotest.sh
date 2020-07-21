@@ -6,5 +6,5 @@ if [ "$1" = "--osx" ] || [ "$1" = "--macos" ]; then
   echo "not supported, https://github.com/Cleafy/sxkdvm can be a way to go"
 else
   docker build -f ~/dotfiles/test/Dockerfile -t dottest-all ~/dotfiles
-  docker run dottest-all "./scripts/prepare_system.sh --skip-login-warn"
+  docker run dottest-all "echo pass | ./scripts/prepare.sh --skip-login-warn"
 fi
