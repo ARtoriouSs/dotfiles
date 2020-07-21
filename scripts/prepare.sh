@@ -3,12 +3,6 @@
 # this script should prepate a recently installed system to use,
 # it will run all other scripts in this directory
 
-#if [ test $(shopt -q login_shell) ]; then
-  #echo "You are currently running a non-login shell, type 'bash -l' and run script again"
-  #echo "Aborted"
-  #exit
-#fi
-
 cd ~/dotfiles/scripts # if runned from outside
 
 cp ../shell/temp_settings.sample.sh ../shell/temp_settings.sh

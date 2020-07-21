@@ -4,15 +4,14 @@ FROM linuxmintd/mint20-amd64
 RUN apt update && apt install -y sudo git
 
 # create a non-root user
-RUN sudo adduser testuser --gecos "Test" --disabled-password
-RUN echo "testuser:pass" | chpasswd
-RUN usermod -aG sudo testuser
+RUN sudo adduser test --gecos "Test" --disabled-password
+RUN echo "test:foobar" | chpasswd
+RUN usermod -aG sudo test
 
-COPY . home/testuser/dotfiles
-RUN rm -rf home/testuser/shell/temp_settings.sh
+COPY . home/test/dotfiles
+RUN rm -rf home/test/shell/temp_settings.sh
 
-RUN sudo chown -R testuser home/testuser/dotfiles
+RUN sudo chown -R test home/test/dotfiles
 
-USER testuser
-WORKDIR home/testuser/dotfiles
-ENTRYPOINT ["bash", "-l"]
+USER test
+WORKDIR home/test/dotfiles

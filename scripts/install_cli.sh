@@ -29,9 +29,9 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # cowsay :)
   sudo apt install --yes cowsay
   # ripgrep
-  sudo apt install ripgrep
+  sudo apt install --yes ripgrep
   # ag
-  apt install silversearcher-ag
+  sudo apt install --yes silversearcher-ag
   # tmux
   sudo apt install --yes tmux
   # node and npm (may need to update version below)
