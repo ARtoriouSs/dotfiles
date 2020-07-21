@@ -13,7 +13,7 @@ fi
 # support tools
 sudo gem install neovim
 npm install -g neovim
-python -m pip install --user --upgrade pynvim
+python2 -m pip install --user --upgrade pynvim
 python3 -m pip install --user --upgrade pynvim
 
 # symlink for config

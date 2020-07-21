@@ -9,7 +9,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew install zsh
   RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
-chsh -s /usr/bin/zsh
+sudo chsh -s /usr/bin/zsh
 
 # symlinks for config files
 ln -sf ~/dotfiles/shell/.zshrc ~/.zshrc

@@ -5,7 +5,7 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # chrome
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  sudo apt install --yes google-chrome-stable_current_amd64.deb
+  sudo apt install --yes ./google-chrome-stable_current_amd64.deb
   rm -f google-chrome-stable_current_amd64.deb
   # telegram
   wget -O- https://telegram.org/dl/desktop/linux | sudo tar xJ -C /opt/
@@ -18,6 +18,10 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   wget https://downloads.slack-edge.com/linux_releases/slack-desktop-4.0.2-amd64.deb
   sudo apt install --yes ./slack-desktop-4.0.2-amd64.deb
   rm -f slack-desktop-4.0.2-amd64.deb
+  # discord
+  wget -O ./discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+  sudo gdebi ./discord.deb
+  rm -f ./discord.deb
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # chrome
   brew cask install google-chrome
@@ -27,4 +31,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew cask install skype
   # slack
   brew cask install slack
+  # discord
+  brew cask install discord
 fi
