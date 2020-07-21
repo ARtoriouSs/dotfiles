@@ -25,10 +25,9 @@ export BITBACKET_USERNAME=ARtoriouS
 # directories and files access
 export MY_FOLDER=~/my_folder
 export PROJECTS=~/my_folder/projects
-export DESKTOP=~/Desktop
 export TODO=~/todo.yml
 
-# initializations
+### initializations
 
 # dircolors
 if [ -x /usr/bin/dircolors ]; then

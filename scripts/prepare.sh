@@ -14,7 +14,7 @@ cd ~/dotfiles/scripts # if runned from outside
 cp ../shell/temp_settings.sample.sh ../shell/temp_settings.sh
 
 ./create_symlinks.sh
-./install_software.sh
+./install_cli.sh
 if [ ! -f /.dockerenv ]; then # if not in docker
   ./install_gui.sh
 fi
