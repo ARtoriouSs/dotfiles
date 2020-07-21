@@ -14,7 +14,7 @@ I tried to make everything easy to understand, so there are a lot of comments if
 
 #### Here is:
 
-- [Script for installing everything](scripts/prepare_system.sh) from here on empty Linux system
+- [Script for installing everything](scripts/prepare.sh) from here on empty Linux system
 - Configured [.bashrc](shell/.bashrc) and [.profile](shell/.profile)
 - [Script for installing zsh](scripts/install_zsh.sh) with configured [.zshrc](shell/.zshrc), [.zprofile](shell/.zprofile) and extensions
 - [Aliases](shell/aliases.sh) and some convenient shell [functions](shell/functions.sh)
@@ -33,14 +33,14 @@ I tried to make everything easy to understand, so there are a lot of comments if
 - Ruby, Rbenv
 - NodeJS and npm
 - PostgreSQL, Redis
-- Slack, Skype, Telegram, Google Chrome
+- Slack, Skype, Telegram, Google Chrome, Discord
 
 To install **everything** run:
 
 ```bash
 cd ~
 git clone https://github.com/ARtoriouSs/dotfiles.git
-./dotfiles/scripts/prepare_system.sh
+./dotfiles/scripts/prepare.sh
 ```
 
 Every script will work correctly when run separately, but keep in mind that you should use symlinking to use it as is,
