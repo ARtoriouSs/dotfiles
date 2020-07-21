@@ -7,11 +7,11 @@ RUN apt update && apt install -y sudo git
 RUN sudo adduser test --gecos "Test" --disabled-password
 RUN echo "test:foobar" | chpasswd
 RUN usermod -aG sudo test
+HOME home/test
 
-COPY . home/test/dotfiles
-RUN rm -rf home/test/shell/temp_settings.sh
-
-RUN sudo chown -R test home/test/dotfiles
+COPY . ~/dotfiles
+RUN rm -f ~/dotfiles/shell/temp_settings.sh
+RUN sudo chown -R ~/dotfiles
 
 USER test
-WORKDIR home/test/dotfiles
+WORKDIR ~/dotfiles
