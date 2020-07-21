@@ -2,8 +2,8 @@
 
 # zsh and Oh My Zsh
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  sudo apt-get update --yes
-  sudo apt-get install --yes zsh
+  sudo apt update --yes
+  sudo apt install --yes zsh
   RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew install zsh

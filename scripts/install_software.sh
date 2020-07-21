@@ -2,9 +2,9 @@
 
 # prerequirements
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  sudo apt-get update --yes
-  sudo apt-get upgrade --yes
-  sudo apt-get install --yes software-properties-common apt-transport-https wget curl xclip libcurl4-openssl-dev apt-utils
+  sudo apt update --yes
+  sudo apt upgrade --yes
+  sudo apt install --yes software-properties-common apt-transport-https wget curl xclip libcurl4-openssl-dev apt-utils
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" # homebrew
   brew doctor # make sure brew has permissions
@@ -21,80 +21,54 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   sudo python2 get-pip.py
   rm get-pip.py
   # ruby
-  sudo apt-get install --yes ruby-full
+  sudo apt install --yes ruby-full
   # erlang
   wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
   echo "deb https://packages.erlang-solutions.com/ubuntu bionic contrib" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
-  sudo apt-get install --yes erlang
+  sudo apt install --yes erlang
   # cowsay :)
-  sudo apt-get install --yes cowsay
+  sudo apt install --yes cowsay
   # ripgrep
-  sudo apt-get install ripgrep
+  sudo apt install ripgrep
+  # ag
+  apt install silversearcher-ag
   # tmux
-  sudo apt-get install --yes tmux
+  sudo apt install --yes tmux
   # node and npm (may need to update version below)
-  sudo apt-get install --yes npm
-  npm update npm -g # updates npm
+  sudo apt install --yes npm
+  npm update npm -g # update npm
   sudo npm install -g n
   sudo mkdir -p /usr/local/n
   sudo chown -R $(whoami) /usr/local/n
   sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
   n latest
   # docker
-  echo
-  echo
-  echo
-  echo
-  echo
-  echo ---------------------------- docker
-  echo
-  echo
-  echo
-  echo
-  echo
-  sudo apt-get install --yes apt-transport-https ca-certificates
-  echo -1
+  sudo apt install --yes ca-certificates python3-requests # prerequirements
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  echo -2
   sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-  echo -3
-  sudo apt-get update
-  echo -4
+  sudo apt update
   apt-cache policy docker-ce
-  echo -5
-  sudo apt-get install --yes docker-ce docker-ce-cli containerd.io
-  echo -6
-  sudo usermod -aG docker ${whoami}
-  echo
-  echo
-  echo
-  echo
-  echo
-  echo ---------------------------- docker
-  echo
-  echo
-  echo
-  echo
-  echo
+  sudo apt install --yes docker-ce docker-ce-cli
+  sudo usermod -aG docker ${whoami} # add current user to docker user group
   # docker-compose
   curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
   sudo chmod +x /usr/local/bin/docker-compose
   # postgres
-  sudo apt-get install --yes ca-certificates
+  sudo apt install --yes ca-certificates
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
   sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
-  sudo apt-get update
-  sudo apt-get install --yes postgresql postgresql-contrib postgresql-common
+  sudo apt update
+  sudo apt install --yes postgresql postgresql-contrib postgresql-common
   # redis
-  sudo apt-get install --yes redis-server
+  sudo apt install --yes redis-server
   sudo systemctl enable redis-server.service # run redis on boot
   # yarn
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -~
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-  sudo apt-get update
-  sudo apt-get install --yes yarn
+  sudo apt update
+  sudo apt install --yes yarn
   # ctags TODO: install via apt when available
-  sudo apt-get --yes install pkg-config autoconf # prerequirements
+  sudo apt --yes install pkg-config autoconf # prerequirements
   git clone https://github.com/universal-ctags/ctags.git ctags_source
   cd ctags_source
   ./autogen.sh
@@ -104,7 +78,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   cd -
   rm -rf ctags_source
   # markdown
-  sudo apt-get install --yes markdown
+  sudo apt install --yes markdown
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # pip
   easy_install pip
@@ -117,6 +91,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew install cowsay
   # ripgrep
   brew install ripgrep
+  # ag
+  brew install the_silver_searcher
   # iterm
   brew cask install iterm2
   # tmux

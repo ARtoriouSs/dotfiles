@@ -1,7 +1,7 @@
 FROM linuxmintd/mint20-amd64
 
 # prerequirements
-RUN apt-get update && apt-get install -y sudo git
+RUN apt update && apt install -y sudo git
 
 # create a non-root user
 RUN sudo adduser testuser --gecos "Test" --disabled-password

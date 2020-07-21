@@ -4,5 +4,5 @@
 
 sudo rm /etc/apt/preferences.d/nosnap.pref
 
-sudo apt-get update --yes
-sudo apt-get install --yes snapd
+sudo apt update --yes
+sudo apt install --yes snapd

@@ -2,10 +2,10 @@
 
 # install nvim
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  sudo apt-get update --yes
-  sudo apt-get install --yes neovim
-  sudo apt-get install --yes python-neovim
-  sudo apt-get install --yes python3-neovim
+  sudo apt update --yes
+  sudo apt install --yes neovim
+  sudo apt install --yes python-neovim
+  sudo apt install --yes python3-neovim
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew install neovim
 fi
