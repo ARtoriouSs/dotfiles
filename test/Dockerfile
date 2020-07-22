@@ -3,15 +3,20 @@ FROM linuxmintd/mint20-amd64
 # prerequirements
 RUN apt update && apt install -y sudo git
 
+# emulate snap disabling
+RUN touch /etc/apt/preferences.d/nosnap.pref
+
+# emulate display
+ENV DISPLAY :0
+
 # create a non-root user
 RUN sudo adduser test --gecos "Test" --disabled-password
-RUN echo "test:foobar" | chpasswd
+RUN echo "test:test" | chpasswd
 RUN usermod -aG sudo test
-HOME home/test
 
-COPY . ~/dotfiles
-RUN rm -f ~/dotfiles/shell/temp_settings.sh
-RUN sudo chown -R ~/dotfiles
+COPY . /home/test/dotfiles
+RUN rm -f /home/test/dotfiles/shell/temp_settings.sh
+RUN sudo chown -R test /home/test/dotfiles
 
 USER test
-WORKDIR ~/dotfiles
+WORKDIR /home/test/dotfiles

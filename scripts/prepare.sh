@@ -9,9 +9,7 @@ cp ../shell/temp_settings.sample.sh ../shell/temp_settings.sh
 
 ./create_symlinks.sh
 ./install_cli.sh
-if [ ! -f /.dockerenv ]; then # if not in docker
-  ./install_gui.sh
-fi
+./install_gui.sh
 ./configure_system.sh
 ./install_rbenv.sh
 ./install_zsh.sh && source ~/.zprofile

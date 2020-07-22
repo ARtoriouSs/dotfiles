@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# this script shouldn't be run in non-gui environment like docker to not brake dependensies
-
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # chrome
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -20,7 +18,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   rm -f slack-desktop-4.0.2-amd64.deb
   # discord
   wget -O ./discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
-  sudo gdebi ./discord.deb
+  sudo apt install --yes ./discord.deb
   rm -f ./discord.deb
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # chrome
