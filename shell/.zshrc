@@ -1,3 +1,5 @@
+export RC_SOURCED=true # for healthcheck script
+
 # zsh-specific variables
 export ZSH_THEME="chaotic-beef" # theme
 export CASE_SENSITIVE="true"

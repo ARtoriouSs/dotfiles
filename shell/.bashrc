@@ -1,3 +1,5 @@
+export RC_SOURCED=true # for healthcheck script
+
 # If not running interactively, don't do anything
 case $- in
   *i*) ;;

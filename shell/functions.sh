@@ -20,7 +20,7 @@ t-project() {
   fi
 
   if [ ! -d $project_path ]; then
-    printf "$(tput setaf 208)$project_path$(tput sgr0) doesn't exist\n"
+    echo "$(tput setaf 208)$project_path$(tput sgr0) doesn't exist"
     return 1
   fi
 
@@ -55,7 +55,7 @@ t-default() {
   fi
 
   if [ ! -d $project_path ]; then
-    printf "$(tput setaf 208)$project_path$(tput sgr0) doesn't exist\n"
+    echo "$(tput setaf 208)$project_path$(tput sgr0) doesn't exist"
     return 1
   fi
 
