@@ -16,6 +16,8 @@ cp ../shell/temp_settings.sample.sh ../shell/temp_settings.sh
 ./install_vim.sh
 ./create_dir_tree.sh
 
+git remote set-url git@github.com:$GITHUB_USERNAME/dotfiles.git # change remote link to use SSH
+
 cd -
 
 # reminder about manual/GUI configurations
