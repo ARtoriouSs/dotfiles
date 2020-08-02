@@ -4,7 +4,8 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   sudo apt update --yes
   sudo apt upgrade --yes
-  sudo apt install --yes software-properties-common apt-transport-https wget curl xclip libcurl4-openssl-dev apt-utils
+  sudo apt install --yes software-properties-common apt-transport-https  libcurl4-openssl-dev apt-utils libssl-dev /
+    libreadline-dev wget curl xclip
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" # homebrew
   brew doctor # make sure brew has permissions
