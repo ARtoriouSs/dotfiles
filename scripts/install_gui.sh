@@ -20,6 +20,11 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   wget -O ./discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
   sudo apt install --yes ./discord.deb
   rm -f ./discord.deb
+  # insomnia
+  echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+  wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
+  sudo apt update
+  sudo apt install --yes insomnia
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # chrome
   brew cask install google-chrome
@@ -31,4 +36,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew cask install slack
   # discord
   brew cask install discord
+  # insomnia
+  brew cask install insomnia
 fi
