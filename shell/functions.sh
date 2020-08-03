@@ -144,6 +144,9 @@ cdp() {
 clear-test() {
   rm -rf $PROJECTS/test
   mkdir $PROJECTS/test
+  cd $PROJECTS/test
+  git init > /dev/null
+  cd - > /dev/null
 }
 
 # copy to system clipboard
@@ -380,7 +383,7 @@ pull() {
 
 # current branch helper function
 current-branch() {
-  git branch | grep '\*' | awk '{print $2}'
+  git branch --show-current
 }
 
 grem() {
