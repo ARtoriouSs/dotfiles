@@ -26,19 +26,13 @@ t-project() {
 
   tmux has-session -t "$session_name"
   if [ $? != 0 ]; then
-    tmux new-session -d -s "$session_name" -n "$session_name" -c $project_path
-    tmux split-window -h -c $project_path
+    tmux new-session -d -s "$session_name" -n "$session_name" -c $project_path $EDITOR
 
-    tmux new-window -n "editor" -c $project_path "$EDITOR"
     tmux split-window -v -c $project_path
     tmux resize-pane -D 20
 
-    tmux next-window -t "$session_name"
-    tmux select-pane -t 1
-
-    tmux send-keys -t "$session_name:0.0" "rs" Enter
-    tmux send-keys -t "$session_name:0.1" "status" Enter
-    tmux send-keys -t "$session_name:1.1" "rc" Enter
+    tmux send-keys -t "$session_name:0.1" "rc" Enter
+    tmux select-pane -t 0
   fi
   tmux -2 attach-session -t "$session_name"
 }
