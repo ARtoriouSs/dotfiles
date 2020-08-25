@@ -93,7 +93,7 @@ set path+=** " allows gf to look deep into folders during search
 set tags^=.git/tags;$PROJECTS " path to ctags file, stop seatching on $PROJECTS directory
 " // in visual mode to search selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
-" search in both content and file names
+" search in both content, file names and line numbers
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--color hl:#ff8787,hl+:#ff0000'}, <bang>0)
 " do not search in file names and line numbers, only contents
 command! -bang -nargs=* Agc call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4.. --color hl:#ff8787,hl+:#ff0000'}, <bang>0)
@@ -101,10 +101,12 @@ command! -bang -nargs=* Agc call fzf#vim#ag(<q-args>, {'options': '--delimiter :
 command! -bang -nargs=* Agb call fzf#vim#buffer_lines(<q-args>, {'options': '--color hl:#ff8787,hl+:#ff0000'}, <bang>0)
 " ctrl + g to fuzzy search files
 nnoremap <C-g> :Agc<Cr>
-" ctrl + / to fuzzy search current file
-nnoremap <C-y> :Agb<Cr>
+" ctrl + / to fuzzy search current buffer
+nnoremap <C-c> :Agb<Cr>
 " ctrl + p to fuzzy search file names
 nnoremap <C-p> :FZF<Cr>
+" ctrl + b to search in history
+nnoremap <C-b> :History<Cr>
 
 let g:gutentags_ctags_tagfile=".git/tags" " tags file for gutentags
 let g:gutentags_resolve_symlinks=1 " generate tags for original file's project if editing symlink
@@ -151,7 +153,7 @@ let vim_markdown_preview_hotkey='<Leader>m' " toggle markdown preview
 let vim_markdown_preview_browser='Google Chrome' " use google chrome for markdown preview
 
 """ buffers
-set hidden " do not close buffer when window closed
+set hidden " do not close buffer when window is closed
 
 """ controls and navigation
 set timeoutlen=250 " mapping delay
@@ -231,6 +233,7 @@ command! Gb :Gblame
 command! Gcm :Gcommit
 command! Gca :Gcommit --amend
 command! Gcan :Gcommit --amend --no-edit
+command! Gl :Commits
 " Take changes by fugitive's Gread and close splits
 command! Take :Gread | wq | q
 let g:NERDTreeShowIgnoredStatus = 1 " show ignored status in nerdtree, a heavy feature may cost much more time
