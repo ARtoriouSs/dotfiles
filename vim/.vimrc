@@ -23,7 +23,7 @@ autocmd BufNewFile,BufReadPost *.js.{erb,haml,slim}         set filetype=javascr
 autocmd BufNewFile,BufReadPost *.jsx                        set filetype=javascript.jsx
 autocmd BufNewFile,BufReadPost .env.*                       set filetype=sh
 autocmd BufNewFile,BufReadPost *.inky                       set filetype=eruby
-autocmd BufNewFile,BufReadPost Procfile                     set filetype=elixir " looks nice with elixir highlighting
+autocmd BufNewFile,BufReadPost Procfile                     set filetype=sh
 " highlight trailing spaces to clearly see indentation
 highlight TrailingSpace guifg=red
 match TrailingSpace / \+$/
@@ -93,14 +93,19 @@ set path+=** " allows gf to look deep into folders during search
 set tags^=.git/tags;$PROJECTS " path to ctags file, stop seatching on $PROJECTS directory
 " // in visual mode to search selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
-" do not search in file names and line numbers, only contents
-command! -bang -nargs=* Agc call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4.. --color hl:#ff8787,hl+:#ff0000'}, <bang>0)
 " search in both content and file names
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--color hl:#ff8787,hl+:#ff0000'}, <bang>0)
-" ctrl + g to RipGrep files
+" do not search in file names and line numbers, only contents
+command! -bang -nargs=* Agc call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4.. --color hl:#ff8787,hl+:#ff0000'}, <bang>0)
+" search in current buffer
+command! -bang -nargs=* Agb call fzf#vim#buffer_lines(<q-args>, {'options': '--color hl:#ff8787,hl+:#ff0000'}, <bang>0)
+" ctrl + g to fuzzy search files
 nnoremap <C-g> :Agc<Cr>
-" ctrl + p to fuzzy search files
+" ctrl + / to fuzzy search current file
+nnoremap <C-y> :Agb<Cr>
+" ctrl + p to fuzzy search file names
 nnoremap <C-p> :FZF<Cr>
+
 let g:gutentags_ctags_tagfile=".git/tags" " tags file for gutentags
 let g:gutentags_resolve_symlinks=1 " generate tags for original file's project if editing symlink
 
