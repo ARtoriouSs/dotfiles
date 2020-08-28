@@ -107,7 +107,7 @@ nnoremap <C-c> :Agb<Cr>
 nnoremap <C-p> :FZF<Cr>
 " ctrl + b to search in history
 nnoremap <C-b> :History<Cr>
-
+" ctags
 let g:gutentags_ctags_tagfile=".git/tags" " tags file for gutentags
 let g:gutentags_resolve_symlinks=1 " generate tags for original file's project if editing symlink
 
@@ -249,6 +249,8 @@ let NERDTreeShowHidden = 1 " show hidden files by default
 let NERDTreeShowBookmarks = 1 " show bookmarks by default
 " ctrl + n to toggle file explorer and update it
 map <C-n> :NERDTreeToggle <bar> :NERDTreeRefreshRoot<CR>
+command! Cc let @+ = @% " copy path to current file
+command! Cs let @+ = "spec " . @% " copy path to current file + spec prefix
 
 """ RSpec
 let g:rspec_command = "!bundle exec rspec {spec}"
