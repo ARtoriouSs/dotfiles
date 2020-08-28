@@ -252,7 +252,9 @@ map <C-n> :NERDTreeToggle <bar> :NERDTreeRefreshRoot<CR>
 command! Cc let @+ = @% " copy path to current file
 command! Cs let @+ = "spec " . @% " copy path to current file + spec prefix
 
-""" RSpec
+""" Ruby
+let @p = 'Abinding.pry:w' " macro to insert a breakpoint
+" RSpec setup
 let g:rspec_command = "!bundle exec rspec {spec}"
 let g:rspec_runner = "os_x_iterm2" " runner for macVim
 map <Leader>t :call RunCurrentSpecFile()<CR>
