@@ -22,10 +22,9 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   rm get-pip.py
   # ruby
   sudo apt install --yes ruby-full
-  # erlang
-  wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
-  echo "deb https://packages.erlang-solutions.com/ubuntu bionic contrib" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
-  sudo apt install --yes erlang
+  # kerl
+  curl -O https://raw.githubusercontent.com/kerl/kerl/master/kerl
+  chmod a+x kerl
   # cowsay :)
   sudo apt install --yes cowsay
   # ripgrep
@@ -63,10 +62,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   sudo apt install --yes redis-server
   sudo systemctl enable redis-server.service # run redis on boot
   # yarn
-  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -~
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-  sudo apt update
-  sudo apt install --yes yarn
+  sudo npm install -g yarn
   # ctags TODO: install via apt when available
   sudo apt --yes install pkg-config autoconf # prerequirements
   git clone https://github.com/universal-ctags/ctags.git ctags_source
