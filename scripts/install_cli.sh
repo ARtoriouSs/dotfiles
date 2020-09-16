@@ -106,8 +106,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # kerl
-curl -O https://raw.githubusercontent.com/kerl/kerl/master/kerl
-chmod a+x kerl
+curl https://raw.githubusercontent.com/kerl/kerl/master/kerl -o /usr/local/bin/kerl
+chmod a+x /usr/local/bin/kerl
 # kiex
 curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
 # diff-so-fancy
