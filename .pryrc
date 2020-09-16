@@ -21,12 +21,18 @@ end
 # turn off the automatic pager for long output
 Pry.config.pager = false
 
-# set prompt as object name and cut it if it's too long
-Pry.config.prompt = proc do |object, nesting_level, _|
-  object_string = object.class.to_s
-  if object_string.length > 50
-    modules = object_string.split('::')
-    object_string = "#{modules.first}::<...>::#{modules.last}" if modules.count >= 3
-  end
-  "#{object_string} > "
-end
+# set prompt as object name and cut it if it's too long (for tests)
+Pry.config.prompt = Pry::Prompt.new(
+  'Prompt',
+  'Prompt with long class names truncation',
+  [
+    proc do |object, nesting_level, _|
+      object_string = object.class.to_s
+      if object_string.length > 50
+        modules = object_string.split('::')
+        object_string = "#{modules.first}::<...>::#{modules.last}" if modules.count >= 3
+      end
+      "#{object_string} > "
+    end
+  ]
+)
