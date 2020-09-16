@@ -236,7 +236,7 @@ command! Gcan :Gcommit --amend --no-edit
 command! Gl :Commits
 " Take changes by fugitive's Gread and close splits
 command! Take :Gread | wq | q
-let g:NERDTreeShowIgnoredStatus = 1 " show ignored status in nerdtree, a heavy feature may cost much more time
+let g:NERDTreeGitStatusShowIgnored = 1 " show ignored status in nerdtree, a heavy feature may cost much more time
 let g:gitgutter_max_signs = 1000 " increase max displayed signs for gitgutter
 
 """ file explorer
