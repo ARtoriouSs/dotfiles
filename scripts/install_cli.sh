@@ -22,9 +22,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   rm get-pip.py
   # ruby
   sudo apt install --yes ruby-full
-  # kerl
-  curl -O https://raw.githubusercontent.com/kerl/kerl/master/kerl
-  chmod a+x kerl
   # cowsay :)
   sudo apt install --yes cowsay
   # ripgrep
@@ -81,8 +78,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   pip install --upgrade pip
   # ruby
   brew install ruby
-  # erlang
-  brew install erlang
   # cowsay :)
   brew install cowsay
   # ripgrep
@@ -104,12 +99,15 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew install redis
   ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents # run redis on boot
   # yarn
-  brew install yarn
+  sudo npm install -g yarn
   # ctags TODO: standard install via brew when available
   brew uninstall ctags # remove default ctags
   brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 fi
 
+# kerl
+curl -O https://raw.githubusercontent.com/kerl/kerl/master/kerl
+chmod a+x kerl
 # kiex
 curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
 # diff-so-fancy
