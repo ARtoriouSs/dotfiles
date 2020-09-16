@@ -1,4 +1,5 @@
-FROM vcatechnology/linux-mint
+# use Ubuntu 20.04
+FROM amd64/ubuntu:focal
 
 # prerequirements
 RUN apt update && apt install -y sudo git
