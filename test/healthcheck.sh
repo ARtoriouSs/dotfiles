@@ -48,7 +48,7 @@ check ruby
 check rbenv
 
 echo "Erlang and Elixir:"
-check erl
+check kerl
 check kiex
 
 echo "JavaScript:"

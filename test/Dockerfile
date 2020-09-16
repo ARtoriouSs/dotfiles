@@ -1,4 +1,4 @@
-FROM linuxmintd/mint20-amd64
+FROM vcatechnology/linux-mint
 
 # prerequirements
 RUN apt update && apt install -y sudo git
