@@ -15,7 +15,7 @@ syntax on " enable syntax highlighting
 colorscheme tender " set colorscheme
 " syntax highlighting for specific file types
 autocmd BufNewFile,BufReadPost .{jscs,jshint,eslint}rc      set filetype=json
-autocmd BufNewFile,BufReadPost .profile                     set filetype=zsh
+autocmd BufNewFile,BufReadPost {.profile,*.zsh-theme}       set filetype=zsh
 autocmd BufNewFile,BufReadPost .gemrc                       set filetype=yaml
 autocmd BufNewFile,BufReadPost Dockerfile.*                 set filetype=dockerfile
 autocmd BufNewFile,BufReadPost .vimrc.*                     set filetype=vim
