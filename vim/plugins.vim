@@ -44,6 +44,7 @@ Plug 'elixir-editors/vim-elixir' " elixir
 Plug 'vim-ruby/vim-ruby' " ruby
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " CSS in JS files
 Plug 'tpope/vim-rails' " rails
+Plug 'tpope/vim-bundler' " bundler
 Plug 'ap/vim-css-color' " colors preview
 Plug 'chr4/nginx.vim' " nginx
 Plug 'gisphm/vim-gitignore' " gitignore

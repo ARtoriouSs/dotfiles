@@ -82,12 +82,12 @@ t-kill() {
 
 # generate ctags
 tags() {
-  local git_dir="`git rev-parse --git-dir`"
+  local git_dir=$(git --no-optional-locks rev-parse --git-dir)
   trap 'rm -f "$git_dir/$$.tags"' EXIT
 
   case "$1" in
     --rails) # add gems paths and cut off bundler warnings with awk
-      ctags -f $git_dir/$$.tags . $(bundle list --paths | awk '/^\// { print $0 }') # TODO: gems
+      ctags -f $git_dir/$$.tags . $(bundle list --paths | awk '/^\// { print $0 }')
     ;;
     --elixir)
       ctags --exclude=_build -f $git_dir/$$.tags .
@@ -95,11 +95,8 @@ tags() {
     --js)
       ctags --exclude=tmp -f $git_dir/$$.tags .
     ;;
-    --shell)
-      ctags -f $git_dir/$$.tags .
-    ;;
     *)
-      ctags -f $git_dir/$$.tags
+      ctags -f $git_dir/$$.tags .
     ;;
   esac
 
