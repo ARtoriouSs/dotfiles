@@ -150,7 +150,7 @@ clip() {
 }
 
 # remove all docker containers and images
-dclear() {
+dclean() {
   docker system prune -f
   docker rm -f $(docker ps -aq)
   docker rmi -f $(docker images -aq)
