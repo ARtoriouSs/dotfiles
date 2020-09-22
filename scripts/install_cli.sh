@@ -60,7 +60,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   sudo systemctl enable redis-server.service # run redis on boot
   # yarn
   sudo npm install -g yarn
-  # ctags TODO: install via apt when available
+  # ctags TODO: install via apt when available (https://github.com/universal-ctags/ctags)
   sudo apt --yes install pkg-config autoconf # prerequirements
   git clone https://github.com/universal-ctags/ctags.git ctags_source
   cd ctags_source
@@ -105,9 +105,11 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents # run redis on boot
   # yarn
   sudo npm install -g yarn
-  # ctags TODO: standard install via brew when available
+  # ctags TODO: standard install via brew when available (https://github.com/universal-ctags/ctags)
   brew uninstall ctags # remove default ctags
   brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+  # github CLI
+  brew install gh
 fi
 
 # kerl
