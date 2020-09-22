@@ -187,6 +187,8 @@ command! Vimrc :edit $DOTFILES_VIMRC
 " plug aliases
 command! Pi :PlugInstall
 command! Pu :PlugUpdate
+command! Cc let @+ = @% " copy path to current file
+command! Cs let @+ = "spec " . @% " copy path to current file + spec prefix
 
 """ text
 " enable auto-pairs
@@ -249,8 +251,6 @@ let NERDTreeShowHidden = 1 " show hidden files by default
 let NERDTreeShowBookmarks = 1 " show bookmarks by default
 " ctrl + n to toggle file explorer and update it
 map <C-n> :NERDTreeToggle <bar> :NERDTreeRefreshRoot<CR>
-command! Cc let @+ = @% " copy path to current file
-command! Cs let @+ = "spec " . @% " copy path to current file + spec prefix
 
 """ Ruby
 let @p = 'Abinding.pry:w' " macro to insert a breakpoint

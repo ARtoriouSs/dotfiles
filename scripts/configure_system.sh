@@ -8,6 +8,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   defaults write -g InitialKeyRepeat -int 10 # decreace delay before repeat starts (minimum in settings 15)
 fi
 
+gh config set git_protocol ssh
+
 # fonts
 local url=https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
 if [[ "$OSTYPE" == "linux-gnu" ]]; then

@@ -7,6 +7,7 @@ fi
 
 # variables
 export DOTFILES_VIMRC=~/dotfiles/vim/.vimrc # dotfiles copy of vimrc
+export VISUAL=nvim
 export EDITOR=nvim
 export GREP_TOOL=rg
 export SSH_KEY_PATH=~/.ssh/id_rsa

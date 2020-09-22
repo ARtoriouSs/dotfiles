@@ -72,6 +72,11 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   rm -rf ctags_source
   # markdown
   sudo apt install --yes markdown
+  # github CLI
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+  sudo apt-add-repository https://cli.github.com/packages
+  sudo apt update
+  sudo apt install gh
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # pip
   easy_install pip
