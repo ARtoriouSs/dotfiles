@@ -65,9 +65,9 @@ alias ccat="pygmentize -g -O style='colorful'" # colored cat
 alias e="echo"
 alias c="cd .."
 alias psqlc="psql -U postgres"
-alias todo="$EDITOR $TODO"
-alias todol="$EDITOR todo.yml" # local todo
-alias v=$EDITOR
+alias todo="$VISUAL $TODO"
+alias todol="$VISUAL todo.yml" # local todo
+alias v=$VISUAL
 alias search="find . -name" # search file by name
 alias k9="kill -9"
 alias now="date '+ %H:%M | %B %d'" # show current date and time
@@ -93,30 +93,30 @@ fi
 
 # dotfiles quick access
 alias cdd="cd ~/dotfiles"
-alias profile="$EDITOR ~/dotfiles/shell/.profile"
-alias bashrc="$EDITOR ~/dotfiles/shell/.bashrc"
-alias zprofile="$EDITOR ~/dotfiles/shell/.zprofile"
-alias zshrc="$EDITOR ~/dotfiles/shell/.zshrc"
-alias aliases="$EDITOR ~/dotfiles/shell/aliases.sh"
-alias functions="$EDITOR ~/dotfiles/shell/functions.sh"
-alias environment="$EDITOR ~/dotfiles/shell/environment.sh"
-alias envs="$EDITOR ~/dotfiles/shell/environment.sh"
-alias temp-settings="$EDITOR ~/dotfiles/shell/temp_settings.sh"
-alias temps="$EDITOR ~/dotfiles/shell/temp_settings.sh"
-alias gitconfig="$EDITOR ~/dotfiles/git/.gitconfig"
-alias gitignore-global="$EDITOR ~/dotfiles/.gitignore_global"
-alias vimrc="$EDITOR ~/dotfiles/vim/.vimrc"
-alias plugins="$EDITOR ~/dotfiles/vim/plugins.vim"
-alias tmux-conf="$EDITOR ~/dotfiles/.tmux.conf"
-alias pryrc="$EDITOR ~/dotfiles/.pryrc"
-alias default-ctags="$EDITOR ~/dotfiles/default.ctags"
+alias profile="$VISUAL ~/dotfiles/shell/.profile"
+alias bashrc="$VISUAL ~/dotfiles/shell/.bashrc"
+alias zprofile="$VISUAL ~/dotfiles/shell/.zprofile"
+alias zshrc="$VISUAL ~/dotfiles/shell/.zshrc"
+alias aliases="$VISUAL ~/dotfiles/shell/aliases.sh"
+alias functions="$VISUAL ~/dotfiles/shell/functions.sh"
+alias environment="$VISUAL ~/dotfiles/shell/environment.sh"
+alias envs="$VISUAL ~/dotfiles/shell/environment.sh"
+alias temp-settings="$VISUAL ~/dotfiles/shell/temp_settings.sh"
+alias temps="$VISUAL ~/dotfiles/shell/temp_settings.sh"
+alias gitconfig="$VISUAL ~/dotfiles/git/.gitconfig"
+alias gitignore-global="$VISUAL ~/dotfiles/.gitignore_global"
+alias vimrc="$VISUAL ~/dotfiles/vim/.vimrc"
+alias plugins="$VISUAL ~/dotfiles/vim/plugins.vim"
+alias tmux-conf="$VISUAL ~/dotfiles/.tmux.conf"
+alias pryrc="$VISUAL ~/dotfiles/.pryrc"
+alias default-ctags="$VISUAL ~/dotfiles/default.ctags"
 
 # system files access
-alias hosts="$EDITOR /etc/hosts"
+alias hosts="$VISUAL /etc/hosts"
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  alias pg-hba="sudo $EDITOR -p /etc/postgresql/*/main/pg_hba.conf"
+  alias pg-hba="sudo $VISUAL -p /etc/postgresql/*/main/pg_hba.conf"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  alias pg-hba="sudo $EDITOR -p /usr/local/var/postgres/pg_hba.conf"
+  alias pg-hba="sudo $VISUAL -p /usr/local/var/postgres/pg_hba.conf"
 fi
 
 # some russian equivalents for wrong keyboard layout

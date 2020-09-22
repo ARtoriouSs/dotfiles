@@ -8,7 +8,7 @@ fi
 # variables
 export DOTFILES_VIMRC=~/dotfiles/vim/.vimrc # dotfiles copy of vimrc
 export VISUAL=nvim
-export EDITOR=nvim
+export EDITOR=ex
 export GREP_TOOL=rg
 export SSH_KEY_PATH=~/.ssh/id_rsa
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' # colored GCC warnings and errors

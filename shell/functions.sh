@@ -26,7 +26,7 @@ t-project() {
 
   tmux has-session -t "$session_name"
   if [ $? != 0 ]; then
-    tmux new-session -d -s "$session_name" -n "$session_name" -c $project_path $EDITOR
+    tmux new-session -d -s "$session_name" -n "$session_name" -c $project_path $VISUAL
 
     tmux split-window -v -c $project_path
     tmux resize-pane -D 20
