@@ -16,7 +16,6 @@ export TERM=xterm-256color # use 256 colors
 
 # fuzzy search
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # logins
 export GITHUB_USERNAME=ARtoriouSs
@@ -38,5 +37,3 @@ fi
 eval "$(rbenv init -)" # rbenv
 
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" # kiex
-
-eval "$(gh completion --shell zsh)" # gh completion

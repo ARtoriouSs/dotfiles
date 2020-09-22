@@ -43,3 +43,5 @@ if [ -f "$HOME/dotfiles/shell/temp_settings.sh" ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(gh completion --shell zsh)" # gh completion
