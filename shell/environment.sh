@@ -38,3 +38,5 @@ fi
 eval "$(rbenv init -)" # rbenv
 
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" # kiex
+
+eval "$(gh completion --shell zsh)" # gh completion

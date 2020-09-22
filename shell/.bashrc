@@ -76,3 +76,5 @@ if [ -f "$HOME/dotfiles/shell/temp_settings.sh" ]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+eval "$(gh completion --shell bash)" # gh completion
