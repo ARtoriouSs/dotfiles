@@ -231,6 +231,7 @@ endif
 " git and fugitive aliases
 command! Gst :Gstatus
 command! Gd :Gdiff
+command! Gds :Gdiffsplit!
 command! Gb :Gblame
 command! Gcm :Gcommit
 command! Gca :Gcommit --amend
