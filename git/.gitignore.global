@@ -5,9 +5,11 @@
 #
 # all local repositories will ignore the following pattens:
 
-# IDE files
+# local IDE and editor files
 .idea
 .vscode
+.vimrc.local
+.vimrc # dotfiles copy is vim/vimrc, so it isn't affected
 
 # temporary files
 *.swp

@@ -135,8 +135,11 @@ set autoread " to autoread if file was changed outside from vim
 set noswapfile " do not use swap files
 set nobackup " to not write backup during overwriting file
 " allows vimrc if repo is trusted by creating .git/safe directory
-if filereadable(".git/safe/../../vimrc.local")
+if filereadable(".git/safe/../../.vimrc.local")
   source .git/safe/../../.vimrc.local
+endif
+if filereadable(".git/safe/../../.vimrc")
+  source .git/safe/../../.vimrc
 endif
 
 """ viewport and messages
