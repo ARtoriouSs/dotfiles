@@ -181,12 +181,11 @@ vnoremap <Up> :echoe " Nope, use k "<CR>
 vnoremap <Down> :echoe " Nope, use j "<CR>
 " clear search buffer
 nnoremap <C-x> :let @/ = ""<CR>
-" redraw and reload configuration
-command! Reload source $MYVIMRC | redraw!
-" Q to exit
-command! Q q
+command! Reload source $MYVIMRC | redraw! " redraw and reload configuration
+command! Q q " Q to exit
 " edit vimrc in dotfiles dir (not $MYVIMRC) to have access to git inside vim
 command! Vimrc :edit $DOTFILES_VIMRC
+command! Vimrcl :edit .vimrc.local " edit local vimrc
 " plug aliases
 command! Pi :PlugInstall
 command! Pu :PlugUpdate
@@ -240,8 +239,7 @@ command! Gcm :Gcommit
 command! Gca :Gcommit --amend
 command! Gcan :Gcommit --amend --no-edit
 command! Gl :Commits
-" Take changes by fugitive's Gread and close splits
-command! Take :Gread | wq | q
+command! Take :Gread | wq | q " Take changes by fugitive's Gread and close splits
 let g:NERDTreeGitStatusShowIgnored = 1 " show ignored status in nerdtree, a heavy feature may cost much more time
 let g:gitgutter_max_signs = 1000 " increase max displayed signs for gitgutter
 
