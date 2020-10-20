@@ -400,3 +400,17 @@ ignore() {
 no-ignore() {
   git update-index --no-assume-unchanged $@
 }
+
+# show weather
+wttr() {
+  local url="wttr.in?FMp"
+
+  case "$1" in
+    1) url+='1' ;;
+    2) url+='2' ;;
+    3) ;;
+    *) url+='0' ;;
+  esac
+
+  curl $url
+}
