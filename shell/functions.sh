@@ -334,6 +334,16 @@ freset() {
   status
 }
 
+origin-reset() {
+    echo "Type 'y' to reset branch to origin state"
+    read key
+    if [ "$key" = "y" ]; then
+      git reset --hard origin/$(current-branch)
+    else
+      echo "Aborted"
+    fi
+}
+
 # remove file from index or all files if no args specified
 alias grh="index"
 index() {
