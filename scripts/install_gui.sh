@@ -25,17 +25,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
   sudo apt update
   sudo apt install --yes insomnia
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  # chrome
-  brew cask install google-chrome
-  # telegram
-  brew cask install telegram
-  # skype
-  brew cask install skype
-  # slack
-  brew cask install slack
-  # discord
-  brew cask install discord
-  # insomnia
-  brew cask install insomnia
+elif [[ "$OSTYPE" == "linux-android" ]]; then
+  : # nothing :(
 fi

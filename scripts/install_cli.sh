@@ -5,12 +5,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   sudo apt update --yes
   sudo apt upgrade --yes
   sudo apt install --yes software-properties-common apt-transport-https  libcurl4-openssl-dev apt-utils libssl-dev libreadline-dev wget curl xclip
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" # homebrew
-  brew doctor # make sure brew has permissions
-  brew update
-  brew tap caskroom/cask # cask
-  brew install curl wget coreutils
+elif [[ "$OSTYPE" == "linux-android" ]]; then
+  : # nope
 fi
 
 # more
@@ -77,46 +73,14 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   sudo apt-add-repository https://cli.github.com/packages
   sudo apt update
   sudo apt install gh
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  # pip
-  easy_install pip
-  pip install --upgrade pip
-  # ruby
-  brew install ruby
-  # cowsay :)
-  brew install cowsay
-  # ripgrep
-  brew install ripgrep
-  # ag
-  brew install the_silver_searcher
-  # iterm
-  brew cask install iterm2
-  # tmux
-  brew install tmux
-  # node
-  brew install node
-  npm update npm -g # updates npm
-  # docker with docker-compose
-  brew cask install docker
-  # postgres
-  brew install postgres
-  # redis
-  brew install redis
-  ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents # run redis on boot
-  # yarn
-  sudo npm install -g yarn
-  # ctags TODO: standard install via brew when available (https://github.com/universal-ctags/ctags)
-  brew uninstall ctags # remove default ctags
-  brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-  # github CLI
-  brew install gh
+  # kerl
+  curl https://raw.githubusercontent.com/kerl/kerl/master/kerl -o /usr/local/bin/kerl
+  chmod a+x /usr/local/bin/kerl
+  # kiex
+  curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
+  # diff-so-fancy
+  wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+  sudo chmod +x /usr/local/bin/diff-so-fancy
+elif [[ "$OSTYPE" == "linux-android" ]]; then
 fi
 
-# kerl
-curl https://raw.githubusercontent.com/kerl/kerl/master/kerl -o /usr/local/bin/kerl
-chmod a+x /usr/local/bin/kerl
-# kiex
-curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
-# diff-so-fancy
-wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
-sudo chmod +x /usr/local/bin/diff-so-fancy

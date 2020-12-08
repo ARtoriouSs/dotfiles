@@ -8,10 +8,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   # ruby-build for rbenv
   mkdir -p "$(~/.rbenv/bin/rbenv root)"/plugins
   git clone https://github.com/rbenv/ruby-build.git "$(~/.rbenv/bin/rbenv root)"/plugins/ruby-build
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  brew install rbenv
-  rbenv init
-  curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash # verify rbenv
+elif [[ "$OSTYPE" == "linux-android" ]]; then
 fi
 
 # default-gems for rbenv

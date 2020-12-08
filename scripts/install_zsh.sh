@@ -5,9 +5,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   sudo apt update --yes
   sudo apt install --yes zsh
   RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  brew install zsh
-  RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+elif [[ "$OSTYPE" == "linux-android" ]]; then
+  # https://wiki.termux.com/wiki/ZSH
 fi
 sudo chsh -s /usr/bin/zsh
 
