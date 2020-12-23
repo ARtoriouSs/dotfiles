@@ -32,6 +32,7 @@ Plug 'simeji/winresizer' " easier split resizing
 Plug 'JamshedVesuna/vim-markdown-preview' " markdown preview in a browser
 Plug 'ludovicchabant/vim-gutentags' " autoupdate ctags on file save
 Plug 'tpope/vim-eunuch' " shell file commands
+Plug 'chaoren/vim-wordmotion' " navigation between parts of snake_case and CamelCase words
 
 " languages and tools syntax support
 Plug 'pangloss/vim-javascript' " JavaScript
