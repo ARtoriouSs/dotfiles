@@ -1,6 +1,8 @@
 # Dotfiles
 
-This is repo with my system configuration.
+This is the repo with my system configuration.
+
+[![Bash Shell](https://badges.frapsoft.com/bash/v1/bash.png?v=103)](/shell)
 
 ## How does it work?
 
