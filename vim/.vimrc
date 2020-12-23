@@ -157,6 +157,11 @@ let vim_markdown_preview_browser='Google Chrome' " use google chrome for markdow
 
 """ buffers
 set hidden " do not close buffer when window is closed
+" use alt + d to delete without copying
+nnoremap <M-d> "_d
+xnoremap <M-d> "_d
+" use alt + p in visual mode to pase without copying selection
+xnoremap <M-p> "_dP
 
 """ controls and navigation
 set timeoutlen=250 " mapping delay
