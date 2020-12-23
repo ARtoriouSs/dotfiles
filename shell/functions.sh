@@ -143,9 +143,9 @@ clear-test() {
 # copy to system clipboard
 clip() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
-    pbcopy < $@
+    pbcopy
   elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-    xclip -selection clipboard < $@
+    xclip -rmlastnl -selection clipboard
   fi
 }
 
