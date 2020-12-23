@@ -145,7 +145,7 @@ clip() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
     pbcopy < $@
   elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-    xclip -sel clip < $@
+    xclip -selection clipboard < $@
   fi
 }
 
@@ -179,11 +179,14 @@ kill-server() {
   lsof -i tcp:$port | grep -v 'chrome\|insomnia' | awk 'FNR > 1 {print $2}' | xargs kill -9
 }
 
-# generate rails migration and quote all args as name
+# generate rails migration, quote all args as name and copy path to the clipboard
 alias migr="gen-migration"
 gen-migration() {
   local IFS='_'
-  bundle exec rails generate migration "$*"
+  output=$(bundle exec rails generate migration "$*")
+  echo $output | grep create | awk '{ print $2 }' | xclip -selection clipboard
+
+  echo $output
 }
 
 # rollback rails migrations
