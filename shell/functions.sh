@@ -184,7 +184,7 @@ alias migr="gen-migration"
 gen-migration() {
   local IFS='_'
   output=$(bundle exec rails generate migration "$*")
-  echo $output | grep create | awk '{ print $2 }' | xclip -selection clipboard
+  echo $output | grep create | awk '{ print $2 }' | clip
 
   echo $output
 }
