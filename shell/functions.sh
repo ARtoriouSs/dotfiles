@@ -1,10 +1,6 @@
 # open with default application
 o() {
-  if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    [ -z "$1" ] && xdg-open . || xdg-open $@
-  elif [[ "$OSTYPE" == "darwin"* ]]; then
-    [ -z "$1" ] && open . || open $@
-  fi
+  [ -z "$1" ] && xdg-open . || xdg-open $@
 }
 
 # open tmux session for rails project, takes path as an argument, $PWD by default
@@ -105,12 +101,7 @@ tags() {
 
 alias psqlr="restart-postgres"
 restart-postgres() {
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    rm /usr/local/var/postgres/postmaster.pid
-    brew services restart postgres
-  elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-    sudo service postgresql restart
-  fi
+  sudo service postgresql restart
 }
 
 # display linux 256 colors
@@ -142,11 +133,7 @@ clear-test() {
 
 # copy to system clipboard
 clip() {
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    pbcopy
-  elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-    xclip -rmlastnl -selection clipboard
-  fi
+  xclip -rmlastnl -selection clipboard
 }
 
 # remove all docker containers and images

@@ -1,9 +1,6 @@
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.rbenv/bin:/usr/games:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH # rbenv
 export PATH=.git/safe/../../bin:$PATH # git-safe
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  export PATH=/opt/local/bin:/opt/local/sbin:$PATH # for mac ports
-fi
 
 # variables
 export DOTFILES_VIMRC=~/dotfiles/vim/.vimrc # dotfiles copy of vimrc

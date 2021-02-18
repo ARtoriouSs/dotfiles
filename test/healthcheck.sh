@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO: macOS
 check() {
   if command -v $1 &> /dev/null; then
     printf " $(tput setaf 10)✓  "
@@ -11,7 +10,6 @@ check() {
 }
 
 # check if snap enabled and installed
-# TODO: macOS
 check-snap() {
   if command -v snap &> /dev/null; then
     printf " $(tput setaf 10)✓  snap"

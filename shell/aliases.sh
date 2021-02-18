@@ -73,25 +73,16 @@ alias v=$VISUAL
 alias search="find . -name" # search file by name
 alias k9="kill -9"
 alias now="date '+ %H:%M | %B %d'" # show current date and time
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  alias upd="sudo apt-get --yes update"
-  alias upg="sudo apt-get --yes upgrade"
-  alias install="sudo apt-get --yes update && sudo apt-get --yes install"
-  alias i="sudo apt-get --yes install"
+alias upd="sudo apt-get --yes update"
+alias upg="sudo apt-get --yes upgrade"
+alias install="sudo apt-get --yes update && sudo apt-get --yes install"
+alias i="sudo apt-get --yes install"
 
-  alias susp="systemctl suspend"
-  alias shut="init 0"
-  alias halt="init 0"
+alias susp="systemctl suspend"
+alias shut="init 0"
+alias halt="init 0"
 
-  alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  alias install="brew install"
-  alias i="brew install"
-
-  alias susp="pmset sleepnow"
-  alias shut="sudo halt"
-  alias init="sudo halt"
-fi
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # dotfiles quick access
 alias cdd="cd ~/dotfiles"
@@ -114,12 +105,8 @@ alias pryrc="$VISUAL ~/dotfiles/.pryrc"
 alias default-ctags="$VISUAL ~/dotfiles/default.ctags"
 
 # system files access
-alias hosts="$VISUAL /etc/hosts"
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  alias pg-hba="sudo $VISUAL -p /etc/postgresql/*/main/pg_hba.conf"
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  alias pg-hba="sudo $VISUAL -p /usr/local/var/postgres/pg_hba.conf"
-fi
+alias hosts="sudoedit /etc/hosts"
+alias pg-hba="sudoedit /etc/postgresql/*/main/pg_hba.conf"
 
 # some russian equivalents for wrong keyboard layout
 alias "с"="cd .."
@@ -152,15 +139,8 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # ls
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  alias ls='ls --color=auto -h'
-  alias la='ls -A'
-  alias l1='la -1'
-  alias ll='ls -alh --color=auto --group-directories-first'
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  alias ls="gls --color -h --group-directories-first"
-  alias la="ls -A"
-  alias l1="la -1"
-  alias ll="gls -alh --color --group-directories-first"
-fi
+alias ls='ls --color=auto -h'
+alias la='ls -A'
+alias l1='la -1'
+alias ll='ls -alh --color=auto --group-directories-first'
 alias l="la"
