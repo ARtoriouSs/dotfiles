@@ -374,10 +374,6 @@ push() {
   git push $@ origin "$(current-branch)"
   status
 }
-push-my() { # same as above but to 'my' remote
-  git push $@ my "$(current-branch)"
-  status
-}
 
 # pull current branch from origin
 pull() {
@@ -410,8 +406,24 @@ ignore() {
   git update-index --assume-unchanged $@
 }
 
-no-ignore() {
+unignore() {
   git update-index --no-assume-unchanged $@
+}
+
+alias ghpr="github-pr"
+github-pr() {
+  gh pr create --assignee @me $@
+}
+
+# take PR title from the first commit in a branch
+alias ghprc="github-pr-commit"
+github-pr-commit() {
+  github-pr --title "$(first-commit)" $@
+}
+
+# get name of the first commit in a brach
+first-commit() {
+  git log master..$(current-branch) --oneline | tail -1 | cut -f 2- -d ' '
 }
 
 # show weather

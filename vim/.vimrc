@@ -196,7 +196,7 @@ command! Pi :PlugInstall
 command! Pu :PlugUpdate
 command! Cc let @+ = @% " copy path to current file
 command! Cs let @+ = "spec " . @% " copy path to current file + spec prefix
-" ise alt + w/e/b to navigate by word parts
+" use alt + w/e/b to navigate by word parts
 let g:wordmotion_mappings = {
 \ 'w' : '<M-w>',
 \ 'b' : '<M-b>',
