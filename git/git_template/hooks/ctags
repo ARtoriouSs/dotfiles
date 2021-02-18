@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source ~/dotfiles/shell/functions.sh # source functions to use tags
+source ~/dotfiles/shell/helpers.sh # source functions to use tags
 tags --rails # tags for code
 gem ctags # tags for gems

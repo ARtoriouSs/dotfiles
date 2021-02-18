@@ -21,27 +21,16 @@ plugins=(
   zsh-syntax-highlighting # must be the last in this list
 )
 
-# disable oh-my-zsh aliases
-unalias -m '*'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# import helper functions
-if [ -f "$HOME/dotfiles/shell/functions.sh" ]; then
-  . "$HOME/dotfiles/shell/functions.sh"
-fi
-
-# import aliases
-if [ -f "$HOME/dotfiles/shell/aliases.sh" ]; then
-  . "$HOME/dotfiles/shell/aliases.sh"
-fi
+autoload -U compinit
+compinit -i
 
 bindkey -M emacs "^[[3;5~" kill-word # ctrl + delete
 bindkey -M emacs "^H" backward-kill-word # ctrl + backspace
 
-# import temp settings (e.g. for current project)
-if [ -f "$HOME/dotfiles/shell/temp_settings.sh" ]; then
-  . "$HOME/dotfiles/shell/temp_settings.sh"
-fi
+# disable oh-my-zsh aliases
+unalias -m '*'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-eval "$(gh completion --shell zsh)" # gh completion
+# load specific helpers
+source "$HOME/dotfiles/shell/initializer.sh"

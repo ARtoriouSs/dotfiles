@@ -1,9 +1,7 @@
 export PROFILE_SOURCED=true # for healthcheck script
 
 # Import environment variables. Should be first
-if [ -f "$HOME/dotfiles/shell/environment.sh" ]; then
-  . "$HOME/dotfiles/shell/environment.sh"
-fi
+source "$HOME/dotfiles/shell/environment.sh"
 
 # Initialize zsh
 if [ -n "$ZSH_VERSION" ]; then
