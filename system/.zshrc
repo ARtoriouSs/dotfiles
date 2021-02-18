@@ -33,4 +33,4 @@ bindkey -M emacs "^H" backward-kill-word # ctrl + backspace
 unalias -m '*'
 
 # load specific helpers
-source "$HOME/dotfiles/shell/initializer.sh"
+source "$HOME/dotfiles/system/initializer.sh"

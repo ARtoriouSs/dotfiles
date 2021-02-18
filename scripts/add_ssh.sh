@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/dotfiles/shell/functions.sh # source clip function
+source ~/dotfiles/system/functions.sh # source clip function
 
 if [ -z "$1" ] | [ -z "$EMAIL" ]; then
   echo "provide your email as a first argument:"

@@ -5,7 +5,7 @@
 
 cd ~/dotfiles/scripts # if runned from outside
 
-cp ../shell/temp_settings.sample.sh ../shell/temp_settings.sh
+cp ../system/temp_settings.sample.sh ../system/temp_settings.sh
 
 ./create_symlinks.sh
 ./install_cli.sh
@@ -29,16 +29,8 @@ echo "Edit -> Prefeneces -> Profiles -> Command -> Check 'run command as a login
 echo "optionally add 'zsh -l' as a login command"
 echo "2) Make terminal run maximized by default:"
 echo "Edit -> Prefeneces -> Profiles -> Text -> Set default terminal size as 240 columns and 100 rows"
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  echo "3) Enable fonts in terminal:"
-  echo "Edit -> Preferences -> Text -> Custom font, search for Droid Sans Mono"
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  echo "3) Enable fonts in terminal:"
-  echo "Restart terminal (not just relogin), Edit -> Prefeneces -> Profiles -> Text -> Font, search for Droid Sans Mono"
-
-  echo "4) Use option/alt key as metakey in terminal to use in mappings:"
-  echo "iTerm2 -> Preferences -> Profiles -> Keys, check Left ⌥ Key as Esc+"
-fi
+echo "3) Enable fonts in terminal:"
+echo "Edit -> Preferences -> Text -> Custom font, search for Droid Sans Mono"
 echo
 echo "Also you can manually run add_ssh.sh and enable_snap.sh when needed."
 

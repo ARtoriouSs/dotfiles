@@ -16,7 +16,7 @@ RUN echo "test:test" | chpasswd
 RUN usermod -aG sudo test
 
 COPY . /home/test/dotfiles
-RUN rm -f /home/test/dotfiles/shell/temp_settings.sh
+RUN rm -f /home/test/dotfiles/system/temp_settings.sh
 RUN sudo chown -R test /home/test/dotfiles
 
 USER test

@@ -7,8 +7,8 @@ RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrus
 sudo chsh -s /usr/bin/zsh
 
 # symlinks for config files
-ln -sf ~/dotfiles/shell/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/shell/.zprofile ~/.zprofile
+ln -sf ~/dotfiles/system/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/system/.zprofile ~/.zprofile
 
 # load zsh variables
 source ~/.zprofile

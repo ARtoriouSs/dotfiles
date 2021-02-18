@@ -2,10 +2,8 @@
 
 
 # create symlinks to dotfiles
-ln -sf ~/dotfiles/shell/.bashrc ~/.bashrc
-ln -sf ~/dotfiles/shell/.profile ~/.profile
 mkdir ~/.ctags.d
-ln -sf ~/dotfiles/shell/default.ctags ~/.ctags.d/default.ctags
+ln -sf ~/dotfiles/system/default.ctags ~/.ctags.d/default.ctags
 
 ln -sf ~/dotfiles/git/.gitconfig ~/.gitconfig
 
