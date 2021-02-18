@@ -3,7 +3,7 @@
 # this script should prepate a recently installed system to use,
 # it will run all other scripts in this directory
 
-cd ~/dotfiles/scripts # if runned from outside
+cd ~/dotfiles/bin # if runned from outside
 
 cp ../system/temp_settings.sample.sh ../system/temp_settings.sh
 
@@ -16,7 +16,7 @@ cp ../system/temp_settings.sample.sh ../system/temp_settings.sh
 ./install_vim.sh
 ./create_dir_tree.sh
 
-git remote set-url git@github.com:$GITHUB_USERNAME/dotfiles.git # change remote link to use SSH
+git remote set-url git@github.com:$GITHUB_USERNAME/dotfiles.git # change remote link for this repo to use SSH
 
 cd -
 
