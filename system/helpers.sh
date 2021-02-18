@@ -106,7 +106,7 @@ cdp() {
 }
 
 # clean $PROJECTS/test directory
-clear-test() {
+clean-test() {
   rm -rf $PROJECTS/test
   mkdir $PROJECTS/test
   cd $PROJECTS/test
