@@ -1,3 +1,4 @@
 gem-ctags
 pry
 pry-rails
+pry-doc
