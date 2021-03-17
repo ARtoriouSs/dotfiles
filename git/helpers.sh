@@ -136,7 +136,7 @@ freset() {
 }
 
 origin-reset() {
-    echo "Type 'y' to reset branch to origin state"
+    echo "Type 'y' to reset branch to the origin state"
     read key
     if [ "$key" = "y" ]; then
       git reset --hard origin/$(current-branch)
@@ -155,7 +155,7 @@ index() {
 # commit and quote all args as message
 alias gcm="commit"
 commit() {
-  git commit -v -m "$*"
+  git commit -q -m "$*"
   status
 }
 

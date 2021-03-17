@@ -29,3 +29,6 @@ todo.yml
 # ctags
 tags
 *.tags
+
+# directory for useful things
+gittemp
