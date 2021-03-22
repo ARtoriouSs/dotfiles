@@ -1,4 +1,5 @@
 # system
+alias dog="cat" # the most important one
 alias ccat="pygmentize -g -O style='colorful'" # colored cat
 alias e="echo"
 alias c="cd .."
@@ -8,7 +9,6 @@ alias todol="$VISUAL todo.yml" # local todo
 alias v=$VISUAL
 alias search="find . -name" # search file by name
 alias k9="kill -9"
-alias now="date '+ %H:%M | %B %d'" # show current date and time
 alias upd="sudo apt-get --yes update"
 alias upg="sudo apt-get --yes upgrade"
 alias install="sudo apt-get --yes update && sudo apt-get --yes install"
