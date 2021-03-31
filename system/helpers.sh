@@ -119,6 +119,12 @@ clip() {
   xclip -rmlastnl -selection clipboard
 }
 
+make-free-space() {
+  sudo apt autoremove --purge # remove unused packages
+  sudo flatpak repair # remove unused objects in /var/lib/flatpack/repo/objects
+  sudo rm -rf /var/log/journal/* # remove logs
+}
+
 # show weather
 wttr() {
   local url="wttr.in?FMp"
