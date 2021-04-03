@@ -7,7 +7,9 @@ sudo apt install --yes software-properties-common apt-transport-https  libcurl4-
 
 # python and pip
 sudo apt install --yes python2 python2.7 python3 python3-pip
-curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py # pip3
+sudo python3 get-pip.py
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py # pip2
 sudo python2 get-pip.py
 rm get-pip.py
 # ruby
@@ -20,7 +22,7 @@ sudo apt install --yes ripgrep
 sudo apt install --yes silversearcher-ag
 # tmux
 sudo apt install --yes tmux
-# node and npm (may need to update version below)
+# node and npm
 sudo apt install --yes npm
 npm update npm -g # update npm
 sudo npm install -g n

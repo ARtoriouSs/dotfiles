@@ -30,7 +30,8 @@ echo "optionally add 'zsh -l' as a login command"
 echo "2) Make terminal run maximized by default:"
 echo "Edit -> Prefeneces -> Profiles -> Text -> Set default terminal size as 240 columns and 100 rows"
 echo "3) Enable fonts in terminal:"
-echo "Edit -> Preferences -> Text -> Custom font, search for Droid Sans Mono"
+echo "Restart terminal, then Edit -> Preferences -> Text -> Custom font, search for Droid Sans Mono"
+echo "4) Reboot"
 echo
 echo "Also you can manually run add_ssh.sh and enable_snap.sh when needed."
 

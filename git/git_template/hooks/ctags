@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# more info: https://github.com/manasthakur/git_template
+
 source ~/dotfiles/system/helpers.sh # source functions to use tags
 tags --rails # tags for code
 gem ctags # tags for gems
