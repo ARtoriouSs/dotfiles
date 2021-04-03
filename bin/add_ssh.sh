@@ -1,15 +1,20 @@
 #!/bin/bash
 
-source ~/dotfiles/system/functions.sh # source clip function
+source ~/dotfiles/system/helpers.sh # source clip function
 
-if [ -z "$1" ] | [ -z "$EMAIL" ]; then
-  echo "provide your email as a first argument:"
-  echo "    ./add_ssh.sh my_email@example.com"
-  echo "otherwise it should be in \$EMAIL"
-  exit 1
+local email=$1
+
+if [ -z "$1" ]; then
+  if [ -z "$EMAIL" ]; then
+    echo "provide your email as a first argument:"
+    echo "    ./add_ssh.sh my_email@example.com"
+    echo "otherwise it should be in \$EMAIL"
+    exit 1
+  fi
+  email=$EMAIL
 fi
 
-ssh-keygen -t rsa -b 4096 -C $1
+ssh-keygen -t rsa -b 4096 -C $email
 eval "$(ssh-agent -s)"
 ssh-add -K ~/.ssh/id_rsa
 

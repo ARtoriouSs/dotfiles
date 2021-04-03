@@ -116,7 +116,7 @@ clean-test() {
 
 # copy to system clipboard
 clip() {
-  xclip -rmlastnl -selection clipboard
+  xclip -rmlastnl -selection clipboard $1
 }
 
 make-free-space() {
