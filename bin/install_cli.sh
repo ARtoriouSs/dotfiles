@@ -43,7 +43,7 @@ sudo usermod -aG docker ${USER} # add current user to docker user group
 curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 # postgres
-sudo apt install --yes ca-certificates
+sudo apt install --yes ca-certificates libpq-dev
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 sudo apt update
