@@ -24,14 +24,14 @@ cd -
 echo
 echo "Now you may need to perform some manual configuration:"
 echo
-echo "1) Make terminal run login shell by default:"
+echo "1) Reboot"
+echo "2) Make terminal run login shell by default:"
 echo "Edit -> Prefeneces -> Profiles -> Command -> Check 'run command as a login shell' option,"
 echo "optionally add 'zsh -l' as a login command"
-echo "2) Make terminal run maximized by default:"
+echo "3) Make terminal run maximized by default:"
 echo "Edit -> Prefeneces -> Profiles -> Text -> Set default terminal size as 240 columns and 100 rows"
-echo "3) Enable fonts in terminal:"
-echo "Restart terminal, then Edit -> Preferences -> Text -> Custom font, search for Droid Sans Mono"
-echo "4) Reboot"
+echo "4) Enable fonts in terminal:"
+echo "Edit -> Preferences -> Profiles -> Text -> Custom font, search for Droid Sans Mono"
 echo
 echo "Also you can manually run add_ssh.sh and enable_snap.sh when needed."
 

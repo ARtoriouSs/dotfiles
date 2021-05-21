@@ -2,7 +2,7 @@
 
 source ~/dotfiles/system/helpers.sh # source clip function
 
-local email=$1
+email=$1
 
 if [ -z "$1" ]; then
   if [ -z "$EMAIL" ]; then
