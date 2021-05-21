@@ -12,7 +12,7 @@ if exists('+termguicolors') " enable true color
   set termguicolors
 endif
 syntax on " enable syntax highlighting
-colorscheme tender " set colorscheme
+colorscheme gruvbox " set colorscheme
 " syntax highlighting for specific file types
 autocmd BufNewFile,BufReadPost .{jscs,jshint,eslint}rc      set filetype=json
 autocmd BufNewFile,BufReadPost {.profile,*.zsh-theme}       set filetype=zsh
@@ -49,7 +49,7 @@ let g:lightline = {
     \     'fileformat': 'FileFormatWithIcon',
     \     'filename': 'FileNameWithModifiedSign'
     \   },
-    \   'colorscheme': 'tender',
+    \   'colorscheme': 'gruvbox',
     \   'subseparator': { 'left': '', 'right': '' },
     \   'separator': { 'left': '', 'right': '' }
     \ }
@@ -75,7 +75,10 @@ set relativenumber " shows relative numbers
 " visual selection color
 highlight Visual guibg=#124A2C
 " default colors for cursorline
-highlight CursorLine guibg=#323D3E
+" for tender
+" highlight CursorLine guibg=#323D3E
+" for gruvbox
+highlight CursorLine guibg=#38352d
 highlight Cursor guibg=#00AAFF
 " change color when entering insert mode
 autocmd InsertEnter * highlight CursorLine guibg=#3E3D32
@@ -231,7 +234,7 @@ nnoremap <C-s> :tabnext<CR>
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-q> :tabclose<CR>
 " change selected tab color
-let s:palette = g:lightline#colorscheme#tender#palette
+let s:palette = g:lightline#colorscheme#gruvbox#palette
 let s:palette.tabline.tabsel = [ [ '#000000', '#73cef4', 16, 81 ] ]
 unlet s:palette
 
