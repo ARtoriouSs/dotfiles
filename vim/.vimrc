@@ -243,13 +243,13 @@ if has('nvim')
   set diffopt+=vertical " forse to use vertical split for diff
 endif
 " git and fugitive aliases
-command! Gst :Gstatus
+command! Gst :Git
 command! Gd :Gdiff
 command! Gds :Gdiffsplit!
-command! Gb :Gblame
-command! Gcm :Gcommit
-command! Gca :Gcommit --amend
-command! Gcan :Gcommit --amend --no-edit
+command! Gb :Git blame
+command! Gcm :Git commit
+command! Gca :Git commit --amend
+command! Gcan :Git commit --amend --no-edit
 command! Gl :Commits
 command! Take :Gread | wq | q " Take changes by fugitive's Gread and close splits
 let g:NERDTreeGitStatusShowIgnored = 1 " show ignored status in nerdtree, a heavy feature may cost much more time
