@@ -20,7 +20,7 @@ wget -O ./discord.deb "https://discordapp.com/api/download?platform=linux&format
 sudo apt install --yes ./discord.deb
 rm -f ./discord.deb
 # insomnia
-echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
-wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
+echo "deb [trusted=yes arch=amd64] https://download.konghq.com/insomnia-ubuntu/ default all" \
+  | sudo tee -a /etc/apt/sources.list.d/insomnia.list
 sudo apt update
 sudo apt install --yes insomnia
