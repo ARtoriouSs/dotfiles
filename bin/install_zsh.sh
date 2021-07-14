@@ -4,7 +4,7 @@
 sudo apt update --yes
 sudo apt install --yes zsh
 RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-sudo chsh -s /usr/bin/zsh
+chsh -s /usr/bin/zsh
 
 # symlinks for config files
 ln -sf ~/dotfiles/system/.zshrc ~/.zshrc
