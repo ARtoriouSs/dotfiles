@@ -21,9 +21,6 @@ t-project() {
 
     tmux split-window -v -c $project_path
     tmux resize-pane -D 20
-
-    tmux send-keys -t "$session_name:0.1" "rc" Enter
-    tmux select-pane -t 0
   fi
   tmux -2 attach-session -t "$session_name"
 }
