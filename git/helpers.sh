@@ -2,13 +2,16 @@ alias g="git"
 alias ginit="git init"
 alias gcl="git clone"
 alias gb="git branch"
-alias gco="git checkout"
-alias gcom="git checkout master"
 alias gca="git commit --amend"
+
+alias gco="git checkout"
+gcom() { git checkout $(default-branch) }
+
 alias gr="git rebase"
 alias gra="git rebase --abort"
 alias grc="git rebase --continue"
-alias grm="git rebase master"
+grm() { git rebase $(default-branch) }
+
 alias gf="git fetch"
 alias fetch="git fetch origin"
 alias gd="git diff \":(exclude)*package-lock.json\""
@@ -220,7 +223,19 @@ current-branch() {
   git branch --show-current
 }
 
-# get name of the first commit in a brach
+# get name of the first commit in a branch
 first-commit() {
-  git log master..$(current-branch) --oneline | tail -1 | cut -f 2- -d ' '
+  git log $(default-branch)..$(current-branch) --oneline | tail -1 | cut -f 2- -d ' '
+}
+
+default-branch() {
+ if test -f .git/safe/default_branch; then
+   cat .git/safe/default_branch
+ else
+   echo master
+ fi
+}
+
+default-branch-edit() {
+  $VISUAL .git/safe/default_branch
 }
