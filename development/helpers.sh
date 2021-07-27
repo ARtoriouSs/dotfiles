@@ -116,3 +116,8 @@ search-gems() {
   echo "No Gemfile found. Are you inside rails project?"
   cd $location_backup
 }
+
+# update versions list
+rbenv-update() {
+  git -C ~/.rbenv/plugins/ruby-build pull
+}
