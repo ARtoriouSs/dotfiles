@@ -17,6 +17,7 @@ alias fetch="git fetch origin"
 alias gd="git diff \":(exclude)*package-lock.json\""
 alias gds="git diff --staged \":(exclude)*package-lock.json\""
 alias gl="git log --pretty=format:\"%C(yellow bold)%h%Creset | %C(blue bold)%ad%Creset, %C(green bold)%an%Creset %s%C(red bold)%d%Creset\" --graph --date=relative"
+alias gcp="git cherry-pick"
 alias gtrust="mkdir .git/safe"
 
 # custom colored `git status --short`
