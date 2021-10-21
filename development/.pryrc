@@ -6,17 +6,22 @@ Pry::Commands.command(/^$/, 'repeat last command') do
   end
 end
 
+Pry::Commands.command('cpl', 'copy last execuded command') do
+  system("echo '#{Pry.history.to_a[-2]}' | xclip -rmlastnl -selection clipboard")
+end
+
+if defined? Rails
+  Pry::Commands.command('rel', 'alias for #reload!') do
+    Rails.application.reloader.reload!
+    true
+  end
+end
+
 # aliases
 Pry.commands.alias_command 'exot', 'exit' # for typos
 Pry.commands.alias_command 'w', 'whereami'
 Pry.commands.alias_command 'q', 'exit-program'
 Pry.commands.alias_command 'e', 'exit'
-if defined?(PryByebug)
-  Pry.commands.alias_command 'c', 'continue'
-  Pry.commands.alias_command 's', 'step'
-  Pry.commands.alias_command 'n', 'next'
-  Pry.commands.alias_command 'f', 'finish'
-end
 
 # turn off the automatic pager for long output
 Pry.config.pager = false
