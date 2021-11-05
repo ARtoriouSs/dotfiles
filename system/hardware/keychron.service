@@ -1,0 +1,9 @@
+[Unit]
+Description=The command to make the Keychron K2-k4 work with function keys
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "echo 0 > /sys/module/hid_apple/parameters/fnmode"
+
+[Install]
+WantedBy=multi-user.target
