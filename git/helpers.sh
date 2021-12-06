@@ -66,6 +66,11 @@ status() {
   }'
 }
 
+# copy file path from git status via fzf
+cgst() {
+  git status --porcelain | awk '{ print $2 }' | fzf | clip
+}
+
 # git stash file or all files if no args specified
 stash() {
   if [ -z "$1" ]; then

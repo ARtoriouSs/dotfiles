@@ -113,7 +113,7 @@ search-gems() {
       cd ..
     fi
   done
-  echo "No Gemfile found. Are you inside rails project?"
+  echo "No Gemfile found. Are you inside ruby project?"
   cd $location_backup
 }
 
