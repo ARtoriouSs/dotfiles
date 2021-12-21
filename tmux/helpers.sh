@@ -67,3 +67,5 @@ t-kill() {
     [ $? = 0 ] && tmux kill-session -t "$session_name"
   fi
 }
+
+alias t-detach="tmux detach"
