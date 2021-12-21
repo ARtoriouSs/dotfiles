@@ -2,7 +2,7 @@
 Pry::Commands.command(/^$/, 'repeat last command') do
   last_command = Pry.history.to_a.last
   unless ['exit-program', 'quit', 'q'].include? last_command
-    _pry_.run_command last_command
+    pry_instance.run_command last_command
   end
 end
 
