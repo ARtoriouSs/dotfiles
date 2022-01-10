@@ -24,7 +24,6 @@ Plug 'scrooloose/nerdcommenter' " simpler comments
 Plug 'tpope/vim-repeat' " repeat plugin commands with '.'
 Plug 'tpope/vim-surround' " simple quoting and parenthesizing
 Plug 'tpope/vim-endwise' " auto 'end' keyword
-Plug 'Raimondi/delimitMate' " autoclosing brackets
 Plug 'drzel/vim-scrolloff-fraction' " auto scroll when getting closer to window border
 Plug 'thoughtbot/vim-rspec' " RSpec integration
 Plug 'airblade/vim-gitgutter' " git status near line numbers
