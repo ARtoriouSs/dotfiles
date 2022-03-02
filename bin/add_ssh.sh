@@ -15,6 +15,7 @@ if [ -z "$1" ]; then
 fi
 
 ssh-keygen -t rsa -b 4096 -C $email
+chmod 400 ~/.ssh/id_rsa
 eval "$(ssh-agent -s)"
 ssh-add -K ~/.ssh/id_rsa
 
