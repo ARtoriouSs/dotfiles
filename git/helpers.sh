@@ -10,6 +10,7 @@ gcom() { git checkout $(default-branch) }
 alias gr="git rebase"
 alias gra="git rebase --abort"
 alias grc="git rebase --continue"
+alias grs="git rebase --skip"
 grm() { git rebase $(default-branch) }
 
 alias gf="git fetch"
