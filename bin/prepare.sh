@@ -29,7 +29,7 @@ echo "2) Make terminal run login shell by default:"
 echo "Edit -> Prefeneces -> Profiles -> Command -> Check 'run command as a login shell' option,"
 echo "optionally add 'zsh -l' as a login command"
 echo "3) Make terminal run maximized by default:"
-echo "Edit -> Prefeneces -> Profiles -> Text -> Set default terminal size as 240 columns and 100 rows"
+echo "Edit -> Prefeneces -> Profiles -> Text -> Set default terminal size as 340 columns and 100 rows"
 echo "4) Enable fonts in terminal:"
 echo "Edit -> Preferences -> Profiles -> Text -> Custom font, search for Droid Sans Mono"
 echo
