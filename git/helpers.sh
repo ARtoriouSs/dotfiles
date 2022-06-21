@@ -170,6 +170,17 @@ commit() {
   status
 }
 
+# commit with Jira ticket prefix from branch name (if exist)
+gcmm() {
+  story_number=$(current-branch | awk 'BEGIN { FS = "/" }; { print "[" $1 "]" }')
+
+  if [[ $story_number =~ "^\[[A-Z]*-[0-9]{1,6}\]$" ]]; then
+    commit "$story_number $*"
+  else
+    commit "$*"
+  fi
+}
+
 alias gcan="amend-no-edit"
 amend-no-edit() {
   git commit --amend --no-edit
