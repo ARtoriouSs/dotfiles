@@ -121,3 +121,17 @@ search-gems() {
 rbenv-update() {
   git -C ~/.rbenv/plugins/ruby-build pull
 }
+
+# run rubocop for all files changed in current branch, first arg is a config file (.rubocop.yml by default)
+alias rcop="rubocop-changed"
+rubocop-changed() {
+  local modified_and_added=$(git --no-pager diff --diff-filter=d --name-only $(git merge-base $(default-branch) HEAD) | $GREP_TOOL "\.rb|\.ru|\.rack|Gemfile")
+
+  if [ ! -z "$modified_and_added" ]; then
+    if [ -z "$1" ]; then
+      echo $modified_and_added | xargs -rt bundle exec rubocop --force-exclusion
+    else
+      echo $modified_and_added | xargs -rt bundle exec rubocop --force-exclusion -c $1
+    fi
+  fi
+}
