@@ -3,7 +3,7 @@
 # prerequirements
 sudo apt update --yes
 sudo apt upgrade --yes
-sudo apt install --yes software-properties-common apt-transport-https  libcurl4-openssl-dev apt-utils libssl-dev libreadline-dev wget curl xclip
+sudo apt install --yes software-properties-common apt-transport-https libcurl4-openssl-dev apt-utils libssl-dev libreadline-dev wget curl git xclip
 
 # python and pip
 sudo apt install --yes python2 python2.7 python3 python3-pip
