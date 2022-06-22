@@ -34,5 +34,6 @@ echo "4) Enable fonts in terminal:"
 echo "Edit -> Preferences -> Profiles -> Text -> Custom font, search for Droid Sans Mono"
 echo
 echo "Also you can manually run add_ssh.sh and enable_snap.sh when needed."
+echo
 
 exec zsh -l # relogin in the end
