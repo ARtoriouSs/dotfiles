@@ -128,24 +128,6 @@ rubocop-changed() {
   local modified_and_added=$(git --no-pager diff --diff-filter=d --name-only $(git merge-base $(default-branch) HEAD) | $GREP_TOOL "\.rb|\.ru|\.rack|Gemfile")
 
   if [ ! -z "$modified_and_added" ]; then
-    if [ -z "$1" ]; then
-      echo $modified_and_added | xargs -rt bundle exec rubocop --force-exclusion
-    else
-      echo $modified_and_added | xargs -rt bundle exec rubocop --force-exclusion --config $1
-    fi
-  fi
-}
-
-# the same as above, but with -A
-alias rcop-fix="rubocop-fix-changed"
-rubocop-fix-changed() {
-  local modified_and_added=$(git --no-pager diff --diff-filter=d --name-only $(git merge-base $(default-branch) HEAD) | $GREP_TOOL "\.rb|\.ru|\.rack|Gemfile")
-
-  if [ ! -z "$modified_and_added" ]; then
-    if [ -z "$1" ]; then
-      echo $modified_and_added | xargs -rt bundle exec rubocop -A --force-exclusion
-    else
-      echo $modified_and_added | xargs -rt bundle exec rubocop -A --force-exclusion --config $1
-    fi
+    echo $modified_and_added | xargs -rt bundle exec rubocop --force-exclusion $@
   fi
 }
