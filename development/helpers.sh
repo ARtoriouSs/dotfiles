@@ -86,6 +86,17 @@ gen-migration() {
   echo $output
 }
 
+# generate data migration (https://github.com/ilyakatz/data-migrate),
+# quote all args as name and copy path to the clipboard
+alias dmigr="gen-data-migration"
+gen-data-migration() {
+  local IFS='_'
+  output=$(bundle exec rails generate data_migration "$*")
+  echo $output | grep create | awk '{ print $2 }' | clip
+
+  echo $output
+}
+
 # rollback rails migrations
 rollback() {
   [ -z "$1" ] && local step=1 || local step=$1
