@@ -10,6 +10,10 @@ Pry::Commands.command('cpl', 'copy last execuded command') do
   system("echo '#{Pry.history.to_a[-2]}' | xclip -rmlastnl -selection clipboard")
 end
 
+Pry::Commands.command('trace', 'caller with only local trace') do
+  puts(caller.filter { |trace_item| trace_item.include?(`pwd`.delete("\n")) })
+end
+
 if defined? Rails
   Pry::Commands.command('rel', 'alias for #reload!') do
     Rails.application.reloader.reload!
