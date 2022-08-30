@@ -7,6 +7,7 @@ alias rc="bundle exec rails console"
 alias bi="bundle install"
 alias bu="bundle update"
 alias rdm="bundle exec rails db:migrate"
+alias d-rdm="bundle exec rails data:migrate"
 alias rdr="bundle exec rails db:drop db:create db:migrate"
 alias spec="bundle exec rspec"
 
@@ -88,7 +89,7 @@ gen-migration() {
 
 # generate data migration (https://github.com/ilyakatz/data-migrate),
 # quote all args as name and copy path to the clipboard
-alias dmigr="gen-data-migration"
+alias d-migr="gen-data-migration"
 gen-data-migration() {
   local IFS='_'
   output=$(bundle exec rails generate data_migration "$*")
@@ -101,6 +102,12 @@ gen-data-migration() {
 rollback() {
   [ -z "$1" ] && local step=1 || local step=$1
   bundle exec rails db:rollback STEP=$step
+}
+
+# rollback rails data migrations
+d-rollback() {
+  [ -z "$1" ] && local step=1 || local step=$1
+  bundle exec rails data:rollback STEP=$step
 }
 
 alias rr="search-routes"
