@@ -3,31 +3,6 @@ set nocompatible " disables vi compatibility (default in neovim, for vim only), 
 " plugins moved to another file to be able to sourse them without the rest of configuration
 source ~/dotfiles/vim/plugins.vim
 
-""" colors and highlighting
-set background=dark " for correct colors in tmux
-set t_Co=256 " use 265 colors
-if exists('+termguicolors') " enable true color
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-syntax on " enable syntax highlighting
-colorscheme gruvbox " set colorscheme
-" syntax highlighting for specific file types
-autocmd BufNewFile,BufReadPost .{jscs,jshint,eslint}rc      set filetype=json
-autocmd BufNewFile,BufReadPost {.profile,*.zsh-theme}       set filetype=zsh
-autocmd BufNewFile,BufReadPost .gemrc                       set filetype=yaml
-autocmd BufNewFile,BufReadPost Dockerfile.*                 set filetype=dockerfile
-autocmd BufNewFile,BufReadPost .vimrc.*                     set filetype=vim
-autocmd BufNewFile,BufReadPost *.js.{erb,haml,slim}         set filetype=javascript
-autocmd BufNewFile,BufReadPost *.jsx                        set filetype=javascript.jsx
-autocmd BufNewFile,BufReadPost .env.*                       set filetype=sh
-autocmd BufNewFile,BufReadPost *.inky                       set filetype=eruby
-autocmd BufNewFile,BufReadPost Procfile                     set filetype=sh
-" highlight trailing spaces to clearly see indentation
-highlight TrailingSpace guifg=red
-match TrailingSpace / \+$/
-
 """ statusline settings
 set laststatus=2 " shows status line for all splits
 let g:lightline = {
@@ -68,24 +43,51 @@ function! FileNameWithModifiedSign()
   return filename . modified
 endfunction
 
+""" colors and highlighting
+set background=dark " for correct colors in tmux
+set t_Co=256 " use 265 colors
+if exists('+termguicolors') " enable true color
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+syntax on " enable syntax highlighting
+colorscheme gruvbox " set colorscheme
+" syntax highlighting for specific file types
+autocmd BufNewFile,BufReadPost .{jscs,jshint,eslint}rc      set filetype=json
+autocmd BufNewFile,BufReadPost {.profile,*.zsh-theme}       set filetype=zsh
+autocmd BufNewFile,BufReadPost .gemrc                       set filetype=yaml
+autocmd BufNewFile,BufReadPost Dockerfile.*                 set filetype=dockerfile
+autocmd BufNewFile,BufReadPost .vimrc.*                     set filetype=vim
+autocmd BufNewFile,BufReadPost *.js.{erb,haml,slim}         set filetype=javascript
+autocmd BufNewFile,BufReadPost *.jsx                        set filetype=javascript.jsx
+autocmd BufNewFile,BufReadPost .env.*                       set filetype=sh
+autocmd BufNewFile,BufReadPost *.inky                       set filetype=eruby
+autocmd BufNewFile,BufReadPost Procfile                     set filetype=sh
+" highlight trailing spaces to clearly see indentation
+highlight TrailingSpace guifg=red
+match TrailingSpace / \+$/
+" change selected tab color
+let s:palette = g:lightline#colorscheme#gruvbox#palette " <- theme palette
+"let s:palette.tabline.tabsel = [ [ '#000000', '#73cef4', 16, 81 ] ]
+let s:palette.tabline.tabsel = [ [ '#000000', '#71a126', 16, 81 ] ]
+unlet s:palette
+"" for gruvbox theme
+highlight CursorLine guibg=#38352d
+autocmd InsertEnter * highlight CursorLine guibg=#3E3D32
+autocmd InsertLeave * highlight CursorLine guibg=#38352d
+"" for tender theme
+"highlight CursorLine guibg=#323D3E
+"autocmd InsertLeave * highlight CursorLine guibg=#323D3E
+"highlight Visual guibg=#124A2C
+"highlight Cursor guibg=#00AAFF
+"autocmd InsertEnter * highlight Cursor guibg=#A6E22E
+"autocmd InsertLeave * highlight Cursor guibg=#00AAFF
+
 """ cursor
 set cursorline " shows cursorline
 set number " shows current line number
 set relativenumber " shows relative numbers
-" visual selection color
-highlight Visual guibg=#124A2C
-" default colors for cursorline
-" for tender
-" highlight CursorLine guibg=#323D3E
-" for gruvbox
-highlight CursorLine guibg=#38352d
-highlight Cursor guibg=#00AAFF
-" change color when entering insert mode
-autocmd InsertEnter * highlight CursorLine guibg=#3E3D32
-autocmd InsertEnter * highlight Cursor guibg=#A6E22E
-" revert color to default when leaving insert mode
-autocmd InsertLeave * highlight CursorLine guibg=#323D3E
-autocmd InsertLeave * highlight Cursor guibg=#00AAFF
 
 """ search
 set hlsearch " highlights search items
@@ -104,7 +106,7 @@ command! -bang -nargs=* Agc call fzf#vim#ag(<q-args>, {'options': '--delimiter :
 command! -bang -nargs=* Agb call fzf#vim#buffer_lines(<q-args>, {'options': '--color hl:#ff8787,hl+:#ff0000'}, <bang>0)
 " ctrl + g to fuzzy search files
 nnoremap <C-g> :Agc<Cr>
-" ctrl + / to fuzzy search current buffer
+" ctrl + c to fuzzy search current buffer
 nnoremap <C-c> :Agb<Cr>
 " ctrl + p to fuzzy search file names
 nnoremap <C-p> :FZF<Cr>
@@ -114,7 +116,7 @@ nnoremap <C-b> :History<Cr>
 let g:gutentags_ctags_tagfile=".git/tags" " tags file for gutentags
 let g:gutentags_resolve_symlinks=1 " generate tags for original file's project if editing symlink
 
-""" tabbing and indenting
+""" tabs and indentation
 set nowrap " don't wrap lines
 set tabstop=2 " tab to two spaces
 set shiftwidth=2 " identation in normal mode pressing < or >
@@ -132,18 +134,11 @@ set nofoldenable " don't fold by default
 set foldmethod=syntax " fold based on syntax
 set foldnestmax=3 " deepest fold is 3 levels
 
-""" external files
+""" files
 set nowritebackup " do not write backup before save
 set autoread " to autoread if file was changed outside from vim
 set noswapfile " do not use swap files
 set nobackup " to not write backup during overwriting file
-" allows vimrc if repo is trusted by creating .git/safe directory
-if filereadable(".git/safe/../../.vimrc.local")
-  source .git/safe/../../.vimrc.local
-endif
-if filereadable(".git/safe/../../.vimrc")
-  source .git/safe/../../.vimrc
-endif
 
 """ viewport and messages
 set encoding=utf-8 " viewport default encodyng
@@ -156,9 +151,9 @@ set colorcolumn=121 " vertical line on 121'st column
 " auto scroll on 20% of window width
 let g:scrolloff_fraction = 0.2
 let vim_markdown_preview_hotkey='<Leader>m' " toggle markdown preview
-let vim_markdown_preview_browser='Google Chrome' " use google chrome for markdown preview
+let vim_markdown_preview_browser='Google Chrome' " use Google Chrome for markdown preview
 
-""" buffers
+""" buffers and copying
 set hidden " do not close buffer when window is closed
 " use alt + d to delete without copying
 nnoremap <M-d> "_d
@@ -179,14 +174,14 @@ vnoremap ; :
 " remove Ex mode mapping
 nnoremap Q <nop>
 " do not allow arrows in normal and visual modes
-nnoremap <Left> :echoe " Nope, use h "<CR>
-nnoremap <Right> :echoe " Nope, use l "<CR>
-nnoremap <Up> :echoe " Nope, use k "<CR>
-nnoremap <Down> :echoe " Nope, use j "<CR>
-vnoremap <Left> :echoe " Nope, use h "<CR>
-vnoremap <Right> :echoe " Nope, use l "<CR>
-vnoremap <Up> :echoe " Nope, use k "<CR>
-vnoremap <Down> :echoe " Nope, use j "<CR>
+"nnoremap <Left> :echoe " Nope, use h "<CR>
+"nnoremap <Right> :echoe " Nope, use l "<CR>
+"nnoremap <Up> :echoe " Nope, use k "<CR>
+"nnoremap <Down> :echoe " Nope, use j "<CR>
+"vnoremap <Left> :echoe " Nope, use h "<CR>
+"vnoremap <Right> :echoe " Nope, use l "<CR>
+"vnoremap <Up> :echoe " Nope, use k "<CR>
+"vnoremap <Down> :echoe " Nope, use j "<CR>
 " clear search buffer
 nnoremap <C-x> :let @/ = ""<CR>
 command! Reload source $MYVIMRC | redraw! " redraw and reload configuration
@@ -233,10 +228,6 @@ nnoremap <C-a> :tabprevious<CR>
 nnoremap <C-s> :tabnext<CR>
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-q> :tabclose<CR>
-" change selected tab color
-let s:palette = g:lightline#colorscheme#gruvbox#palette
-let s:palette.tabline.tabsel = [ [ '#000000', '#73cef4', 16, 81 ] ]
-unlet s:palette
 
 """ git
 if has('nvim')
@@ -252,7 +243,6 @@ command! Gca :Git commit --amend
 command! Gcan :Git commit --amend --no-edit
 command! Gl :Commits
 command! Take :Gread | wq | q " Take changes by fugitive's Gread and close splits
-let g:NERDTreeGitStatusShowIgnored = 1 " show ignored status in nerdtree, a heavy feature may cost much more time
 let g:gitgutter_max_signs = 1000 " increase max displayed signs for gitgutter
 
 """ file explorer
@@ -263,6 +253,7 @@ let NERDTreeMinimalUI = 1 " remove helper from ui
 let NERDTreeAutoDeleteBuffer = 1 "delete buffer of deleted file
 let NERDTreeShowHidden = 1 " show hidden files by default
 let NERDTreeShowBookmarks = 1 " show bookmarks by default
+let g:NERDTreeGitStatusShowIgnored = 1 " show ignored status in nerdtree, a heavy feature may cost much more time
 " ctrl + n to toggle file explorer and update it
 map <C-n> :NERDTreeToggle <bar> :NERDTreeRefreshRoot<CR>
 
@@ -274,3 +265,12 @@ let g:rspec_runner = "os_x_iterm2" " runner for macVim
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
+
+
+""" should be last: allows vimrc if repo is trusted by creating .git/safe directory
+if filereadable(".git/safe/../../.vimrc.local")
+  source .git/safe/../../.vimrc.local
+endif
+if filereadable(".git/safe/../../.vimrc")
+  source .git/safe/../../.vimrc
+endif
