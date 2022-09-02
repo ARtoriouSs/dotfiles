@@ -139,6 +139,7 @@ set shortmess+=c " do not show ins=completion-menu messages
 set shortmess+=s " do not show 'search hit BOTTOM' messages
 set showcmd " shows commands in last line
 set colorcolumn=121 " vertical line on 121'st column
+set signcolumn=yes " sign column, `number` to be single width
 " auto scroll on 20% of window width
 let g:scrolloff_fraction = 0.2
 let vim_markdown_preview_hotkey='<Leader>m' " toggle markdown preview
@@ -194,16 +195,17 @@ let g:wordmotion_mappings = {
 
 """ text
 set updatetime=100 " update faser
-" use tab for trigger completion with characters ahead and navigate
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-function! s:check_back_space() abort
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 """ splits
 set splitbelow " open new horizontal split below
