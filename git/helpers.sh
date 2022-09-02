@@ -72,12 +72,6 @@ cgst() {
   git status --porcelain | awk '{ print $2 }' | fzf --reverse | clip
 }
 
-# add file to index via fzf
-stadd() {
-  git add $(git status --porcelain | awk '{ print $2 }' | fzf --reverse -m)
-  status
-}
-
 # git stash file or all files if no args specified
 stash() {
   if [ -z "$1" ]; then
@@ -102,6 +96,12 @@ add() {
   else
     git add "$@"
   fi
+  status
+}
+
+# add file to index via fzf
+stadd() {
+  git status --porcelain | awk '{ print $2 }' | fzf --reverse -m | xargs git add
   status
 }
 
