@@ -53,8 +53,7 @@ Plug 'othree/html5.vim' " html
 Plug 'vim-scripts/HTML-AutoCloseTag' " auto-closing html tags
 
 " styling
-"Plug 'jacoborus/tender.vim' " colorscheme
-Plug 'morhetz/gruvbox' " colorscheme without true color
+Plug 'morhetz/gruvbox' " colorscheme
 Plug 'itchyny/lightline.vim' " statusline
 Plug 'ryanoasis/vim-devicons' " icons, should be last in this list
 call plug#end()

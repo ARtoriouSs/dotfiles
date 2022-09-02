@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # install nvim
+sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt update --yes
 sudo apt install --yes neovim
 sudo apt install --yes python3-neovim

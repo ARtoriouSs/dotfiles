@@ -69,20 +69,11 @@ highlight TrailingSpace guifg=red
 match TrailingSpace / \+$/
 " change selected tab color
 let s:palette = g:lightline#colorscheme#gruvbox#palette " <- theme palette
-"let s:palette.tabline.tabsel = [ [ '#000000', '#73cef4', 16, 81 ] ]
-let s:palette.tabline.tabsel = [ [ '#000000', '#71a126', 16, 81 ] ]
+let s:palette.tabline.tabsel = [ [ '#-000001', '#71a126', 16, 81 ] ]
 unlet s:palette
-"" for gruvbox theme
-highlight CursorLine guibg=#38352d
-autocmd InsertEnter * highlight CursorLine guibg=#3E3D32
+highlight CursorLine guibg=#38351d
+autocmd InsertEnter * highlight CursorLine guibg=#2E3D32
 autocmd InsertLeave * highlight CursorLine guibg=#38352d
-"" for tender theme
-"highlight CursorLine guibg=#323D3E
-"autocmd InsertLeave * highlight CursorLine guibg=#323D3E
-"highlight Visual guibg=#124A2C
-"highlight Cursor guibg=#00AAFF
-"autocmd InsertEnter * highlight Cursor guibg=#A6E22E
-"autocmd InsertLeave * highlight Cursor guibg=#00AAFF
 
 """ cursor
 set cursorline " shows cursorline
