@@ -258,7 +258,7 @@ let g:rspec_runner = "os_x_iterm2" " runner for macVim
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
-
+let g:coc_global_extensions = ['coc-solargraph'] " Ruby language server, requires solargraph gem installed
 
 """ should be last: allows vimrc if repo is trusted by creating .git/safe directory
 if filereadable(".git/safe/../../.vimrc.local")
