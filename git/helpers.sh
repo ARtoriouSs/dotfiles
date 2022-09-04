@@ -220,6 +220,9 @@ grem() {
 alias get="clone-my"
 clone-my() {
   git clone git@github.com:$GITHUB_USERNAME/$1.git $2
+  [ -z "$2" ] && cd $1 || cd $2
+  gtrust
+  cd -
 }
 
 # ignore without .gitignore
