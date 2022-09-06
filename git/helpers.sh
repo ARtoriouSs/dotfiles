@@ -180,8 +180,8 @@ commit() {
 gcmm() {
   story_number=$(current-branch | awk 'BEGIN { FS = "/" }; { print "[" $1 "]" }')
 
-  if [[ $story_number =~ "^\[[A-Z]*-[0-9]{1,6}\]$" ]]; then
-    commit "$story_number $*"
+  if [[ $story_number =~ "^\[[a-zA-Z]*-[0-9]{1,6}\]$" ]]; then
+    commit "$story_number:u $*"
   else
     commit "$*"
   fi
