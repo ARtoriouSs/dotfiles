@@ -1,3 +1,4 @@
+set shellcmdflag=-ic " run shell in interactive mode to load functions and aliases from the shell config
 set nocompatible " disables vi compatibility (default in neovim, for vim only), should be on the top
 
 " plugins moved to another file to be able to sourse them without the rest of configuration
@@ -165,15 +166,6 @@ nnoremap ; :
 vnoremap ; :
 " remove Ex mode mapping
 nnoremap Q <nop>
-" do not allow arrows in normal and visual modes
-"nnoremap <Left> :echoe " Nope, use h "<CR>
-"nnoremap <Right> :echoe " Nope, use l "<CR>
-"nnoremap <Up> :echoe " Nope, use k "<CR>
-"nnoremap <Down> :echoe " Nope, use j "<CR>
-"vnoremap <Left> :echoe " Nope, use h "<CR>
-"vnoremap <Right> :echoe " Nope, use l "<CR>
-"vnoremap <Up> :echoe " Nope, use k "<CR>
-"vnoremap <Down> :echoe " Nope, use j "<CR>
 " clear search buffer
 nnoremap <C-x> :let @/ = ""<CR>
 command! Reload source $MYVIMRC | redraw! " redraw and reload configuration
@@ -187,10 +179,8 @@ command! Todol :edit todo.yml
 " plug aliases
 command! Pi :PlugInstall
 command! Pu :PlugUpdate
-command! Cc let @+ = @% " copy path to current file
-command! Ccl let @+ = join([expand('%'),  line(".")], ':') " copy 'path/to/current/file:cursor_line'
-command! Cs let @+ = "spec " . @% " copy 'spec path/to/current/file'
-command! Csl let @+ = "spec " . join([expand('%'),  line(".")], ':') " copy 'spec path/to/current/file:cursor_line'
+command! Cc let @+ = expand('%') " copy path to current file
+command! Ccl let @+ = expand('%') . ':' . line(".") " copy 'path/to/current/file:cursor_line'
 " use alt + w/e/b to navigate by word parts
 let g:wordmotion_mappings = {
 \ 'w' : '<M-w>',
@@ -264,6 +254,11 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 let g:coc_global_extensions = ['coc-solargraph'] " Ruby language server, requires solargraph gem installed
+command! Cs let @+ = "spec " . expand('%') " copy 'spec path/to/current/file'
+command! Csl let @+ = "spec " . expand('%') . ':' . line(".") " copy 'spec path/to/current/file:cursor_line'
+" run current spec file in beside tmux pane
+command! Spec silent exec '!run-spec-beside ' . expand('%')
+command! Specl silent exec '!run-spec-beside ' . expand('%') . ':' . line(".")
 
 """ should be last: allows vimrc if repo is trusted by creating .git/safe directory
 if filereadable(".git/safe/../../.vimrc.local")

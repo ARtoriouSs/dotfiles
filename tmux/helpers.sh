@@ -25,6 +25,16 @@ t-project() {
   tmux -2 attach-session -t "$session_name"
 }
 
+# runs rspec in the pane #1, to be used in vim command
+run-spec-beside() {
+  local session_name=$(basename $PWD)
+
+  tmux has-session -t "$session_name"
+  if [ $? = 0 ]; then
+    tmux send-keys -t "${session_name}:0.1" C-z "spec $1" Enter
+  fi
+}
+
 # open tmux default session, takes path as an argument, $PWD by default
 alias td="t-default"
 t-default() {
