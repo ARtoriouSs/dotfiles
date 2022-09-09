@@ -178,14 +178,19 @@ nnoremap Q <nop>
 nnoremap <C-x> :let @/ = ""<CR>
 command! Reload source $MYVIMRC | redraw! " redraw and reload configuration
 command! Q q " Q to exit
-" edit vimrc in dotfiles dir (not $MYVIMRC) to have access to git inside vim
+" edit vimrc in dotfiles dir (not $MYVIMRC) to have access to git inside vim (symlinked to $MYVIMRC)
 command! Vimrc :edit $DOTFILES_VIMRC
 command! Vimrcl :edit .vimrc.local " edit local vimrc
+" edit todo files
+command! Todo :edit $HOME/todo.yml
+command! Todol :edit todo.yml
 " plug aliases
 command! Pi :PlugInstall
 command! Pu :PlugUpdate
 command! Cc let @+ = @% " copy path to current file
-command! Cs let @+ = "spec " . @% " copy path to current file + spec prefix
+command! Ccl let @+ = join([expand('%'),  line(".")], ':') " copy 'path/to/current/file:cursor_line'
+command! Cs let @+ = "spec " . @% " copy 'spec path/to/current/file'
+command! Csl let @+ = "spec " . join([expand('%'),  line(".")], ':') " copy 'spec path/to/current/file:cursor_line'
 " use alt + w/e/b to navigate by word parts
 let g:wordmotion_mappings = {
 \ 'w' : '<M-w>',
