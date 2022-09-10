@@ -1,5 +1,5 @@
-# use Ubuntu 20.04
-FROM amd64/ubuntu:focal
+# use Linux Mint 21 "Vanessa"
+FROM linuxmintd/mint21-amd64
 
 # prerequirements
 RUN apt update && apt install -y sudo git

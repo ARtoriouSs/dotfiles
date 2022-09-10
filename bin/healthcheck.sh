@@ -70,6 +70,7 @@ check telegram-desktop
 check skypeforlinux
 check slack
 check discord
+check insomnia
 
 printf "\nChecking shell:\n"
 if [ -z "$RC_SOURCED" ]; then
