@@ -12,9 +12,7 @@ wget https://go.skype.com/skypeforlinux-64.deb
 sudo apt install --yes ./skypeforlinux-64.deb
 rm -f skypeforlinux-64.deb
 # slack
-wget https://downloads.slack-edge.com/linux_releases/slack-desktop-4.0.2-amd64.deb
-sudo apt install --yes ./slack-desktop-4.0.2-amd64.deb
-rm -f slack-desktop-4.0.2-amd64.deb
+sudo apt install --yes slack
 # discord
 wget -O ./discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 sudo apt install --yes ./discord.deb
