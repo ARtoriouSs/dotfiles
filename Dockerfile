@@ -7,9 +7,6 @@ RUN apt update && apt install -y sudo git
 # emulate snap disabling
 RUN touch /etc/apt/preferences.d/nosnap.pref
 
-# emulate display
-ENV DISPLAY :0
-
 # create a non-root user
 RUN sudo adduser test --gecos "Test" --disabled-password
 RUN echo "test:test" | chpasswd
