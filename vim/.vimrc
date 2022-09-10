@@ -56,6 +56,7 @@ syntax on " enable syntax highlighting
 colorscheme gruvbox " set colorscheme
 " syntax highlighting for specific file types
 autocmd BufNewFile,BufReadPost .{jscs,jshint,eslint}rc      set filetype=json
+autocmd BufNewFile,BufReadPost coc-settings.json            set filetype=jsonc
 autocmd BufNewFile,BufReadPost {.profile,*.zsh-theme}       set filetype=zsh
 autocmd BufNewFile,BufReadPost .gemrc                       set filetype=yaml
 autocmd BufNewFile,BufReadPost Dockerfile.*                 set filetype=dockerfile
