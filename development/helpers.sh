@@ -48,7 +48,7 @@ restart-postgres() {
 }
 
 # remove all docker containers and images
-dclean() {
+dclear() {
   docker system prune -f
   docker rm -f $(docker ps -aq)
   docker rmi -f $(docker images -aq)

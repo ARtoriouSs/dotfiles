@@ -6,5 +6,7 @@
 #
 # ./test.sh --rm to remove container after exit
 
+xhost +
 docker build -f ~/dotfiles/Dockerfile -t dottest ~/dotfiles
 docker run $@ -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro dottest
+xhost -
