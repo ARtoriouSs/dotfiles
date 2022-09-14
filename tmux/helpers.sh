@@ -31,7 +31,7 @@ run-spec-beside() {
 
   tmux has-session -t "$session_name"
   if [ $? = 0 ]; then
-    tmux send-keys -t "${session_name}:0.1" C-z "spec $1" Enter
+    tmux send-keys -t "${session_name}:0.1" "spec $1" Enter
   fi
 }
 
