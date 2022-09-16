@@ -140,12 +140,21 @@ rbenv-update() {
   git -C ~/.rbenv/plugins/ruby-build pull
 }
 
-# run rubocop for all files changed in current branch, first arg is a config file (.rubocop.yml by default)
+# run rubocop for all files changed in current branch
 alias rcop="rubocop-changed"
 rubocop-changed() {
   local modified_and_added=$(git --no-pager diff --diff-filter=d --name-only $(git merge-base $(default-branch) HEAD) | $GREP_TOOL "\.rb|\.ru|\.rack|Gemfile")
+  echo $modified_and_added | xargs --no-run-if-empty --verbose bundle exec rubocop --force-exclusion $@
+}
 
-  if [ ! -z "$modified_and_added" ]; then
-    echo $modified_and_added | xargs -rt bundle exec rubocop --force-exclusion $@
+# run rspec for all specs changed in current branch
+alias spec-c="rspec-changed"
+rspec-changed() {
+  local modified_and_added_specs=$(git --no-pager diff --diff-filter=d --name-only $(git merge-base $(default-branch) HEAD) | $GREP_TOOL "_spec\.rb")
+
+  if [ -z "$modified_and_added_specs" ]; then
+    echo "No modified specs"
+  else
+    echo $modified_and_added_specs | xargs --verbose bundle exec rspec $@
   fi
 }
