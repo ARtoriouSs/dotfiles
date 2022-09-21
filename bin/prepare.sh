@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# this script should prepate a recently installed system to use,
-# it will run all other scripts in this directory
+# this script should prepare a recently installed system to use
 
 cd ~/dotfiles/bin # if runned from outside
 

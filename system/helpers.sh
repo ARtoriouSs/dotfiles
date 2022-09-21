@@ -9,8 +9,8 @@ alias todol="$VISUAL todo.yml" # local todo
 alias v=$VISUAL
 alias search="find . -name" # search file by name
 alias k9="kill -9"
-alias upd="sudo apt --yes update"
-alias upg="sudo apt --yes upgrade"
+alias upd="sudo apt update --yes"
+alias upg="sudo apt upgrade --yes"
 alias install="sudo apt --yes update; sudo apt --yes install"
 
 alias susp="systemctl suspend"
