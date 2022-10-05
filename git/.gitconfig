@@ -61,3 +61,5 @@
   templatedir = "~/dotfiles/git/git_template" # template dir with hooks for new git repos
 [commit]
   gpgsign = true
+[pull]
+	rebase = false
