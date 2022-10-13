@@ -248,12 +248,6 @@ map <C-n> :NERDTreeToggle <bar> :NERDTreeRefreshRoot<CR>
 
 """ Ruby
 let @p = 'Abinding.pry:w' " macro to insert a breakpoint
-" RSpec setup
-let g:rspec_command = "!bundle exec rspec {spec}"
-let g:rspec_runner = "os_x_iterm2" " runner for macVim
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
 let g:coc_global_extensions = ['coc-solargraph'] " Ruby language server, requires solargraph gem installed
 command! Cs let @+ = "spec " . expand('%') " copy 'spec path/to/current/file'
 command! Csl let @+ = "spec " . expand('%') . ':' . line(".") " copy 'spec path/to/current/file:cursor_line'
