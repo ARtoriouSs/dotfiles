@@ -4,6 +4,8 @@ set nocompatible " disables vi compatibility (default in neovim, for vim only), 
 " plugins moved to another file to be able to sourse them without the rest of configuration
 source ~/dotfiles/vim/plugins.vim
 
+lua require('treesitter')
+
 """ statusline settings
 set laststatus=2 " shows status line for all splits
 let g:lightline = {
@@ -123,9 +125,10 @@ vnoremap < <gv
 vnoremap > >gv
 
 """ folding
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldlevel=99
 set nofoldenable " don't fold by default
-set foldmethod=syntax " fold based on syntax
-set foldnestmax=3 " deepest fold is 3 levels
 
 """ files
 set nowritebackup " do not write backup before save

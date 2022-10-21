@@ -25,7 +25,6 @@ Plug 'tpope/vim-repeat' " repeat plugin commands with '.'
 Plug 'tpope/vim-surround' " simple quoting and parenthesizing
 Plug 'ludovicchabant/vim-gutentags' " autoupdate ctags on file save
 Plug 'tree-sitter/tree-sitter' " language parser
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " nvim support for tree-sitter
 
 " helpers
 Plug 'RRethy/nvim-treesitter-endwise' " auto 'end' keyword
@@ -36,6 +35,7 @@ Plug 'tpope/vim-eunuch' " shell file commands
 Plug 'chaoren/vim-wordmotion' " navigation between parts of snake_case and CamelCase words
 
 " languages and tools support
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " language parsers
 Plug 'vim-ruby/vim-ruby' " ruby
 Plug 'elixir-editors/vim-elixir' " elixir
 Plug 'pangloss/vim-javascript' " JavaScript
@@ -48,7 +48,6 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " CSS in JS
 Plug 'kchmck/vim-coffee-script' " coffee script
 Plug 'ap/vim-css-color' " colors preview
 Plug 'othree/html5.vim' " html
-Plug 'vim-scripts/HTML-AutoCloseTag' " auto-closing html tags
 Plug 'tpope/vim-bundler' " bundler
 Plug 'slim-template/vim-slim' " slim templates
 Plug 'jparise/vim-graphql' " graphQL

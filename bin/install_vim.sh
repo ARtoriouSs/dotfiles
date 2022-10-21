@@ -14,9 +14,10 @@ python2 -m pip install --user --upgrade pynvim
 python3 -m pip install --user --upgrade pynvim
 
 # symlink for configs
-mkdir -p ~/.config/nvim
+mkdir -p ~/.config/nvim/lua
 ln -sf ~/dotfiles/vim/.vimrc ~/.config/nvim/init.vim
 ln -sf ~/dotfiles/vim/coc-settings.json ~/.config/nvim/coc-settings.json
+ln -sf ~/dotfiles/vim/lua/treesitter.lua ~/.config/nvim/lua/treesitter.lua
 ln -sf ~/dotfiles/development/.solargraph.yml ~/.config/solargraph/config.yml
 
 # install Plug and plugins
