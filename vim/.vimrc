@@ -78,6 +78,15 @@ unlet s:palette
 highlight CursorLine guibg=#38351d
 autocmd InsertEnter * highlight CursorLine guibg=#2E3D32
 autocmd InsertLeave * highlight CursorLine guibg=#38352d
+" filetype aliases
+command! Ruby :set filetype=ruby
+command! Elixir :set filetype=elixir
+command! JS :set filetype=javascript
+command! Js :set filetype=javascript
+command! Sql :set filetype=sql
+command! SQL :set filetype=sql
+command! Json :set filetype=json
+command! JSON :set filetype=json
 
 """ cursor
 set cursorline " shows cursorline
