@@ -7,6 +7,11 @@ alias gca="git commit --amend"
 alias gco="git checkout"
 gcom() { git checkout $(default-branch) }
 
+alias gm="git merge"
+alias gma="git merge --abort"
+alias gmc="git merge --continue"
+gmm() { git merge $(default-branch) }
+
 alias gr="git rebase"
 alias gra="git rebase --abort"
 alias grc="git rebase --continue"
