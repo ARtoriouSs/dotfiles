@@ -244,6 +244,7 @@ command! Gca :Git commit --amend
 command! Gcan :Git commit --amend --no-edit
 command! Gl :Commits
 command! Take :Gread | wq | q " Take changes by fugitive's Gread and close splits
+command! Add :Git add %
 let g:gitgutter_max_signs = 1000 " increase max displayed signs for gitgutter
 
 """ file explorer
