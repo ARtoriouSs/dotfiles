@@ -32,6 +32,6 @@ require'nvim-treesitter.configs'.setup {
     --end,
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time, can be a list of languages
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   }
 }
