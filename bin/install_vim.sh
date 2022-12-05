@@ -12,6 +12,7 @@ sudo gem install solargraph # should be installed per project's ruby version
 npm install -g neovim
 python2 -m pip install --user --upgrade pynvim
 python3 -m pip install --user --upgrade pynvim
+npm install -g tree-sitter-cli # tree-sitter executable
 
 # symlink for configs
 mkdir -p ~/.config/nvim/lua
