@@ -22,3 +22,16 @@ echo "deb [trusted=yes arch=amd64] https://download.konghq.com/insomnia-ubuntu/ 
   | sudo tee -a /etc/apt/sources.list.d/insomnia.list
 sudo apt update
 sudo apt install --yes insomnia
+# postman
+bit=$(getconf LONG_BIT) # 32 or 64 bit
+wget -O ~/postman.tar.gz "https://dl.pstmn.io/download/latest/linux${bit}"
+sudo tar xvf ~/postman.tar.gz -C /opt/
+rm ~/postman.tar.gz
+echo "[Desktop Entry]
+Encoding=UTF-8
+Name=Postman
+Exec=/opt/Postman/app/Postman %U
+Icon=/opt/Postman/app/resources/app/assets/icon.png
+Terminal=false
+Type=Application
+Categories=Development;" >> ~/.local/share/applications/Postman.desktop # Make the app accessible from a launcher icon
