@@ -58,6 +58,10 @@ alias la='ls -A'
 alias l="la"
 alias ll='ls -alh --color=auto --group-directories-first'
 
+reload() {
+  source ~/.zprofile
+}
+
 # open with default application
 o() {
   [ -z "$1" ] && xdg-open . || xdg-open $@
