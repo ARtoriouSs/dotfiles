@@ -81,8 +81,8 @@ autocmd InsertLeave * highlight CursorLine guibg=#38352d
 " filetype aliases
 command! Ruby :set filetype=ruby
 command! Elixir :set filetype=elixir
-command! JS :set filetype=javascript
 command! Js :set filetype=javascript
+command! JS :set filetype=javascript
 command! Sql :set filetype=sql
 command! SQL :set filetype=sql
 command! Json :set filetype=json
@@ -200,6 +200,8 @@ let g:wordmotion_mappings = {
 \ 'b' : '<M-b>',
 \ 'e' : '<M-e>'
 \ }
+" prettify json in current buffer
+command! Jq :%!jq .
 
 """ text
 set updatetime=100 " update faser
