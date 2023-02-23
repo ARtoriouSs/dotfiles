@@ -25,6 +25,7 @@ Plug 'tpope/vim-repeat' " repeat plugin commands with '.'
 Plug 'tpope/vim-surround' " simple quoting and parenthesizing
 Plug 'ludovicchabant/vim-gutentags' " autoupdate ctags on file save
 Plug 'tree-sitter/tree-sitter' " language parser
+Plug 'github/copilot.vim'
 
 " helpers
 Plug 'RRethy/nvim-treesitter-endwise' " auto 'end' keyword
@@ -59,4 +60,5 @@ Plug 'JamshedVesuna/vim-markdown-preview' " markdown preview in a browser
 Plug 'morhetz/gruvbox' " colorscheme
 Plug 'itchyny/lightline.vim' " statusline
 Plug 'ryanoasis/vim-devicons' " icons, should be last in this list
+
 call plug#end()
