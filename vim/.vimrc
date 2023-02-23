@@ -46,6 +46,7 @@ function! FileNameWithModifiedSign()
   return filename . modified
 endfunction
 
+
 """ colors and highlighting
 set background=dark " for correct colors in tmux
 set t_Co=256 " use 265 colors
@@ -88,10 +89,16 @@ command! SQL :set filetype=sql
 command! Json :set filetype=json
 command! JSON :set filetype=json
 
+
 """ cursor
 set cursorline " shows cursorline
 set number " shows current line number
 set relativenumber " shows relative numbers
+
+
+""" system
+command! Again silent exec '!last-command-beside'
+
 
 """ search
 set hlsearch " highlights search items
@@ -133,17 +140,20 @@ set smartindent " does smart autoindenting in C-like code
 vnoremap < <gv
 vnoremap > >gv
 
+
 """ folding
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 set foldlevel=99
 set nofoldenable " don't fold by default
 
+
 """ files
 set nowritebackup " do not write backup before save
 set autoread " to autoread if file was changed outside from vim
 set noswapfile " do not use swap files
 set nobackup " to not write backup during overwriting file
+
 
 """ viewport and messages
 set encoding=utf-8 " viewport default encodyng
@@ -159,6 +169,7 @@ let g:scrolloff_fraction = 0.2
 let vim_markdown_preview_hotkey='<Leader>m' " toggle markdown preview
 let vim_markdown_preview_browser='Google Chrome' " use Google Chrome for markdown preview
 
+
 """ buffers and copying
 set hidden " do not close buffer when window is closed
 " use alt + d to delete without copying
@@ -166,6 +177,7 @@ nnoremap <M-d> "_d
 xnoremap <M-d> "_d
 " use alt + p in visual mode to pase without copying selection
 xnoremap <M-p> "_dP
+
 
 """ controls and navigation
 set timeoutlen=250 " mapping delay
@@ -204,6 +216,7 @@ let g:wordmotion_mappings = {
 " prettify json in current buffer
 command! Jq :%!jq .
 
+
 """ text
 set updatetime=100 " update faser
 inoremap <silent><expr> <TAB>
@@ -227,11 +240,13 @@ nnoremap <C-k> <C-W><C-k>
 nnoremap <C-l> <C-W><C-l>
 nnoremap <C-h> <C-W><C-h>
 
+
 """ tabs
 nnoremap <C-a> :tabprevious<CR>
 nnoremap <C-s> :tabnext<CR>
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-q> :tabclose<CR>
+
 
 """ git
 if has('nvim')
@@ -250,6 +265,7 @@ command! Take :Gread | wq | q " Take changes by fugitive's Gread and close split
 command! Add :Git add %
 let g:gitgutter_max_signs = 1000 " increase max displayed signs for gitgutter
 
+
 """ file explorer
 " run NERDTree when vim started with specified directory
 autocmd StdinReadPre * let s:std_in=1
@@ -262,6 +278,7 @@ let g:NERDTreeGitStatusShowIgnored = 1 " show ignored status in nerdtree, a heav
 " ctrl + n to toggle file explorer and update it
 map <C-n> :NERDTreeToggle <bar> :NERDTreeRefreshRoot<CR>
 
+
 """ Ruby
 let @p = 'Abinding.pry:w' " macro to insert a breakpoint
 let g:coc_global_extensions = ['coc-solargraph'] " Ruby language server, requires solargraph gem installed
@@ -270,6 +287,7 @@ command! Csl let @+ = "spec " . expand('%') . ':' . line(".") " copy 'spec path/
 " run current spec file in beside tmux pane
 command! Spec silent exec '!run-spec-beside ' . expand('%')
 command! Specl silent exec '!run-spec-beside ' . expand('%') . ':' . line(".")
+
 
 """ should be last: allows vimrc if repo is trusted by creating .git/safe directory
 if filereadable(".git/safe/../../.vimrc.local")
