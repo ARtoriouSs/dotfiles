@@ -3,7 +3,7 @@ export PATH=$HOME/.rbenv/bin:$PATH # rbenv
 export PATH=.git/safe/../../bin:$PATH # git-safe
 
 # variables
-export DOTFILES_VIMRC=~/dotfiles/vim/.vimrc # dotfiles copy of vimrc
+export DOTFILES_VIM=~/dotfiles/vim/ # dotfiles vim configuration location
 export VISUAL=nvim
 export EDITOR=ex
 export GREP_TOOL=rg

@@ -183,9 +183,10 @@ nnoremap Q <nop>
 nnoremap <C-x> :let @/ = ""<CR>
 command! Reload source $MYVIMRC | redraw! " redraw and reload configuration
 command! Q q " Q to exit
-" edit vimrc in dotfiles dir (not $MYVIMRC) to have access to git inside vim (symlinked to $MYVIMRC)
-command! Vimrc :edit $DOTFILES_VIMRC
+" edit vimrc and plugins in dotfiles dir (not $MYVIMRC) to have access to git inside vim (symlinked to $MYVIMRC)
+command! Vimrc :edit $DOTFILES_VIM/.vimrc
 command! Vimrcl :edit .vimrc.local " edit local vimrc
+command! Plugins :edit $DOTFILES_VIM/plugins.vim
 " edit todo files
 command! Todo :edit $HOME/todo.yml
 command! Todol :edit todo.yml
