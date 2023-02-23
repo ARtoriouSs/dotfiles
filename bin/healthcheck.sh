@@ -31,6 +31,7 @@ check rg
 check ag
 check markdown
 check cowsay
+check jq
 check-snap
 
 echo "Python:"
