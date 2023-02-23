@@ -47,6 +47,16 @@ last-command-beside() {
   fi
 }
 
+# shows git status in the pane #1, to be used in vim command
+status-beside() {
+  local session_name=$(basename $PWD)
+
+  tmux has-session -t "$session_name"
+  if [ $? = 0 ]; then
+    tmux send-keys -t "${session_name}:0.1" status Enter
+  fi
+}
+
 # open tmux default session, takes path as an argument, $PWD by default
 alias td="t-default"
 t-default() {
