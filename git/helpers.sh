@@ -183,7 +183,7 @@ commit() {
 
 # commit with Jira ticket prefix from branch name (if exist)
 gcmm() {
-  story_number=$(current-branch | awk 'BEGIN { FS = "/" }; { print "[" $1 "]" }')
+  story_number=$(current-branch | awk 'BEGIN { FS = "-" }; { print "[" $1 "-" $2 "]" }')
 
   if [[ $story_number =~ "^\[[a-zA-Z]*-[0-9]{1,6}\]$" ]]; then
     commit "$story_number:u $*"
