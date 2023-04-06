@@ -38,25 +38,26 @@
 [status]
   short = true
 [alias]
-  cl  = clone
-  rem = remote
-  f   = fetch
-  b   = branch
-  co  = checkout
-  a   = add
-  aa  = add --all
-  cm  = commit -m
-  ca  = commit --amend
-  can = commit --amend --no-edit
-  r   = rebase
-  ra  = rebase --abort
-  rc  = rebase --continue
-  rs  = rebase --skip
-  st  = status
-  cp  = cherry-pick
-  d   = diff \":(exclude)*package-lock.json\"
-  ds  = diff --staged \":(exclude)*package-lock.json\"
-  l   = log --pretty=format:\"%C(yellow bold)%h%Creset | %C(blue bold)%ad%Creset, %C(green bold)%an%Creset %s%C(red bold)%d%Creset\" --graph --date=relative
+  root = rev-parse --show-toplevel
+  cl   = clone
+  rem  = remote
+  f    = fetch
+  b    = branch
+  co   = checkout
+  a    = add
+  aa   = add --all
+  cm   = commit -m
+  ca   = commit --amend
+  can  = commit --amend --no-edit
+  r    = rebase
+  ra   = rebase --abort
+  rc   = rebase --continue
+  rs   = rebase --skip
+  st   = status
+  cp   = cherry-pick
+  d    = diff \":(exclude)*package-lock.json\"
+  ds   = diff --staged \":(exclude)*package-lock.json\"
+  l    = log --pretty=format:\"%C(yellow bold)%h%Creset | %C(blue bold)%ad%Creset, %C(green bold)%an%Creset %s%C(red bold)%d%Creset\" --graph --date=relative
 [init]
   templatedir = "~/dotfiles/git/git_template" # template dir with hooks for new git repos
 [commit]

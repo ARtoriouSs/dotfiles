@@ -26,6 +26,8 @@ alias gl="git log --pretty=format:\"%C(yellow bold)%h%Creset | %C(blue bold)%ad%
 alias gcpk="git cherry-pick"
 alias gtrust="mkdir .git/safe"
 
+alias git-root="git rev-parse --show-toplevel"
+
 # custom colored `git status --short`
 alias gst="status"
 # for typos
@@ -104,9 +106,9 @@ add() {
   status
 }
 
-# add file to index via fzf
+# add file to index via fzf, also allows to add when not in a git root directory
 stadd() {
-  git status --porcelain | awk '{ print $2 }' | fzf --reverse -m | xargs git add
+  git status --porcelain | awk '{ print $2 }' | fzf --reverse -m | awk -v root=$(git-root) '{ print root"/"$1 }' | xargs git add
   status
 }
 
