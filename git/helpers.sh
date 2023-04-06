@@ -20,8 +20,8 @@ grm() { git rebase $(default-branch) }
 
 alias gf="git fetch"
 alias fetch="git fetch origin"
-alias gd="git diff \":(exclude)*package-lock.json\""
-alias gds="git diff --staged \":(exclude)*package-lock.json\""
+alias gd="git diff --irreversible-delete \":(exclude)*package-lock.json\""
+alias gds="git diff --irreversible-delete --staged \":(exclude)*package-lock.json\""
 alias gl="git log --pretty=format:\"%C(yellow bold)%h%Creset | %C(blue bold)%ad%Creset, %C(green bold)%an%Creset %s%C(red bold)%d%Creset\" --graph --date=relative"
 alias gcpk="git cherry-pick"
 alias gtrust="mkdir .git/safe"
