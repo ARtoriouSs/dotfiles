@@ -27,6 +27,7 @@ alias gcpk="git cherry-pick"
 alias gtrust="mkdir .git/safe"
 
 alias git-root="git rev-parse --show-toplevel"
+cdr() { cd $(git-root) }
 
 # custom colored `git status --short`
 alias gst="status"
