@@ -144,7 +144,8 @@ rbenv-update() {
 alias rcop="rubocop-changed"
 rubocop-changed() {
   local modified_and_added=$(git --no-pager diff --diff-filter=d --name-only $(git merge-base $(default-branch) HEAD) | $GREP_TOOL "\.rb|\.ru|\.rack|Gemfile")
-  echo $modified_and_added | xargs --no-run-if-empty --verbose bundle exec rubocop --force-exclusion $@
+  local modified_and_added_absolute=$(echo $modified_and_added | sed "s|^|$(git-root)/|g")
+  echo $modified_and_added_absolute| xargs --no-run-if-empty --verbose bundle exec rubocop --force-exclusion $@
 }
 
 # run rspec for all specs changed in current branch
