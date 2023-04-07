@@ -96,13 +96,15 @@ pop() {
   status
 }
 
-# git add files or all files if no args specified
+# git add files or all files if no args specified, allows to add when not in a git root directory
 alias ga="add"
 add() {
   if [ -z "$1" ]; then
     git add --all
   else
-    git add "$@"
+    for file in $@; do
+      git add $(git-root)/$file 2> /dev/null
+    done
   fi
   status
 }
