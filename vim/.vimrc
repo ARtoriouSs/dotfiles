@@ -287,7 +287,9 @@ command! Cs let @+ = "spec " . expand('%') " copy 'spec path/to/current/file'
 command! Csl let @+ = "spec " . expand('%') . ':' . line(".") " copy 'spec path/to/current/file:cursor_line'
 " run current spec file in beside tmux pane
 command! Spec silent exec '!run-spec-beside ' . expand('%')
+command! SPec Spec
 command! Specl silent exec '!run-spec-beside ' . expand('%') . ':' . line(".")
+command! SPecl Specl
 
 
 """ should be last: allows vimrc if repo is trusted by creating .git/safe directory
