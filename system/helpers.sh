@@ -143,7 +143,7 @@ wttr() {
 }
 
 # runs spec file 10 times 🙃
-flacky-spec() {
+flaky-spec() {
   for i in {1..10}; do
     bundle exec rspec $@
   done
