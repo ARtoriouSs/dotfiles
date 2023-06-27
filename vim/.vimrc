@@ -290,6 +290,8 @@ command! Spec silent exec '!run-spec-beside ' . expand('%')
 command! SPec Spec
 command! Specl silent exec '!run-spec-beside ' . expand('%') . ':' . line(".")
 command! SPecl Specl
+command! Speca silent exec '!run-spec-beside'
+command! SPeca Speca
 
 
 """ should be last: allows vimrc if repo is trusted by creating .git/safe directory
