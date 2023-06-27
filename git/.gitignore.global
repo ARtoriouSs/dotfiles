@@ -32,3 +32,6 @@ tags
 
 # directory for useful things
 gittemp
+
+# purr-pr rules
+purr.rb
