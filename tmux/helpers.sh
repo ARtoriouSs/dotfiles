@@ -25,14 +25,13 @@ t-project() {
   tmux -2 attach-session -t "$session_name"
 }
 
-# runs rspec in the pane #1, to be used in vim command
-run-spec-beside() {
+run-beside() {
   local session_name=$(basename $PWD)
 
   tmux has-session -t "$session_name"
   if [ $? = 0 ]; then
     tmux send-keys -t "${session_name}:0.1" C-c
-    tmux send-keys -t "${session_name}:0.1" "spec $1" Enter
+    tmux send-keys -t "${session_name}:0.1" "$@" Enter
   fi
 }
 

@@ -286,12 +286,13 @@ let g:coc_global_extensions = ['coc-solargraph'] " Ruby language server, require
 command! Cs let @+ = "spec " . expand('%') " copy 'spec path/to/current/file'
 command! Csl let @+ = "spec " . expand('%') . ':' . line(".") " copy 'spec path/to/current/file:cursor_line'
 " run current spec file in beside tmux pane
-command! Spec silent exec '!run-spec-beside ' . expand('%')
+command! Spec silent exec '!run-beside spec\ ' . expand('%')
 command! SPec Spec
-command! Specl silent exec '!run-spec-beside ' . expand('%') . ':' . line(".")
+command! Specl silent exec '!run-beside spec\ ' . expand('%') . ':' . line(".")
 command! SPecl Specl
-command! Speca silent exec '!run-spec-beside'
+command! Speca silent exec '!run-beside spec'
 command! SPeca Speca
+command! Bi silent exec '!run-beside bi'
 
 
 """ should be last: allows vimrc if repo is trusted by creating .git/safe directory
