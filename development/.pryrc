@@ -6,12 +6,17 @@ Pry::Commands.command(/^$/, 'repeat last command') do
   end
 end
 
-Pry::Commands.command('cpl', 'copy last execuded command') do
+Pry::Commands.command('cpl', 'copy last execuded command to clipboard') do
   system("echo '#{Pry.history.to_a[-2]}' | xclip -rmlastnl -selection clipboard")
 end
 
 Pry::Commands.command('trace', 'caller with only local trace') do
   puts(caller.filter { |trace_item| trace_item.include?(`pwd`.delete("\n")) })
+end
+
+# copies argument to clipboard
+def cp(arg)
+  system("echo '#{arg}' | xclip -rmlastnl -selection clipboard")
 end
 
 if defined? Rails
