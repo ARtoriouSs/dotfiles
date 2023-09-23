@@ -1,6 +1,6 @@
 alias g="git"
 alias ginit="git init"
-alias gcl="git clone"
+alias gcl="git clone" # TODO: also cd
 alias gb="git branch"
 alias gca="git commit --amend"
 
@@ -81,7 +81,7 @@ cgst() {
 }
 
 # git stash file or all files if no args specified
-stash() {
+stash() { # TODO - absolute path
   if [ -z "$1" ]; then
     git stash
   else
@@ -116,7 +116,7 @@ stadd() {
 }
 
 # git reset file or all files if no args specified
-reset() {
+reset() { # TODO - absolute path
   if [ -z "$1" ]; then
     echo "Type 'y' to reset working tree to $(git rev-parse --short HEAD)"
     read key
@@ -142,7 +142,7 @@ reset() {
   status
 }
 # reset without confirmation
-freset() {
+freset() { # TODO - absolute path
   if [ -z "$1" ]; then
     git reset HEAD --hard
     rm -rf $(git status --short)
@@ -163,13 +163,13 @@ freset() {
 }
 
 origin-reset() {
-    echo "Type 'y' to reset branch to the origin state"
-    read key
-    if [ "$key" = "y" ]; then
-      git reset --hard origin/$(current-branch)
-    else
-      echo "Aborted"
-    fi
+  echo "Type 'y' to reset branch to the origin state"
+  read key
+  if [ "$key" = "y" ]; then
+    git reset --hard origin/$(current-branch)
+  else
+    echo "Aborted"
+  fi
 }
 
 # remove file from index or all files if no args specified
