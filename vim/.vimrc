@@ -126,6 +126,9 @@ nnoremap <C-b> :History<Cr>
 " ctags
 let g:gutentags_ctags_tagfile=".git/tags" " tags file for gutentags
 let g:gutentags_resolve_symlinks=1 " generate tags for original file's project if editing symlink
+" next and prev tag
+nnoremap ]t :tnext<cr>
+nnoremap [t :tprevious<cr>
 
 """ tabs and indentation
 set nowrap " don't wrap lines
