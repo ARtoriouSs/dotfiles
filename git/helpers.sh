@@ -206,6 +206,7 @@ amend-no-edit() {
 # push current branch to origin
 alias forsepush="push --force-with-lease"
 alias fpush="push --force-with-lease"
+alias tpush="push"
 push() {
   git push $@ origin "$(current-branch)"
   status

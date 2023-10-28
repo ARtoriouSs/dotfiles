@@ -76,7 +76,7 @@ chmod a+x /usr/local/bin/kerl
 # kiex
 curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
 # diff-so-fancy
-wget -P /usr/local/bin https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
-sudo chmod +x /usr/local/bin/diff-so-fancy
+git clone https://github.com/so-fancy/diff-so-fancy.git ~/my_folder/bin/diff-so-fancy # diff-so-fancy
+sudo chmod +x ~/my_folder/bin/diff-so-fancy/diff-so-fancy
 # jq
-sudo apt intall jq
+sudo apt install --yes jq

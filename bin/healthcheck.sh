@@ -32,10 +32,14 @@ check ag
 check markdown
 check cowsay
 check jq
-check-snap
+check gh
+check diff-so-fancy
+
+echo "Docker:"
+check docker
+check docker-compose
 
 echo "Python:"
-check python
 check python2
 check python3
 check pip
@@ -56,10 +60,6 @@ check npm
 check n
 check yarn
 
-echo "Docker:"
-check docker
-check docker-compose
-
 echo "Databases:"
 check psql
 check redis-server
@@ -72,6 +72,10 @@ check skypeforlinux
 check slack
 check discord
 check insomnia
+check postman
+
+echo "Snap status:"
+check-snap
 
 printf "\nChecking shell:\n"
 if [ -z "$RC_SOURCED" ]; then

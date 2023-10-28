@@ -42,6 +42,9 @@ alias drmi="docker rmi -f"
 alias dcp="docker-compose"
 alias dcps="docker-compose ps -a"
 
+# postman
+alias postman="/opt/Postman/app/Postman"
+
 alias psqlr="restart-postgres"
 restart-postgres() {
   sudo service postgresql restart
