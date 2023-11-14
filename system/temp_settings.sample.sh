@@ -3,3 +3,7 @@
 
 export CURRENT_PROJECT="test"
 export EMAIL="email@example.com"
+
+# proxy
+export HTTP_PROXY_SERVER="http://proxy.sample.com:1080"
+export HTTPS_PROXY_SERVER="https://proxy.sample.com:1080"

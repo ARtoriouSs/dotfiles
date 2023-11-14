@@ -163,3 +163,17 @@ very-flaky-spec() {
     fi
   done
 }
+
+proxy-up() {
+  export http_proxy=$HTTP_PROXY_SERVER
+  export https_proxy=$HTTPS_PROXY_SERVER
+  export HTTP_PROXY=$HTTP_PROXY_SERVER
+  export HTTPS_PROXY=$HTTPS_PROXY_SERVER
+}
+
+proxy-down() {
+  unset http_proxy
+  unset HTTP_PROXY
+  unset https_proxy
+  unset HTTPS_PROXY
+}
