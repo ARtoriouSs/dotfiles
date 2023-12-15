@@ -88,6 +88,8 @@ command! Sql :set filetype=sql
 command! SQL :set filetype=sql
 command! Json :set filetype=json
 command! JSON :set filetype=json
+command! Xml :set filetype=xml
+command! XML :set filetype=xml
 
 
 """ cursor
