@@ -30,8 +30,8 @@ alias gitignore-global="$VISUAL ~/dotfiles/git/.gitignore.global"
 alias vimrc="$VISUAL ~/dotfiles/vim/.vimrc"
 alias plugins="$VISUAL ~/dotfiles/vim/plugins.vim"
 alias tmux-conf="$VISUAL ~/dotfiles/tmux/.tmux.conf"
-alias pryrc="$VISUAL ~/dotfiles/.pryrc"
-alias default-ctags="$VISUAL ~/dotfiles/default.ctags"
+alias pryrc="$VISUAL ~/dotfiles/development/.pryrc"
+alias default-ctags="$VISUAL ~/dotfiles/system/default.ctags"
 
 # system files access
 alias hosts="sudoedit /etc/hosts"
