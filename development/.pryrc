@@ -32,9 +32,6 @@ Pry.commands.alias_command 'w', 'whereami'
 Pry.commands.alias_command 'q', 'exit-program'
 Pry.commands.alias_command 'e', 'exit'
 
-# turn off the automatic pager for long output
-Pry.config.pager = false
-
 # set prompt as object name and cut it if it's too long (for tests)
 Pry.config.prompt = Pry::Prompt.new(
   'Prompt',

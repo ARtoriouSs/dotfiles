@@ -1,4 +1,5 @@
 gem-ctags
+solargraph
 pry
 pry-rails
 pry-doc
