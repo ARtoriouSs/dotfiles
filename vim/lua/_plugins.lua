@@ -14,41 +14,45 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  {'scrooloose/nerdtree'},
-  {'Xuyuanp/nerdtree-git-plugin'},
-
+  -- LSP
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-  {'williamboman/mason.nvim'}, -- Language server manager
+  {'williamboman/mason.nvim'}, -- language server manager
   {'williamboman/mason-lspconfig.nvim'},
   {'neovim/nvim-lspconfig'},
-  {'L3MON4D3/LuaSnip'}, -- needed?
+  {'L3MON4D3/LuaSnip'}, -- TODO: needed?
 
+  -- treesitter
+  {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
+  {'RRethy/nvim-treesitter-endwise'}, -- complete do-end with treesitter
+
+  -- completion
   {'hrsh7th/nvim-cmp'},
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/cmp-cmdline'},
   {'hrsh7th/cmp-buffer'},
   {'hrsh7th/cmp-path'},
+  {'github/copilot.vim'},
 
+  -- search and modals
   {'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = {'nvim-lua/plenary.nvim'}},
 
+  -- file explorer
   {'nvim-tree/nvim-tree.lua'},
   {'nvim-tree/nvim-web-devicons'},
 
-  {'ellisonleao/gruvbox.nvim', priority = 1000 , config = true},
-
+  -- git
   {'tpope/vim-fugitive'},
-  {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
-  {'RRethy/nvim-treesitter-endwise'},
-
-  {'drzel/vim-scrolloff-fraction'},
   {'airblade/vim-gitgutter'},
-  {'simeji/winresizer'},
-  {'tpope/vim-eunuch'},
-  {'chaoren/vim-wordmotion'},
-  {'tpope/vim-surround'},
-  {'tpope/vim-repeat'},
 
-  { 'numToStr/Comment.nvim', lazy = false },
+  -- life-simplifiers
+  {'drzel/vim-scrolloff-fraction'}, -- scroll window when approaching the bottom/top
+  {'simeji/winresizer'}, -- split resizer
+  {'tpope/vim-eunuch'}, -- file operation commands
+  {'chaoren/vim-wordmotion'}, -- jump between word parts
+  {'tpope/vim-surround'}, -- quick change of parentheses, brackets, quotes, tags, etc.
+  {'tpope/vim-repeat'}, -- repeat plugin commands with '.'
+  { 'numToStr/Comment.nvim', lazy = false }, -- commenting
 
-  {'github/copilot.vim'},
+  -- theme
+  {'ellisonleao/gruvbox.nvim', priority = 1000 , config = true},
 })
