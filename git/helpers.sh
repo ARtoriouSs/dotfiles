@@ -5,6 +5,7 @@ alias gb="git branch"
 alias gca="git commit --amend"
 
 alias gco="git checkout"
+alias dungeon="git checkout" # 🫡
 gcom() { git checkout $(default-branch) }
 
 alias gm="git merge"
