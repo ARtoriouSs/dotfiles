@@ -16,11 +16,9 @@ npm install -g tree-sitter-cli # tree-sitter executable
 
 # symlink for configs
 mkdir -p ~/.config/nvim/lua
-ln -sf ~/dotfiles/vim/.vimrc ~/.config/nvim/init.vim
-ln -sf ~/dotfiles/vim/coc-settings.json ~/.config/nvim/coc-settings.json
-ln -sf ~/dotfiles/vim/lua/treesitter.lua ~/.config/nvim/lua/treesitter.lua
+ln -sf ~/dotfiles/vim/init.lua ~/.config/nvim/init.lua
+ln -sf ~/dotfiles/vim/lua/ ~/.config/nvim/lua/
 ln -sf ~/dotfiles/development/.solargraph.yml ~/.config/solargraph/config.yml
 
-# install Plug and plugins
-curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim -u ~/dotfiles/vim/plugins.vim +PlugInstall +qall
+# install Lazy and plugins
+nvim -u ~/dotfiles/vim/lua/_plugins.lua +Lazy +qall
