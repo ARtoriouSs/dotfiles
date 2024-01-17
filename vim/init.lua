@@ -11,3 +11,4 @@ require('_theme')
 
 vim.o.shellcmdflag = '-ic' -- run shell in interactive mode to load functions and aliases from the shell config
 vim.opt.maxmempattern = 5000 -- more memory for regex searches
+vim.opt.swapfile = false -- do not create swap files
