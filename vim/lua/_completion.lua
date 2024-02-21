@@ -33,6 +33,12 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    ['<Tab>'] = { -- disable Tab to avoid conflict with Copilot
+      i = cmp.config.disable,
+      n = cmp.config.disable
+    }
   }),
 
   sources = cmp.config.sources({
@@ -57,7 +63,3 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig')['solargraph'].setup {
   capabilities = capabilities
 }
-
--- Copilot
-vim.g.copilot_assume_mapped = true -- allow using TAB, but it will conflict with CMP
-vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
