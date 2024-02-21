@@ -52,9 +52,17 @@ vim.api.nvim_set_keymap('n', '<M-d>', '"_d', { noremap = true })
 vim.api.nvim_set_keymap('x', '<M-d>', '"_d', { noremap = true })
 vim.api.nvim_set_keymap('x', '<M-p>', '"_dp', { noremap = true })
 
--- use alt + w/e/b to navigate by word parts TODO - disable by default
---vim.cmd('g:wordmotion_nomap')
---vim.cmd("let g:wordmotion_mappings = {'w' : '<M-w>', 'b' : '<M-b>', 'e' : '<M-e>' }")
+-- use alt + w/e/b to navigate by word parts in normal and visual mode
+vim.api.nvim_set_keymap('n', '<M-w>', '<Plug>CamelCaseMotion_w', { noremap = false, silent = true })
+vim.api.nvim_set_keymap('n', '<M-e>', '<Plug>CamelCaseMotion_e', { noremap = false, silent = true })
+vim.api.nvim_set_keymap('n', '<M-b>', '<Plug>CamelCaseMotion_b', { noremap = false, silent = true })
+vim.api.nvim_set_keymap('v', '<M-w>', '<Plug>CamelCaseMotion_w', { noremap = false, silent = true })
+vim.api.nvim_set_keymap('v', '<M-e>', '<Plug>CamelCaseMotion_e', { noremap = false, silent = true })
+vim.api.nvim_set_keymap('v', '<M-b>', '<Plug>CamelCaseMotion_b', { noremap = false, silent = true })
+
+-- use alt + arrows to navigate by word parts in normal and insert mode
+vim.api.nvim_set_keymap('i', '<M-Left>',  '<C-o><Plug>CamelCaseMotion_b', { noremap = false, silent = true })
+vim.api.nvim_set_keymap('i', '<M-Right>', '<C-o><Plug>CamelCaseMotion_w', { noremap = false, silent = true })
 
 -- make < > shifts keep selection
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true })

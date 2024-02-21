@@ -48,7 +48,7 @@ require('lazy').setup({
   {'drzel/vim-scrolloff-fraction'}, -- scroll window when approaching the bottom/top
   {'simeji/winresizer'}, -- split resizer
   {'tpope/vim-eunuch'}, -- file operation commands
-  {'chaoren/vim-wordmotion'}, -- jump between word parts
+  {'bkad/CamelCaseMotion'}, -- jump between word parts
   {'tpope/vim-surround'}, -- quick change of parentheses, brackets, quotes, tags, etc.
   {'tpope/vim-repeat'}, -- repeat plugin commands with '.'
   { 'numToStr/Comment.nvim', lazy = false }, -- commenting
