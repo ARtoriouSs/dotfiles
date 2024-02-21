@@ -1,4 +1,4 @@
--- disable netrw explorer
+-- disable default netrw explorer
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -111,6 +111,8 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "m", tree_actions_menu, { buffer = bufnr, noremap = true, silent = true, nowait = true })
   -- move/rename a file TODO: leave base name in prompt
   vim.keymap.set('n', 'r', api.fs.rename_sub, opts('move'))
+  -- nvim-tree remaps C-e, so this line overrides it back to toggle WinResizer
+  vim.keymap.set('n', '<C-e>', ':WinResizerStartResize<cr>', opts('winresizer override'))
 end
 
 require('nvim-tree').setup {
