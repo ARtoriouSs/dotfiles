@@ -35,6 +35,7 @@ require('lazy').setup({
 
   -- search and modals
   {'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = {'nvim-lua/plenary.nvim'}},
+  {'nvim-telescope/telescope-fzf-native.nvim', build = 'make', dependencies = {'nvim-telescope/telescope.nvim'}},
 
   -- file explorer
   {'nvim-tree/nvim-tree.lua'},
