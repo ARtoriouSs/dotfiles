@@ -28,7 +28,6 @@ require('lazy').setup({
   -- completion
   {'hrsh7th/nvim-cmp'},
   {'hrsh7th/cmp-nvim-lsp'},
-  {'hrsh7th/cmp-cmdline'},
   {'hrsh7th/cmp-buffer'},
   {'hrsh7th/cmp-path'},
   {'github/copilot.vim'},
@@ -54,6 +53,7 @@ require('lazy').setup({
   {'tpope/vim-repeat'}, -- repeat plugin commands with '.'
   { 'numToStr/Comment.nvim', lazy = false }, -- commenting
 
-  -- theme
-  {'ellisonleao/gruvbox.nvim', priority = 1000 , config = true},
+  -- styling
+  {'echasnovski/mini.animate'}, -- animations
+  {'ellisonleao/gruvbox.nvim', priority = 1000 , config = true} -- theme
 })

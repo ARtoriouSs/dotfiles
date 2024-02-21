@@ -22,3 +22,11 @@ vim.opt.list = true
 vim.opt.listchars:append({ tab = '▸ ' })
 vim.opt.listchars:append({ eol = '¬' })
 vim.opt.listchars:append({ trail = '∙' })
+
+-- animations
+require('mini.animate').setup({
+  -- Disable scroll animations
+  scroll = {
+    enable = false
+  }
+})
