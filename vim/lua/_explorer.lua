@@ -8,8 +8,8 @@ vim.opt.termguicolors = true
 -- copy in status line
 local function copy_file_to(node)
   local file_src = node['absolute_path']
-  local file_out = vim.fn.input("Copy to: ", file_src, "file")
-  local dir = vim.fn.fnamemodify(file_out, ":h")
+  local file_out = vim.fn.input('Copy to: ', file_src, 'file')
+  local dir = vim.fn.fnamemodify(file_out, ':h')
 
   vim.fn.system { 'mkdir', '-p', dir }
   vim.fn.system { 'cp', '-R', file_src, file_out }
@@ -18,27 +18,27 @@ end
 local tree_actions = function(node)
   return {
     {
-      name = "create",
-      handler = require("nvim-tree.api").fs.create,
+      name = 'create',
+      handler = require('nvim-tree.api').fs.create,
     },
     {
-      name = "delete",
-      handler = require("nvim-tree.api").fs.remove,
+      name = 'delete',
+      handler = require('nvim-tree.api').fs.remove,
     },
     {
-      name = "rename",
-      handler = require("nvim-tree.api").fs.rename,
+      name = 'rename',
+      handler = require('nvim-tree.api').fs.rename,
     },
     {
-      name = "move",
-      handler = require("nvim-tree.api").fs.rename_sub,
+      name = 'move',
+      handler = require('nvim-tree.api').fs.rename_sub,
     },
     {
-      name = "clipboard",
-      handler = require("nvim-tree.api").fs.copy.node,
+      name = 'clipboard',
+      handler = require('nvim-tree.api').fs.copy.node,
     },
     {
-      name = "copy",
+      name = 'copy',
       handler = function(node)
         local node = require('nvim-tree.api').tree.get_node_under_cursor()
         copy_file_to(node, true)
@@ -56,22 +56,22 @@ local function tree_actions_menu(node)
     }
   end
 
-  local finder = require("telescope.finders").new_table({
+  local finder = require('telescope.finders').new_table({
     results = tree_actions(node),
     entry_maker = entry_maker,
   })
 
-  local sorter = require("telescope.sorters").get_generic_fuzzy_sorter()
+  local sorter = require('telescope.sorters').get_generic_fuzzy_sorter()
 
   local default_options = {
     finder = finder,
     sorter = sorter,
     attach_mappings = function(prompt_buffer_number)
-      local actions = require("telescope.actions")
+      local actions = require('telescope.actions')
 
       -- on item select
       actions.select_default:replace(function()
-        local state = require("telescope.actions.state")
+        local state = require('telescope.actions.state')
         local selection = state.get_selected_entry()
         actions.close(prompt_buffer_number) -- closing the picker
         selection.value.handler(node) -- executing the callback
@@ -90,7 +90,7 @@ local function tree_actions_menu(node)
   }
 
   -- TODO: use cursor theme
-  require("telescope.pickers").new({ prompt_title = "Actions" }, default_options):find()
+  require('telescope.pickers').new({ prompt_title = 'Actions' }, default_options):find()
 end
 
 local function on_attach(bufnr)
@@ -108,7 +108,7 @@ local function on_attach(bufnr)
   end, opts('copy_file_to'))
 
   -- show actions menu in Telescope
-  vim.keymap.set("n", "m", tree_actions_menu, { buffer = bufnr, noremap = true, silent = true, nowait = true })
+  vim.keymap.set('n', 'm', tree_actions_menu, { buffer = bufnr, noremap = true, silent = true, nowait = true })
   -- move/rename a file TODO: leave base name in prompt
   vim.keymap.set('n', 'r', api.fs.rename_sub, opts('move'))
   -- nvim-tree remaps C-e, so this line overrides it back to toggle WinResizer
@@ -119,5 +119,5 @@ require('nvim-tree').setup {
   on_attach = on_attach,
 }
 
-vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeToggle<cr>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("n", "<Leader>n", ":NvimTreeFindFile<cr>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<cr>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>n', ':NvimTreeFindFile<cr>', { silent = true, noremap = true })

@@ -3,7 +3,7 @@ vim.wo.wrap = false -- don't wrap lines
 vim.o.clipboard = 'unnamedplus' -- use system clipboard by default if no register specified
 vim.opt.updatetime = 100 -- update faser
 vim.o.autoread = true -- to autoread if file was changed outside from vim
-vim.o.path = vim.o.path .. "**" -- allows gf to look deep into folders during search
+vim.o.path = vim.o.path .. '**' -- allows gf to look deep into folders during search
 
 vim.g.scrolloff_fraction = 0.2 -- auto scroll on 20% of window width
 
@@ -39,8 +39,8 @@ vim.api.nvim_set_keymap('n', '<C-t>', ':tabnew<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-q>', ':tabclose<CR>', { noremap = true })
 
 -- folding
-vim.o.foldmethod = "expr"
--- vim.o.foldexpr = "nvim_treesitter#foldexpr()" -- TODO
+vim.o.foldmethod = 'expr'
+-- vim.o.foldexpr = 'nvim_treesitter#foldexpr()' -- TODO
 vim.o.foldlevel = 99
 
 -- command without shift
@@ -69,29 +69,29 @@ vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true })
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true })
 
 -- edit files in dotfiles dir (not $MYVIMRC) to have access to git inside vim (symlinked to $MYVIMRC)
-vim.api.nvim_create_user_command('Vimrc', ':edit $DOTFILES_VIM/init.lua', {bang = true})
-vim.api.nvim_create_user_command('Init', ':Vimrc', {bang = true})
-vim.api.nvim_create_user_command('Plugins', ':edit $DOTFILES_VIM/lua/_plugins.lua', {bang = true})
-vim.api.nvim_create_user_command('Todo', ':edit $HOME/todo.yml', {bang = true}) -- edit global todo
-vim.api.nvim_create_user_command('Todol', ':edit todo.yml', {bang = true}) -- edit local todo
+vim.api.nvim_create_user_command('Vimrc', ':edit $DOTFILES_VIM/init.lua', { bang = true })
+vim.api.nvim_create_user_command('Init', ':Vimrc', { bang = true })
+vim.api.nvim_create_user_command('Plugins', ':edit $DOTFILES_VIM/lua/_plugins.lua', { bang = true })
+vim.api.nvim_create_user_command('Todo', ':edit $HOME/todo.yml', { bang = true }) -- edit global todo
+vim.api.nvim_create_user_command('Todol', ':edit todo.yml', { bang = true }) -- edit local todo
 
 -- aliases
-vim.api.nvim_create_user_command('Reload', 'source $MYVIMRC | redraw!', {bang = true}) -- redraw and reload configuration TODO: https://stackoverflow.com/questions/72412720/how-to-source-init-lua-without-restarting-neovim
-vim.api.nvim_create_user_command('Q', 'q', {bang = true}) -- Q to exit
-vim.api.nvim_create_user_command('Cc', 'let @+ = expand(\'%\')', {bang = true}) -- copy path to current file
-vim.api.nvim_create_user_command('Ccl', 'let @+ = expand(\'%\') . \':\' . line(".")', {bang = true}) -- copy 'path/to/current/file:cursor_line'
+vim.api.nvim_create_user_command('Reload', 'source $MYVIMRC | redraw!', { bang = true }) -- redraw and reload configuration TODO: https://stackoverflow.com/questions/72412720/how-to-source-init-lua-without-restarting-neovim
+vim.api.nvim_create_user_command('Q', 'q', { bang = true }) -- Q to exit
+vim.api.nvim_create_user_command('Cc', 'let @+ = expand(\'%\')', { bang = true }) -- copy path to current file
+vim.api.nvim_create_user_command('Ccl', 'let @+ = expand(\'%\') . \':\' . line(".")', { bang = true }) -- copy 'path/to/current/file:cursor_line'
 
 -- filetype aliases
-vim.api.nvim_create_user_command('Ruby', 'set filetype=ruby', {bang = true})
-vim.api.nvim_create_user_command('Elixir', 'set filetype=elixir', {bang = true})
-vim.api.nvim_create_user_command('Js', 'set filetype=javascript', {bang = true})
-vim.api.nvim_create_user_command('JS', 'set filetype=javascript', {bang = true})
-vim.api.nvim_create_user_command('Sql', 'set filetype=sql', {bang = true})
-vim.api.nvim_create_user_command('SQL', 'set filetype=sql', {bang = true})
-vim.api.nvim_create_user_command('Json', 'set filetype=json', {bang = true})
-vim.api.nvim_create_user_command('JSON', 'set filetype=json', {bang = true})
-vim.api.nvim_create_user_command('Xml', 'set filetype=xml', {bang = true})
-vim.api.nvim_create_user_command('XML', 'set filetype=xml', {bang = true})
+vim.api.nvim_create_user_command('Ruby', 'set filetype=ruby', { bang = true })
+vim.api.nvim_create_user_command('Elixir', 'set filetype=elixir', { bang = true })
+vim.api.nvim_create_user_command('Js', 'set filetype=javascript', { bang = true })
+vim.api.nvim_create_user_command('JS', 'set filetype=javascript', { bang = true })
+vim.api.nvim_create_user_command('Sql', 'set filetype=sql', { bang = true })
+vim.api.nvim_create_user_command('SQL', 'set filetype=sql', { bang = true })
+vim.api.nvim_create_user_command('Json', 'set filetype=json', { bang = true })
+vim.api.nvim_create_user_command('JSON', 'set filetype=json', { bang = true })
+vim.api.nvim_create_user_command('Xml', 'set filetype=xml', { bang = true })
+vim.api.nvim_create_user_command('XML', 'set filetype=xml', { bang = true })
 
 -- save actions
 vim.api.nvim_create_autocmd('BufWritePre', { pattern = '', command = ":%s/\\s\\+$//e" }) -- removes trailing whitespace on save

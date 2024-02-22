@@ -5,8 +5,8 @@ telescope.setup{
   defaults = {
     mappings = {
       i = {
-        ["<C-j>"] = require('telescope.actions').move_selection_next,
-        ["<C-k>"] = require('telescope.actions').move_selection_previous
+        ['<C-j>'] = require('telescope.actions').move_selection_next,
+        ['<C-k>'] = require('telescope.actions').move_selection_previous
       }
     }
   },
@@ -16,7 +16,7 @@ telescope.setup{
       fuzzy = true,
       override_generic_sorter = true,
       override_file_sorter = true,
-      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      case_mode = 'smart_case', -- or 'ignore_case' or 'respect_case'
     }
   }
 }

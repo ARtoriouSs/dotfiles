@@ -1,5 +1,7 @@
 vim.opt.background = 'dark'
 
+-- colorscheme
+vim.cmd('colorscheme gruvbox')
 require('gruvbox').setup({
   italic = {
     strings = false,
@@ -9,8 +11,6 @@ require('gruvbox').setup({
     folds = true,
   }
 })
-
-vim.cmd("colorscheme gruvbox")
 
 -- viewport
 vim.opt.cursorline = true -- shows cursorline

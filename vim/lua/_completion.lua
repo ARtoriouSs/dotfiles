@@ -13,32 +13,17 @@ cmp.setup({
   },
 
   mapping = cmp.mapping.preset.insert({
-    -- select forward on Tab
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback() -- the fallback function sends a already mapped key. In this case, it's probably `<Tab>`
-      end
-    end, { "i", "s" }),
-
-    -- select backward on Shift-Tab
-    ["<S-Tab>"] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_prev_item()
-      end
-    end, { "i", "s" }),
-
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<C-k>'] = cmp.mapping.select_prev_item(),
     ['<C-j>'] = cmp.mapping.select_next_item(),
-    ['<Tab>'] = { -- disable Tab to avoid conflict with Copilot
-      i = cmp.config.disable,
-      n = cmp.config.disable
-    }
+    ['<S-Tab>'] = cmp.mapping(function() -- select backward on Shift-Tab
+      if cmp.visible() then
+        cmp.select_prev_item()
+      end
+    end, { 'i', 's' }),
   }),
 
   sources = cmp.config.sources({
