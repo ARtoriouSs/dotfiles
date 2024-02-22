@@ -1,7 +1,6 @@
 vim.opt.background = 'dark'
 
 -- colorscheme
-vim.cmd('colorscheme gruvbox')
 require('gruvbox').setup({
   italic = {
     strings = false,
@@ -11,6 +10,8 @@ require('gruvbox').setup({
     folds = true,
   }
 })
+
+vim.cmd('colorscheme gruvbox')
 
 -- viewport
 vim.opt.cursorline = true -- shows cursorline
@@ -25,8 +26,6 @@ vim.opt.listchars:append({ trail = '∙' })
 
 -- animations
 require('mini.animate').setup({
-  -- Disable scroll animations
-  scroll = {
-    enable = false
-  }
+  scroll = { enable = false },
+  resize = { enable = false }
 })
