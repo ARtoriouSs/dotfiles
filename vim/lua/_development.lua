@@ -11,5 +11,7 @@ vim.api.nvim_create_user_command('Cs', 'let @+ = "spec " . expand(\'%\')', { ban
 vim.api.nvim_create_user_command('Csl', 'let @+ = "spec " . expand(\'%\') . \':\' . line(".")', { bang = true }) -- copy 'spec path/to/current/file:cursor_line'
 
 vim.api.nvim_create_user_command('Jq', ':%!jq .', { bang = true }) -- format JSON
--- TODO: format XML
--- TODO compare data files
+
+-- macros
+vim.fn.setreg('p', [[Abinding.pry:w]]) -- insert a pry breakpoint on the new line
+vim.fn.setreg('o', [[If{€ý5a binding.pry;;w]]) -- insert a pry breakpoint in the begnning of a { } block
