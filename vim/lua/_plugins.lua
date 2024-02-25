@@ -49,10 +49,17 @@ require('lazy').setup({
   { 'drzel/vim-scrolloff-fraction' }, -- scroll window when approaching the bottom/top
   { 'simeji/winresizer' }, -- split resizer
   { 'tpope/vim-eunuch' }, -- file operation commands
-  { 'bkad/CamelCaseMotion' }, -- jump between word parts
   { 'tpope/vim-surround' }, -- quick change of parentheses, brackets, quotes, tags, etc.
   { 'tpope/vim-repeat' }, -- repeat plugin commands with '.'
   { 'numToStr/Comment.nvim', lazy = false }, -- commenting
+  { 'chaoren/vim-wordmotion', -- jump between word parts
+    init = function() -- due to nvim API limitations this plugin needs to be configured here
+      -- use alt + w/e/b to navigate by word parts in normal and visual mode
+      vim.cmd([[
+        let g:wordmotion_mappings = { 'w': '<M-w>', 'b': '<M-b>', 'e': '<M-e>' }
+      ]])
+    end,
+  },
 
   -- styling
   { 'echasnovski/mini.animate' }, -- animations
