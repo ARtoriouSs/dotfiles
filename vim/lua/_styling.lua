@@ -14,11 +14,11 @@ require('gruvbox').setup({
 vim.cmd('colorscheme gruvbox')
 
 -- viewport
-vim.opt.cursorline = true -- shows cursorline
-vim.opt.number = true -- shows current line number
+vim.opt.cursorline = true     -- shows cursorline
+vim.opt.number = true         -- shows current line number
 vim.opt.relativenumber = true -- relative line numbers
-vim.opt.signcolumn = 'yes' -- sign column, `number` to be single width and replace line numbers
-vim.opt.colorcolumn = '121' -- vertical line on 121'st column
+vim.opt.signcolumn = 'yes'    -- sign column, `number` to be single width and replace line numbers
+vim.opt.colorcolumn = '121'   -- vertical line on 121'st column
 vim.opt.list = true
 vim.opt.listchars:append({ tab = '▸ ' })
 vim.opt.listchars:append({ eol = '¬' })
@@ -29,3 +29,6 @@ require('mini.animate').setup({
   scroll = { enable = false },
   resize = { enable = false }
 })
+
+-- indent lines
+require("ibl").setup()

@@ -56,5 +56,6 @@ require('lazy').setup({
 
   -- styling
   { 'echasnovski/mini.animate' }, -- animations
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }, -- indent lines
   { 'ellisonleao/gruvbox.nvim', priority = 1000 , config = true } -- theme
 })
