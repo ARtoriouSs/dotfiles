@@ -31,7 +31,6 @@ alias vimrc="$VISUAL ~/dotfiles/vim/init.lua"
 alias plugins="$VISUAL ~/dotfiles/vim/lua/_plugins.lua"
 alias tmux-conf="$VISUAL ~/dotfiles/tmux/.tmux.conf"
 alias pryrc="$VISUAL ~/dotfiles/development/.pryrc"
-alias default-ctags="$VISUAL ~/dotfiles/system/default.ctags"
 
 # system files access
 alias hosts="sudoedit /etc/hosts"

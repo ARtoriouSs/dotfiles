@@ -2,9 +2,6 @@
 
 
 # create symlinks to dotfiles
-mkdir ~/.ctags.d
-ln -sf ~/dotfiles/system/default.ctags ~/.ctags.d/default.ctags
-
 ln -sf ~/dotfiles/git/.gitconfig ~/.gitconfig
 
 ln -sf ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
