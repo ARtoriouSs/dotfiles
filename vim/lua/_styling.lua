@@ -24,6 +24,12 @@ vim.opt.listchars:append({ tab = '▸ ' })
 vim.opt.listchars:append({ eol = '¬' })
 vim.opt.listchars:append({ trail = '∙' })
 
+-- highlight trailing spaces
+vim.cmd([[
+  match TrailingSpace / \+$/
+  highlight TrailingSpace guifg=red
+]])
+
 -- animations
 require('mini.animate').setup({
   scroll = { enable = false },
@@ -32,3 +38,10 @@ require('mini.animate').setup({
 
 -- indent lines
 require("ibl").setup()
+require('lualine').setup() -- status line
+
+-- tab line
+require('tabline').setup({
+  padding = 2,
+  show_icon = false,
+})
