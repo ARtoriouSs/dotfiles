@@ -1,9 +1,9 @@
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(_client, bufnr)
-  lsp_zero.default_keymaps({buffer = bufnr}) -- :help lsp-zero-keybindings
+  lsp_zero.default_keymaps({ buffer = bufnr }) -- :help lsp-zero-keybindings
 
-  local opts = {buffer = bufnr}
+  local opts = { buffer = bufnr }
 
   -- :Format to format
   vim.api.nvim_create_user_command(
@@ -13,8 +13,8 @@ lsp_zero.on_attach(function(_client, bufnr)
   )
 
   -- gq to format
-  vim.keymap.set({'n', 'v', 'x'}, 'gq', function()
-    vim.lsp.buf.format({async = false, timeout_ms = 10000})
+  vim.keymap.set({ 'n', 'v', 'x' }, 'gq', function()
+    vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
   end, opts)
 end)
 
@@ -51,7 +51,7 @@ require('lspconfig').lua_ls.setup {
     Lua = {
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = { 'vim' },
       },
     },
   },

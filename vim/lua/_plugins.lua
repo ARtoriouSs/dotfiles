@@ -19,7 +19,7 @@ require('lazy').setup({
   { 'williamboman/mason.nvim' }, -- language server manager
   { 'williamboman/mason-lspconfig.nvim' },
   { 'neovim/nvim-lspconfig' },
-  { 'L3MON4D3/LuaSnip' }, -- TODO: needed?
+  { 'L3MON4D3/LuaSnip' },
 
   -- treesitter
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
@@ -32,7 +32,7 @@ require('lazy').setup({
   { 'hrsh7th/cmp-path' },
   { 'github/copilot.vim' },
 
-  -- search and modals
+  -- search
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', dependencies = { 'nvim-telescope/telescope.nvim' } },
   { 'dyng/ctrlsf.vim' }, -- find and replace

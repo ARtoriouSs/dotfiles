@@ -38,5 +38,5 @@ require('nvim-tree').setup {
   on_attach = on_attach,
 }
 
-vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<cr>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>n', ':NvimTreeFindFile<cr>', { silent = true, noremap = true })
+vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<cr>', { silent = true, noremap = true })
+vim.keymap.set('n', '<Leader>n', ':NvimTreeFindFile<cr>', { silent = true, noremap = true })

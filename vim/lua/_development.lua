@@ -13,5 +13,5 @@ vim.api.nvim_create_user_command('Csl', 'let @+ = "spec " . expand(\'%\') . \':\
 vim.api.nvim_create_user_command('Jq', ':%!jq .', { bang = true }) -- format JSON
 
 -- macros
-vim.fn.setreg('p', [[Abinding.pry:w]]) -- insert a pry breakpoint on the new line
+vim.fn.setreg('p', [[Abinding.pry:w]])            -- insert a pry breakpoint on the new line
 vim.fn.setreg('o', [[If{€ý5a binding.pry;;w]]) -- insert a pry breakpoint in the begnning of a { } block
