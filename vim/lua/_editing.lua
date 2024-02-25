@@ -7,7 +7,7 @@ vim.o.path = vim.o.path .. '**' -- allows gf to look deep into folders during se
 
 vim.g.scrolloff_fraction = 0.2 -- auto scroll on 20% of window width
 
--- tabs and indentation
+-- indentation
 vim.o.tabstop = 2 -- tab = two spaces
 vim.o.shiftwidth = 2 -- identation in normal mode pressing < or >
 vim.o.softtabstop = 2 -- set tab as 2 spaces and removes 2 spaces on backspace
@@ -37,6 +37,17 @@ vim.api.nvim_set_keymap('n', '<C-a>', ':tabprevious<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-s>', ':tabnext<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-t>', ':tabnew<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-q>', ':tabclose<CR>', { noremap = true })
+-- leader + number to switch tabs
+vim.keymap.set('n', '<Leader>1', '1gt', { noremap = false, silent = true })
+vim.keymap.set('n', '<Leader>2', '2gt', { noremap = false, silent = true })
+vim.keymap.set('n', '<Leader>3', '3gt', { noremap = false, silent = true })
+vim.keymap.set('n', '<Leader>4', '4gt', { noremap = false, silent = true })
+vim.keymap.set('n', '<Leader>5', '5gt', { noremap = false, silent = true })
+vim.keymap.set('n', '<Leader>6', '6gt', { noremap = false, silent = true })
+vim.keymap.set('n', '<Leader>7', '7gt', { noremap = false, silent = true })
+vim.keymap.set('n', '<Leader>8', '8gt', { noremap = false, silent = true })
+vim.keymap.set('n', '<Leader>9', '9gt', { noremap = false, silent = true })
+vim.keymap.set('n', '<Leader>0', ':tablast<CR>', { noremap = false, silent = true })
 
 -- folding
 vim.o.foldmethod = 'expr'
@@ -68,15 +79,11 @@ vim.api.nvim_set_keymap('i', '<M-Right>', '<C-o><Plug>CamelCaseMotion_w', { nore
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true })
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true })
 
--- edit files in dotfiles dir (not $MYVIMRC) to have access to git inside vim (symlinked to $MYVIMRC)
-vim.api.nvim_create_user_command('Vimrc', ':edit $DOTFILES_VIM/init.lua', { bang = true })
-vim.api.nvim_create_user_command('Init', ':Vimrc', { bang = true })
-vim.api.nvim_create_user_command('Plugins', ':edit $DOTFILES_VIM/lua/_plugins.lua', { bang = true })
+-- edit todo files
 vim.api.nvim_create_user_command('Todo', ':edit $HOME/todo.yml', { bang = true }) -- edit global todo
 vim.api.nvim_create_user_command('Todol', ':edit todo.yml', { bang = true }) -- edit local todo
 
 -- aliases
-vim.api.nvim_create_user_command('Reload', 'source $MYVIMRC | redraw!', { bang = true }) -- redraw and reload configuration TODO: https://stackoverflow.com/questions/72412720/how-to-source-init-lua-without-restarting-neovim
 vim.api.nvim_create_user_command('Q', 'q', { bang = true }) -- Q to exit
 vim.api.nvim_create_user_command('Cc', 'let @+ = expand(\'%\')', { bang = true }) -- copy path to current file
 vim.api.nvim_create_user_command('Ccl', 'let @+ = expand(\'%\') . \':\' . line(".")', { bang = true }) -- copy 'path/to/current/file:cursor_line'
@@ -113,3 +120,26 @@ require('Comment').setup({
     block = '<leader>bc',
   },
 })
+
+-- filetype autocommands
+local filetype_mapping = {
+  ['.env.*'] = 'sh',
+  ['Procfile'] = 'sh',
+  ['.vimrc.*'] = 'vim',
+  ['.gemrc'] = 'yaml',
+  ['*.zsh-theme'] = 'zsh',
+  ['.{jscs,jshint,eslint}rc'] = 'json',
+  ['coc-settings.json'] = 'jsonc',
+}
+
+for pattern, type in pairs(filetype_mapping) do
+  vim.api.nvim_create_autocmd(
+    { 'BufNewFile', 'BufRead' },
+    {
+      pattern = pattern,
+      callback = function()
+        vim.api.nvim_buf_set_option(vim.api.nvim_get_current_buf(), 'filetype', type)
+      end
+    }
+  )
+end

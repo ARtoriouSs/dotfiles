@@ -45,26 +45,3 @@ require('tabline').setup({
   padding = 2,
   show_icon = false,
 })
-
--- filetype autocommands
-local filetype_mapping = {
-  ['.env.*'] = 'sh',
-  ['Procfile'] = 'sh',
-  ['.vimrc.*'] = 'vim',
-  ['.gemrc'] = 'yaml',
-  ['*.zsh-theme'] = 'zsh',
-  ['.{jscs,jshint,eslint}rc'] = 'json',
-  ['coc-settings.json'] = 'jsonc',
-}
-
-for pattern, type in pairs(filetype_mapping) do
-  vim.api.nvim_create_autocmd(
-    { 'BufNewFile', 'BufRead' },
-    {
-      pattern = pattern,
-      callback = function()
-        vim.api.nvim_buf_set_option(vim.api.nvim_get_current_buf(), 'filetype', type)
-      end
-    }
-  )
-end
