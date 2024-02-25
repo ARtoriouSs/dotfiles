@@ -5,8 +5,14 @@ lsp_zero.on_attach(function(_client, bufnr)
 
   local opts = {buffer = bufnr}
 
-  -- gq and :Format to format a buffer
-  vim.api.nvim_create_user_command('Format', 'lua vim.lsp.buf.format({async = false, timeout_ms = 10000})', { bang = true })
+  -- :Format to format
+  vim.api.nvim_create_user_command(
+    'Format',
+    'lua vim.lsp.buf.format({async = false, timeout_ms = 10000})',
+    { bang = true }
+  )
+
+  -- gq to format
   vim.keymap.set({'n', 'v', 'x'}, 'gq', function()
     vim.lsp.buf.format({async = false, timeout_ms = 10000})
   end, opts)
@@ -37,3 +43,19 @@ require('mason-lspconfig').setup({
     lsp_zero.default_setup,
   }
 })
+
+-- server-specific configuration
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+require('lspconfig').lua_ls.setup {
+  settings = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+    },
+  },
+}
+
+-- disable yamlls for todo.yml files
+vim.api.nvim_create_autocmd('BufEnter', { pattern = 'todo.yml', command = 'lua vim.diagnostic.disable()' })
