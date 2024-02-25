@@ -2,6 +2,14 @@ local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(_client, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr}) -- :help lsp-zero-keybindings
+
+  local opts = {buffer = bufnr}
+
+  -- gq and :Format to format a buffer
+  vim.api.nvim_create_user_command('Format', 'lua vim.lsp.buf.format({async = false, timeout_ms = 10000})', { bang = true })
+  vim.keymap.set({'n', 'v', 'x'}, 'gq', function()
+    vim.lsp.buf.format({async = false, timeout_ms = 10000})
+  end, opts)
 end)
 
 -- language server manager - :help lsp-zero-guide:integrate-with-mason-nvim
