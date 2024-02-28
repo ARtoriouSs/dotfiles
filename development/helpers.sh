@@ -10,6 +10,7 @@ alias rdm="bundle exec rails db:migrate"
 alias d-rdm="bundle exec rails data:migrate"
 alias rdr="bundle exec rails db:drop db:create db:migrate"
 alias spec="bundle exec rspec"
+alias fspec="bundle exec rspec --fail-fast"
 
 # phoenix
 alias mixer="iex --erl \"-kernel shell_history enabled\" -S mix phx.server"
