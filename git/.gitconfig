@@ -58,8 +58,6 @@
   d    = diff \":(exclude)*package-lock.json\"
   ds   = diff --staged \":(exclude)*package-lock.json\"
   l    = log --pretty=format:\"%C(yellow bold)%h%Creset | %C(blue bold)%ad%Creset, %C(green bold)%an%Creset %s%C(red bold)%d%Creset\" --graph --date=relative
-[init]
-  templatedir = "~/dotfiles/git/git_template" # template dir with hooks for new git repos
 [commit]
   gpgsign = true
 [pull]
