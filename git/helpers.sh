@@ -88,6 +88,7 @@ stash() { # TODO - absolute path
   else
     git stash push "$@"
   fi
+
   status
 }
 
@@ -107,6 +108,7 @@ add() {
       git add $(git-root)/$file 2> /dev/null
     done
   fi
+
   status
 }
 
@@ -140,8 +142,10 @@ reset() { # TODO - absolute path
       done
     done
   fi
+
   status
 }
+
 # reset without confirmation
 freset() { # TODO - absolute path
   if [ -z "$1" ]; then
@@ -160,9 +164,17 @@ freset() { # TODO - absolute path
       done
     done
   fi
+
   status
 }
 
+# reset file from index
+streset() {
+  git status --porcelain | awk '{ print $2 }' | fzf --reverse -m | awk -v root=$(git-root) '{ print root"/"$1 }' | xargs git checkout -- $@ &> /dev/null
+  status
+}
+
+# force reset branch state to the origin
 origin-reset() {
   echo "Type 'y' to reset branch to the origin state"
   read key
