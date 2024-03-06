@@ -18,10 +18,9 @@ lsp_zero.on_attach(function(_client, bufnr)
   end, opts)
 end)
 
--- language server manager - :help lsp-zero-guide:integrate-with-mason-nvim
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
+  -- list of available servers: https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
   ensure_installed = {
     'typos_lsp',
     'solargraph', -- Ruby
@@ -50,8 +49,7 @@ require('lspconfig').lua_ls.setup {
   settings = {
     Lua = {
       diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
+        globals = { 'vim' } -- Get the language server to recognize the `vim` global
       },
     },
   },

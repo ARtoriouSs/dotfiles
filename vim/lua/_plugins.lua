@@ -63,7 +63,7 @@ require('lazy').setup({
 
   -- styling
   { 'echasnovski/mini.animate' }, -- animations
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }, -- indent lines
+  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} }, -- indent lines
   { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } }, -- status line
   { 'seblj/nvim-tabline', requires = { 'nvim-tree/nvim-web-devicons' } }, -- tabline
   { 'ellisonleao/gruvbox.nvim', priority = 1000 , config = true } -- theme
