@@ -38,6 +38,17 @@ require('mini.animate').setup({
 
 require('ibl').setup() -- indent lines
 
+-- hide component if window is too narrow
+local function trunc(hide_width)
+  return function(str)
+    if hide_width and vim.fn.winwidth(0) < hide_width then
+      return ''
+    else
+      return str
+    end
+  end
+end
+
 require('lualine').setup({
   sections = {
     lualine_a = { 'mode' },
@@ -51,7 +62,11 @@ require('lualine').setup({
         }
       }
     },
-    lualine_x = { 'encoding', 'fileformat', 'filetype' },
+    lualine_x = {
+      { 'encoding', fmt = trunc(100) },
+      { 'fileformat', fmt = trunc(100) },
+      { 'filetype', fmt = trunc(100) }
+    },
     lualine_y = { 'progress' },
     lualine_z = { 'location' }
   },
