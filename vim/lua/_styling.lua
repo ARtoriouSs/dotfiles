@@ -77,11 +77,22 @@ require('lualine').setup({
     lualine_x = {},
     lualine_y = { 'progress' },
     lualine_z = { 'location' }
+  },
+  tabline = {
+    lualine_a = {
+      {
+        'tabs',
+        mode = 2, -- 0 - show only tab number, 1 - show file name, 2 - show both
+        show_modified_status = true,
+        symbols = {
+          modified = ' [+]'
+        },
+      }
+    },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { 'buffers' }
   }
-})
-
--- tab line
-require('tabline').setup({
-  padding = 2,
-  show_icon = false,
 })
