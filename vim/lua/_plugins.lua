@@ -37,22 +37,19 @@ require('lazy').setup({
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', dependencies = { 'nvim-telescope/telescope.nvim' } },
   { 'dyng/ctrlsf.vim' }, -- find and replace
 
-  -- file explorer
-  { 'nvim-tree/nvim-tree.lua' },
-  { 'nvim-tree/nvim-web-devicons' },
-
-  -- git
-  { 'tpope/vim-fugitive' },
-  { 'airblade/vim-gitgutter' },
-
-  -- life-simplifiers
+  -- navigation
+  { 'stevearc/aerial.nvim', dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" } }, -- file map
+  { 'nvim-tree/nvim-tree.lua' }, -- file explorer
   { 'drzel/vim-scrolloff-fraction' }, -- scroll window when approaching the bottom/top
+  { 'chaoren/vim-wordmotion', -- jump between word parts
+  { 'SmiteshP/nvim-navic', dependencies = { 'neovim/nvim-lspconfig' } }, -- dynamic cursor position displaying
+
+  -- editing
   { 'simeji/winresizer' }, -- split resizer
-  { 'tpope/vim-eunuch' }, -- file operation commands
   { 'tpope/vim-surround' }, -- quick change of parentheses, brackets, quotes, tags, etc.
   { 'tpope/vim-repeat' }, -- repeat plugin commands with '.'
+  { 'tpope/vim-eunuch' }, -- file operation commands
   { 'numToStr/Comment.nvim', lazy = false }, -- commenting
-  { 'chaoren/vim-wordmotion', -- jump between word parts
     init = function() -- due to nvim API limitations this plugin needs to be configured here
       -- use alt + w/e/b to navigate by word parts in normal and visual mode
       vim.cmd([[
@@ -61,10 +58,15 @@ require('lazy').setup({
     end,
   },
 
+  -- git
+  { 'tpope/vim-fugitive' },
+  { 'airblade/vim-gitgutter' },
+
   -- styling
   { 'echasnovski/mini.animate' }, -- animations
   { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} }, -- indent lines
   { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } }, -- status line
-  { 'seblj/nvim-tabline', requires = { 'nvim-tree/nvim-web-devicons' } }, -- tabline
+  { 'seblj/nvim-tabline', dependencies = { 'nvim-tree/nvim-web-devicons' } }, -- tabline
+  { 'nvim-tree/nvim-web-devicons' }, -- icons needed for several plugins
   { 'ellisonleao/gruvbox.nvim', priority = 1000 , config = true } -- theme
 })
