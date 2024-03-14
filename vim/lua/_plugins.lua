@@ -38,18 +38,21 @@ require('lazy').setup({
   { 'dyng/ctrlsf.vim' }, -- find and replace
 
   -- navigation
-  { 'stevearc/aerial.nvim', dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" } }, -- file map
   { 'nvim-tree/nvim-tree.lua' }, -- file explorer
   { 'drzel/vim-scrolloff-fraction' }, -- scroll window when approaching the bottom/top
-  { 'chaoren/vim-wordmotion', -- jump between word parts
   { 'SmiteshP/nvim-navic', dependencies = { 'neovim/nvim-lspconfig' } }, -- dynamic cursor position displaying
-
-  -- editing
-  { 'simeji/winresizer' }, -- split resizer
-  { 'tpope/vim-surround' }, -- quick change of parentheses, brackets, quotes, tags, etc.
-  { 'tpope/vim-repeat' }, -- repeat plugin commands with '.'
-  { 'tpope/vim-eunuch' }, -- file operation commands
-  { 'numToStr/Comment.nvim', lazy = false }, -- commenting
+  { -- buffer map
+    'SmiteshP/nvim-navbuddy',
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "SmiteshP/nvim-navic",
+      "MunifTanjim/nui.nvim",
+      "numToStr/Comment.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  },
+  { -- jump between word parts
+    'chaoren/vim-wordmotion',
     init = function() -- due to nvim API limitations this plugin needs to be configured here
       -- use alt + w/e/b to navigate by word parts in normal and visual mode
       vim.cmd([[
@@ -57,6 +60,13 @@ require('lazy').setup({
       ]])
     end,
   },
+
+  -- editing
+  { 'simeji/winresizer' }, -- split resizer
+  { 'tpope/vim-surround' }, -- quick change of parentheses, brackets, quotes, tags, etc.
+  { 'tpope/vim-repeat' }, -- repeat plugin commands with '.'
+  { 'tpope/vim-eunuch' }, -- file operation commands
+  { 'numToStr/Comment.nvim', lazy = false }, -- commenting
 
   -- git
   { 'tpope/vim-fugitive' },

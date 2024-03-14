@@ -17,8 +17,9 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
   end, opts)
 
-  -- attach navic
+  -- set up navbuddy and navic when applicable
   if client.server_capabilities.documentSymbolProvider then
+    require('nvim-navbuddy').attach(client, bufnr)
     require('nvim-navic').attach(client, bufnr)
   end
 end)

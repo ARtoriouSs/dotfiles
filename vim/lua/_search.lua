@@ -39,18 +39,3 @@ vim.g.ctrlsf_auto_preview = 1 -- change preview file when jumping between result
 vim.g.ctrlsf_context = '-C 5' -- 5 lines of context
 vim.g.ctrlsf_auto_close = { normal = 0, compact = 0 } -- don't close when selecting a file
 vim.g.ctrlsf_auto_focus = { at = 'start' } -- auto focus on start
-
--- buffer map
-require("aerial").setup({
-  backends = { 'lsp', 'treesitter', 'markdown', 'asciidoc', 'man' },
-  default_direction = 'prefer_left',
-  autojump = true,
-
-  on_attach = function(bufnr)
-    -- Jump forwards/backwards with '{' and '}'
-    vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-    vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-  end,
-})
--- leader-a to toggle aerial
-vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>")
