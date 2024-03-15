@@ -126,7 +126,7 @@ for pattern, type in pairs(filetype_mapping) do
     {
       pattern = pattern,
       callback = function()
-        vim.api.nvim_buf_set_option(vim.api.nvim_get_current_buf(), 'filetype', type)
+        vim.api.nvim_set_option_value('filetype', type, { buf = vim.api.nvim_get_current_buf() })
       end
     }
   )
