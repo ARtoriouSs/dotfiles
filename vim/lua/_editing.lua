@@ -131,3 +131,8 @@ for pattern, type in pairs(filetype_mapping) do
     }
   )
 end
+
+local open_navbuddy = function()
+  require("nvim-navbuddy").open()
+end
+vim.keymap.set({ 'n', 'v' }, '<Leader>a', open_navbuddy, { noremap = false, silent = true })
