@@ -4,6 +4,8 @@ vim.o.clipboard = 'unnamedplus' -- use system clipboard by default if no registe
 vim.opt.updatetime = 100        -- update faser
 vim.o.autoread = true           -- to autoread if file was changed outside from vim
 vim.o.path = vim.o.path .. '**' -- allows gf to look deep into folders during search
+vim.o.undofile = true           -- save undo history to be accessible between sessions
+vim.o.undodir = '~/.vim/undo'   -- file for undo history
 
 vim.g.scrolloff_fraction = 0.2  -- auto scroll on 20% of window width
 
@@ -91,6 +93,9 @@ vim.api.nvim_create_user_command('XML', 'set filetype=xml', { bang = true })
 -- save actions
 vim.api.nvim_create_autocmd('BufWritePre', { pattern = '', command = ":%s/\\s\\+$//e" })        -- removes trailing whitespace on save
 vim.api.nvim_create_autocmd('BufWritePre', { pattern = '', command = ":%s/\\n\\+\\ze\\%$//e" }) -- removes trailing eol on save
+
+-- undo history
+vim.keymap.set('n', '<C-u>', ':MundoToggle<CR>', { noremap = true })
 
 -- commenting
 require('Comment').setup({

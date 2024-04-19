@@ -2,7 +2,7 @@
 
 # this script should prepare a recently installed system to use
 
-cd ~/dotfiles/bin # if runned from outside
+cd ~/dotfiles/bin # if ran from outside
 
 cp ../system/temp_settings.sample.sh ../system/temp_settings.sh
 

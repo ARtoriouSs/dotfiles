@@ -67,6 +67,7 @@ require('lazy').setup({
   { 'tpope/vim-repeat' }, -- repeat plugin commands with '.'
   { 'tpope/vim-eunuch' }, -- file operation commands
   { 'numToStr/Comment.nvim', lazy = false }, -- commenting
+  { 'simnalamburt/vim-mundo' }, -- undo tree
 
   -- git
   { 'tpope/vim-fugitive' },
