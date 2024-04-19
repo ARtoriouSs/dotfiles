@@ -19,11 +19,7 @@ cmp.setup({
     ['<C-e>'] = cmp.mapping.abort(),
     ['<C-k>'] = cmp.mapping.select_prev_item(),
     ['<C-j>'] = cmp.mapping.select_next_item(),
-    ['<S-Tab>'] = cmp.mapping(function() -- select backward on Shift-Tab
-      if cmp.visible() then
-        cmp.select_prev_item()
-      end
-    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping.select_next_item()
   }),
 
   sources = cmp.config.sources({
@@ -32,14 +28,6 @@ cmp.setup({
   }, {
     { name = 'buffer' },
   })
-})
-
--- use buffer source for `/` and `?`
-cmp.setup.cmdline({ '/', '?' }, {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = 'buffer' }
-  }
 })
 
 -- set up lspconfig
