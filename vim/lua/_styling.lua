@@ -15,6 +15,7 @@ vim.cmd('colorscheme gruvbox')
 
 -- viewport
 vim.opt.cursorline = true     -- shows cursorline
+vim.opt.cursorcolumn = true   -- shows cursorcolumn
 vim.opt.number = true         -- shows current line number
 vim.opt.relativenumber = true -- relative line numbers
 vim.opt.signcolumn = 'yes'    -- sign column, `number` to be single width and replace line numbers
