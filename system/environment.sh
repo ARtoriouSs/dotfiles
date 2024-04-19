@@ -35,3 +35,4 @@ fi
 eval "$(rbenv init -)" # rbenv
 
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" # kiex
+test -s "$HOME/.cargo/env"         && source "$HOME/.cargo/env"         # cargo
