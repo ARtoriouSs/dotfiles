@@ -57,4 +57,4 @@ require('mason-lspconfig').setup({
 })
 
 -- disable yamlls for todo.yml files
-vim.api.nvim_create_autocmd('BufEnter', { pattern = 'todo.yml', command = 'lua vim.diagnostic.disable()' })
+vim.api.nvim_create_autocmd('BufEnter', { pattern = 'todo.yml', command = 'lua vim.diagnostic.enable(false)' })
