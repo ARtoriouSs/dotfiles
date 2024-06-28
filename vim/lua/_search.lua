@@ -38,8 +38,9 @@ telescope.setup{
 
 telescope.load_extension('fzf')
 
-vim.keymap.set('n', '<leader>f', builtin.find_files, {}) -- FZF file search
-vim.keymap.set('n', '<leader>g', builtin.live_grep,  {}) -- FZF grep search
+vim.keymap.set('n', '<leader>f', builtin.find_files, {}) -- file search
+vim.keymap.set('n', '<leader>g', builtin.live_grep, {})  -- grep search
+vim.keymap.set('n', '<leader>b', builtin.oldfiles,  {})  -- recently opened files search
 
 -- find and replace
 vim.keymap.set('v', '<Leader>d', '<Plug>CtrlSFVwordExec', { noremap = false, silent = true }) -- search for selected text
