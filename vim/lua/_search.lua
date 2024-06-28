@@ -24,6 +24,10 @@ telescope.setup{
         "-U" -- does not respect .gitignore, but respects .ignore and ~/.agignore
       },
     },
+
+    live_grep = {
+      additional_args = {"--hidden", "--sort-files"}
+    }
   },
 
   extensions = {

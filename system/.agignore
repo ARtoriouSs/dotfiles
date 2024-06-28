@@ -13,3 +13,5 @@
 .sass-cache/
 /coverage/
 .ruby-gemset
+/node_modules
+/public
