@@ -22,6 +22,9 @@ sudo apt install --yes ripgrep
 sudo apt install --yes silversearcher-ag
 # tmux
 sudo apt install --yes tmux
+# zellij
+curl https://sh.rustup.rs -sSf | sh
+cargo install --locked zellij
 # node and npm
 sudo apt install --yes npm
 npm update npm -g # update npm

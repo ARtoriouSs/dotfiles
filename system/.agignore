@@ -1,0 +1,15 @@
+.git/
+.vim/
+
+/.DS_Store
+.idea/
+.code/
+
+/log
+/tmp
+/.bundle
+.irb-history
+.byebug_history
+.sass-cache/
+/coverage/
+.ruby-gemset

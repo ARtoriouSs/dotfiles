@@ -11,7 +11,7 @@ git clone https://github.com/rbenv/ruby-build.git "$(~/.rbenv/bin/rbenv root)"/p
 
 # default-gems for rbenv
 git clone https://github.com/rbenv/rbenv-default-gems.git $(~/.rbenv/bin/rbenv root)/plugins/rbenv-default-gems
-ln -sf ~/dotfiles/default-gems $(~/.rbenv/bin/rbenv root)/default-gems
+ln -sf ~/dotfiles/development/default-gems $(~/.rbenv/bin/rbenv root)/default-gems
 
 # ctags for rbenv
 git clone git://github.com/tpope/rbenv-ctags.git $(~/.rbenv/bin/rbenv root)/plugins/rbenv-ctags

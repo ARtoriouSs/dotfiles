@@ -36,6 +36,13 @@ require('lazy').setup({
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', dependencies = { 'nvim-telescope/telescope.nvim' } },
   { 'dyng/ctrlsf.vim' }, -- find and replace
+  {
+    'ibhagwan/fzf-lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('fzf-lua').setup({}) -- calling `setup` is optional for customization
+    end
+  },
 
   -- navigation
   { 'nvim-tree/nvim-tree.lua' }, -- file explorer

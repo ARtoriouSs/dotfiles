@@ -11,6 +11,21 @@ telescope.setup{
     }
   },
 
+  pickers = {
+    find_files = {
+      find_command = {
+        "ag",
+        "--silent",
+        "--nocolor",
+        "--follow", -- follow symlinks
+        "-g", "", -- print filenames matching pattern
+        "--literal", -- do not use reges syntax
+        "--hidden", -- shows .dotfiles
+        "-U" -- does not respect .gitignore, but respects .ignore and ~/.agignore
+      },
+    },
+  },
+
   extensions = {
     fzf = {
       fuzzy = true,
