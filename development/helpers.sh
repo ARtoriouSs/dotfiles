@@ -21,18 +21,6 @@ alias mer="mix do ecto.drop, ecto.create, ecto.migrate"
 alias mt="mix test"
 alias espec="mix espec"
 
-# npm
-alias nr="npm run"
-alias ni="npm install"
-alias ns="npm run start"
-alias nt="npm run test"
-alias nd="npm run debug"
-
-# yarn
-alias y="yarn"
-alias yi="yarn install"
-alias yt="yarn test"
-
 # docker
 alias d="docker"
 alias dr="docker run"
