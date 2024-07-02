@@ -1,19 +1,40 @@
 require('nvim-treesitter.configs').setup {
   ensure_installed = {
+    'bash',
+    'diff',
+    'pem',
+
+    'git_config',
+    'git_rebase',
+    'gitcommit',
+    'gitignore',
+
+    'csv',
+    'json',
+    'jsonc',
+    'xml',
+    'yaml',
+    'proto',
+
     'ruby',
     'elixir',
     'javascript',
     'typescript',
     'tsx',
-    'c',
     'lua',
-    'sql',
-    'bash',
-    'vim',
+    'c',
+    'cpp',
+    'make',
+    'embedded_template', -- template engines like erb and ejs
     'html',
-    'yaml',
-    'jsonc',
-    'markdown'
+    'sql',
+    'vim',
+    'vimdoc',
+    'dockerfile',
+    'terraform',
+    'kdl',
+    'latex',
+    'markdown',
   },
   sync_install = false, -- install parsers synchronously (only applied to `ensure_installed`)
   auto_install = true,  -- automatically install missing parsers when entering buffer
