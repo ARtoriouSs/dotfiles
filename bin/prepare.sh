@@ -31,6 +31,9 @@ echo "3) Make terminal run maximized by default:"
 echo "Edit -> Prefeneces -> Profiles -> Text -> Set default terminal size as 340 columns and 100 rows"
 echo "4) Enable fonts in terminal:"
 echo "Edit -> Preferences -> Profiles -> Text -> Custom font, search for Droid Sans Mono"
+echo "5) Enable fractional scaling in GNOME (if running on a huge screen):"
+echo 'Settings -> Startup Applications -> Add `~/dotfiles/bin/downscale-display.sh`'
+echo "6) Reboot again :)"
 echo
 echo "Also you can manually run add_ssh.sh and enable_snap.sh when needed."
 echo
