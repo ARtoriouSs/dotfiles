@@ -1,0 +1,10 @@
+[Unit]
+Description=Rescales the display on start
+
+[Service]
+ExecStart=bash -c 'xrandr --output DP-4 --scale 1.5x1.5'
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -178,6 +178,15 @@ proxy-down() {
 }
 
 # Rescale the specified monitor (DP-4 by default) for big screens (Mint allows to scale 200+% only)
+# https://askubuntu.com/questions/1029436/enable-fractional-scaling-for-ubuntu-18-04
+# https://askubuntu.com/a/1056366/1113014
+# xrandr --istmonitors to see the available displays
 rescale() {
   [ -z "$1" ] && xrandr --output DP-4 --scale 1.5x1.5 || xrandr --output $@ --scale 1.5x1.5
+}
+
+# Decrease keyboard repeat delay and increase speed
+keyboard-repeat-reset() {
+  gsettings set org.gnome.desktop.peripherals.keyboard delay 200
+  xset r rate 200 40
 }
