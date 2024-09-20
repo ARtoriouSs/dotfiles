@@ -176,3 +176,8 @@ proxy-down() {
   unset https_proxy
   unset HTTPS_PROXY
 }
+
+# Rescale the specified monitor (DP-4 by default) for big screens (Mint allows to scale 200+% only)
+rescale() {
+  [ -z "$1" ] && xrandr --output DP-4 --scale 1.5x1.5 || xrandr --output $@ --scale 1.5x1.5
+}
