@@ -73,6 +73,8 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
 sudo apt-add-repository https://cli.github.com/packages
 sudo apt update
 sudo apt install gh
+# asdf (configured via ZSH plugin)
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 # kerl
 curl https://raw.githubusercontent.com/kerl/kerl/master/kerl -o /usr/local/bin/kerl
 chmod a+x /usr/local/bin/kerl

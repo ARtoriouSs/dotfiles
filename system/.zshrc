@@ -17,6 +17,7 @@ source $ZSH/oh-my-zsh.sh
 # plugins
 plugins=(
   git
+  asdf
   zsh-autosuggestions
   zsh-syntax-highlighting # must be the last in this list
 )
