@@ -186,6 +186,7 @@ rescale() {
 }
 
 # Decrease keyboard repeat delay and increase speed
+alias repeat="keyboard-repeat-reset"
 keyboard-repeat-reset() {
   gsettings set org.gnome.desktop.peripherals.keyboard delay 200
   xset r rate 200 40
