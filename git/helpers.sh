@@ -25,7 +25,11 @@ alias gd="git diff --irreversible-delete \":(exclude)*package-lock.json\""
 alias gds="git diff --irreversible-delete --staged \":(exclude)*package-lock.json\""
 alias gl="git log --pretty=format:\"%C(yellow bold)%h%Creset | %C(blue bold)%ad%Creset, %C(green bold)%an%Creset %s%C(red bold)%d%Creset\" --graph --date=relative"
 alias gcpk="git cherry-pick"
-alias gtrust="mkdir .git/safe"
+gtrust() {
+  mkdir .git/safe
+  touch .git/safe/current_language
+  touch .git/safe/default_branch
+}
 
 alias git-root="git rev-parse --show-toplevel"
 cdr() { cd $(git-root) }
@@ -280,11 +284,13 @@ first-commit() {
 }
 
 default-branch() {
- if test -f .git/safe/default_branch; then
-   cat .git/safe/default_branch
- else
-   echo master
- fi
+  local file_path=".git/safe/default_branch"
+
+  if [[ ! -s "$file_path" ]]; then
+    echo master
+  else
+    cat $file_path
+  fi
 }
 
 default-branch-edit() {

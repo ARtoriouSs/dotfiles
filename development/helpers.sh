@@ -1,29 +1,12 @@
 # rails
-alias r="rails"
-alias b="bundle"
 alias be="bundle exec"
-alias rs="bundle exec rails server"
-alias rc="bundle exec rails console"
 alias bi="bundle install"
 alias bu="bundle update"
 alias rdm="bundle exec rails db:migrate"
-alias d-rdm="bundle exec rails data:migrate"
-alias rdr="bundle exec rails db:drop db:create db:migrate"
-alias spec="bundle exec rspec"
+alias rddm="bundle exec rails data:migrate"
 alias fspec="bundle exec rspec --fail-fast"
 
-# phoenix
-alias mixer="iex --erl \"-kernel shell_history enabled\" -S mix phx.server"
-alias m="mix"
-alias mi="mix deps.get"
-alias mem="mix ecto.migrate"
-alias mer="mix do ecto.drop, ecto.create, ecto.migrate"
-alias mt="mix test"
-alias espec="mix espec"
-
 # docker
-alias d="docker"
-alias dr="docker run"
 alias dps="docker ps -a"
 alias di="docker images -a"
 alias drm="docker rm -f"
@@ -33,11 +16,6 @@ alias dcps="docker-compose ps -a"
 
 # postman
 alias postman="/opt/Postman/app/Postman"
-
-alias psqlr="restart-postgres"
-restart-postgres() {
-  sudo service postgresql restart
-}
 
 # remove all docker containers and images
 dclear() {
@@ -69,6 +47,105 @@ kill-server() {
   lsof -i tcp:$port | grep -v 'chrome\|insomnia' | awk 'FNR > 1 {print $2}' | xargs kill -9
 }
 
+alias rs="server"
+alias mixer="iex --erl \"-kernel shell_history enabled\" -S mix phx.server"
+server() {
+  case $(current-language) in
+    "ruby/rails")
+      bundle exec rails server $@
+      ;;
+    "ruby")
+      source .env &> /dev/null
+      ./bin/server $@
+      ;;
+    "elixir/phoenix")
+      source .env &> /dev/null
+      iex --erl \"-kernel shell_history enabled\" -S mix phx.server $@
+      ;;
+    "elixir")
+      source .env &> /dev/null
+      ./bin/server $@
+      ;;
+    *)
+      bundle exec rails server $@
+      ;;
+  esac
+}
+
+migrate() {
+  case $(current-language) in
+    "ruby/rails")
+      bundle exec rails db:migrate $@
+      ;;
+    "ruby/rails")
+      bundle exec rake db:migrate $@
+      ;;
+    "elixir" | "elixir/phoenix")
+      mix ecto.migrate $@
+      ;;
+    *)
+      bundle exec rails db:migrate $@
+      ;;
+  esac
+}
+
+deps() {
+  case $(current-language) in
+    "ruby" | "ruby/rails")
+      bundle install $@
+      ;;
+    "elixir" | "elixir/phoenix")
+      mix deps.get $@
+      ;;
+    *)
+      bundle install $@
+      ;;
+  esac
+}
+
+spec() {
+  case $(current-language) in
+    "ruby/rails")
+      bundle exec rspec $@
+      ;;
+    "ruby")
+      source .env &> /dev/null
+      ./bin/test $@
+      ;;
+    "elixir/phoenix")
+      source .env &> /dev/null
+      iex -S mix test --timeout 600000 $@
+      ;;
+    "elixir")
+      source .env &> /dev/null
+      ./bin/test $@
+      ;;
+    *)
+      bundle exec rspec $@
+      ;;
+  esac
+}
+
+alias rc="console"
+console() {
+  case $(current-language) in
+    "ruby/rails")
+      bundle exec rails console $@
+      ;;
+    "ruby")
+      source .env &> /dev/null
+      ./bin/console $@
+      ;;
+    "elixir" | "elixir/phoenix")
+      source .env &> /dev/null
+      iex -S mix $@
+      ;;
+    *)
+      bundle exec rails console $@
+      ;;
+  esac
+}
+
 # generate rails migration, quote all args as name and copy path to the clipboard
 alias migr="gen-migration"
 gen-migration() {
@@ -93,7 +170,21 @@ gen-data-migration() {
 # rollback rails migrations
 rollback() {
   [ -z "$1" ] && local step=1 || local step=$1
-  bundle exec rails db:rollback STEP=$step
+
+  case $(current-language) in
+    "ruby/rails")
+      bundle exec rails db:rollback STEP=$step
+      ;;
+    "ruby")
+      bundle exec rake db:rollback STEP=$step
+      ;;
+    "elixir" | "elixir/phoenix")
+      mix ecto.rollback --step $step
+      ;;
+    *)
+      bundle exec rails db:rollback STEP=$step
+      ;;
+  esac
 }
 
 # rollback rails data migrations
@@ -150,4 +241,18 @@ rspec-changed() {
   else
     echo $modified_and_added_specs | xargs --verbose bundle exec rspec $@
   fi
+}
+
+current-language() {
+  local file_path=".git/safe/current_language"
+
+   if [[ ! -s "$file_path" ]]; then
+     echo "ruby"
+   else
+     cat "$file_path"
+   fi
+}
+
+current-language-edit() {
+  $VISUAL .git/safe/current_language
 }
