@@ -10,8 +10,13 @@
 /.bundle
 .irb-history
 .byebug_history
+.ruby-gemset
+
+deps/
+_build/
+.elixir_ls/
+
 .sass-cache/
 /coverage/
-.ruby-gemset
 /node_modules
 /public
