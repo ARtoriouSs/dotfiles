@@ -185,6 +185,15 @@ rescale() {
   [ -z "$1" ] && xrandr --output DP-4 --scale 1.5x1.5 || xrandr --output $@ --scale 1.5x1.5
 }
 
+descale() {
+  [ -z "$1" ] && xrandr --output DP-4 --scale 0.8x0.8 || xrandr --output $@ --scale 0.8x0.8
+}
+
+# Reset scaling to default
+rescale-default() {
+  [ -z "$1" ] && xrandr --output DP-4 --scale 1x1 || xrandr --output $@ --scale 1x1
+}
+
 # Decrease keyboard repeat delay and increase speed
 alias repeat="keyboard-repeat-reset"
 keyboard-repeat-reset() {
