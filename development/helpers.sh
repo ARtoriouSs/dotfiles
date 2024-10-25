@@ -110,7 +110,7 @@ spec() {
       ;;
     "ruby")
       source .env &> /dev/null
-      ./bin/test $@
+      bundle exec rspec $@
       ;;
     "elixir/phoenix")
       source .env &> /dev/null
