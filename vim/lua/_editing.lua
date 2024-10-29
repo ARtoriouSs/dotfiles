@@ -89,6 +89,10 @@ vim.api.nvim_create_user_command('Json', 'set filetype=json', { bang = true })
 vim.api.nvim_create_user_command('JSON', 'set filetype=json', { bang = true })
 vim.api.nvim_create_user_command('Xml', 'set filetype=xml', { bang = true })
 vim.api.nvim_create_user_command('XML', 'set filetype=xml', { bang = true })
+vim.api.nvim_create_user_command('YML', 'set filetype=yaml', { bang = true })
+vim.api.nvim_create_user_command('Yml', 'set filetype=yaml', { bang = true })
+vim.api.nvim_create_user_command('YAML', 'set filetype=yaml', { bang = true })
+vim.api.nvim_create_user_command('Yaml', 'set filetype=yaml', { bang = true })
 
 -- save actions
 vim.api.nvim_create_autocmd('BufWritePre', { pattern = '', command = ":%s/\\s\\+$//e" })        -- removes trailing whitespace on save
@@ -116,6 +120,7 @@ require('Comment').setup({
 
 -- filetype autocommands
 local filetype_mapping = {
+  ['*.jbuilder'] = 'ruby',
   ['.env.*'] = 'sh',
   ['Procfile'] = 'sh',
   ['.vimrc.*'] = 'vim',
