@@ -23,7 +23,9 @@ require('lazy').setup({
 
   -- treesitter
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-  { 'RRethy/nvim-treesitter-endwise' }, -- complete do-end with treesitter
+  -- TODO: fork, use main repo when they finally merge https://github.com/RRethy/nvim-treesitter-endwise/pull/42
+  -- { 'RRethy/nvim-treesitter-endwise' }, -- complete do-end with treesitter
+  { 'metiulekm/nvim-treesitter-endwise' }, -- complete do-end with treesitter
 
   -- completion
   { 'hrsh7th/nvim-cmp' },
