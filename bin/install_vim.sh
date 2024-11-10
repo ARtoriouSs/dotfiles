@@ -18,6 +18,7 @@ npm install -g tree-sitter-cli # tree-sitter executable
 mkdir -p ~/.config/nvim/lua
 ln -sf ~/dotfiles/vim/init.lua ~/.config/nvim/init.lua
 ln -sf ~/dotfiles/vim/lua/ ~/.config/nvim/lua/
+mkdir -p ~/.config/solargraph
 ln -sf ~/dotfiles/development/.solargraph.yml ~/.config/solargraph/config.yml
 
 # install Lazy and plugins
