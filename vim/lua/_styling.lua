@@ -94,6 +94,7 @@ require('lualine').setup({
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = { 'buffers' }
+    -- lualine_z = { 'buffers' } -- TODO
+    lualine_z = {}
   }
 })
