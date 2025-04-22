@@ -50,6 +50,9 @@ local function trunc(hide_width)
   end
 end
 
+-- status line
+vim.opt.laststatus = 3 -- global status line
+
 require('lualine').setup({
   sections = {
     lualine_a = { 'mode' },
