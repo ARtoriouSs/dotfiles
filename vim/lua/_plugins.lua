@@ -48,6 +48,16 @@ require('lazy').setup({
         --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
       }
     },
+    keys = {
+      { -- paste an image to the prompt
+        "<leader>ip",
+        function()
+          return vim.bo.filetype == "AvanteInput" and require("avante.clipboard").paste_image()
+            or require("img-clip").paste_image()
+        end,
+        desc = "clip: paste image",
+      },
+    },
     build = "make BUILD_FROM_SOURCE=true", -- just `make` to not build from source
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
@@ -58,23 +68,21 @@ require('lazy').setup({
       "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
       "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
       "nvim-tree/nvim-web-devicons",
-      -- {
-      --   -- support for image pasting
-      --   "HakonHarnes/img-clip.nvim",
-      --   event = "VeryLazy",
-      --   opts = {
-      --     -- recommended settings
-      --     default = {
-      --       embed_image_as_base64 = false,
-      --       prompt_for_file_name = false,
-      --       drag_and_drop = {
-      --         insert_mode = true,
-      --       },
-      --       -- required for Windows users
-      --       use_absolute_path = true,
-      --     },
-      --   }
-      -- },
+      { -- support for image pasting
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- recommended settings
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+            -- use_absolute_path = true -- required for Windows users
+          },
+        }
+      },
       {
         -- Make sure to set this up properly if you have lazy=true
         'MeanderingProgrammer/render-markdown.nvim',
