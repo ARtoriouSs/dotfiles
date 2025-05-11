@@ -15,17 +15,28 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   -- LSP
-  { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
+  { -- should be first
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      {
+        "SmiteshP/nvim-navbuddy",
+        opts = { lsp = { auto_attach = true } },
+        dependencies = {
+          "MunifTanjim/nui.nvim",
+          {
+            "SmiteshP/nvim-navic",
+            opts = { lsp = { auto_attach = true } }
+          }
+        }
+      }
+    }
+  },
   { 'williamboman/mason.nvim' }, -- language server manager
   { 'williamboman/mason-lspconfig.nvim' },
-  { 'neovim/nvim-lspconfig' },
-  { 'L3MON4D3/LuaSnip' },
 
   -- treesitter
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-  -- TODO: fork, use main repo when they finally merge https://github.com/RRethy/nvim-treesitter-endwise/pull/42
-  -- { 'RRethy/nvim-treesitter-endwise' }, -- complete do-end with treesitter
-  { 'metiulekm/nvim-treesitter-endwise' }, -- complete do-end with treesitter
+  { 'RRethy/nvim-treesitter-endwise' }, -- complete do-end with treesitter
 
   -- completion & AI
   { 'hrsh7th/nvim-cmp' },
