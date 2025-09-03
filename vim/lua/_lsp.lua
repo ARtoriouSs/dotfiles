@@ -63,4 +63,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+
 -- TODO: lua_ls with vim
+-- TODO: duplicated refs:
+---- https://github.com/nvim-telescope/telescope.nvim/issues/3328#issuecomment-2472420006
+---- https://www.reddit.com/r/neovim/comments/19cvgtp/any_way_to_remove_redundant_definition_in_lua_file/
