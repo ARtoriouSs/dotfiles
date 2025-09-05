@@ -73,6 +73,10 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
 sudo apt-add-repository https://cli.github.com/packages
 sudo apt update
 sudo apt install gh
+# claude
+npm install -g @anthropic-ai/claude-code
+# gemini
+npm install -g @google/gemini-cli@latest
 # asdf (configured via ZSH plugin)
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 # kerl
