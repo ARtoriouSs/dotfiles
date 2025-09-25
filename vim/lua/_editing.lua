@@ -146,3 +146,7 @@ local open_navbuddy = function()
   require("nvim-navbuddy").open()
 end
 vim.keymap.set({ 'n', 'v' }, '<Leader>a', open_navbuddy, { noremap = false, silent = true })
+
+-- vim-matchup configuration
+vim.g.matchup_matchparen_offscreen = { method = "popup" }
+vim.g.matchup_surround_enabled = 1

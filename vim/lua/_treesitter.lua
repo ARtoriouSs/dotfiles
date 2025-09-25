@@ -64,5 +64,12 @@ require('nvim-treesitter.configs').setup {
 
     -- run `:h syntax` and tree-sitter at the same time, can be a list of languages
     additional_vim_regex_highlighting = false,
+  },
+
+  -- matchup module for better % matching
+  matchup = {
+    enable = true,
+    disable_virtual_text = false,
+    include_match_words = true,
   }
 }

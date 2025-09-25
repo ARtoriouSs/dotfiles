@@ -77,6 +77,8 @@ sudo apt install gh
 npm install -g @anthropic-ai/claude-code
 # gemini
 npm install -g @google/gemini-cli@latest
+# codex
+npm install -g @openai/codex
 # asdf (configured via ZSH plugin)
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 # kerl

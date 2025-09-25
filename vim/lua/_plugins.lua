@@ -37,6 +37,7 @@ require('lazy').setup({
   -- treesitter
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   { 'RRethy/nvim-treesitter-endwise' }, -- complete do-end with treesitter
+  { 'andymass/vim-matchup' }, -- better % matching with treesitter support
 
   -- completion & AI
   { 'hrsh7th/nvim-cmp' },
