@@ -79,6 +79,8 @@ npm install -g @anthropic-ai/claude-code
 npm install -g @google/gemini-cli@latest
 # codex
 npm install -g @openai/codex
+# copilot
+npm install -g @github/copilot
 # asdf (configured via ZSH plugin)
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 # kerl
