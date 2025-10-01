@@ -3,15 +3,13 @@ alias dog="cat" # the most important one
 alias ccat="pygmentize -g -O style='colorful'" # colored cat
 alias e="echo"
 alias c="cd .."
-alias psqlc="psql -U postgres"
-alias todo="$VISUAL $TODO"
-alias todol="$VISUAL todo.yml" # local todo
-alias v=$VISUAL
-alias search="find . -name" # search file by name
 alias k9="kill -9"
 alias upd="sudo apt update --yes"
 alias upg="sudo apt upgrade --yes"
 alias install="sudo apt --yes update; sudo apt --yes install"
+alias todo="$VISUAL $TODO"
+alias todol="$VISUAL todo.yml" # local todo
+alias v=$VISUAL
 
 alias susp="systemctl suspend"
 alias shut="init 0"
@@ -27,16 +25,12 @@ alias envs="$VISUAL ~/dotfiles/system/environment.sh"
 alias temps="$VISUAL ~/dotfiles/system/temp_settings.sh"
 alias gitconfig="$VISUAL ~/dotfiles/git/.gitconfig"
 alias gitignore-global="$VISUAL ~/dotfiles/git/.gitignore.global"
-alias vimrc="$VISUAL ~/dotfiles/vim/init.lua"
-alias plugins="$VISUAL ~/dotfiles/vim/lua/_plugins.lua"
-alias tmux-conf="$VISUAL ~/dotfiles/tmux/.tmux.conf"
-alias pryrc="$VISUAL ~/dotfiles/development/.pryrc"
 
 # system files access
 alias hosts="sudoedit /etc/hosts"
 alias pg-hba="sudoedit /etc/postgresql/*/main/pg_hba.conf"
 
-# some russian equivalents for wrong keyboard layout
+# some russian layout equivalents for wrong keyboard layout
 alias "с"="cd .."
 alias "св"="cd"
 
@@ -99,7 +93,7 @@ color-list() {
   done
 }
 
-# cd to $PROJECTS and farther
+# cd to $PROJECTS
 alias cdcc="cdp $CURRENT_PROJECT/.." # if project is in subdirectory
 alias cdc="cdp $CURRENT_PROJECT"
 alias cdt="cdp test"

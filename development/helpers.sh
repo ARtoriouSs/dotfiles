@@ -17,6 +17,12 @@ alias dcps="docker-compose ps -a"
 # postman
 alias postman="/opt/Postman/app/Postman"
 
+# Postgres
+alias psqlc="psql -U postgres"
+
+# Avante CLI mode
+alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
+
 # remove all docker containers and images
 dclear() {
   docker system prune -f
