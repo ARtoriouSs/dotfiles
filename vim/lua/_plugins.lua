@@ -47,18 +47,34 @@ require('lazy').setup({
   { 'github/copilot.vim' },
   {
     "yetone/avante.nvim",
+    build = vim.fn.has("win32") ~= 0 -- ⚠️ must add this setting!
+        and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+        or "make BUILD_FROM_SOURCE=true", -- just `make` to not build from source
     event = "VeryLazy",
-    version = false, -- Never set this value to "*"!
+    version = false, -- Never set this value to "*"! Never!
+    ---@module 'avante'
+    ---@type avante.Config
     opts = {
+      instructions_file = "avante.md", -- context file
       provider = "claude",
-      openai = {
-        endpoint = "https://api.anthropic.com",
-        model = "claude-3-5-sonnet-20241022",
-        timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-        temperature = 0,
-        max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-        reasoning_effort = "high", -- low|medium|high, only used for reasoning models
-      }
+      providers = {
+        claude = {
+          endpoint = "https://api.anthropic.com",
+          model = "claude-sonnet-4-20250514",
+          timeout = 30000, -- Timeout in milliseconds
+            extra_request_body = {
+              temperature = 0.75,
+              max_tokens = 20480,
+            },
+        },
+        gemini = {
+          endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+          model = "gemini-1.5-pro-latest", -- or "gemini-1.5-flash-latest"
+          timeout = 30000,
+          temperature = 0.7,
+          max_tokens = 8192,
+        },
+      },
     },
     keys = {
       { -- paste an image to the prompt
@@ -70,30 +86,30 @@ require('lazy').setup({
         desc = "clip: paste image",
       },
     },
-    build = "make BUILD_FROM_SOURCE=true", -- just `make` to not build from source
     dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
       "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
       "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-      "nvim-tree/nvim-web-devicons",
+      "ibhagwan/fzf-lua", -- for file_selector provider fzf
+      "stevearc/dressing.nvim", -- for input provider dressing
+      "folke/snacks.nvim", -- for input provider snacks
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua", -- for providers='copilot'
       { -- support for image pasting
         "HakonHarnes/img-clip.nvim",
         event = "VeryLazy",
-        opts = {
-          -- recommended settings
+        opts = { -- recommended settings
           default = {
             embed_image_as_base64 = false,
             prompt_for_file_name = false,
             drag_and_drop = {
               insert_mode = true,
             },
-            -- use_absolute_path = true -- required for Windows users
+            use_absolute_path = true, -- required for Windows users
           },
-        }
+        },
       },
       {
         -- Make sure to set this up properly if you have lazy=true
