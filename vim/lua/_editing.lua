@@ -69,6 +69,10 @@ vim.keymap.set('x', '<M-p>', '"_dp', { noremap = true })
 vim.keymap.set('v', '<', '<gv', { noremap = true })
 vim.keymap.set('v', '>', '>gv', { noremap = true })
 
+-- in visual mode, make ' behave like i', so: v'  == vi' (select text inside quotes), same for "
+vim.keymap.set('x', "'", "i'", { noremap = true, silent = true })
+vim.keymap.set('x', '"', 'i"', { noremap = true, silent = true })
+
 -- edit todo files
 vim.api.nvim_create_user_command('Todo', ':edit $HOME/todo.yml', { bang = true }) -- edit global todo
 vim.api.nvim_create_user_command('Todol', ':edit todo.yml', { bang = true })      -- edit local todo
