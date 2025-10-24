@@ -25,6 +25,7 @@ t-project() {
   tmux -2 attach-session -t "$session_name"
 }
 
+# runs a command in the pane #1 of the tmux session for the current directory
 run-beside() {
   local session_name=$(basename $PWD)
 
