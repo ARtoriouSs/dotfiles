@@ -109,6 +109,7 @@ deps() {
   esac
 }
 
+alias sopec="spec"
 spec() {
   case $(current-language) in
     "ruby/rails")
