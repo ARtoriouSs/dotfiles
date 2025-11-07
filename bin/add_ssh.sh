@@ -11,6 +11,10 @@ if [ -z "$1" ]; then
     echo "otherwise it should be in \$EMAIL"
     exit 1
   fi
+  if [[ "$EMAIL" == "email@example.com" ]]; then
+    echo "\$EMAIL is a default placeholder email, set \$EMAIL or provide it as a first argument"
+    exit 1
+  fi
   email=$EMAIL
 fi
 
