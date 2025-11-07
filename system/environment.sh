@@ -34,5 +34,6 @@ fi
 
 eval "$(rbenv init -)" # rbenv
 
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" # kiex
-test -s "$HOME/.cargo/env"         && source "$HOME/.cargo/env"         # cargo
+export KIEX_HOME="$HOME/.kiex" # used inside "$KIEX_HOME/scripts/kiex", so needs to be set
+test -s "$KIEX_HOME/scripts/kiex"  && source "$KIEX_HOME/scripts/kiex" # kiex
+test -s "$HOME/.cargo/env"         && source "$HOME/.cargo/env"        # cargo
