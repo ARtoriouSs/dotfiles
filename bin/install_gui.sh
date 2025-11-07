@@ -7,10 +7,6 @@ rm -f google-chrome-stable_current_amd64.deb
 # telegram
 wget -O- https://telegram.org/dl/desktop/linux | sudo tar xJ -C /opt/
 sudo ln -s /opt/Telegram/Telegram /usr/local/bin/telegram-desktop
-# skype
-wget https://go.skype.com/skypeforlinux-64.deb
-sudo apt install --yes ./skypeforlinux-64.deb
-rm -f skypeforlinux-64.deb
 # slack
 sudo apt install --yes slack
 # discord

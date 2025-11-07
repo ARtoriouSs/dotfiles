@@ -33,7 +33,7 @@ I tried to make everything easy to understand, so there are a lot of comments if
 - Ruby, Rbenv
 - NodeJS and npm
 - PostgreSQL, Redis
-- Slack, Skype, Telegram, Google Chrome, Discord
+- Slack, Telegram, Google Chrome, Discord
 
 To install **everything** run:
 

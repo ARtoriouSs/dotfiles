@@ -68,7 +68,6 @@ check redis-cli
 echo "GUI apps:"
 check google-chrome
 check telegram-desktop
-check skypeforlinux
 check slack
 check discord
 check insomnia
