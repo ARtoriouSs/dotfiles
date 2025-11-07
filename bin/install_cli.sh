@@ -89,7 +89,7 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 curl https://raw.githubusercontent.com/kerl/kerl/master/kerl -o /usr/local/bin/kerl
 chmod a+x /usr/local/bin/kerl
 # kiex
-curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
+curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/kiex | bash -s install_kiex
 # diff-so-fancy
 git clone https://github.com/so-fancy/diff-so-fancy.git ~/my_folder/bin/diff-so-fancy # diff-so-fancy
 sudo chmod +x ~/my_folder/bin/diff-so-fancy/diff-so-fancy
