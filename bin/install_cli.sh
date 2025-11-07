@@ -14,6 +14,8 @@ sudo python2 get-pip.py
 rm get-pip.py
 # ruby
 sudo apt install --yes ruby-full
+gem install bundler
+gem update bundler
 # cowsay :)
 sudo apt install --yes cowsay
 # ripgrep
