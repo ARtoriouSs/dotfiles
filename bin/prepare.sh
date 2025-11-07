@@ -15,6 +15,27 @@ cp ../system/temp_settings.sample.sh ../system/temp_settings.sh
 ./install_vim.sh
 ./create_symlinks.sh
 
+echo "------------------"
+echo "------------------"
+echo "------------------"
+echo "------------------"
+echo "------------------"
+echo "------------------"
+echo "------------------"
+echo
+echo
+echo
+echo "GitHub username var:"
+echo $GITHUB_USERNAME
+echo
+echo
+echo
+echo "------------------"
+echo "------------------"
+echo "------------------"
+echo "------------------"
+echo "------------------"
+
 git remote set-url origin git@github.com:$GITHUB_USERNAME/dotfiles.git # change remote link for this repo to use SSH
 
 cd -
