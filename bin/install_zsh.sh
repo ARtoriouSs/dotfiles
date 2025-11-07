@@ -23,4 +23,5 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # generate gh completion script
-gh completion -s zsh > /usr/local/share/zsh/site-functions/_gh
+sudo mkdir -p /usr/local/share/zsh/site-functions
+gh completion -s zsh | sudo tee /usr/local/share/zsh/site-functions/_gh >/dev/null
