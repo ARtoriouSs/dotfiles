@@ -34,6 +34,7 @@ check cowsay
 check jq
 check gh
 check diff-so-fancy
+check grub-customizer
 
 echo "Docker:"
 check docker

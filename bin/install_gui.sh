@@ -7,8 +7,8 @@ rm -f google-chrome-stable_current_amd64.deb
 # telegram
 wget -O- https://telegram.org/dl/desktop/linux | sudo tar xJ -C /opt/
 sudo ln -s /opt/Telegram/Telegram /usr/local/bin/telegram-desktop
-# slack
-sudo apt install --yes slack
+# slack - TODO
+# sudo snap install slack
 # discord
 wget -O ./discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 sudo apt install --yes ./discord.deb

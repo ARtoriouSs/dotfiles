@@ -94,3 +94,7 @@ git clone https://github.com/so-fancy/diff-so-fancy.git ~/my_folder/bin/diff-so-
 sudo chmod +x ~/my_folder/bin/diff-so-fancy/diff-so-fancy
 # jq
 sudo apt install --yes jq
+# grub-customizer
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+sudo apt update
+sudo apt install --yes grub-customizer
