@@ -14,13 +14,11 @@ wget -O ./discord.deb "https://discordapp.com/api/download?platform=linux&format
 sudo apt install --yes ./discord.deb
 rm -f ./discord.deb
 # insomnia
-echo "deb [trusted=yes arch=amd64] https://download.konghq.com/insomnia-ubuntu/ default all" \
-  | sudo tee -a /etc/apt/sources.list.d/insomnia.list
-sudo apt update
-sudo apt install --yes insomnia
+wget "https://updates.insomnia.rest/downloads/ubuntu/latest" -O insomnia.deb
+sudo apt install ./insomnia.deb
+rm -f ./insomnia.deb
 # postman
-bit=$(getconf LONG_BIT) # 32 or 64 bit
-wget -O ~/postman.tar.gz "https://dl.pstmn.io/download/latest/linux${bit}"
+wget -O ~/postman.tar.gz "https://dl.pstmn.io/download/latest/linux_64"
 sudo tar xvf ~/postman.tar.gz -C /opt/
 rm ~/postman.tar.gz
 echo "[Desktop Entry]

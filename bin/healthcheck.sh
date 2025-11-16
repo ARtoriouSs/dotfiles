@@ -40,10 +40,9 @@ check docker
 check docker-compose
 
 echo "Python:"
-check python2
+check python
 check python3
 check pip
-check pip2
 check pip3
 
 echo "Ruby:"
@@ -72,6 +71,7 @@ check slack
 check discord
 check insomnia
 check postman
+echo "(Postman can be red because aliases are not inherited in the subshell, run \`source ./bin/healthcheck.sh\` to check"
 
 echo "Snap status:"
 check-snap

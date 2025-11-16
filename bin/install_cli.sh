@@ -6,12 +6,9 @@ sudo apt upgrade --yes
 sudo apt install --yes software-properties-common apt-transport-https libcurl4-openssl-dev apt-utils libssl-dev libreadline-dev wget curl git xclip
 
 # python and pip
-sudo apt install --yes python2 python2.7 python3 python3-pip
-curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py # pip3
-sudo python3 get-pip.py
-curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py # pip2
-sudo python2 get-pip.py
-rm get-pip.py
+sudo apt install --yes python3 python3-pip
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1 # python = python3
+sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1 # pip = pip3
 # ruby
 sudo apt install --yes ruby-full
 gem install bundler
@@ -22,6 +19,8 @@ sudo apt install --yes cowsay
 sudo apt install --yes ripgrep
 # ag
 sudo apt install --yes silversearcher-ag
+# fzf
+sudo apt install --yes fzf
 # tmux
 sudo apt install --yes tmux
 # zellij

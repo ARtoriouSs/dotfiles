@@ -15,7 +15,7 @@ python3 -m pip install --user --upgrade pynvim
 npm install -g tree-sitter-cli # tree-sitter executable
 
 # symlink for configs
-mkdir -p ~/.config/nvim/lua
+mkdir -p ~/.config/nvim/
 ln -sf ~/dotfiles/vim/init.lua ~/.config/nvim/init.lua
 ln -sf ~/dotfiles/vim/lua/ ~/.config/nvim/lua/
 mkdir -p ~/.config/solargraph
