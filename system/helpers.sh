@@ -10,6 +10,7 @@ alias install="sudo apt --yes update; sudo apt --yes install"
 alias todo="$VISUAL $TODO"
 alias todol="$VISUAL todo.yml" # local todo
 alias v=$VISUAL
+alias path="echo $PATH"
 
 alias susp="systemctl suspend"
 alias shut="init 0"
