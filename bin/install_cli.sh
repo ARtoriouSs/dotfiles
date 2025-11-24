@@ -10,8 +10,8 @@ sudo apt install --yes python3 python3-pip
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1 # python = python3
 sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1 # pip = pip3
 # ruby
-sudo apt install --yes ruby-full
-gem install bundler
+sudo apt install --yes ruby-full ruby-bundler
+# sudo gem install bundler
 gem update bundler
 # go
 sudo apt install golang-go
