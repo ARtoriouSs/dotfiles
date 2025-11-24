@@ -25,16 +25,19 @@ check-snap() {
 echo "CLI base:"
 check zsh
 check nvim
-check ctags
 check tmux
+check zellij
+check ctags
 check rg
 check ag
-check markdown
-check cowsay
+check fzf
 check jq
-check gh
+check markdown
 check diff-so-fancy
+check cowsay
+check gh
 check grub-customizer
+check asdf
 
 echo "Docker:"
 check docker
@@ -60,10 +63,19 @@ check npm
 check n
 check yarn
 
+echo "Go:"
+check go
+
 echo "Databases:"
 check psql
 check redis-server
 check redis-cli
+
+echo "AI:"
+check claude
+check gemini
+check codex
+check copilot
 
 echo "GUI apps:"
 check google-chrome

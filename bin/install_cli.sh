@@ -13,6 +13,8 @@ sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1 # pip = pip3
 sudo apt install --yes ruby-full
 gem install bundler
 gem update bundler
+# go
+sudo apt install golang-go
 # cowsay :)
 sudo apt install --yes cowsay
 # ripgrep
@@ -84,6 +86,9 @@ npm install -g @openai/codex
 npm install -g @github/copilot
 # asdf (configured via ZSH plugin)
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+cd ~/.asdf
+make
+cd -
 # kerl
 curl https://raw.githubusercontent.com/kerl/kerl/master/kerl -o /usr/local/bin/kerl
 chmod a+x /usr/local/bin/kerl

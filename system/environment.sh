@@ -1,5 +1,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.rbenv/bin:/usr/games:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH # rbenv
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/:$PATH" # asdf executable
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH" # asdf shims
 export PATH=.git/safe/../../bin:$PATH # git-safe
 export PATH=$HOME/my_folder/bin/diff-so-fancy:$PATH # diff-so-fancy
 
