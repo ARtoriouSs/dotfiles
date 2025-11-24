@@ -38,6 +38,7 @@ check cowsay
 check gh
 check grub-customizer
 check asdf
+check htop
 
 echo "Docker:"
 check docker
