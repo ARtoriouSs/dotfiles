@@ -34,7 +34,8 @@ echo "Edit -> Preferences -> Profiles -> Text -> Custom font, search for Droid S
 echo "5) Enable fractional scaling in GNOME on start up (if running on a huge screen):"
 echo 'Settings -> Startup Applications -> Add `xrandr --output DP-4 --scale 1.5x1.5` (replace DP-4 with your monitor listed in `xrandr --listmonitors`)'
 echo 'It can also be enabled via systemd service, see dotfiles/system/systemd/system/on_start_rescale_display.service'
-echo "6) Reboot again :)"
+echo "6) Bind rescale() and repeat() functions to shortcuts in Settings -> Keyboard -> Keyboard Shortcuts -> Custom Shortcuts (use original commands, not functions themselves)"
+echo "7) Reboot again :)"
 echo
 echo "Also you can manually run add_ssh.sh and enable_snap.sh when needed."
 echo

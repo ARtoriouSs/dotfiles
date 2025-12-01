@@ -20,3 +20,4 @@ formatter:
 require_paths: []
 plugins: []
 max_files: 0 # disable the limit, default is 5000
+bundler: false # do not run bundle install on background, causes lockfile updates
