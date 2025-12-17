@@ -200,6 +200,18 @@ d-rollback() {
   bundle exec rails data:rollback STEP=$step
 }
 
+# get last migration file name
+last-migration() {
+  local dir=$( [ -d db/migrate ] && echo db/migrate || echo db/migrations )
+  ls -1 "$dir" | sort | tail -n 1 | awk -v d="$dir" '{print d "/" $0}'
+}
+
+# copy last migration file name to clipboard
+alias clip-migr="copy-last-migration"
+copy-last-migration() {
+  last-migration | clip
+}
+
 alias rr="search-routes"
 search-routes() {
   if [ -z "$1" ]; then
