@@ -25,6 +25,16 @@ t-project() {
   tmux -2 attach-session -t "$session_name"
 }
 
+# runs a command in the pane #0 of the tmux session for the current directory (usually an editor)
+run-in-editor() {
+  local session_name=$(basename $PWD)
+
+  tmux has-session -t "$session_name"
+  if [ $? = 0 ]; then
+    tmux send-keys -t "${session_name}:0.0" "$@" Enter
+  fi
+}
+
 # runs a command in the pane #1 of the tmux session for the current directory
 run-beside() {
   local session_name=$(basename $PWD)
@@ -34,6 +44,17 @@ run-beside() {
     tmux send-keys -t "${session_name}:0.1" C-c
     tmux send-keys -t "${session_name}:0.1" "$@" Enter
   fi
+}
+
+tmux-edit-file() {
+  run-in-editor ":edit $1"
+}
+
+# choose a file from git status and edit it in the editor pane
+egst() {
+  local file
+  file=$(git status --porcelain | awk '{ print $2 }' | fzf --reverse) || return
+  tmux-edit-file "$file"
 }
 
 # runs the last command in the pane #1, to be used in vim command
