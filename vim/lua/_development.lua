@@ -12,6 +12,9 @@ vim.api.nvim_create_user_command('Csl', 'let @+ = "spec " . expand(\'%\') . \':\
 
 vim.api.nvim_create_user_command('Exec', "silent exec '!run-beside ruby\\ ' . expand('%')", { bang = true }) -- run current ruby file
 
+vim.api.nvim_create_user_command('Rcop', "silent exec '!run-beside rcop'", { bang = true }) -- run rubocop for all changed files
+vim.api.nvim_create_user_command('Rcopl', "silent exec '!run-beside bundle\\ exec\\ rubocop\\ ' . expand('%')", { bang = true }) -- run rubocop for current file
+
 vim.api.nvim_create_user_command("Migr", function() -- open last migration file
   local migration = vim.fn.system("last-migration"):gsub("%s+$", "")
   if migration:find("No such file or directory") or not migration or migration == "" then
