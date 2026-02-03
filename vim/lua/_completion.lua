@@ -30,9 +30,9 @@ cmp.setup({
   })
 })
 
--- set up lspconfig
+-- Configure and enable Solargraph via the new vim.lsp.config API.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-require('lspconfig')['solargraph'].setup {
+vim.lsp.config('solargraph', {
   capabilities = capabilities
-}
+})
+vim.lsp.enable('solargraph')
