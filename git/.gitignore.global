@@ -11,6 +11,13 @@
 .vimrc.local
 .vimrc # dotfiles copy is vim/vimrc, so it isn't affected
 
+# AI
+CLAUDE.md
+.claude
+GEMINI.md
+CODEX.md
+AGENTS.md
+
 # temporary files
 *.swp
 *.swo
@@ -32,6 +39,3 @@ tags
 
 # directory for useful things
 gittemp
-
-# purr-pr rules
-purr.rb
