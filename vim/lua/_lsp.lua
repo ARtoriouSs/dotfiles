@@ -65,8 +65,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
           return
         end
 
-        local first_result = result[#result] or result
-        vim.lsp.util.jump_to_location(first_result, 'utf-8')
+        -- If result is a single location, use it directly
+        local location = result
+        if vim.tbl_islist(result) then
+          -- If multiple results, pick the one with the shortest URI (most specific)
+          -- This avoids jumping to nested classes when we want the parent class
+          table.sort(result, function(a, b)
+            local uri_a = type(a.uri) == 'string' and a.uri or (a.targetUri or '')
+            local uri_b = type(b.uri) == 'string' and b.uri or (b.targetUri or '')
+            return #uri_a < #uri_b
+          end)
+          location = result[1]
+        end
+
+        vim.lsp.util.jump_to_location(location, 'utf-8')
       end)
     end, opts)
     vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
