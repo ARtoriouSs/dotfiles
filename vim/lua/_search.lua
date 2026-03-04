@@ -33,7 +33,30 @@ telescope.setup{
 
 telescope.load_extension('fzf')
 
-vim.keymap.set('n', '<leader>f', builtin.find_files, {}) -- file search
+-- function to remove leading "./" from file search results (because it's often copied from terminal and breaks the search)
+-- default: vim.keymap.set('n', '<leader>f', builtin.find_files, {})
+vim.keymap.set('n', '<leader>f', function()
+  builtin.find_files({
+    attach_mappings = function(prompt_bufnr)
+      local action_state = require('telescope.actions.state')
+      local updating = false
+      vim.api.nvim_create_autocmd("TextChangedI", {
+        buffer = prompt_bufnr,
+        callback = function()
+          if updating then return end
+          local picker = action_state.get_current_picker(prompt_bufnr)
+          local prompt = picker:_get_prompt()
+          if prompt:sub(1, 2) == "./" then
+            updating = true
+            picker:set_prompt(prompt:sub(3))
+            updating = false
+          end
+        end
+      })
+      return true
+    end
+  })
+end, {}) -- file search
 vim.keymap.set('n', '<leader>g', builtin.live_grep, {})  -- grep search
 vim.keymap.set('n', '<leader>b', builtin.oldfiles,  {})  -- recently opened files search
 
