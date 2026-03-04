@@ -1,5 +1,48 @@
-local telescope = require('telescope')
-local builtin   = require('telescope.builtin')
+local telescope  = require('telescope')
+local builtin    = require('telescope.builtin')
+local previewers = require('telescope.previewers')
+local from_entry = require('telescope.from_entry')
+
+-- Smart previewer: chafa pixel art for images, bat/cat for code
+local _img_exts = { png=1, jpg=1, jpeg=1, gif=1, bmp=1, webp=1, tiff=1, ico=1, avif=1 }
+local function _is_image(path)
+  local ext = path:match('%.([^%.]+)$')
+  return ext and _img_exts[ext:lower()] ~= nil
+end
+
+local smart_previewer = previewers.new_buffer_previewer({
+  title = 'Preview',
+  get_buffer_by_name = function(_, entry)
+    return from_entry.path(entry, false)
+  end,
+  define_preview = function(self, entry, status)
+    local p = from_entry.path(entry, true)
+    if not p or p == '' then return end
+
+    if _is_image(p) and vim.fn.executable('chafa') == 1 then
+      local bufnr = self.state.bufnr
+      if vim.bo[bufnr].buftype == 'terminal' then return end
+
+      local w = vim.api.nvim_win_get_width(self.state.winid)
+      local h = vim.api.nvim_win_get_height(self.state.winid)
+
+      vim.api.nvim_buf_call(bufnr, function()
+        vim.fn.termopen({ 'chafa', '--size=' .. w .. 'x' .. h, p }, {
+          on_exit = function(_, code)
+            vim.defer_fn(function()
+              if not vim.api.nvim_buf_is_valid(bufnr) then return end
+            end, 100)
+          end,
+        })
+      end)
+    else
+      require('telescope.config').values.buffer_previewer_maker(p, self.state.bufnr, {
+        bufname = self.state.bufname,
+        winid   = self.state.winid,
+      })
+    end
+  end,
+})
 
 telescope.setup{
   defaults = {
@@ -33,10 +76,12 @@ telescope.setup{
 
 telescope.load_extension('fzf')
 
--- function to remove leading "./" from file search results (because it's often copied from terminal and breaks the search)
--- default: vim.keymap.set('n', '<leader>f', builtin.find_files, {})
 vim.keymap.set('n', '<leader>f', function()
   builtin.find_files({
+    previewer = smart_previewer, -- just remove if there's issues with previews
+
+    -- function to remove leading "./" from file search results (because it's often copied from terminal and breaks the search)
+    -- default: vim.keymap.set('n', '<leader>f', builtin.find_files, {})
     attach_mappings = function(prompt_bufnr)
       local action_state = require('telescope.actions.state')
       local updating = false

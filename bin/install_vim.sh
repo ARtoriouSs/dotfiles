@@ -13,6 +13,7 @@ npm install -g neovim
 python2 -m pip install --user --upgrade pynvim
 python3 -m pip install --user --upgrade pynvim
 npm install -g tree-sitter-cli # tree-sitter executable
+sudo apt isntall --yes chafa bat # for previewing images
 
 # symlink for configs
 mkdir -p ~/.config/nvim/
