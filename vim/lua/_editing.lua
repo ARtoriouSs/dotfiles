@@ -89,7 +89,7 @@ vim.api.nvim_create_user_command('Js', 'set filetype=javascript', { bang = true 
 vim.api.nvim_create_user_command('JS', 'set filetype=javascript', { bang = true })
 vim.api.nvim_create_user_command('Sql', 'set filetype=sql', { bang = true })
 vim.api.nvim_create_user_command('SQL', 'set filetype=sql', { bang = true })
-vim.api.nvim_create_user_command('Json', 'set filetype=json', { bang = true })
+vim.api.nvim_create_user_command('Json', function() vim.cmd('set filetype=json') vim.cmd('retab') end, { bang = true })
 vim.api.nvim_create_user_command('JSON', 'set filetype=json', { bang = true })
 vim.api.nvim_create_user_command('Xml', 'set filetype=xml', { bang = true })
 vim.api.nvim_create_user_command('XML', 'set filetype=xml', { bang = true })
@@ -104,8 +104,9 @@ vim.api.nvim_create_user_command('Yaml', 'set filetype=yaml', { bang = true })
 vim.api.nvim_create_user_command("Jq", function(opts)
   local shellcmdflag = vim.o.shellcmdflag
   vim.o.shellcmdflag = "-c" -- drop the -i just for this run
-  pcall(vim.cmd, string.format([[%d,%d!jq .]], opts.line1, opts.line2))
+  local ok = pcall(vim.cmd, string.format([[%d,%d!jq .]], opts.line1, opts.line2))
   vim.o.shellcmdflag = shellcmdflag
+  if ok then vim.cmd("Json") end
 end, { range = true, desc = 'Format JSON using jq' })
 
 vim.api.nvim_create_user_command('Xq', function(opts)
