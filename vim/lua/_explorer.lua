@@ -36,6 +36,9 @@ end
 
 require('nvim-tree').setup {
   on_attach = on_attach,
+  filesystem_watchers = {
+    ignore_dirs = { 'log', 'tmp', 'node_modules', '.git' },
+  },
 }
 
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<cr>', { silent = true, noremap = true })
