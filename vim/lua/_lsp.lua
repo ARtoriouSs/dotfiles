@@ -67,7 +67,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- If result is a single location, use it directly
         local location = result
-        if vim.tbl_islist(result) then
+        if vim.islist(result) then
           -- If multiple results, pick the one with the shortest URI (most specific)
           -- This avoids jumping to nested classes when we want the parent class
           table.sort(result, function(a, b)
