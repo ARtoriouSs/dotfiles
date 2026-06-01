@@ -8,12 +8,19 @@ vim.lsp.config('*', {
   )
 })
 
+-- Disables rubocop linting
+vim.lsp.config('ruby_lsp', {
+  init_options = {
+    linters = {},
+  }
+})
+
 require('mason').setup({})
 require('mason-lspconfig').setup({
   -- list of available servers: https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
   ensure_installed = {
     'typos_lsp',
-    'solargraph', -- Ruby
+    'ruby_lsp', -- Ruby
     'elixirls',
     'clangd',
     'lua_ls',
@@ -54,7 +61,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
     vim.keymap.set('n', 'gl', '<cmd>lua vim.lsp.buf.definition()<cr>', opts) -- go to definition with quickfix list
     vim.keymap.set('n', 'gd', function() -- go to definition without quickfix list
-      local params = vim.lsp.util.make_position_params()
+      local clients = vim.lsp.get_clients({ bufnr = 0, method = 'textDocument/definition' })
+      if vim.tbl_isempty(clients) then return end
+      local offset_encoding = clients[1].offset_encoding
+      local params = vim.lsp.util.make_position_params(nil, offset_encoding)
       vim.lsp.buf_request(0, 'textDocument/definition', params, function(err, result, ctx, config)
         if err then
           vim.notify('Error getting definition: ' .. err.message, vim.log.levels.ERROR)
@@ -78,7 +88,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
           location = result[1]
         end
 
-        vim.lsp.util.jump_to_location(location, 'utf-8')
+        local client = vim.lsp.get_client_by_id(ctx.client_id)
+        local enc = client and client.offset_encoding or offset_encoding
+        vim.lsp.util.show_document(location, enc, { focus = true })
       end)
     end, opts)
     vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)

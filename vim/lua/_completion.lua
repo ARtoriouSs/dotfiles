@@ -29,9 +29,9 @@ cmp.setup({
   })
 })
 
--- Configure and enable Solargraph via the new vim.lsp.config API.
+-- Configure and enable ruby-lsp via the new vim.lsp.config API.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-vim.lsp.config('solargraph', {
+vim.lsp.config('ruby_lsp', {
   capabilities = capabilities
 })
-vim.lsp.enable('solargraph')
+vim.lsp.enable('ruby_lsp')
