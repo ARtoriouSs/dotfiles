@@ -79,8 +79,8 @@ vim.api.nvim_create_user_command('Todol', ':edit todo.yml', { bang = true })    
 
 -- aliases
 vim.api.nvim_create_user_command('Q', 'q', { bang = true })                                            -- Q to exit
-vim.api.nvim_create_user_command('Cc', 'let @+ = expand(\'%\')', { bang = true })                      -- copy path to current file
-vim.api.nvim_create_user_command('Ccl', 'let @+ = expand(\'%\') . \':\' . line(".")', { bang = true }) -- copy 'path/to/current/file:cursor_line'
+vim.api.nvim_create_user_command('Cc', 'let @+ = expand(\'%:.\')', { bang = true })                      -- copy path to current file
+vim.api.nvim_create_user_command('Ccl', 'let @+ = expand(\'%:.\') . \':\' . line(".")', { bang = true }) -- copy 'path/to/current/file:cursor_line'
 
 -- filetype aliases
 vim.api.nvim_create_user_command('Ruby', 'set filetype=ruby', { bang = true })
