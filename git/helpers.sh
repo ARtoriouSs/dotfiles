@@ -214,6 +214,12 @@ gcmm() {
   fi
 }
 
+# remove last commit and add its' changes to staging area
+uncommit() {
+  git reset --soft HEAD~1
+  status
+}
+
 alias gcan="amend-no-edit"
 amend-no-edit() {
   git commit --amend --no-edit
