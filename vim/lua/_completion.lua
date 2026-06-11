@@ -29,9 +29,4 @@ cmp.setup({
   })
 })
 
--- Configure and enable ruby-lsp via the new vim.lsp.config API.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-vim.lsp.config('ruby_lsp', {
-  capabilities = capabilities
-})
 vim.lsp.enable('ruby_lsp')

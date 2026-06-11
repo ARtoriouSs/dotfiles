@@ -8,7 +8,6 @@ sudo apt install --yes python3-neovim
 
 # support tools
 sudo gem install neovim
-sudo gem install solargraph # should be installed per project's ruby version
 npm install -g neovim
 python2 -m pip install --user --upgrade pynvim
 python3 -m pip install --user --upgrade pynvim
@@ -19,8 +18,5 @@ sudo apt isntall --yes chafa bat # for previewing images
 mkdir -p ~/.config/nvim/
 ln -sf ~/dotfiles/vim/init.lua ~/.config/nvim/init.lua
 ln -sf ~/dotfiles/vim/lua/ ~/.config/nvim/
-mkdir -p ~/.config/solargraph
-ln -sf ~/dotfiles/development/.solargraph.yml ~/.config/solargraph/config.yml
-
 # install Lazy and plugins
 nvim -u ~/dotfiles/vim/lua/_plugins.lua +Lazy +qall
