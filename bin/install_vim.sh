@@ -18,5 +18,6 @@ sudo apt isntall --yes chafa bat # for previewing images
 mkdir -p ~/.config/nvim/
 ln -sf ~/dotfiles/vim/init.lua ~/.config/nvim/init.lua
 ln -sf ~/dotfiles/vim/lua/ ~/.config/nvim/
+
 # install Lazy and plugins
 nvim -u ~/dotfiles/vim/lua/_plugins.lua +Lazy +qall
