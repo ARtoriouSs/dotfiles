@@ -22,9 +22,22 @@ check-snap() {
   fi
 }
 
+# check if a Claude Code plugin is installed
+check-plugin() {
+  if grep -q "\"$1@" ~/.claude/plugins/installed_plugins.json 2>/dev/null; then
+    printf " $(tput setaf 10)✓  "
+  else
+    printf " $(tput setaf 9)✗  "
+  fi
+  printf "$1 (plugin) $(tput sgr0)\n"
+}
+
 echo "CLI base:"
 check zsh
 check nvim
+check tree-sitter
+check chafa
+check batcat # bat is packaged as batcat on Debian/Ubuntu
 check tmux
 check zellij
 check ctags
@@ -53,6 +66,7 @@ check pip3
 echo "Ruby:"
 check ruby
 check rbenv
+check bundler
 
 echo "Erlang and Elixir:"
 check kerl
@@ -72,11 +86,21 @@ check psql
 check redis-server
 check redis-cli
 
-echo "AI:"
+echo "AI agents:"
 check claude
 check gemini
 check codex
 check copilot
+
+echo "AI tooling:"
+check rtk
+check caveman
+
+echo "Claude plugins:"
+check-plugin oh-my-claudecode
+check-plugin ruby-lsp
+check-plugin find-skills
+check-plugin caveman
 
 echo "GUI apps:"
 check google-chrome
