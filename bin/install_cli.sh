@@ -78,6 +78,11 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
 sudo apt-add-repository https://cli.github.com/packages
 sudo apt update
 sudo apt install gh
+# gitlab CLI
+GLAB_VERSION=$(curl -sL "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/releases/permalink/latest" | jq -r .tag_name | sed 's/^v//')
+curl -sL "https://gitlab.com/gitlab-org/cli/-/releases/v${GLAB_VERSION}/downloads/glab_${GLAB_VERSION}_linux_amd64.deb" -o /tmp/glab.deb
+sudo apt install --yes /tmp/glab.deb
+rm /tmp/glab.deb
 # claude
 npm install -g @anthropic-ai/claude-code
 # gemini

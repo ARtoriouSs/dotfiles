@@ -49,6 +49,7 @@ check markdown
 check diff-so-fancy
 check cowsay
 check gh
+check glab
 check grub-customizer
 check asdf
 check htop
