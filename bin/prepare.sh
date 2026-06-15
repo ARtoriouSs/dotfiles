@@ -13,6 +13,7 @@ cp ../system/temp_settings.sample.sh ../system/temp_settings.sh
 ./install_rbenv.sh
 ./install_zsh.sh && source ~/.zprofile
 ./install_vim.sh
+./install_ai_agents.sh
 ./create_symlinks.sh
 
 sudo apt update
