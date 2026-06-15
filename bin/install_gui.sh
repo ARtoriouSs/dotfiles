@@ -7,8 +7,12 @@ rm -f google-chrome-stable_current_amd64.deb
 # telegram
 wget -O- https://telegram.org/dl/desktop/linux | sudo tar xJ -C /opt/
 sudo ln -s /opt/Telegram/Telegram /usr/local/bin/telegram-desktop
-# slack - TODO
-# sudo snap install slack
+# slack
+sudo install -d -m 0755 /etc/apt/keyrings
+curl -fsSL https://packagecloud.io/slacktechnologies/slack/gpgkey | gpg --dearmor | sudo tee /etc/apt/keyrings/slacktechnologies_slack-archive-keyring.gpg > /dev/null
+echo "deb [signed-by=/etc/apt/keyrings/slacktechnologies_slack-archive-keyring.gpg] https://packagecloud.io/slacktechnologies/slack/debian jessie main" | sudo tee /etc/apt/sources.list.d/slack.list > /dev/null
+sudo apt update --yes
+sudo apt install --yes slack-desktop
 # discord
 wget -O ./discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 sudo apt install --yes ./discord.deb
