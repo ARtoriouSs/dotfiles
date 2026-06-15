@@ -7,6 +7,12 @@ npm install -g @anthropic-ai/claude-code
 # oh-my-claudecode (OMC) - multi-agent orchestration layer
 claude plugin marketplace add https://github.com/Yeachan-Heo/oh-my-claudecode.git
 claude plugin install oh-my-claudecode@omc
+# ruby-lsp - Ruby language server integration
+claude plugin marketplace add anthropics/claude-plugins-official
+claude plugin install ruby-lsp@claude-plugins-official
+# find-skills - browse/search skills across marketplaces
+claude plugin marketplace add dan323/easier-life-skills
+claude plugin install find-skills@easier-life-skills
 
 ### Codex
 npm install -g @openai/codex
