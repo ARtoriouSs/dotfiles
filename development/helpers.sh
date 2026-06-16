@@ -20,8 +20,10 @@ alias postman="/opt/Postman/app/Postman"
 # Postgres
 alias psqlc="psql -U postgres"
 
-# Avante CLI mode
-alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
+# AI CLIs
+alias cl="claude"
+alias co="codex"
+alias gmn="gemini"
 
 # remove all docker containers and images
 dclear() {
