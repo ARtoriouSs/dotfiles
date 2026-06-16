@@ -3,7 +3,8 @@
 # install and configure AI coding agents: Claude Code, Codex and Gemini.
 
 ### Claude Code
-npm install -g @anthropic-ai/claude-code
+# native install (not npm) - drops binary in ~/.local/bin
+curl -fsSL https://claude.ai/install.sh | bash
 # oh-my-claudecode (OMC) - multi-agent orchestration layer
 claude plugin marketplace add https://github.com/Yeachan-Heo/oh-my-claudecode.git
 claude plugin install oh-my-claudecode@omc
