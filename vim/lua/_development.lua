@@ -25,6 +25,21 @@ vim.api.nvim_create_user_command("Migr", function() -- open last migration file
 end, {})
 vim.api.nvim_create_user_command('MIgr', 'Migr', { bang = true })
 
--- macros
-vim.fn.setreg('p', [[Abinding.pry:w]])            -- insert a pry breakpoint on the new line
-vim.fn.setreg('o', [[If{€ý5a binding.pry;;w]]) -- insert a pry breakpoint in the begnning of a { } block
+-- <Leader>p: insert a breakpoint matching the buffer's language, then save
+local breakpoints = {
+  ruby = 'binding.pry',
+  javascript = 'debugger;',
+  javascriptreact = 'debugger;',
+  typescript = 'debugger;',
+  typescriptreact = 'debugger;',
+  elixir = 'require IEx; IEx.pry',
+}
+vim.keymap.set('n', '<Leader>p', function()
+  local snippet = breakpoints[vim.bo.filetype]
+  if not snippet then
+    vim.notify('No breakpoint for filetype: ' .. (vim.bo.filetype == '' and 'none' or vim.bo.filetype), vim.log.levels.WARN)
+    return
+  end
+  local keys = 'o' .. snippet .. vim.api.nvim_replace_termcodes('<Esc>:w<CR>', true, false, true)
+  vim.api.nvim_feedkeys(keys, 'n', false)
+end, { noremap = true, silent = true, desc = 'Insert language-aware breakpoint' })
