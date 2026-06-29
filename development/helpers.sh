@@ -135,6 +135,28 @@ spec() {
   esac
 }
 
+# runs spec file 10 times 🙃 stops on fail
+flaky-spec() {
+  for i in {1..10}; do
+    bundle exec rspec $@
+
+    if [[ $? -ne 0 ]] ; then
+      break
+    fi
+  done
+}
+
+# same as above, but 100 times
+very-flaky-spec() {
+  for i in {1..100}; do
+    bundle exec rspec $@
+
+    if [[ $? -ne 0 ]] ; then
+      break
+    fi
+  done
+}
+
 alias rc="console"
 console() {
   case $(current-language) in
