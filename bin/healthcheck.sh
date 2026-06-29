@@ -40,7 +40,6 @@ check chafa
 check batcat # bat is packaged as batcat on Debian/Ubuntu
 check tmux
 check zellij
-check ctags
 check rg
 check ag
 check fzf

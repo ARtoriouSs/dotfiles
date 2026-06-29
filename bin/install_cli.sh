@@ -61,16 +61,6 @@ sudo apt install --yes redis-server
 sudo systemctl enable redis-server.service # run redis on boot
 # yarn
 sudo npm install -g yarn
-# ctags TODO: install via apt when available (https://github.com/universal-ctags/ctags)
-sudo apt install --yes pkg-config autoconf # prerequirements
-git clone https://github.com/universal-ctags/ctags.git ctags_source
-cd ctags_source
-./autogen.sh
-./configure
-sudo make
-sudo make install
-cd -
-rm -rf ctags_source
 # markdown
 sudo apt install --yes markdown
 # github CLI

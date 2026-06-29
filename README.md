@@ -20,14 +20,14 @@ I tried to make everything easy to understand, so there are a lot of comments if
 - [Script for installing zsh](bin/install_zsh.sh) with configured [.zshrc](system/.zshrc), [.zprofile](system/.zprofile) and extensions
 - [Aliases and some convenient shell functions](system/helpers.sh)
 - [Script for installing nvim](bin/install_vim.sh) with configured [.vimrc](vim/.vimrc)
-- Git settings: [gitconfig](git/.gitconfig), [global .gitignore](git/.gitignore.global), [template directory with hooks for ctags](git/git_template)
+- Git settings: [gitconfig](git/.gitconfig), [global .gitignore](git/.gitignore.global)
 - [.pryrc](development/.pryrc), [.gemrc](development/.gemrc) and [bundler config](development/bundler_config) for convenience in Ruby development
 - And some other helpful things :)
 
 #### Will be installed with installation scripts:
 
 - Basic software (curl, wget, git, etc.)
-- Tmux, Neovim, Ctags
+- Tmux, Neovim
 - Zsh with Oh-My-Zsh
 - Docker and docker-compose
 - Ruby, Rbenv

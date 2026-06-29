@@ -61,29 +61,6 @@ o() {
   [ -z "$1" ] && xdg-open . || xdg-open $@
 }
 
-# generate ctags
-tags() {
-  local git_dir=$(git --no-optional-locks rev-parse --git-dir)
-  trap 'rm -f "$git_dir/$$.tags"' EXIT
-
-  case "$1" in
-    --rails) # add gems paths and cut off bundler warnings with awk
-      ctags -f $git_dir/$$.tags . $(bundle list --paths | awk '/^\// { print $0 }')
-    ;;
-    --elixir)
-      ctags --exclude=_build -f $git_dir/$$.tags .
-    ;;
-    --js)
-      ctags --exclude=tmp -f $git_dir/$$.tags .
-    ;;
-    *)
-      ctags -f $git_dir/$$.tags .
-    ;;
-  esac
-
-  mv "$git_dir/$$.tags" "$git_dir/tags"
-}
-
 # display linux 256 colors
 color-list() {
   for i in {0..255}; do
@@ -177,7 +154,7 @@ keyboard-repeat-reset() {
 futbik() {
   docker run -t -p 6878:6878 ghcr.io/martinbjeldbak/acestream-http-proxy &
   google-chrome \
-    "http://127.0.0.1:6878/ace/manifest.m3u8?id=" \
-    "http://127.0.0.1:6878/ace/getstream?id=" \
+    "http://127.0.0.1:6878/ace/manifest.m3u8?id=lower" \
+    "http://127.0.0.1:6878/ace/getstream?id=higher" \
     "https://search-ace.stream/"
 }
