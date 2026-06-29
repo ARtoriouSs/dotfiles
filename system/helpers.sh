@@ -173,3 +173,11 @@ keyboard-repeat-reset() {
   gsettings set org.gnome.desktop.peripherals.keyboard delay 200
   xset r rate 200 40
 }
+
+futbik() {
+  docker run -t -p 6878:6878 ghcr.io/martinbjeldbak/acestream-http-proxy &
+  google-chrome \
+    "http://127.0.0.1:6878/ace/manifest.m3u8?id=" \
+    "http://127.0.0.1:6878/ace/getstream?id=" \
+    "https://search-ace.stream/"
+}
