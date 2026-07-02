@@ -60,7 +60,7 @@ telescope.setup{
     },
 
     live_grep = {
-      additional_args = {"--hidden", "--sort-files"}
+      additional_args = {"--hidden", "--sort-files", "--glob", "!.git/*"}
     }
   },
 
