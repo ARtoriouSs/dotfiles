@@ -57,9 +57,11 @@ require('nvim-treesitter.configs').setup {
     disable = function(_lang, buf)
       local max_filesize = 100 * 1024 -- 100 KB
       local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      end
+      -- fs_stat misses fugitive/scratch/unwritten buffers (e.g. the HEAD side of :Gdiffsplit)
+      -- which have no on-disk path; fall back to the loaded byte size
+      local size = (ok and stats and stats.size)
+        or vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+      return size > max_filesize
     end,
 
     -- run `:h syntax` and tree-sitter at the same time, can be a list of languages
