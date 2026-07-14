@@ -76,6 +76,11 @@ require('lazy').setup({
   },
 
   -- editing
+  {
+    'Wansmer/treesj', -- split/join args and hashes (<space>m toggle, <space>s split, <space>j join)
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {}
+  },
   { 'simeji/winresizer' }, -- split resizer
   { 'tpope/vim-surround' }, -- quick change of parentheses, brackets, quotes, tags, etc.
   { 'tpope/vim-repeat' }, -- repeat plugin commands with '.'
