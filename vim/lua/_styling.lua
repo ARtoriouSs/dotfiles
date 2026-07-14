@@ -101,3 +101,5 @@ require('lualine').setup({
     lualine_z = {}
   }
 })
+
+vim.o.showtabline = 1 -- hide tabline when only one tab is open (lualine forces 2 by default)
