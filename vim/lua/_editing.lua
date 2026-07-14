@@ -98,38 +98,6 @@ vim.api.nvim_create_user_command('Yml', 'set filetype=yaml', { bang = true })
 vim.api.nvim_create_user_command('YAML', 'set filetype=yaml', { bang = true })
 vim.api.nvim_create_user_command('Yaml', 'set filetype=yaml', { bang = true })
 
--- Interactive shell is needed to load helpers, however jq outputs ZLE error in interactive mode,
--- so drop -i just for this run. Simpler version just incase:
--- vim.api.nvim_create_user_command('Jq', ':%!jq .', { bang = true }) -- format JSON
-vim.api.nvim_create_user_command("Jq", function(opts)
-  local shellcmdflag = vim.o.shellcmdflag
-  vim.o.shellcmdflag = "-c" -- drop the -i just for this run
-  local ok = pcall(vim.cmd, string.format([[%d,%d!jq .]], opts.line1, opts.line2))
-  vim.o.shellcmdflag = shellcmdflag
-  if ok then vim.cmd("Json") end
-end, { range = true, desc = 'Format JSON using jq' })
-
-vim.api.nvim_create_user_command('Xq', function(opts)
-  local shellcmdflag = vim.o.shellcmdflag
-  vim.o.shellcmdflag = "-c" -- drop the -i just for this run
-  pcall(vim.cmd, string.format([[%d,%d!tidy -xml -i -q]], opts.line1, opts.line2))
-  vim.o.shellcmdflag = shellcmdflag
-end, { range = true, desc = 'Format XML using tidy' })
-
-for _, name in ipairs({ "JJ", "Jj" }) do -- JJ/Jj = Jq + JSON
-  vim.api.nvim_create_user_command(name, function()
-    vim.cmd("Jq")
-    vim.cmd("JSON")
-  end, {})
-end
-
-for _, name in ipairs({ "XX", "Xx" }) do -- XX/Xx = Xq + XML
-  vim.api.nvim_create_user_command(name, function()
-    vim.cmd("Xq")
-    vim.cmd("XML")
-  end, {})
-end
-
 -- save actions
 vim.api.nvim_create_autocmd('BufWritePre', { pattern = '', command = ":%s/\\s\\+$//e" })        -- removes trailing whitespace on save
 vim.api.nvim_create_autocmd('BufWritePre', { pattern = '', command = ":%s/\\n\\+\\ze\\%$//e" }) -- removes trailing eol on save
