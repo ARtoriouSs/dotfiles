@@ -8,6 +8,9 @@ local M = {}
 
 local breakpoints = {
   ruby = 'binding.pry',
+  eruby = '<% binding.pry %>',
+  haml = '- binding.pry',
+  slim = '- binding.pry',
   javascript = 'debugger;',
   javascriptreact = 'debugger;',
   typescript = 'debugger;',
