@@ -284,6 +284,33 @@ current-branch() {
   git branch --show-current
 }
 
+# show current branch in every directory of the current project (cd0, cd1, cd2)
+alias gbp="project-branches"
+project-branches() {
+  local project_dir branch
+  local yellow="\033[93m"
+  local green="\033[92m"
+  local red="\033[91m"
+  local white="\033[0m"
+
+  for number in 0 1 2; do
+    project_dir="$PROJECTS/$CURRENT_PROJECT"
+    [ "$number" != "0" ] && project_dir="$project_dir-$number"
+
+    if [ ! -d "$project_dir" ]; then
+      continue
+    fi
+
+    branch=$(git -C "$project_dir" branch --show-current 2> /dev/null)
+
+    if [ -z "$branch" ]; then
+      printf "$yellow$number$white - ${red}no branch$white\n"
+    else
+      printf "$yellow$number$white - $green$branch$white\n"
+    fi
+  done
+}
+
 # get name of the first commit in a branch
 first-commit() {
   git log $(default-branch)..$(current-branch) --oneline | tail -1 | cut -f 2- -d ' '

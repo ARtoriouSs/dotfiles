@@ -75,6 +75,12 @@ color-list() {
 alias cdcc="cdp $CURRENT_PROJECT/.." # if project is in subdirectory
 alias cdc="cdp $CURRENT_PROJECT"
 alias cdt="cdp test"
+
+# current project copies: cd0 is the project itself, cd1/cd2 are "-1"/"-2" postfixed ones
+alias cd0="cdc"
+alias cd1="cdp $CURRENT_PROJECT-1"
+alias cd2="cdp $CURRENT_PROJECT-2"
+
 cdp() {
   cd $PROJECTS/$1
 }
