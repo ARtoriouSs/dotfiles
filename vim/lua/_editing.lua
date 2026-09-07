@@ -99,8 +99,8 @@ vim.api.nvim_create_user_command('YAML', 'set filetype=yaml', { bang = true })
 vim.api.nvim_create_user_command('Yaml', 'set filetype=yaml', { bang = true })
 
 -- save actions
-vim.api.nvim_create_autocmd('BufWritePre', { pattern = '', command = ":%s/\\s\\+$//e" })        -- removes trailing whitespace on save
-vim.api.nvim_create_autocmd('BufWritePre', { pattern = '', command = ":%s/\\n\\+\\ze\\%$//e" }) -- removes trailing eol on save
+vim.api.nvim_create_autocmd('BufWritePre', { pattern = '*', command = ":%s/\\s\\+$//e" })        -- removes trailing whitespace on save
+vim.api.nvim_create_autocmd('BufWritePre', { pattern = '*', command = ":%s/\\n\\+\\ze\\%$//e" }) -- removes trailing eol on save
 
 -- undo history
 vim.keymap.set('n', '<C-u>', ':MundoToggle<CR>', { noremap = true })
