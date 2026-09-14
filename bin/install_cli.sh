@@ -27,9 +27,8 @@ sudo apt install --yes silversearcher-ag
 sudo apt install --yes fzf
 # tmux
 sudo apt install --yes tmux
-# zellij
+# rust (provides cargo for rtk and friends)
 curl https://sh.rustup.rs -sSf | sh
-cargo install --locked zellij
 # node and npm
 sudo apt install --yes npm
 npm update npm -g # update npm

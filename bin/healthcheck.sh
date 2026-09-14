@@ -39,7 +39,6 @@ check tree-sitter
 check chafa
 check batcat # bat is packaged as batcat on Debian/Ubuntu
 check tmux
-check zellij
 check rg
 check ag
 check fzf

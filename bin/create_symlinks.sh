@@ -9,7 +9,3 @@ ln -sf ~/dotfiles/system/.agignore ~/.agignore
 
 [ ! -d "$HOME/.bundle" ] && mkdir ~/.bundle
 ln -sf ~/dotfiles/development/bundler_config ~/.bundle/bundler_config
-
-[ ! -d "$HOME/.config/zellij" ] && mkdir -p ~/.config/zellij
-ln -sf ~/dotfiles/zellij/config.kdl ~/.config/zellij/config.kdl
-ln -sf ~/dotfiles/zellij/layouts ~/.config/zellij/layouts
