@@ -35,8 +35,14 @@ require('lazy').setup({
   { 'williamboman/mason-lspconfig.nvim' },
 
   -- treesitter
-  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-  { 'RRethy/nvim-treesitter-endwise' }, -- complete do-end with treesitter
+  -- the `main` branch is a full rewrite and does not support lazy-loading
+  { 'nvim-treesitter/nvim-treesitter', branch = 'main', lazy = false, build = ':TSUpdate' },
+  { -- complete do-end with treesitter
+    'RRethy/nvim-treesitter-endwise',
+    -- `master` needs nvim-treesitter's module system, which the `main` branch dropped;
+    -- this branch talks to the core treesitter API instead
+    branch = 'refactor/migrate-to-stable-treesitter-api',
+  },
   { 'andymass/vim-matchup' }, -- better % matching with treesitter support
 
   -- completion & AI
@@ -47,7 +53,9 @@ require('lazy').setup({
   { 'github/copilot.vim' },
 
   -- search
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+  -- pinned to the default branch: the 0.1.x line drives previews through
+  -- nvim-treesitter's removed module APIs, master uses core treesitter instead
+  { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', dependencies = { 'nvim-telescope/telescope.nvim' } },
   { 'dyng/ctrlsf.vim' }, -- find and replace
 
