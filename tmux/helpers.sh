@@ -15,23 +15,23 @@ t-project() {
     return 1
   fi
 
-  tmux has-session -t "$session_name"
+  tmux has-session -t "=$session_name"
   if [ $? != 0 ]; then
     tmux new-session -d -s "$session_name" -n "$session_name" -c $project_path $VISUAL todo.yml
 
     tmux split-window -v -c $project_path
     tmux resize-pane -D 20
   fi
-  tmux -2 attach-session -t "$session_name"
+  tmux -2 attach-session -t "=$session_name"
 }
 
 # runs a command in the pane #0 of the tmux session for the current directory (usually an editor)
 run-in-editor() {
   local session_name=$(basename $PWD)
 
-  tmux has-session -t "$session_name"
+  tmux has-session -t "=$session_name"
   if [ $? = 0 ]; then
-    tmux send-keys -t "${session_name}:0.0" "$@" Enter
+    tmux send-keys -t "=${session_name}:0.0" "$@" Enter
   fi
 }
 
@@ -39,10 +39,10 @@ run-in-editor() {
 run-beside() {
   local session_name=$(basename $PWD)
 
-  tmux has-session -t "$session_name"
+  tmux has-session -t "=$session_name"
   if [ $? = 0 ]; then
-    tmux send-keys -t "${session_name}:0.1" C-c
-    tmux send-keys -t "${session_name}:0.1" "$@" Enter
+    tmux send-keys -t "=${session_name}:0.1" C-c
+    tmux send-keys -t "=${session_name}:0.1" "$@" Enter
   fi
 }
 
@@ -83,18 +83,18 @@ t-default() {
     return 1
   fi
 
-  tmux has-session -t "$session_name"
+  tmux has-session -t "=$session_name"
   if [ $? != 0 ]; then
     tmux new-session -d -s "$session_name" -n "$session_name" -c "$project_path"
     tmux split-window -h
 
-    tmux next-window -t "$session_name"
+    tmux next-window -t "=$session_name"
     tmux select-pane -t 0
 
-    tmux send-keys -t "${session_name}:0.0" "cowsay Hello!" Enter
-    tmux send-keys -t "${session_name}:0.1" "status" Enter
+    tmux send-keys -t "=${session_name}:0.0" "cowsay Hello!" Enter
+    tmux send-keys -t "=${session_name}:0.1" "status" Enter
   fi
-  tmux -2 attach-session -t "$session_name"
+  tmux -2 attach-session -t "=$session_name"
 }
 
 # kill tmux session for current directory
@@ -105,8 +105,8 @@ t-kill() {
     tmux kill-server
   else
     local session_name=$([ -z "$1" ] && echo $(basename $PWD) || echo $1)
-    tmux has-session -t "$session_name"
-    [ $? = 0 ] && tmux kill-session -t "$session_name"
+    tmux has-session -t "=$session_name"
+    [ $? = 0 ] && tmux kill-session -t "=$session_name"
   fi
 }
 
