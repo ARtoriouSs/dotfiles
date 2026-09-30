@@ -58,6 +58,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
     local opts = {buffer = event.buf}
 
+    -- disable semantic token highlighting, keep treesitter highlighting
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    if client then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+
     vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
     vim.keymap.set('n', 'gl', '<cmd>lua vim.lsp.buf.definition()<cr>', opts) -- go to definition with quickfix list
     vim.keymap.set('n', 'gd', function() -- go to definition without quickfix list
