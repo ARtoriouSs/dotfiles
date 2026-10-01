@@ -96,7 +96,7 @@ check rtk
 check caveman
 
 echo "Claude plugins:"
-check-plugin oh-my-claudecode
+check-plugin superpowers
 check-plugin ruby-lsp
 check-plugin find-skills
 check-plugin caveman
