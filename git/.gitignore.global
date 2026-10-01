@@ -20,6 +20,7 @@ GEMINI.md
 CODEX.md
 AGENTS.md
 .omc/
+.lavish
 
 # temporary files
 *.swp

@@ -1,25 +1,13 @@
 #!/bin/bash
 
-# install and configure AI coding agents: Claude Code, Codex and Gemini.
+# install and configure AI coding agents: Claude Code, Codex, Gemini and Copilot.
 
 ### Claude Code
 # native install (not npm) - drops binary in ~/.local/bin
+# plugins are installed from enabledPlugins/extraKnownMarketplaces in development/claude/settings.json
+# lavish - standalone skill (not a plugin, so not covered by settings.json)
+npx -y skills add kunchenguid/lavish-axi --skill lavish -g -a claude-code -y
 curl -fsSL https://claude.ai/install.sh | bash
-# oh-my-claudecode (OMC) - multi-agent orchestration layer
-claude plugin marketplace add https://github.com/Yeachan-Heo/oh-my-claudecode.git
-claude plugin install oh-my-claudecode@omc
-# ruby-lsp - Ruby language server integration
-claude plugin marketplace add anthropics/claude-plugins-official
-claude plugin install ruby-lsp@claude-plugins-official
-# find-skills - browse/search skills across marketplaces
-claude plugin marketplace add dan323/easier-life-skills
-claude plugin install find-skills@easier-life-skills
-
-### Codex
-npm install -g @openai/codex
-
-### Gemini
-npm install -g @google/gemini-cli@latest
 
 ### Token-reduction tooling
 # rtk - Rust Token Killer: CLI proxy that compresses dev command output
@@ -29,7 +17,21 @@ rtk init -g --codex --auto-patch                                   # Codex
 rtk init -g --gemini --auto-patch                                  # Gemini
 # caveman - token-efficient skills/prompt compression
 npm install -g @juliusbrussee/caveman-code
-claude plugin marketplace add JuliusBrussee/caveman
-claude plugin install caveman@caveman                              # Claude Code
 npx -y skills add JuliusBrussee/caveman -a codex                   # Codex
 gemini extensions install https://github.com/JuliusBrussee/caveman # Gemini
+
+### Claude Code config
+# MCP servers
+claude mcp add --scope user --transport http atlassian https://mcp.atlassian.com/v1/mcp
+# settings - linked last so it overrides anything the installers above patched in
+mkdir -p ~/.claude
+ln -sf ~/dotfiles/development/claude/settings.json ~/.claude/settings.json
+
+### Codex
+npm install -g @openai/codex
+
+### Gemini
+npm install -g @google/gemini-cli@latest
+
+### Copilot
+npm install -g @github/copilot

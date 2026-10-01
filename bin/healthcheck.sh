@@ -96,10 +96,16 @@ check rtk
 check caveman
 
 echo "Claude plugins:"
-check-plugin oh-my-claudecode
+check-plugin superpowers
 check-plugin ruby-lsp
 check-plugin find-skills
 check-plugin caveman
+if test -f ~/.claude/skills/lavish/SKILL.md; then
+  printf " $(tput setaf 10)✓  "
+else
+  printf " $(tput setaf 9)✗  "
+fi
+printf "lavish (skill) $(tput sgr0)\n"
 
 echo "GUI apps:"
 check google-chrome
