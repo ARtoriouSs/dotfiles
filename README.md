@@ -62,8 +62,10 @@ Every script will also work correctly when run separately:
 If you unsure running something you can load test environment with Docker:
 
 ```bash
-./bin/test.sh
+./bin/test.sh # add --rm to remove the container after exit
 ```
 
-It runs an empty linux sandbox with Linux Mint 20 as a **"test"** user with **"test"** password.
+It runs an empty linux sandbox with Linux Mint 22.2 as a **"test"** user with **"test"** password.
+GUI apps started inside open as windows on the host desktop, run `xeyes` to check it.
+Use `--no-sandbox` flag for electron/chromium based apps, e.g. `google-chrome --no-sandbox`.
 There is also the [healthcheck script](bin/healthcheck.sh).

@@ -20,6 +20,10 @@ npm install -g @juliusbrussee/caveman-code
 npx -y skills add JuliusBrussee/caveman -a codex                   # Codex
 gemini extensions install https://github.com/JuliusBrussee/caveman # Gemini
 
+### Agent workflow
+# workmux - git worktrees + tmux windows for running agents in parallel
+curl -fsSL https://raw.githubusercontent.com/raine/workmux/main/scripts/install.sh | bash
+
 ### Claude Code config
 # MCP servers
 claude mcp add --scope user --transport http atlassian https://mcp.atlassian.com/v1/mcp

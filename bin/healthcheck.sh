@@ -94,6 +94,7 @@ check copilot
 echo "AI tooling:"
 check rtk
 check caveman
+check workmux
 
 echo "Claude plugins:"
 check-plugin superpowers
@@ -115,6 +116,13 @@ check discord
 check insomnia
 check postman
 echo "(Postman can be red because aliases are not inherited in the subshell, run \`source ./bin/healthcheck.sh\` to check"
+
+echo "GUI:"
+if [ -n "$DISPLAY" ] && xset q &> /dev/null; then
+  echo " $(tput setaf 10)✓  display $DISPLAY reachable$(tput sgr0)"
+else
+  echo " $(tput setaf 9)✗  display ${DISPLAY:-unset} unreachable$(tput sgr0)"
+fi
 
 echo "Snap status:"
 check-snap
