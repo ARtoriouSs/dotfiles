@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install nvim
-sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo apt update --yes
 sudo apt install --yes neovim
 sudo apt install --yes python3-neovim
@@ -12,7 +12,7 @@ npm install -g neovim
 python2 -m pip install --user --upgrade pynvim
 python3 -m pip install --user --upgrade pynvim
 npm install -g tree-sitter-cli # tree-sitter executable
-sudo apt isntall --yes chafa bat # for previewing images
+sudo apt install --yes chafa bat # for previewing images
 
 # symlink for configs
 mkdir -p ~/.config/nvim/

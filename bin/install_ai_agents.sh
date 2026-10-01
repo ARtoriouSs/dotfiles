@@ -18,7 +18,7 @@ rtk init -g --gemini --auto-patch                                  # Gemini
 # caveman - token-efficient skills/prompt compression
 npm install -g @juliusbrussee/caveman-code
 npx -y skills add JuliusBrussee/caveman -a codex                   # Codex
-gemini extensions install https://github.com/JuliusBrussee/caveman # Gemini
+gemini extensions install --consent https://github.com/JuliusBrussee/caveman # Gemini
 
 ### Agent workflow
 # workmux - git worktrees + tmux windows for running agents in parallel

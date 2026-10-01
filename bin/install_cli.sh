@@ -6,7 +6,7 @@ sudo apt upgrade --yes
 sudo apt install --yes software-properties-common apt-transport-https libcurl4-openssl-dev apt-utils libssl-dev libreadline-dev wget curl git xclip
 
 # htop
-sudo apt install htop
+sudo apt install --yes htop
 # python and pip
 sudo apt install --yes python3 python3-pip
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1 # python = python3
@@ -16,7 +16,7 @@ sudo apt install --yes ruby-full ruby-bundler
 # sudo gem install bundler
 gem update bundler
 # go
-sudo apt install golang-go
+sudo apt install --yes golang-go
 # cowsay :)
 sudo apt install --yes cowsay
 # ripgrep
@@ -28,7 +28,7 @@ sudo apt install --yes fzf
 # tmux
 sudo apt install --yes tmux
 # rust (provides cargo for rtk and friends)
-curl https://sh.rustup.rs -sSf | sh
+curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
 # node and npm
 sudo apt install --yes npm
 npm update npm -g # update npm
@@ -40,7 +40,7 @@ n latest
 # docker
 sudo apt install --yes ca-certificates python3-requests # prerequirements
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 sudo apt update
 apt-cache policy docker-ce
 sudo apt install --yes docker-ce docker-ce-cli
@@ -64,9 +64,9 @@ sudo npm install -g yarn
 sudo apt install --yes markdown
 # github CLI
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-sudo apt-add-repository https://cli.github.com/packages
+sudo apt-add-repository -y https://cli.github.com/packages
 sudo apt update
-sudo apt install gh
+sudo apt install --yes gh
 # gitlab CLI
 GLAB_VERSION=$(curl -sL "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/releases/permalink/latest" | jq -r .tag_name | sed 's/^v//')
 curl -sL "https://gitlab.com/gitlab-org/cli/-/releases/v${GLAB_VERSION}/downloads/glab_${GLAB_VERSION}_linux_amd64.deb" -o /tmp/glab.deb
@@ -94,6 +94,6 @@ sudo chmod +x ~/my_folder/bin/diff-so-fancy/diff-so-fancy
 # jq
 sudo apt install --yes jq
 # grub-customizer
-sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
 sudo apt update
 sudo apt install --yes grub-customizer

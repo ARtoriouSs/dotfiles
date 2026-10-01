@@ -19,7 +19,7 @@ sudo apt install --yes ./discord.deb
 rm -f ./discord.deb
 # insomnia
 wget "https://updates.insomnia.rest/downloads/ubuntu/latest" -O insomnia.deb
-sudo apt install ./insomnia.deb
+sudo apt install --yes ./insomnia.deb
 rm -f ./insomnia.deb
 # postman
 wget -O ~/postman.tar.gz "https://dl.pstmn.io/download/latest/linux_64"
