@@ -3,7 +3,7 @@
 # prerequirements
 sudo apt update --yes
 sudo apt upgrade --yes
-sudo apt install --yes software-properties-common apt-transport-https libcurl4-openssl-dev apt-utils libssl-dev libreadline-dev wget curl git xclip
+sudo apt install --yes software-properties-common apt-transport-https libcurl4-openssl-dev apt-utils libssl-dev libreadline-dev wget curl git xclip jq # jq is used by the gitlab CLI install below
 
 # htop
 sudo apt install --yes htop
@@ -91,8 +91,6 @@ curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/kiex | bash -s in
 # diff-so-fancy
 git clone https://github.com/so-fancy/diff-so-fancy.git ~/my_folder/bin/diff-so-fancy # diff-so-fancy
 sudo chmod +x ~/my_folder/bin/diff-so-fancy/diff-so-fancy
-# jq
-sudo apt install --yes jq
 # grub-customizer
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
 sudo apt update

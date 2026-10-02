@@ -9,7 +9,9 @@ ARG GID=1000
 RUN touch /etc/apt/preferences.d/nosnap.pref
 
 # runtime for GUI apps forwarded to the host display (chrome/electron) and X diagnostics
-RUN apt-get update && apt-get install --yes --no-install-recommends \
+# the image ships Ubuntu's base-files, so it identifies as Ubuntu and Mint's add-apt-repository refuses PPAs,
+# Mint's base-files restores the real system identity (/etc/os-release)
+RUN apt-get update && apt-get install --yes --allow-downgrades --no-install-recommends base-files/zara \
       xauth x11-apps x11-utils x11-xserver-utils mesa-utils dbus-x11 \
       libnss3 libgbm1 libasound2t64 libgtk-3-0t64 libxss1 libxkbfile1 libsecret-1-0 \
       fonts-dejavu xdg-utils ca-certificates wget curl \
