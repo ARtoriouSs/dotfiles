@@ -21,6 +21,9 @@ CODEX.md
 AGENTS.md
 .omc/
 .lavish
+.workmux/
+.workmux.yaml
+.workmux.yml
 
 # temporary files
 *.swp

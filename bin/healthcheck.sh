@@ -101,6 +101,7 @@ check-plugin superpowers
 check-plugin ruby-lsp
 check-plugin find-skills
 check-plugin caveman
+check-plugin workmux-status
 if test -f ~/.claude/skills/lavish/SKILL.md; then
   printf " $(tput setaf 10)✓  "
 else

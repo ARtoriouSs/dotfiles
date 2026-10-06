@@ -23,6 +23,13 @@ gemini extensions install --consent https://github.com/JuliusBrussee/caveman # G
 ### Agent workflow
 # workmux - git worktrees + tmux windows for running agents in parallel
 curl -fsSL https://raw.githubusercontent.com/raine/workmux/main/scripts/install.sh | bash
+# zsh completions (oh-my-zsh adds custom/completions to fpath)
+mkdir -p ~/.oh-my-zsh/custom/completions
+workmux completions zsh > ~/.oh-my-zsh/custom/completions/_workmux
+# global config
+mkdir -p ~/.config/workmux
+ln -sf ~/dotfiles/development/workmux/config.yaml ~/.config/workmux/config.yaml
+# Claude status hooks come from the workmux-status plugin in development/claude/settings.json
 
 ### Claude Code config
 # MCP servers

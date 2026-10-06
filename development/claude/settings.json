@@ -21,7 +21,8 @@
     "ruby-lsp@claude-plugins-official": true,
     "caveman@caveman": true,
     "find-skills@easier-life-skills": true,
-    "superpowers@claude-plugins-official": true
+    "superpowers@claude-plugins-official": true,
+    "workmux-status@workmux": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
@@ -34,6 +35,12 @@
       "source": {
         "source": "github",
         "repo": "dan323/easier-life-skills"
+      }
+    },
+    "workmux": {
+      "source": {
+        "source": "github",
+        "repo": "raine/workmux"
       }
     }
   },

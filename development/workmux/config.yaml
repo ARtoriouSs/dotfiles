@@ -1,0 +1,14 @@
+# workmux global config - project-level .workmux.yaml overrides these
+# docs: https://github.com/raine/workmux#configuration
+
+nerdfont: true
+agent: claude
+
+# merge_strategy: rebase           # merge | rebase | squash (default: merge)
+# merge_keep: true                 # keep worktree, window and branch after `workmux merge`
+# confirm_unmerged_removal: false  # skip confirmation when removing unmerged branches
+
+panes:
+  - command: <agent>
+    focus: true
+  - split: horizontal
