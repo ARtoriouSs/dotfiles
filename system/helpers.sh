@@ -26,6 +26,7 @@ alias envs="$VISUAL ~/dotfiles/system/environment.sh"
 alias temps="$VISUAL ~/dotfiles/system/temp_settings.sh"
 alias gitconfig="$VISUAL ~/dotfiles/git/.gitconfig"
 alias gitignore-global="$VISUAL ~/dotfiles/git/.gitignore.global"
+alias cdf="cd ~/frogswamp" # https://github.com/ARtoriouSs/frogswamp
 
 # system files access
 alias hosts="sudoedit /etc/hosts"
