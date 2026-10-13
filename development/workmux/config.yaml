@@ -8,7 +8,16 @@ agent: claude
 # merge_keep: true                 # keep worktree, window and branch after `workmux merge`
 # confirm_unmerged_removal: false  # skip confirmation when removing unmerged branches
 
+# session per worktree, named after the worktree directory like `tp` does,
+# so run-beside/run-in-editor from tmux/helpers.sh find it
+mode: session
+window_prefix: ''
+
+# same layout as `tp`: editor on top, shell and agent below
 panes:
-  - command: <agent>
+  - command: $VISUAL todo.yml
     focus: true
-  - split: horizontal
+  - split: vertical
+    percentage: 30
+  - command: <agent>
+    split: horizontal
