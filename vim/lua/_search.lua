@@ -77,10 +77,15 @@ telescope.setup{
 telescope.load_extension('fzf')
 
 vim.keymap.set('n', '<leader>f', function()
+  -- cwd path relative to git root (e.g. "apps/api/"), empty at root or outside git
+  local prefix = vim.fn.systemlist({ 'git', 'rev-parse', '--show-prefix' })[1] or ''
+  if vim.v.shell_error ~= 0 then prefix = '' end
+
   builtin.find_files({
     previewer = smart_previewer, -- just remove if there's issues with previews
 
-    -- function to remove leading "./" from file search results (because it's often copied from terminal and breaks the search)
+    -- function to normalize paths copied from terminal (because they break the search):
+    -- removes leading "./", git diff "a/" / "b/" and git root prefix when nvim runs from a monorepo subdir
     -- default: vim.keymap.set('n', '<leader>f', builtin.find_files, {})
     attach_mappings = function(prompt_bufnr)
       local action_state = require('telescope.actions.state')
@@ -91,9 +96,22 @@ vim.keymap.set('n', '<leader>f', function()
           if updating then return end
           local picker = action_state.get_current_picker(prompt_bufnr)
           local prompt = picker:_get_prompt()
-          if prompt:sub(1, 2) == "./" then
+          local normalized = prompt
+          if normalized:sub(1, 2) == "./" then
+            normalized = normalized:sub(3)
+          end
+          if prefix ~= '' then
+            local diff_side = normalized:sub(1, 2)
+            if (diff_side == "a/" or diff_side == "b/") and normalized:sub(3, 2 + #prefix) == prefix then
+              normalized = normalized:sub(3)
+            end
+            if normalized:sub(1, #prefix) == prefix then
+              normalized = normalized:sub(#prefix + 1)
+            end
+          end
+          if normalized ~= prompt then
             updating = true
-            picker:set_prompt(prompt:sub(3))
+            picker:set_prompt(normalized)
             updating = false
           end
         end
