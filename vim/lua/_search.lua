@@ -81,14 +81,36 @@ vim.keymap.set('n', '<leader>f', function()
   local prefix = vim.fn.systemlist({ 'git', 'rev-parse', '--show-prefix' })[1] or ''
   if vim.v.shell_error ~= 0 then prefix = '' end
 
+  -- line number from "path:112" or "path:112:5" suffix, used to jump after the file is opened
+  local line_nr = nil
+
   builtin.find_files({
     previewer = smart_previewer, -- just remove if there's issues with previews
+
+    -- ignore ":line" / ":line:col" suffix while filtering, but remember the line
+    on_input_filter_cb = function(prompt)
+      local path, line = prompt:match('^(.-):(%d+):%d+$')
+      if not path then path, line = prompt:match('^(.-):(%d+)$') end
+      line_nr = tonumber(line)
+      return { prompt = path or prompt }
+    end,
 
     -- function to normalize paths copied from terminal (because they break the search):
     -- removes leading "./", git diff "a/" / "b/" and git root prefix when nvim runs from a monorepo subdir
     -- default: vim.keymap.set('n', '<leader>f', builtin.find_files, {})
     attach_mappings = function(prompt_bufnr)
       local action_state = require('telescope.actions.state')
+      local action_set = require('telescope.actions.set')
+      -- jump to the remembered line (works for <CR>, <C-x>, <C-v> and <C-t>)
+      action_set.select:enhance({
+        post = function()
+          if line_nr then
+            local last = vim.api.nvim_buf_line_count(0)
+            vim.api.nvim_win_set_cursor(0, { math.min(line_nr, last), 0 })
+            vim.cmd('normal! zz')
+          end
+        end
+      })
       local updating = false
       vim.api.nvim_create_autocmd("TextChangedI", {
         buffer = prompt_bufnr,
