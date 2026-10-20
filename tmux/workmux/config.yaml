@@ -8,6 +8,15 @@ agent: claude
 # merge_keep: true                 # keep worktree, window and branch after `workmux merge`
 # confirm_unmerged_removal: false  # skip confirmation when removing unmerged branches
 
+# share env files with the main checkout instead of copying them
+files:
+  symlink:
+    - .env*
+
+# symlink gitignored .env* files from app subfolders (monorepos), `ws` runs it again
+post_create:
+  - ~/dotfiles/tmux/workmux/link-env.sh
+
 # session per worktree, named after the worktree directory like `tp` does,
 # so run-beside/run-in-editor from tmux/helpers.sh find it
 mode: session

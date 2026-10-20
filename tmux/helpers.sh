@@ -130,8 +130,14 @@ t-kill() {
 
 alias t-detach="tmux detach"
 
+alias wm="workmux"
+alias wo="workmux open"
+alias wa="workmux add"
+# copy/symlink files again, plus .env* files from monorepo subfolders
+alias ws="workmux sync-files && ~/dotfiles/tmux/workmux/link-env.sh"
+
 # open the current repo or worktree in a separate tmux server managed by workmux,
-# sessions are named and laid out like `tp` (see development/workmux/config.yaml),
+# sessions are named and laid out like `tp` (see tmux/workmux/config.yaml),
 # the default tmux server and its sessions are left untouched
 alias wmx="t-workmux"
 t-workmux() {

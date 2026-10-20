@@ -24,7 +24,6 @@ alias psqlc="psql -U postgres"
 alias cl="claude"
 alias co="codex"
 alias gmn="gemini"
-alias wm="workmux"
 
 # remove all docker containers and images
 dclear() {
