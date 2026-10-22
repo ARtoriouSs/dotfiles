@@ -123,19 +123,29 @@ else
   cp "$ssh_key.pub" "$repo_root/keys/admin.pub"
   skip "copied public key to keys/admin.pub"
 fi
-if grep -qs '# frogswamp-begin' "$HOME/.ssh/config"; then
-  skip "frogswamp block present in $HOME/.ssh/config"
-else
-  cat >>"$HOME/.ssh/config" <<EOF
-
+# The server keeps one host key (from the repo's secrets), so its LAN and Tailscale names
+# all check it under 192.168.101.10. The installer has its own key, so it gets its own block
+ssh_block="$(cat <<EOF
 # frogswamp-begin
-Host frogswamp 192.168.101.10 frogswamp.local frogswamp-installer.local
+Host frogswamp 192.168.101.10 frogswamp.local frogswamp.*.ts.net
+  IdentityFile $ssh_key
+  IdentitiesOnly yes
+  HostKeyAlias 192.168.101.10
+Host frogswamp-installer.local
   IdentityFile $ssh_key
   IdentitiesOnly yes
 # frogswamp-end
 EOF
+)"
+if [ "$(sed -n '/# frogswamp-begin/,/# frogswamp-end/p' "$HOME/.ssh/config" 2>/dev/null)" = "$ssh_block" ]; then
+  skip "frogswamp block up to date in $HOME/.ssh/config"
+else
+  if grep -qs '# frogswamp-begin' "$HOME/.ssh/config"; then
+    sed -i '/# frogswamp-begin/,/# frogswamp-end/d' "$HOME/.ssh/config"
+  fi
+  printf '\n%s\n' "$ssh_block" >>"$HOME/.ssh/config"
   chmod 600 "$HOME/.ssh/config"
-  skip "added frogswamp block to ~/.ssh/config"
+  skip "wrote frogswamp block to ~/.ssh/config"
 fi
 
 say "6/7 Tailscale (off until ts-up)"
