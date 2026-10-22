@@ -56,6 +56,7 @@ Every script will also work correctly when run separately:
 - [install_vim.sh](bin/install_vim.sh) - Installs neovim with plugins and related things.
 - [install_zsh.sh](bin/install_zsh.sh) - Installs and enables zsh.
 - [add_ssh.sh](bin/add_ssh.sh) - Generates ssh key and adds it to ssh-agent. Takes email as first argument.
+- [bin/bootstrap_frogswamp.sh](bin/bootstrap_frogswamp.sh) - Prepares this PC to manage the [frogswamp](https://github.com/ARtoriouSs/frogswamp) home server: Nix, direnv, the admin age and SSH keys, Tailscale (off until `ts-up`). Takes the frogswamp repo path as first argument (default `~/frogswamp`). Its shell helpers are in [frogswamp/helpers.sh](frogswamp/helpers.sh).
 
 ## Testing
 
