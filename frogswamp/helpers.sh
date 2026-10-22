@@ -21,6 +21,8 @@ fi
 export SOPS_EDITOR=nvim
 
 # Tailscale only on demand (e.g. on a phone hotspot): reach the server and 192.168.101.x through it.
-# DNS is left alone so the work VPN's DNS keeps working; ts-down leaves no service running
-ts-up() { sudo systemctl start tailscaled && sudo tailscale up --accept-routes --accept-dns=false; }
+# accept-dns only adds the tailnet's *.ts.net names (the tailnet sets no DNS servers of its own),
+# so lavish links and "frogswamp" resolve and the work VPN's DNS stays as it is.
+# ts-down leaves no service running
+ts-up() { sudo systemctl start tailscaled && sudo tailscale up --accept-routes --accept-dns=true; }
 ts-down() { sudo tailscale down; sudo systemctl stop tailscaled; }
