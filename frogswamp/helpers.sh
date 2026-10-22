@@ -17,6 +17,9 @@ if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook "${ZSH_VERSION:+zsh}${BASH_VERSION:+bash}")"
 fi
 
+# edit the server's secrets (just secrets) in nvim; EDITOR stays as set in system/environment.sh
+export SOPS_EDITOR=nvim
+
 # Tailscale only on demand (e.g. on a phone hotspot): reach the server and 192.168.101.x through it.
 # DNS is left alone so the work VPN's DNS keeps working; ts-down leaves no service running
 ts-up() { sudo systemctl start tailscaled && sudo tailscale up --accept-routes --accept-dns=false; }
