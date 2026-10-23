@@ -5,7 +5,7 @@ vim.opt.updatetime = 100        -- update faser
 vim.o.autoread = true           -- to autoread if file was changed outside from vim
 vim.o.path = vim.o.path .. '**' -- allows gf to look deep into folders during search
 vim.o.undofile = true           -- save undo history to be accessible between sessions
-vim.o.undodir = '~/.vim/undo'   -- file for undo history
+vim.o.undodir = vim.fn.expand('~/.vim/undo') -- file for undo history, ~ is not expanded in the option itself
 
 vim.g.scrolloff_fraction = 0.2  -- auto scroll on 20% of window width
 
