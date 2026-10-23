@@ -12,7 +12,8 @@ export EDITOR=ex
 export GREP_TOOL=rg
 export SSH_KEY_PATH=~/.ssh/id_rsa
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' # colored GCC warnings and errors
-export TERM=xterm-256color # use 256 colors
+# use 256 colors only when the terminal reports plain xterm, tmux sets its own TERM
+[ -z "$TMUX" ] && [ "$TERM" = "xterm" ] && export TERM=xterm-256color
 
 # fuzzy search
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
