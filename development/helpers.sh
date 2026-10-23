@@ -24,6 +24,7 @@ alias psqlc="psql -U postgres"
 alias cl="claude"
 alias claude-work='CLAUDE_CONFIG_DIR=~/.claude-work claude'
 alias claude-personal='CLAUDE_CONFIG_DIR=~/.claude-personal claude'
+alias claude-md="$VISUAL ~/.claude/CLAUDE.md" # global instructions, other profiles link to it
 
 # remove all docker containers and images
 dclear() {
