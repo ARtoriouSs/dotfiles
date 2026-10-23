@@ -13,8 +13,8 @@ alias v=$VISUAL
 alias path='echo $PATH'
 
 alias susp="systemctl suspend"
-alias shut="init 0"
-alias halt="init 0"
+alias shut="systemctl poweroff"
+alias halt="systemctl poweroff"
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
@@ -105,7 +105,7 @@ clip() {
 make-free-space() {
   sudo apt autoremove --purge # remove unused packages
   sudo flatpak repair # remove unused objects in /var/lib/flatpack/repo/objects
-  sudo rm -rf /var/log/journal/* # remove logs
+  sudo journalctl --vacuum-size=200M # keep only the newest 200 MB of logs
 }
 
 # show weather

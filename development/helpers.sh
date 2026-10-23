@@ -11,8 +11,8 @@ alias dps="docker ps -a"
 alias di="docker images -a"
 alias drm="docker rm -f"
 alias drmi="docker rmi -f"
-alias dcp="docker-compose"
-alias dcps="docker-compose ps -a"
+alias dcp="docker compose"
+alias dcps="docker compose ps -a"
 
 # postman
 alias postman="/opt/Postman/app/Postman"
@@ -45,15 +45,15 @@ redis-up() {
 
 # kill redis whether in system process or in docker
 redis-down() {
-  ps aux | grep redis-server | awk '{ print $2; exit }' | xargs kill -9
-  docker ps | grep redis | awk '{ print $1 }' | xargs docker rm -f
+  pkill -x redis-server
+  docker ps -q --filter ancestor=redis | xargs --no-run-if-empty docker rm -f
 }
 
 # kill server on specified port (3000 by default)
 alias ks="kill-server"
 kill-server() {
   [ -z "$1" ] && local port=3000 || local port=$1
-  lsof -i tcp:$port | grep -v 'chrome\|insomnia' | awk 'FNR > 1 {print $2}' | xargs kill -9
+  lsof -t -i tcp:$port -s TCP:LISTEN | xargs --no-run-if-empty kill -9 # only the listening server, not clients like a browser
 }
 
 # run a command with .env of the current directory loaded, in a subshell so nothing stays in the shell;

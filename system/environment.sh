@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 export N_PREFIX=$HOME/.n # node versions from n, see bin/install_cli.sh
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$N_PREFIX/bin:$HOME/.rbenv/bin:/usr/games:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH # rbenv
@@ -11,7 +12,7 @@ export DOTFILES_VIM=~/dotfiles/vim/ # dotfiles vim configuration location
 export VISUAL=nvim
 export EDITOR=ex
 export GREP_TOOL=rg
-export SSH_KEY_PATH=~/.ssh/id_rsa
+export BUNDLE_JOBS=3 # parallel gem installs, ~/.bundle/config keeps private gem server settings
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' # colored GCC warnings and errors
 # use 256 colors only when the terminal reports plain xterm, tmux sets its own TERM
 [ -z "$TMUX" ] && [ "$TERM" = "xterm" ] && export TERM=xterm-256color

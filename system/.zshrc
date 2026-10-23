@@ -27,11 +27,9 @@ plugins=(
 
 # initialize oh-my-zsh
 source $ZSH/oh-my-zsh.sh
+unset d # oh-my-zsh lib/misc.zsh leaks its loop variable, an unquoted $d would point to a system directory
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-autoload -U compinit
-compinit -i
 
 bindkey -M emacs "^[[3;5~" kill-word # ctrl + delete
 bindkey -M emacs "^H" backward-kill-word # ctrl + backspace

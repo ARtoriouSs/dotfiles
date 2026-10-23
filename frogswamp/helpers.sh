@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # frogswamp (home server) management tools. Sourced by system/initializer.sh,
 # and by ~/.bashrc through the block bin/bootstrap_frogswamp.sh adds there
 
