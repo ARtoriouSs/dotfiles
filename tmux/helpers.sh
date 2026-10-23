@@ -1,6 +1,6 @@
 # open tmux session for rails project, takes path as an argument, $PWD by default
 alias tp="t-project"
-alias tc="t-project $PROJECTS/$CURRENT_PROJECT" # project session for the current project
+alias tc='t-project $PROJECTS/$CURRENT_PROJECT' # project session for the current project
 t-project() {
   if [ -z "$1" ]; then
     local session_name=$(basename $PWD)

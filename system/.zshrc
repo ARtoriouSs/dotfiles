@@ -1,5 +1,11 @@
 export RC_SOURCED=true # for healthcheck script
 
+# keep only the first copy of every PATH entry, so re-sourcing doesn't grow it
+typeset -gU path PATH # -g keeps it global when sourced from reload()
+
+# non-login shells skip .zprofile, so load the environment here if nothing did it before
+[ -z "$PROFILE_SOURCED" ] && source "$HOME/dotfiles/system/environment.sh"
+
 # zsh-specific variables
 export ZSH_THEME="chaotic-beef" # theme
 export CASE_SENSITIVE="true"
@@ -11,16 +17,16 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=94'
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export COMPLETION_WAITING_DOTS="true" # display dots when completion is loading
 
-# initialize oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-
-# plugins
+# plugins, must be set before oh-my-zsh is initialized
 plugins=(
   git
   asdf
   zsh-autosuggestions
   zsh-syntax-highlighting # must be the last in this list
 )
+
+# initialize oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

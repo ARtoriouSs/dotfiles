@@ -10,7 +10,7 @@ alias install="sudo apt --yes update; sudo apt --yes install"
 alias todo="$VISUAL $TODO"
 alias todol="$VISUAL todo.yml" # local todo
 alias v=$VISUAL
-alias path="echo $PATH"
+alias path='echo $PATH'
 
 alias susp="systemctl suspend"
 alias shut="init 0"
@@ -55,6 +55,7 @@ alias ll='ls -alh --color=auto --group-directories-first'
 
 reload() {
   source ~/.zprofile
+  source ~/.zshrc
 }
 
 # open with default application
@@ -72,15 +73,16 @@ color-list() {
   done
 }
 
-# cd to $PROJECTS
-alias cdcc="cdp $CURRENT_PROJECT/.." # if project is in subdirectory
-alias cdc="cdp $CURRENT_PROJECT"
+# cd to $PROJECTS, single quotes so $CURRENT_PROJECT is read on every call
+# (temp_settings.sh that sets it is sourced after this file)
+alias cdcc='cdp $CURRENT_PROJECT/..' # if project is in subdirectory
+alias cdc='cdp $CURRENT_PROJECT'
 alias cdt="cdp test"
 
 # current project copies: cd0 is the project itself, cd1/cd2 are "-1"/"-2" postfixed ones
 alias cd0="cdc"
-alias cd1="cdp $CURRENT_PROJECT-1"
-alias cd2="cdp $CURRENT_PROJECT-2"
+alias cd1='cdp $CURRENT_PROJECT-1'
+alias cd2='cdp $CURRENT_PROJECT-2'
 
 cdp() {
   cd $PROJECTS/$1
