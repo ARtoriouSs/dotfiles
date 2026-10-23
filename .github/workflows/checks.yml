@@ -1,0 +1,31 @@
+name: checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  shellcheck:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      # errors only for now; zsh-only helpers are skipped because shellcheck can't parse zsh,
+      # a file is checked when it has a shebang or a `# shellcheck shell=` directive
+      - name: Run shellcheck
+        run: |
+          git ls-files '*.sh' .githooks |
+            while read -r file; do
+              head -n 3 "$file" | grep -qE '^#!|shellcheck shell=' && echo "$file"
+            done |
+            xargs shellcheck --severity=error
+
+  gitleaks:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # whole history, the hook can be skipped with --no-verify
+      - name: Install gitleaks
+        run: bin/install_gitleaks.sh
+      - name: Run gitleaks
+        run: gitleaks git --redact --no-banner --verbose .

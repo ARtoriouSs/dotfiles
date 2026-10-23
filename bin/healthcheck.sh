@@ -1,35 +1,76 @@
 #!/bin/bash
+set -o pipefail # a pipeline fails when any command in it fails, not only the last one
+
+# checks installed programs, dotfile links and shell setup
+# exits with 1 when something is missing, so it can be used in scripts and CI
+
+failed=0
+
+ok() {
+  printf " $(tput setaf 10)✓  %s$(tput sgr0)\n" "$1"
+}
+
+fail() {
+  printf " $(tput setaf 9)✗  %s$(tput sgr0)\n" "$1"
+  failed=1
+}
 
 check() {
   if command -v $1 &> /dev/null; then
-    printf " $(tput setaf 10)✓  "
+    ok "$1"
   else
-    printf " $(tput setaf 9)✗  "
+    fail "$1"
   fi
-  printf "$1 $(tput sgr0)\n"
+}
+
+# check that a file exists, for apps that are not in PATH
+check-file() {
+  if test -e "$1"; then
+    ok "$2"
+  else
+    fail "$2"
+  fi
+}
+
+# print a path with ~ instead of the home directory
+short-path() {
+  case "$1" in
+    "$HOME"/*) echo "~${1#$HOME}" ;;
+    *) echo "$1" ;;
+  esac
+}
+
+# check that a link points to the expected file in dotfiles
+check-link() {
+  local link=$1 target=$2
+
+  if [ -L "$link" ] && [ "$(readlink -f "$link")" = "$(readlink -f "$target")" ]; then
+    ok "$(short-path "$link")"
+  elif [ -e "$link" ] || [ -L "$link" ]; then
+    fail "$(short-path "$link") is not a link to $(short-path "$target")"
+  else
+    fail "$(short-path "$link") is missing"
+  fi
 }
 
 # check if snap enabled and installed
 check-snap() {
   if command -v snap &> /dev/null; then
-    printf " $(tput setaf 10)✓  snap"
+    ok "snap"
+  elif test -f "/etc/apt/preferences.d/nosnap.pref"; then
+    ok "snap disabled"
   else
-    if test -f "/etc/apt/preferences.d/nosnap.pref"; then
-      echo " $(tput setaf 10)✓  snap disabled$(tput sgr0)"
-    else
-      printf " $(tput setaf 9)✗  snap\n$(tput sgr0)"
-    fi
+    fail "snap"
   fi
 }
 
 # check if a Claude Code plugin is installed
 check-plugin() {
   if grep -q "\"$1@" ~/.claude/plugins/installed_plugins.json 2>/dev/null; then
-    printf " $(tput setaf 10)✓  "
+    ok "$1 (plugin)"
   else
-    printf " $(tput setaf 9)✗  "
+    fail "$1 (plugin)"
   fi
-  printf "$1 (plugin) $(tput sgr0)\n"
 }
 
 echo "CLI base:"
@@ -51,10 +92,20 @@ check glab
 check grub-customizer
 check asdf
 check htop
+check gitleaks
+if [ "$(git -C ~/dotfiles config core.hooksPath)" = ".githooks" ]; then
+  ok "dotfiles pre-commit hook"
+else
+  fail "dotfiles pre-commit hook, run: git -C ~/dotfiles config core.hooksPath .githooks"
+fi
 
 echo "Docker:"
 check docker
-check docker-compose
+if docker compose version &> /dev/null; then
+  ok "docker compose"
+else
+  fail "docker compose"
+fi
 
 echo "Python:"
 check python
@@ -102,12 +153,7 @@ check-plugin ruby-lsp
 check-plugin find-skills
 check-plugin caveman
 check-plugin workmux-status
-if test -f ~/.claude/skills/lavish/SKILL.md; then
-  printf " $(tput setaf 10)✓  "
-else
-  printf " $(tput setaf 9)✗  "
-fi
-printf "lavish (skill) $(tput sgr0)\n"
+check-file ~/.claude/skills/lavish/SKILL.md "lavish (skill)"
 
 echo "GUI apps:"
 check google-chrome
@@ -115,35 +161,66 @@ check telegram-desktop
 check slack
 check discord
 check insomnia
-check postman
-echo "(Postman can be red because aliases are not inherited in the subshell, run \`source ./bin/healthcheck.sh\` to check"
+check-file /opt/Postman/app/Postman "postman"
 
 echo "GUI:"
 if [ -n "$DISPLAY" ] && xset q &> /dev/null; then
-  echo " $(tput setaf 10)✓  display $DISPLAY reachable$(tput sgr0)"
+  ok "display $DISPLAY reachable"
 else
-  echo " $(tput setaf 9)✗  display ${DISPLAY:-unset} unreachable$(tput sgr0)"
+  fail "display ${DISPLAY:-unset} unreachable"
 fi
 
 echo "Snap status:"
 check-snap
 
+echo "Dotfile links:"
+# create_symlinks.sh
+check-link ~/.gitconfig ~/dotfiles/git/.gitconfig
+check-link ~/.tmux.conf ~/dotfiles/tmux/.tmux.conf
+check-link ~/.gemrc ~/dotfiles/development/.gemrc
+check-link ~/.pryrc ~/dotfiles/development/.pryrc
+check-link ~/.agignore ~/dotfiles/system/.agignore
+# install_zsh.sh
+check-link ~/.zshrc ~/dotfiles/system/.zshrc
+check-link ~/.zprofile ~/dotfiles/system/.zprofile
+# install_vim.sh
+check-link ~/.config/nvim/init.lua ~/dotfiles/vim/init.lua
+check-link ~/.config/nvim/lua ~/dotfiles/vim/lua
+check-link ~/.config/nvim/lazy-lock.json ~/dotfiles/vim/lazy-lock.json
+# install_rbenv.sh
+check-link ~/.rbenv/default-gems ~/dotfiles/development/default-gems
+# install_ai_agents.sh
+check-link ~/.config/workmux/config.yaml ~/dotfiles/tmux/workmux/config.yaml
+for profile in ~/.claude:work ~/.claude-work:work ~/.claude-personal:personal; do
+  config_dir=${profile%:*}
+  check-link "$config_dir/settings.json" ~/dotfiles/development/claude/"${profile##*:}"/settings.json
+  check-link "$config_dir/statusline.sh" ~/dotfiles/development/claude/statusline.sh
+  if [ "$config_dir" != ~/.claude ]; then
+    check-link "$config_dir/CLAUDE.md" ~/.claude/CLAUDE.md
+    check-link "$config_dir/RTK.md" ~/.claude/RTK.md
+  fi
+done
+
 printf "\nChecking shell:\n"
 if [ -z "$RC_SOURCED" ]; then
-  echo "    $(tput setaf 9)shell rc file is not sourced$(tput sgr0)"
+  fail "shell rc file is not sourced"
 else
-  echo "    $(tput setaf 10)shell rc file is sourced$(tput sgr0)"
+  ok "shell rc file is sourced"
 fi
 
 if [ -z "$PROFILE_SOURCED" ]; then
-  echo "    $(tput setaf 9)shell profile is not sourced, check if you are running login shell$(tput sgr0)"
+  fail "shell profile is not sourced, check if you are running login shell"
 else
-  echo "    $(tput setaf 10)shell profile is sourced$(tput sgr0)"
+  ok "shell profile is sourced"
 
   # check dir tree if environment sourced
-  if [ -d $MY_FOLDER ]; then
-    echo "    $(tput setaf 10)dir tree created$(tput sgr0)"
+  if [ -d "$MY_FOLDER" ]; then
+    ok "dir tree created"
   else
-    echo "    $(tput setaf 9)dir tree is not created$(tput sgr0)"
+    fail "dir tree is not created"
   fi
 fi
+
+# return instead of exit when sourced, so the shell stays open
+(return 0 2> /dev/null) && return $failed
+exit $failed

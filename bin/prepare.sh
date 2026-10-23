@@ -1,10 +1,11 @@
 #!/bin/bash
+set -o pipefail # a pipeline fails when any command in it fails, not only the last one
 
 # this script should prepare a recently installed system to use
 
 cd ~/dotfiles/bin # if ran from outside
 
-cp -n ../system/temp_settings.sample.sh ../system/temp_settings.sh # keep existing settings on re-run
+[ -f ../system/temp_settings.sh ] || cp ../system/temp_settings.sample.sh ../system/temp_settings.sh # keep existing settings on re-run
 
 ./create_dir_tree.sh
 ./install_cli.sh
@@ -21,6 +22,7 @@ sudo apt --fix-broken install --yes
 sudo apt clean
 
 git remote set-url origin git@github.com:$GITHUB_USERNAME/dotfiles.git # change remote link for this repo to use SSH
+git config core.hooksPath .githooks # gitleaks pre-commit hook, git doesn't take hooks from a cloned repo by itself
 
 cd -
 
@@ -45,5 +47,9 @@ echo "7) Reboot again :)"
 echo
 echo "Also you can manually run add_ssh.sh and enable_snap.sh when needed."
 echo
+
+# show what is still missing, in a zsh login shell so the new environment and rc file are loaded
+echo "Healthcheck:"
+zsh -lic ~/dotfiles/bin/healthcheck.sh
 
 exec zsh -l # relogin in the end
