@@ -4,7 +4,7 @@
 
 cd ~/dotfiles/bin # if ran from outside
 
-cp ../system/temp_settings.sample.sh ../system/temp_settings.sh
+cp -n ../system/temp_settings.sample.sh ../system/temp_settings.sh # keep existing settings on re-run
 
 ./create_dir_tree.sh
 ./install_cli.sh
