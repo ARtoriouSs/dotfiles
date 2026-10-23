@@ -129,7 +129,7 @@ reset() { # TODO - absolute path
     read key
     if [ "$key" = "y" ]; then
       git reset HEAD --hard
-      rm -rf $(git status --short)
+      git -C "$(git-root)" clean -fd # untracked files of the whole repo, ignored ones stay
     else
       echo "Aborted"
     fi
@@ -154,7 +154,7 @@ reset() { # TODO - absolute path
 freset() { # TODO - absolute path
   if [ -z "$1" ]; then
     git reset HEAD --hard
-    rm -rf $(git status --short)
+    git -C "$(git-root)" clean -fd # untracked files of the whole repo, ignored ones stay
   else
     git checkout -- $@ &> /dev/null
 
