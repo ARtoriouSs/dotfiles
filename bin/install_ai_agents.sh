@@ -32,11 +32,25 @@ ln -sf ~/dotfiles/tmux/workmux/config.yaml ~/.config/workmux/config.yaml
 # Claude status hooks come from the workmux-status plugin in development/claude/settings.json
 
 ### Claude Code config
-# MCP servers
-claude mcp add --scope user --transport http atlassian https://mcp.atlassian.com/v1/mcp
-# settings - linked last so it overrides anything the installers above patched in
-mkdir -p ~/.claude
-ln -sf ~/dotfiles/development/claude/settings.json ~/.claude/settings.json
+# two profiles, picked with CLAUDE_CONFIG_DIR (see claude-work/claude-personal in development/helpers.sh)
+# plain ~/.claude is used by `claude` without the alias and gets the work settings
+# MCP servers - work only
+CLAUDE_CONFIG_DIR=~/.claude-work claude mcp add --scope user --transport http atlassian https://mcp.atlassian.com/v1/mcp
+# settings and statusline - linked last so they override anything the installers above patched in
+link_claude_profile() {
+  local config_dir=$1 profile=$2
+  mkdir -p "$config_dir"
+  ln -sf ~/dotfiles/development/claude/"$profile"/settings.json "$config_dir"/settings.json
+  ln -sf ~/dotfiles/development/claude/statusline.sh "$config_dir"/statusline.sh
+  # rtk init writes global instructions only to ~/.claude, so share them with other profiles
+  if [ "$config_dir" != ~/.claude ]; then
+    ln -sf ~/.claude/CLAUDE.md "$config_dir"/CLAUDE.md
+    ln -sf ~/.claude/RTK.md "$config_dir"/RTK.md
+  fi
+}
+link_claude_profile ~/.claude work
+link_claude_profile ~/.claude-work work
+link_claude_profile ~/.claude-personal personal
 
 ### Codex
 npm install -g @openai/codex

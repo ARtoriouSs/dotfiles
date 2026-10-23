@@ -22,8 +22,8 @@ alias psqlc="psql -U postgres"
 
 # AI CLIs
 alias cl="claude"
-alias co="codex"
-alias gmn="gemini"
+alias claude-work='CLAUDE_CONFIG_DIR=~/.claude-work claude'
+alias claude-personal='CLAUDE_CONFIG_DIR=~/.claude-personal claude'
 
 # remove all docker containers and images
 dclear() {
