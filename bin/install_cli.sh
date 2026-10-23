@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Mint has its own codename; the Ubuntu one picks the right apt repo
+ubuntu_codename() {
+  (. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+}
+
 # prerequirements
 sudo apt update --yes
 sudo apt upgrade --yes
@@ -30,41 +35,45 @@ sudo apt install --yes tmux
 # rust (provides cargo for rtk and friends)
 curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
 # node and npm
+# n keeps node in ~/.n, so global npm packages need neither sudo nor a user owned /usr/local
+# (root runs binaries from /usr/local/bin, so it must stay writable only by root)
 sudo apt install --yes npm
-npm update npm -g # update npm
 sudo npm install -g n
-sudo mkdir -p /usr/local/n
-sudo chown -R $(whoami) /usr/local/n
-sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
-n latest
+export N_PREFIX="$HOME/.n" PATH="$HOME/.n/bin:$PATH" # same as in system/environment.sh, for the rest of this script
+n lts # latest can be ahead of native addons, e.g. better-sqlite3 for caveman
+# apt repo keys, each one trusted only for its own repo (signed-by)
+sudo install -m 0755 -d /etc/apt/keyrings
 # docker
 sudo apt install --yes ca-certificates python3-requests # prerequirements
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(ubuntu_codename) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update
 apt-cache policy docker-ce
 sudo apt install --yes docker-ce docker-ce-cli
 sudo groupadd docker
 sudo usermod -aG docker ${USER} # add current user to docker user group
 # docker-compose
-curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 # postgres
 sudo apt install --yes ca-certificates libpq-dev
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+sudo curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc -o /etc/apt/keyrings/postgresql.asc
+sudo chmod a+r /etc/apt/keyrings/postgresql.asc
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/postgresql.asc] https://apt.postgresql.org/pub/repos/apt $(ubuntu_codename)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list > /dev/null
 sudo apt update
 sudo apt install --yes postgresql postgresql-contrib postgresql-common
 # redis
 sudo apt install --yes redis-server
 sudo systemctl enable redis-server.service # run redis on boot
 # yarn
-sudo npm install -g yarn
+npm install -g yarn
 # markdown
 sudo apt install --yes markdown
 # github CLI
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-sudo apt-add-repository -y https://cli.github.com/packages
+sudo curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg -o /etc/apt/keyrings/githubcli-archive-keyring.gpg
+sudo chmod a+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 sudo apt update
 sudo apt install --yes gh
 # gitlab CLI
@@ -84,8 +93,9 @@ cd ~/.asdf
 make
 cd -
 # kerl
-curl https://raw.githubusercontent.com/kerl/kerl/master/kerl -o /usr/local/bin/kerl
-chmod a+x /usr/local/bin/kerl
+mkdir -p ~/.local/bin
+curl -fsSL https://raw.githubusercontent.com/kerl/kerl/master/kerl -o ~/.local/bin/kerl
+chmod a+x ~/.local/bin/kerl
 # kiex
 curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/kiex | bash -s install_kiex
 # diff-so-fancy

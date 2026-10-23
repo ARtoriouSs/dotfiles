@@ -1,4 +1,5 @@
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.rbenv/bin:/usr/games:$PATH
+export N_PREFIX=$HOME/.n # node versions from n, see bin/install_cli.sh
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$N_PREFIX/bin:$HOME/.rbenv/bin:/usr/games:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH # rbenv
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/:$PATH" # asdf executable
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH" # asdf shims
