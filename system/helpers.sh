@@ -156,8 +156,14 @@ rescale-default() {
 # Decrease keyboard repeat delay and increase speed
 alias repeat="keyboard-repeat-reset"
 keyboard-repeat-reset() {
-  gsettings set org.gnome.desktop.peripherals.keyboard delay 200
-  xset r rate 200 40
+  local schema
+  for schema in org.cinnamon.desktop.peripherals.keyboard org.gnome.desktop.peripherals.keyboard; do
+    if gsettings list-schemas | grep -qx "$schema"; then
+      gsettings set "$schema" delay 190
+      gsettings set "$schema" repeat-interval 23
+    fi
+  done
+  xset r rate 190 43
 }
 
 futbik() {

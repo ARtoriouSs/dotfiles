@@ -12,15 +12,15 @@ echo "Fonts were installed, enable it in terminal preferences:"
 echo "Edit -> Preferences -> Text -> Custom font"
 echo "Search for Droid Sans Mono"
 
-### systemd links
-# on start
-sudo ln -sf ~/dotfiles/system/systemd/system/on_start.service /etc/systemd/system/on_start.service
-sudo ln -sf ~/dotfiles/system/systemd/system/on_start_rescale_display.service /etc/systemd/system/on_start_rescale_display.service
-sudo ln -sf ~/dotfiles/system/systemd/bin/on_start.sh /usr/local/bin/on_start.sh
+### keyboard repeat delay and speed
+# stored in dconf, so the desktop settings daemon applies them again after restart,
+# wake up and keyboard reconnect, nothing has to run as root or on every boot
+for schema in org.cinnamon.desktop.peripherals.keyboard org.gnome.desktop.peripherals.keyboard; do
+  if gsettings list-schemas | grep -qx "$schema"; then
+    gsettings set "$schema" delay 190
+    gsettings set "$schema" repeat-interval 23 # ms between repeats, about 43 per second
+  fi
+done
 
-# Run manually if needed: `sudo systemctl enable on_start_rescale_display.service`
-sudo systemctl enable on_start.service
-
-# on wake up
-sudo ln -sf ~/dotfiles/system/systemd/system-sleep/on_wake_up.sh /lib/systemd/system-sleep/on_wake_up.sh
-# Run manually if needed: `sudo ln -sf ~/dotfiles/system/systemd/system-sleep/on_wake_up_rescale_display.sh /lib/systemd/system-sleep/on_wake_up_rescale_display.sh`
+### display scaling for a big screen, link manually if needed (replace DP-0 with a monitor from `xrandr --listmonitors`):
+# mkdir -p ~/.config/autostart && ln -sf ~/dotfiles/system/autostart/scale-up.desktop ~/.config/autostart/scale-up.desktop

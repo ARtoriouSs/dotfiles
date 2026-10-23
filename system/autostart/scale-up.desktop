@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=xrandr --output DP-0 --scale 1.5x1.5
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Name[en_US]=scale-up
+Comment[en_US]=Scale interface to 150% for large monitor
+X-GNOME-Autostart-Delay=0
