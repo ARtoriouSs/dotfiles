@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o pipefail # a pipeline fails when any command in it fails, not only the last one
 
 # zsh and Oh My Zsh
 sudo apt update --yes

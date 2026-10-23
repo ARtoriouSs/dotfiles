@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o pipefail # a pipeline fails when any command in it fails, not only the last one
 
 # this script runs docker container with an empty system as a test playground
 # GUI apps open as windows on the host display (run xeyes to check),

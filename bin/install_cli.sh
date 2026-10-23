@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o pipefail # a pipeline fails when any command in it fails, not only the last one
 
 # Mint has its own codename; the Ubuntu one picks the right apt repo
 ubuntu_codename() {
@@ -18,8 +19,7 @@ sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1 # p
 sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1 # pip = pip3
 # ruby
 sudo apt install --yes ruby-full ruby-bundler
-# sudo gem install bundler
-gem update bundler
+sudo gem update bundler # gems of the system ruby belong to root
 # go
 sudo apt install --yes golang-go
 # cowsay :)
@@ -50,12 +50,9 @@ sudo chmod a+r /etc/apt/keyrings/docker.asc
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(ubuntu_codename) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update
 apt-cache policy docker-ce
-sudo apt install --yes docker-ce docker-ce-cli
+sudo apt install --yes docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin # compose is `docker compose`
 sudo groupadd docker
 sudo usermod -aG docker ${USER} # add current user to docker user group
-# docker-compose
-sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
 # postgres
 sudo apt install --yes ca-certificates libpq-dev
 sudo curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc -o /etc/apt/keyrings/postgresql.asc
@@ -67,7 +64,7 @@ sudo apt install --yes postgresql postgresql-contrib postgresql-common
 sudo apt install --yes redis-server
 sudo systemctl enable redis-server.service # run redis on boot
 # yarn
-npm install -g yarn
+npm install -g --allow-scripts=yarn yarn
 # markdown
 sudo apt install --yes markdown
 # github CLI
@@ -81,12 +78,9 @@ GLAB_VERSION=$(curl -sL "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/rel
 curl -sL "https://gitlab.com/gitlab-org/cli/-/releases/v${GLAB_VERSION}/downloads/glab_${GLAB_VERSION}_linux_amd64.deb" -o /tmp/glab.deb
 sudo apt install --yes /tmp/glab.deb
 rm /tmp/glab.deb
-# claude
-npm install -g @anthropic-ai/claude-code
-# gemini
-npm install -g @google/gemini-cli@latest
-# codex
-npm install -g @openai/codex
+# gitleaks, secret scanner for the pre-commit hook in .githooks
+~/dotfiles/bin/install_gitleaks.sh
+# AI agents (claude, codex, gemini, copilot) are installed by install_ai_agents.sh
 # asdf (configured via ZSH plugin)
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 cd ~/.asdf

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o pipefail # a pipeline fails when any command in it fails, not only the last one
 
 # generates an ed25519 ssh key, adds it to the ssh agent and copies the public key to the clipboard
 # an existing key is never overwritten

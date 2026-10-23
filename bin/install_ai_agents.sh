@@ -1,6 +1,13 @@
 #!/bin/bash
+set -o pipefail # a pipeline fails when any command in it fails, not only the last one
 
 # install and configure AI coding agents: Claude Code, Codex, Gemini and Copilot.
+
+# native addons that npm builds or downloads in install scripts, newer npm skips scripts that are not listed
+npm_allow_scripts=better-sqlite3,onnxruntime-node,koffi,protobufjs,node-pty,@lydell/node-pty,@github/keytar,@google/genai
+
+### Codex, Gemini and Copilot, first so the caveman setup below can use gemini
+npm install -g --allow-scripts=$npm_allow_scripts @openai/codex @google/gemini-cli@latest @github/copilot
 
 ### Claude Code
 # native install (not npm) - drops binary in ~/.local/bin
@@ -16,7 +23,7 @@ rtk init -g --auto-patch                                           # Claude Code
 rtk init -g --codex --auto-patch                                   # Codex
 rtk init -g --gemini --auto-patch                                  # Gemini
 # caveman - token-efficient skills/prompt compression
-npm install -g @juliusbrussee/caveman-code
+npm install -g --allow-scripts=$npm_allow_scripts @juliusbrussee/caveman-code
 npx -y skills add JuliusBrussee/caveman -a codex                   # Codex
 gemini extensions install --consent https://github.com/JuliusBrussee/caveman # Gemini
 
@@ -51,12 +58,3 @@ link_claude_profile() {
 link_claude_profile ~/.claude work
 link_claude_profile ~/.claude-work work
 link_claude_profile ~/.claude-personal personal
-
-### Codex
-npm install -g @openai/codex
-
-### Gemini
-npm install -g @google/gemini-cli@latest
-
-### Copilot
-npm install -g @github/copilot
