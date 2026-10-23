@@ -6,36 +6,32 @@ This is the repo with my system configuration.
 
 ## How does it work?
 
-Implied that all dotfiles stored in `$HOME/dotfiles` directory and have symlinks to their original locations.
-So it's possible manage and commit them from one place. All the configuration and scripts here are compatible with
-Debian-like Linux systems.
+All dotfiles live in `$HOME/dotfiles` and are linked to the places where programs look for them,
+so they can be changed and committed from one place. The scripts are made for Linux Mint 22 (Ubuntu 24.04 based),
+other Debian-like systems should mostly work too.
 
-Everything here is configured for my convenience, especially for Ruby/JavaScript development.
+Everything here is set up for my convenience, especially for Ruby/JavaScript development and work with AI agents.
+There are a lot of comments, so it should be easy to read and take parts of it.
 
-I tried to make everything easy to understand, so there are a lot of comments if someone wants to use or adopt it.
+## Structure
 
-#### Here is:
+| Directory                      | What is inside                                                                  |
+|--------------------------------|---------------------------------------------------------------------------------|
+| [bin](bin)                     | Install and setup scripts, healthcheck and the Docker test sandbox              |
+| [system](system)               | Zsh config, environment variables, general aliases and the autostart entries    |
+| [development](development)     | Ruby, Docker and Postgres helpers, Ruby tool configs and Claude Code settings    |
+| [git](git)                     | Git config, global gitignore and git helpers                                    |
+| [tmux](tmux)                   | Tmux config, helpers for project sessions and the workmux config                |
+| [vim](vim)                     | Neovim config in Lua with plugins managed by lazy.nvim                          |
+| [frogswamp](frogswamp)         | Shell tools to manage the [frogswamp](https://github.com/ARtoriouSs/frogswamp) home server |
 
-- [Script for installing everything](bin/prepare.sh) from here on empty Linux system
-- [Script for installing zsh](bin/install_zsh.sh) with configured [.zshrc](system/.zshrc), [.zprofile](system/.zprofile) and extensions
-- [Aliases and some convenient shell functions](system/helpers.sh)
-- [Script for installing nvim](bin/install_vim.sh) with configured [.vimrc](vim/.vimrc)
-- Git settings: [gitconfig](git/.gitconfig), [global .gitignore](git/.gitignore.global)
-- [.pryrc](development/.pryrc), [.gemrc](development/.gemrc) and [bundler config](development/bundler_config) for convenience in Ruby development
-- And some other helpful things :)
+Every directory has a short README with details.
 
-#### Will be installed with installation scripts:
+Shell config is loaded in this order: `~/.zprofile` loads [environment.sh](system/environment.sh),
+then zsh loads `~/.zshrc`, which starts Oh My Zsh and sources [initializer.sh](system/initializer.sh).
+The initializer loads the helpers of every directory and, last, the private `system/temp_settings.sh`.
 
-- Basic software (curl, wget, git, etc.)
-- Tmux, Neovim
-- Zsh with Oh-My-Zsh
-- Docker and docker-compose
-- Ruby, Rbenv
-- NodeJS and npm
-- PostgreSQL, Redis
-- Slack, Telegram, Google Chrome, Discord
-
-To install **everything** run:
+## Installation
 
 ```bash
 cd ~
@@ -43,30 +39,35 @@ git clone https://github.com/ARtoriouSs/dotfiles.git
 ./dotfiles/bin/prepare.sh
 ```
 
-Every script will also work correctly when run separately:
+`prepare.sh` runs all the install scripts in [bin](bin), at the end it prints the steps that have to be done by hand.
+Every script also works on its own, see [bin/README.md](bin/README.md).
 
-- [prepare.sh](bin/prepare.sh) - prepares recently installed system. It will also execute all other scripts here. Don't run it if you don't need everithing.
-- [configure_system.sh](bin/configure_system.sh) - Sets up some system settings.
-- [create_dir_tree.sh](bin/create_dir_tree.sh) - Just created directories under home
-- [create_symlinks.sh](bin/create_symlinks.sh) - Adds symlinks for all dotfiles in this repo so they can store in one place.
-- [enable_snap.sh](bin/enable_snap.sh) - Linux Mint 20 disabled snap by default, so this script enables it if needed.
-- [install_cli.sh](bin/install_cli.sh) - Installs CLI programmes.
-- [install_gui.sh](bin/install_gui.sh) - Installs GUI programmes.
-- [install_rbenv.sh](bin/install_rbenv.sh) - Installs rbenv and ruby-build.
-- [install_vim.sh](bin/install_vim.sh) - Installs neovim with plugins and related things.
-- [install_zsh.sh](bin/install_zsh.sh) - Installs and enables zsh.
-- [add_ssh.sh](bin/add_ssh.sh) - Generates ssh key and adds it to ssh-agent. Takes email as first argument.
-- [bin/bootstrap_frogswamp.sh](bin/bootstrap_frogswamp.sh) - Prepares this PC to manage the [frogswamp](https://github.com/ARtoriouSs/frogswamp) home server: Nix, direnv, the admin age and SSH keys, Tailscale (off until `ts-up`). Takes the frogswamp repo path as first argument (default `~/frogswamp`). Its shell helpers are in [frogswamp/helpers.sh](frogswamp/helpers.sh).
+Private settings (current project, email, proxy) go to `system/temp_settings.sh`. It's created from
+[temp_settings.sample.sh](system/temp_settings.sample.sh) and is ignored by git.
+
+## Checking the setup
+
+```bash
+./bin/healthcheck.sh
+```
+
+It shows installed programs, dotfile links and the shell state, and exits with 1 when something is missing.
+
+## Checks
+
+- A pre-commit hook in [.githooks](.githooks) runs [gitleaks](https://github.com/gitleaks/gitleaks) and blocks commits
+  with secrets. `prepare.sh` turns it on with `git config core.hooksPath .githooks`, false positives go to `.gitleaksignore`
+- GitHub Actions ([checks.yml](.github/workflows/checks.yml)) run shellcheck (errors only) on the bash scripts
+  and gitleaks on the whole history. Zsh-only helpers are skipped, shellcheck can't parse zsh
 
 ## Testing
 
-If you unsure running something you can load test environment with Docker:
+If you are unsure about running something, try it in Docker first:
 
 ```bash
 ./bin/test.sh # add --rm to remove the container after exit
 ```
 
-It runs an empty linux sandbox with Linux Mint 22.2 as a **"test"** user with **"test"** password.
+It starts an empty Linux Mint 22.2 sandbox as a **"test"** user with **"test"** password.
 GUI apps started inside open as windows on the host desktop, run `xeyes` to check it.
 Use `--no-sandbox` flag for electron/chromium based apps, e.g. `google-chrome --no-sandbox`.
-There is also the [healthcheck script](bin/healthcheck.sh).
