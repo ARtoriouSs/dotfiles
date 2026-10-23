@@ -56,6 +56,21 @@ kill-server() {
   lsof -i tcp:$port | grep -v 'chrome\|insomnia' | awk 'FNR > 1 {print $2}' | xargs kill -9
 }
 
+# run a command with .env of the current directory loaded, in a subshell so nothing stays in the shell;
+# variables exported before win over .env, so `FOO=bar spec` overrides FOO
+with-dotenv() {
+  (
+    local saved="$(export -p)"
+    if [ -f .env ]; then
+      set -a
+      . ./.env
+      set +a
+      eval "$saved"
+    fi
+    exec "$@"
+  )
+}
+
 alias rs="server"
 alias mixer="iex --erl \"-kernel shell_history enabled\" -S mix phx.server"
 server() {
@@ -64,16 +79,13 @@ server() {
       bundle exec rails server $@
       ;;
     "ruby")
-      source .env &> /dev/null
-      ./bin/server $@
+      with-dotenv ./bin/server "$@"
       ;;
     "elixir/phoenix")
-      source .env &> /dev/null
-      iex --erl \"-kernel shell_history enabled\" -S mix phx.server $@
+      with-dotenv iex --erl "-kernel shell_history enabled" -S mix phx.server "$@"
       ;;
     "elixir")
-      source .env &> /dev/null
-      ./bin/server $@
+      with-dotenv ./bin/server "$@"
       ;;
     *)
       bundle exec rails server $@
@@ -119,16 +131,13 @@ spec() {
       bundle exec rspec $@
       ;;
     "ruby")
-      source .env &> /dev/null
-      bundle exec rspec $@
+      with-dotenv bundle exec rspec "$@"
       ;;
     "elixir/phoenix")
-      source .env &> /dev/null
-      iex -S mix test --timeout 600000 $@
+      with-dotenv iex -S mix test --timeout 600000 "$@"
       ;;
     "elixir")
-      source .env &> /dev/null
-      ./bin/test $@
+      with-dotenv ./bin/test "$@"
       ;;
     *)
       bundle exec rspec $@
@@ -165,12 +174,10 @@ console() {
       bundle exec rails console $@
       ;;
     "ruby")
-      source .env &> /dev/null
-      ./bin/console $@
+      with-dotenv ./bin/console "$@"
       ;;
     "elixir" | "elixir/phoenix")
-      source .env &> /dev/null
-      iex -S mix $@
+      with-dotenv iex -S mix "$@"
       ;;
     *)
       bundle exec rails console $@
