@@ -9,10 +9,11 @@
 
 ## Sessions
 
-- `tp [path]` - project session: editor on top, shell and Claude below. `tc` opens it for `$CURRENT_PROJECT`
+- `tp [path]` - project session: editor on top, shell and Claude (personal profile) below. `tc` opens it for `$CURRENT_PROJECT`
 - `td [path]` - simple session with two panes
 - `tk [name]` - kill the session of the current directory, `tka` kills all sessions
-- `wmx` - open the repo or worktree with workmux in a separate tmux server, with the same layout as `tp`
+- `wmx` - open the repo or worktree with workmux in a separate tmux server, with the same layout as `tp`.
+  Claude uses the work profile, `wmx personal` or `wmxp` the personal one. `workmux add` and `workmux open` default to work, `workmux add -a claude-personal` for personal
 
 `run-in-editor` and `run-beside` send commands to the editor pane and the pane beside it,
 the Neovim config uses them to run specs and git commands.

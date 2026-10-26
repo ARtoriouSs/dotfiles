@@ -2,7 +2,14 @@
 # docs: https://github.com/raine/workmux#configuration
 
 nerdfont: true
-agent: claude
+
+# claude profiles like the claude-work/claude-personal aliases, `workmux add -a claude-personal`
+# picks the personal one, `wmx personal` sets WMX_CLAUDE_CONFIG_DIR while opening
+# (string commands go through a shell, env values of structured profiles don't expand ~ or $HOME)
+agents:
+  claude-work: "env CLAUDE_CONFIG_DIR=${WMX_CLAUDE_CONFIG_DIR:-$HOME/.claude-work} claude"
+  claude-personal: "env CLAUDE_CONFIG_DIR=$HOME/.claude-personal claude"
+agent: claude-work
 
 # merge_strategy: rebase           # merge | rebase | squash (default: merge)
 # merge_keep: true                 # keep worktree, window and branch after `workmux merge`

@@ -24,7 +24,7 @@ t-project() {
 
     # claude beside the bottom shell, typed into a shell so the pane survives claude exit
     tmux split-window -h -c $project_path
-    tmux send-keys "claude" Enter
+    tmux send-keys "claude-personal" Enter
     tmux select-pane -L
   fi
   tmux -2 attach-session -t "=$session_name"
@@ -138,9 +138,19 @@ alias ws="workmux sync-files && ~/dotfiles/tmux/workmux/link-env.sh"
 
 # open the current repo or worktree in a separate tmux server managed by workmux,
 # sessions are named and laid out like `tp` (see tmux/workmux/config.yaml),
-# the default tmux server and its sessions are left untouched
+# the default tmux server and its sessions are left untouched;
+# Claude runs with the work profile, `wmx personal` or `wmxp` use the personal one
 alias wmx="t-workmux"
+alias wmxp="t-workmux personal"
 t-workmux() {
+  local config_dir=$HOME/.claude-work
+  if [ "$1" = "personal" ]; then
+    config_dir=$HOME/.claude-personal
+  elif [ -n "$1" ]; then
+    echo "unknown profile $(tput setaf 208)$1$(tput sgr0), use $(tput setaf 208)personal$(tput sgr0) or nothing"
+    return 1
+  fi
+
   local root=$(git rev-parse --show-toplevel 2> /dev/null)
   if [ -z "$root" ]; then
     echo "$(tput setaf 208)$PWD$(tput sgr0) is not a git repository"
@@ -171,7 +181,9 @@ t-workmux() {
 
   if [ -n "$TMUX" ]; then
     if [ "$(basename ${TMUX%%,*})" = "workmux" ]; then
+      tmux set-environment -g WMX_CLAUDE_CONFIG_DIR "$config_dir"
       workmux open "$handle"
+      tmux set-environment -gu WMX_CLAUDE_CONFIG_DIR
     else
       echo "already inside tmux, run $(tput setaf 208)wmx$(tput sgr0) from a plain terminal"
       return 1
@@ -180,8 +192,10 @@ t-workmux() {
     # throwaway session: switches the client to the worktree session and kills itself,
     # sidebar panes would keep it alive otherwise; the sidebar daemon is started by the
     # tmux server (run-shell), so it doesn't die along with the throwaway pane.
-    # started in $PWD, so workmux picks up the subproject .workmux.yaml
+    # started in $PWD, so workmux picks up the subproject .workmux.yaml.
+    # workmux doesn't pass its env to new panes, so the claude profile goes through
+    # the server env only while opening, later `workmux add` falls back to work
     tmux -L workmux new-session -c "$PWD" \
-      "tmux run-shell -b 'workmux sidebar on'; workmux open '$handle' || read; tmux kill-session -t \$TMUX_PANE"
+      "tmux set-environment -g WMX_CLAUDE_CONFIG_DIR '$config_dir'; tmux run-shell -b 'workmux sidebar on'; workmux open '$handle' || read; tmux set-environment -gu WMX_CLAUDE_CONFIG_DIR; tmux kill-session -t \$TMUX_PANE"
   fi
 }
