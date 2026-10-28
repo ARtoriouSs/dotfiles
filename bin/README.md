@@ -26,7 +26,7 @@ Optional, run by hand when needed:
 | [add_ssh.sh](add_ssh.sh)                         | Creates an ed25519 SSH key, adds it to the agent and copies the public key   |
 | [enable_snap.sh](enable_snap.sh)                 | Enables snap, Linux Mint blocks it by default                                |
 | [disable_snap.sh](disable_snap.sh)               | Removes snap and blocks it again                                             |
-| [bootstrap_frogswamp.sh](bootstrap_frogswamp.sh) | Prepares this PC to manage the frogswamp home server, safe to run again      |
+| [bootstrap_frogswamp.sh](bootstrap_frogswamp.sh) | Runs the frogswamp repo's bootstrap from GitHub to prepare this PC to manage the home server, safe to run again |
 
 Scripts don't stop on errors, but a pipeline fails when any of its commands fails (`pipefail`).
 The healthcheck at the end of `prepare.sh` shows what is missing.
