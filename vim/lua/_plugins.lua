@@ -54,6 +54,7 @@ require('lazy').setup({
   { 'github/copilot.vim' },
   { -- Claude Code IDE integration: shares selection and shows edits as diffs
     'coder/claudecode.nvim',
+    lazy = false, -- start the server on launch, so /ide in an outside claude finds this nvim
     opts = {
       terminal = { provider = 'native', split_side = 'right', split_width_percentage = 0.35 },
     },

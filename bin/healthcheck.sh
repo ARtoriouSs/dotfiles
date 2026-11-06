@@ -198,6 +198,7 @@ for profile in ~/.claude:work ~/.claude-work:work ~/.claude-personal:personal; d
   if [ "$config_dir" != ~/.claude ]; then
     check-link "$config_dir/CLAUDE.md" ~/.claude/CLAUDE.md
     check-link "$config_dir/RTK.md" ~/.claude/RTK.md
+    check-link "$config_dir/ide" ~/.claude/ide
   fi
 done
 

@@ -53,6 +53,12 @@ link_claude_profile() {
   if [ "$config_dir" != ~/.claude ]; then
     ln -sf ~/.claude/CLAUDE.md "$config_dir"/CLAUDE.md
     ln -sf ~/.claude/RTK.md "$config_dir"/RTK.md
+    # editors (claudecode.nvim) write lock files to ~/.claude/ide, so /ide finds them from every profile
+    if [ -d "$config_dir"/ide ] && [ ! -L "$config_dir"/ide ]; then
+      rm -f "$config_dir"/ide/*.lock
+      rmdir "$config_dir"/ide
+    fi
+    ln -sfn ~/.claude/ide "$config_dir"/ide
   fi
 }
 link_claude_profile ~/.claude work
