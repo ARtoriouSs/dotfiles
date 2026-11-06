@@ -9,7 +9,7 @@ Neovim config in Lua. `init.lua` and `lua/` are linked to `~/.config/nvim`, plug
 | [lazy-lock.json](lazy-lock.json)                             | Plugin versions, so a reinstall gets the same ones       |
 | [lua/_plugins.lua](lua/_plugins.lua)                         | Plugin list                                              |
 | [lua/_lsp.lua](lua/_lsp.lua)                                 | LSP servers (ruby-lsp)                                   |
-| [lua/_completion.lua](lua/_completion.lua)                   | Completion with nvim-cmp                                 |
+| [lua/_completion.lua](lua/_completion.lua)                   | Completion with blink.cmp                                |
 | [lua/_treesitter.lua](lua/_treesitter.lua)                   | Syntax highlighting with treesitter                      |
 | [lua/_search.lua](lua/_search.lua)                           | Telescope search                                         |
 | [lua/_explorer.lua](lua/_explorer.lua)                       | File explorer                                            |

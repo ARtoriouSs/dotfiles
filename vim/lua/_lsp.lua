@@ -1,13 +1,3 @@
--- Add cmp_nvim_lsp capabilities to all LSP configs before they are enabled.
--- vim.lsp.config('*', ...) extends the global configuration shared by servers.
-vim.lsp.config('*', {
-  capabilities = vim.tbl_deep_extend(
-    'force',
-    vim.lsp.config['*'] and vim.lsp.config['*'].capabilities or {},
-    require('cmp_nvim_lsp').default_capabilities()
-  )
-})
-
 -- Disables rubocop linting
 vim.lsp.config('ruby_lsp', {
   init_options = {

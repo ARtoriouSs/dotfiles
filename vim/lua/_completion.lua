@@ -1,32 +1,21 @@
-local cmp = require('cmp')
-
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      vim.snippet.expand(args.body)
-    end,
+require('blink.cmp').setup({
+  keymap = {
+    preset = 'default', -- <C-y> accepts, <Tab> jumps inside snippets and falls back to Copilot
+    ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+    ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+    ['<C-k>'] = { 'select_prev', 'fallback' },
+    ['<C-j>'] = { 'select_next', 'fallback' },
+    ['<S-Tab>'] = { 'select_next', 'snippet_backward', 'fallback' },
   },
 
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered()
+  completion = {
+    menu = { border = 'rounded' },
+    documentation = { auto_show = true, window = { border = 'rounded' } },
   },
 
-  mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<C-k>'] = cmp.mapping.select_prev_item(),
-    ['<C-j>'] = cmp.mapping.select_next_item(),
-    ['<S-Tab>'] = cmp.mapping.select_next_item()
-  }),
-
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-  }, {
-    { name = 'buffer' },
-  })
+  sources = {
+    default = { 'lsp', 'path', 'snippets', 'buffer' },
+  },
 })
 
 vim.lsp.enable('ruby_lsp')
