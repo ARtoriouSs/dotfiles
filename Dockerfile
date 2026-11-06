@@ -25,8 +25,6 @@ RUN echo "test:test" | chpasswd
 RUN usermod -aG sudo test
 
 COPY . /home/test/dotfiles
-# comment to leave current temp_settings in place
-RUN rm -f /home/test/dotfiles/system/temp_settings.sh
 RUN chown -R test:test /home/test/dotfiles
 
 USER test
