@@ -191,9 +191,11 @@ check-link ~/.config/nvim/lazy-lock.json ~/dotfiles/vim/lazy-lock.json
 check-link ~/.rbenv/default-gems ~/dotfiles/development/default-gems
 # install_ai_agents.sh
 check-link ~/.config/workmux/config.yaml ~/dotfiles/tmux/workmux/config.yaml
+claude_settings=~/dotfiles/development/claude
+[ -d ~/dotfiles-secret/claude ] && claude_settings=~/dotfiles-secret/claude
 for profile in ~/.claude:work ~/.claude-work:work ~/.claude-personal:personal; do
   config_dir=${profile%:*}
-  check-link "$config_dir/settings.json" ~/dotfiles/development/claude/"${profile##*:}"/settings.json
+  check-link "$config_dir/settings.json" "$claude_settings/${profile##*:}/settings.json"
   check-link "$config_dir/statusline.sh" ~/dotfiles/development/claude/statusline.sh
   if [ "$config_dir" != ~/.claude ]; then
     check-link "$config_dir/CLAUDE.md" ~/.claude/CLAUDE.md
@@ -201,6 +203,17 @@ for profile in ~/.claude:work ~/.claude-work:work ~/.claude-personal:personal; d
     check-link "$config_dir/ide" ~/.claude/ide
   fi
 done
+
+echo "Private files:"
+if [ -d ~/dotfiles-secret/.git ]; then
+  ok "~/dotfiles-secret"
+  check-link ~/.claude/CLAUDE.md ~/dotfiles-secret/claude/CLAUDE.md
+  if [ -f ~/dotfiles-secret/system/credentials.sh.age ] && [ ! -f ~/dotfiles-secret/system/credentials.sh ]; then
+    fail "credentials.sh is not decrypted, run secret-decrypt"
+  fi
+else
+  echo " ~/dotfiles-secret is not cloned, using the default files (bin/clone_secret.sh)"
+fi
 
 printf "\nChecking shell:\n"
 if [ -z "$RC_SOURCED" ]; then

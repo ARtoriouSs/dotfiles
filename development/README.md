@@ -21,5 +21,6 @@ so nothing stays in your shell, and exported variables win over `.env`, e.g. `FO
 ## Claude Code profiles
 
 `claude-work` and `claude-personal` start Claude with `~/.claude-work` or `~/.claude-personal` as the config directory.
-Both get their `settings.json` and `statusline.sh` linked from [claude](claude), and share the global `CLAUDE.md`
-from `~/.claude` (edit it with `claude-md`). Plain `claude` uses `~/.claude` with the work settings.
+Both get `statusline.sh` linked from [claude](claude), and share the global `CLAUDE.md` from `~/.claude` (edit it with `claude-md`).
+`settings.json` and `CLAUDE.md` come from the private `dotfiles-secret` repo, the settings in [claude](claude) are
+the defaults used when it's not cloned. Plain `claude` uses `~/.claude` with the work settings.

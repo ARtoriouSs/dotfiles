@@ -23,7 +23,6 @@ alias cdd="cd ~/dotfiles"
 alias zprofile="$VISUAL ~/dotfiles/system/.zprofile"
 alias zshrc="$VISUAL ~/dotfiles/system/.zshrc"
 alias envs="$VISUAL ~/dotfiles/system/environment.sh"
-alias temps="$VISUAL ~/dotfiles/system/temp_settings.sh"
 alias gitconfig="$VISUAL ~/dotfiles/git/.gitconfig"
 alias gitignore-global="$VISUAL ~/dotfiles/git/.gitignore.global"
 alias cdf="cd ~/frogswamp" # https://github.com/ARtoriouSs/frogswamp
@@ -74,7 +73,7 @@ color-list() {
 }
 
 # cd to $PROJECTS, single quotes so $CURRENT_PROJECT is read on every call
-# (temp_settings.sh that sets it is sourced after this file)
+# (private_settings.sh from dotfiles-secret that sets it is sourced after this file)
 alias cdcc='cdp $CURRENT_PROJECT/..' # if project is in subdirectory
 alias cdc='cdp $CURRENT_PROJECT'
 alias cdt="cdp test"

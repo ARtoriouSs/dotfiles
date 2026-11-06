@@ -47,7 +47,10 @@ CLAUDE_CONFIG_DIR=~/.claude-work claude mcp add --scope user --transport http at
 link_claude_profile() {
   local config_dir=$1 profile=$2
   mkdir -p "$config_dir"
-  ln -sf ~/dotfiles/development/claude/"$profile"/settings.json "$config_dir"/settings.json
+  # the private dotfiles-secret repo has its own settings and links them (bin/create_symlinks.sh)
+  if [ ! -f ~/dotfiles-secret/claude/"$profile"/settings.json ]; then
+    ln -sf ~/dotfiles/development/claude/"$profile"/settings.json "$config_dir"/settings.json
+  fi
   ln -sf ~/dotfiles/development/claude/statusline.sh "$config_dir"/statusline.sh
   # rtk init writes global instructions only to ~/.claude, so share them with other profiles
   if [ "$config_dir" != ~/.claude ]; then

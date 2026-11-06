@@ -5,8 +5,7 @@ set -o pipefail # a pipeline fails when any command in it fails, not only the la
 
 cd ~/dotfiles/bin # if ran from outside
 
-[ -f ../system/temp_settings.sh ] || cp ../system/temp_settings.sample.sh ../system/temp_settings.sh # keep existing settings on re-run
-
+./clone_secret.sh # first, because it asks for the GitHub password
 ./create_dir_tree.sh
 ./install_cli.sh
 ./install_gui.sh
@@ -46,6 +45,7 @@ echo "Newer Mint should have it in settings - Settings -> Display -> Settings ->
 echo "7) Reboot again :)"
 echo
 echo "Also you can manually run add_ssh.sh and enable_snap.sh when needed."
+echo "Run secret-decrypt after bootstrap_frogswamp.sh puts the age key in place."
 echo
 
 # show what is still missing, in a zsh login shell so the new environment and rc file are loaded

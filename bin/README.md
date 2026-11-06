@@ -6,6 +6,7 @@ each one also works on its own.
 | Script                                           | What it does                                                                 |
 |--------------------------------------------------|------------------------------------------------------------------------------|
 | [prepare.sh](prepare.sh)                         | Runs everything below (except the optional ones), prints the manual steps and runs the healthcheck |
+| [clone_secret.sh](clone_secret.sh)               | Clones the private `dotfiles-secret` repo over HTTPS, decrypts its credentials and links its files |
 | [create_dir_tree.sh](create_dir_tree.sh)         | Creates `~/my_folder` with projects, bin and media directories               |
 | [install_cli.sh](install_cli.sh)                 | CLI tools, languages, Docker, Postgres, Redis, gh/glab, gitleaks             |
 | [install_gui.sh](install_gui.sh)                 | Chrome, Telegram, Slack, Discord, Insomnia, Postman                          |
@@ -14,7 +15,7 @@ each one also works on its own.
 | [install_zsh.sh](install_zsh.sh)                 | Zsh, Oh My Zsh, the theme and plugins                                        |
 | [install_vim.sh](install_vim.sh)                 | Neovim from the official release and its plugins from the lockfile          |
 | [install_ai_agents.sh](install_ai_agents.sh)     | Claude Code, Codex, Gemini, Copilot, rtk, caveman, workmux, Claude profiles  |
-| [create_symlinks.sh](create_symlinks.sh)         | Links git, tmux and Ruby tool configs to the home directory                  |
+| [create_symlinks.sh](create_symlinks.sh)         | Links git, tmux and Ruby tool configs to the home directory, then runs `~/dotfiles-secret/bin/create_symlinks.sh` |
 | [install_gitleaks.sh](install_gitleaks.sh)       | gitleaks from the GitHub release with a checksum check, used by `install_cli.sh` and CI |
 | [healthcheck.sh](healthcheck.sh)                 | Checks programs, dotfile links and the shell, exits with 1 on a problem      |
 | [test.sh](test.sh)                               | Starts the Docker sandbox from the [Dockerfile](../Dockerfile)               |

@@ -29,7 +29,7 @@ Every directory has a short README with details.
 
 Shell config is loaded in this order: `~/.zprofile` loads [environment.sh](system/environment.sh),
 then zsh loads `~/.zshrc`, which starts Oh My Zsh and sources [initializer.sh](system/initializer.sh).
-The initializer loads the helpers of every directory and, last, the private `system/temp_settings.sh`.
+The initializer loads the helpers of every directory and, last, the private files from `~/dotfiles-secret`.
 
 ## Installation
 
@@ -42,8 +42,10 @@ git clone https://github.com/ARtoriouSs/dotfiles.git
 `prepare.sh` runs all the install scripts in [bin](bin), at the end it prints the steps that have to be done by hand.
 Every script also works on its own, see [bin/README.md](bin/README.md).
 
-Private settings (current project, email, proxy) go to `system/temp_settings.sh`. It's created from
-[temp_settings.sample.sh](system/temp_settings.sample.sh) and is ignored by git.
+Private files live in the private `dotfiles-secret` repo, `prepare.sh` clones it to `~/dotfiles-secret` with
+[clone_secret.sh](bin/clone_secret.sh) (the GitHub password is a personal access token). It has the private settings
+(current project, email, proxy), credentials encrypted with age, private helpers, the global `CLAUDE.md` and
+the Claude Code settings. Without it everything works with the default files.
 
 ## Checking the setup
 

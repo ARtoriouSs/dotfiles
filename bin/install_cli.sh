@@ -24,6 +24,8 @@ sudo gem update bundler # gems of the system ruby belong to root
 sudo apt install --yes golang-go
 # cowsay :)
 sudo apt install --yes cowsay
+# encrypts credentials in the private dotfiles-secret repo
+sudo apt install --yes age
 # ripgrep
 sudo apt install --yes ripgrep
 # ag
