@@ -75,6 +75,21 @@ egst() {
   tmux-edit-file "$file"
 }
 
+# choose files from git status (Tab for several) and open them in a new tab of the editor pane,
+# several files go side by side in vertical splits
+vgst() {
+  local root=$(git-root)
+  local files
+  files=("${(@f)$(git status --porcelain | awk '{ print $2 }' | fzf --reverse -m)}") || return
+
+  local command=":tabedit $root/${files[1]}"
+  for file in "${files[@]:1}"; do
+    command="$command | vsplit $root/$file"
+  done
+
+  run-in-editor "$command"
+}
+
 # runs the last command in the pane #1, to be used in vim command
 last-command-beside() {
   run-beside C-p
